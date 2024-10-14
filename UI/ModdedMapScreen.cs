@@ -57,7 +57,7 @@ namespace DynamicMaps.UI
         // peek
         private MapPeekComponent _peekComponent;
         private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
-
+        
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = new Dictionary<Type, IDynamicMarkerProvider>();
 
@@ -208,14 +208,14 @@ namespace DynamicMaps.UI
                 zoomAmount += 1f;
             }
 
-            if (zoomAmount != 0f)
+            if (zoomAmount != 0f && !_peekComponent.ShowingMiniMap)
             {
                 var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomCurrent;
                 var zoomDelta = _mapView.ZoomCurrent * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                 _mapView.IncrementalZoomInto(zoomDelta, currentCenter, 0f);
             }
 
-            if (_centerPlayerShortcut.BetterIsDown())
+            if (_centerPlayerShortcut.BetterIsDown() || _peekComponent.ShowingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
                 if (player != null)
@@ -241,7 +241,10 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenShow()
         {
+            _peekComponent.WasMiniMapActive = _peekComponent.ShowingMiniMap;
+            
             _peekComponent?.EndPeek();
+            _peekComponent?.EndMiniMap();
 
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
@@ -253,6 +256,11 @@ namespace DynamicMaps.UI
         internal void OnMapScreenClose()
         {
             Hide();
+            
+            if (_peekComponent.WasMiniMapActive)
+            {
+                _peekComponent.BeginMiniMap();
+            }
         }
 
         internal void Show()
@@ -376,6 +384,8 @@ namespace DynamicMaps.UI
             _scrollMask.GetRectTransform().anchoredPosition = _maskPositionInRaid;
             _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + _maskSizeModifierInRaid;
 
+            _mapView.SetMapZoom(_mapView.ZoomCurrent, 0f);
+            
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(true);
@@ -387,14 +397,35 @@ namespace DynamicMaps.UI
             _scrollMask.GetRectTransform().anchoredPosition = Vector2.zero;
             _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta;
 
+            _mapView.SetMapZoom(_mapView.ZoomCurrent, 0f);
+            
             // turn both cursor and player position texts off
+            _cursorPositionText.gameObject.SetActive(false);
+            _playerPositionText.gameObject.SetActive(false);
+        }
+
+        private void AdjustForMiniMap()
+        {
+            _scrollMask.GetRectTransform().anchoredPosition = new Vector2(-10f, -10f);
+            _scrollMask.GetRectTransform().sizeDelta = new Vector2(275f, 275f);
+            _scrollMask.GetRectTransform().anchorMin = new Vector2(1f, 1f);
+            _scrollMask.GetRectTransform().anchorMax = new Vector2(1f, 1f);
+            _scrollMask.GetRectTransform().pivot = new Vector2(1f, 1f);
+            
+            _mapView.SetMapZoom(2f, 0f, true);
+            
+            _levelSelectSlider.gameObject.SetActive(false);
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
         }
 
         private void OnShowInRaid()
         {
-            if (_isPeeking)
+            if (_peekComponent.ShowingMiniMap)
+            {
+                AdjustForMiniMap();
+            }
+            else if (_isPeeking)
             {
                 AdjustForPeek();
             }

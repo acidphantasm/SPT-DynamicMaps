@@ -300,7 +300,7 @@ namespace DynamicMaps.UI.Components
             ShiftMapToCoordinate(midpoint, 0);
         }
 
-        public void SetMapZoom(float zoomNew, float tweenTime)
+        public void SetMapZoom(float zoomNew, float tweenTime, bool miniMap = false)
         {
             zoomNew = Mathf.Clamp(zoomNew, ZoomMin, ZoomMax);
 
@@ -310,10 +310,13 @@ namespace DynamicMaps.UI.Components
                 return;
             }
 
-            ZoomCurrent = zoomNew;
-
+            if (!miniMap)
+            {
+                ZoomCurrent = zoomNew;
+            }
+            
             // scale all map content up by scaling parent
-            RectTransform.DOScale(ZoomCurrent * Vector3.one, tweenTime);
+            RectTransform.DOScale(ZoomCurrent * Vector3.one, miniMap ? 0 : tweenTime);
 
             // inverse scale all map markers and labels
             // FIXME: does this generate large amounts of garbage?

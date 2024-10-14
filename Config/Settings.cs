@@ -10,67 +10,75 @@ namespace DynamicMaps.Config
         public static ConfigFile Config;
         public static List<ConfigEntryBase> ConfigEntries = new List<ConfigEntryBase>();
 
-        public const string GeneralTitle = "1. General";
-        public static ConfigEntry<bool> ReplaceMapScreen;
+        #region General
 
+        private const string GeneralTitle = "1. General";
+        public static ConfigEntry<bool> ReplaceMapScreen;
         public static ConfigEntry<KeyboardShortcut> CenterOnPlayerHotkey;
         public static ConfigEntry<KeyboardShortcut> DumpInfoHotkey;
-
         public static ConfigEntry<KeyboardShortcut> MoveMapUpHotkey;
         public static ConfigEntry<KeyboardShortcut> MoveMapDownHotkey;
         public static ConfigEntry<KeyboardShortcut> MoveMapLeftHotkey;
         public static ConfigEntry<KeyboardShortcut> MoveMapRightHotkey;
         public static ConfigEntry<float> MapMoveHotkeySpeed;
-
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelUpHotkey;
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelDownHotkey;
-
         public static ConfigEntry<KeyboardShortcut> ZoomMapInHotkey;
         public static ConfigEntry<KeyboardShortcut> ZoomMapOutHotkey;
         public static ConfigEntry<float> ZoomMapHotkeySpeed;
 
-        public const string DynamicMarkerTitle = "2. Dynamic Markers";
-        public static ConfigEntry<bool> ShowPlayerMarker;
+        #endregion
+        
+        #region Dynamic Markers
 
+        private const string DynamicMarkerTitle = "2. Dynamic Markers";
+        public static ConfigEntry<bool> ShowPlayerMarker;
         public static ConfigEntry<bool> ShowFriendlyPlayerMarkersInRaid;
         public static ConfigEntry<bool> ShowEnemyPlayerMarkersInRaid;
         public static ConfigEntry<bool> ShowScavMarkersInRaid;
         public static ConfigEntry<bool> ShowBossMarkersInRaid;
-
         public static ConfigEntry<bool> ShowLockedDoorStatus;
-
         public static ConfigEntry<bool> ShowQuestsInRaid;
-
         public static ConfigEntry<bool> ShowExtractsInRaid;
         public static ConfigEntry<bool> ShowExtractStatusInRaid;
-
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
-
         public static ConfigEntry<bool> ShowBTRInRaid;
-
         public static ConfigEntry<bool> ShowAirdropsInRaid;
-
         public static ConfigEntry<bool> ShowFriendlyCorpsesInRaid;
         public static ConfigEntry<bool> ShowKilledCorpsesInRaid;
         public static ConfigEntry<bool> ShowFriendlyKilledCorpsesInRaid;
         public static ConfigEntry<bool> ShowBossCorpsesInRaid;
         public static ConfigEntry<bool> ShowOtherCorpsesInRaid;
+        
+        #endregion
 
-        public const string InRaidTitle = "3. In-Raid";
+        #region In Raid
+
+        private const string InRaidTitle = "3. In-Raid";
         public static ConfigEntry<bool> ResetZoomOnCenter;
         public static ConfigEntry<float> CenteringZoomResetPoint;
-
         public static ConfigEntry<bool> AutoCenterOnPlayerMarker;
         public static ConfigEntry<bool> AutoSelectLevel;
-
         public static ConfigEntry<KeyboardShortcut> PeekShortcut;
         public static ConfigEntry<bool> HoldForPeek;
 
+        #endregion
+
+        #region Mini Map
+
+        private const string MiniMapTitle = "4. Mini-map";
+        public static ConfigEntry<bool> MiniMapEnabled;
+        public static ConfigEntry<KeyboardShortcut> MiniMapShowOrHide;
+        
+        #endregion
+        
         // public static ConfigEntry<KeyboardShortcut> KeyboardShortcut;
 
         public static void Init(ConfigFile Config)
         {
             Settings.Config = Config;
+
+            #region General
 
             ConfigEntries.Add(ReplaceMapScreen = Config.Bind(
                 GeneralTitle,
@@ -188,6 +196,10 @@ namespace DynamicMaps.Config
                     "Pressed while the map is open, dumps json MarkerDefs for extracts, loot, and switches into root of plugin folder",
                     null,
                     new ConfigurationManagerAttributes { IsAdvanced = true })));
+
+            #endregion
+
+            #region Dynamic Markers
 
             ConfigEntries.Add(ShowPlayerMarker = Config.Bind(
                 DynamicMarkerTitle,
@@ -342,7 +354,11 @@ namespace DynamicMaps.Config
                     null,
                     new ConfigurationManagerAttributes { })));
 
-            ConfigEntries.Add(AutoSelectLevel = Config.Bind(
+            #endregion
+
+            #region In Raid
+
+             ConfigEntries.Add(AutoSelectLevel = Config.Bind(
                 InRaidTitle,
                 "Auto Select Level",
                 true,
@@ -395,6 +411,30 @@ namespace DynamicMaps.Config
                     "If the shortcut should be held to keep it open. If disabled, button toggles",
                     null,
                     new ConfigurationManagerAttributes { })));
+
+            #endregion
+
+            #region Mini Map
+
+            ConfigEntries.Add(MiniMapEnabled = Config.Bind(
+                MiniMapTitle,
+                "Mini-map enabled",
+                true,
+                new ConfigDescription(
+                    "Enable the mini-map",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapShowOrHide = Config.Bind(
+                MiniMapTitle,
+                "Show or Hide the mini-map",
+                new KeyboardShortcut(KeyCode.End),
+                new ConfigDescription(
+                    "Show or hide the mini-map",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+
+            #endregion
 
             RecalcOrder();
         }

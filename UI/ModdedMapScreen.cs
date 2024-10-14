@@ -221,7 +221,7 @@ namespace DynamicMaps.UI
                 if (player != null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
-                    _mapView.ShiftMapToCoordinate(mapPosition, _positionTweenTime);
+                    _mapView.ShiftMapToCoordinate(mapPosition, _peekComponent.ShowingMiniMap ? 0f : _positionTweenTime);
                     _mapView.SelectLevelByCoords(mapPosition);
                 }
             }

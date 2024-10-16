@@ -212,7 +212,7 @@ namespace DynamicMaps.DynamicMarkers
         private void TryAddMarker(IPlayer iPlayer)
         {
             var player = iPlayer as Player;
-            if (player == null)
+            if (player == null || player.IsDedicatedServer())
             {
                 return;
             }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using SPT.Reflection.Utils;
 using Comfort.Common;
 using EFT;
@@ -157,6 +158,12 @@ namespace DynamicMaps.Utils
         public static bool HasCorpse(this Player player)
         {
             return _playerCorpseField.GetValue(player) != null;
+        }
+
+        public static bool IsDedicatedServer(this IPlayer player)
+        {
+            var pattern = @"^dedicated_[a-fA-F0-9]{24}$";
+            return Regex.IsMatch(player.Profile.GetCorrectedNickname(), pattern);
         }
     }
 }

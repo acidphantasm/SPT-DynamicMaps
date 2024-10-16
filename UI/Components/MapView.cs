@@ -29,6 +29,10 @@ namespace DynamicMaps.UI.Components
 
         public float ZoomMin { get; private set; }      // set when map loaded
         public float ZoomMax { get; private set; }      // set when map loaded
+
+        public float ZoomMini { get; private set; } = 5f;
+        public float ZoomMain { get; private set; } = 1f;
+        
         public float ZoomCurrent { get; private set; }  // set when map loaded
 
         private Vector2 _immediateMapAnchor = Vector2.zero;
@@ -312,8 +316,12 @@ namespace DynamicMaps.UI.Components
 
             if (!miniMap)
             {
-                ZoomCurrent = zoomNew;
+                ZoomMain = zoomNew;
             }
+            
+            ZoomCurrent = zoomNew;
+            
+            Plugin.Log.LogDebug($"Setting Zoom to {ZoomCurrent}");
             
             // scale all map content up by scaling parent
             RectTransform.DOScale(ZoomCurrent * Vector3.one, miniMap ? 0 : tweenTime);
@@ -327,7 +335,7 @@ namespace DynamicMaps.UI.Components
             }
         }
 
-        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
+        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool isMini = false)
         {
             var zoomNew = Mathf.Clamp(ZoomCurrent + zoomDelta, ZoomMin, ZoomMax);
             var actualDelta = zoomNew - ZoomCurrent;
@@ -335,7 +343,7 @@ namespace DynamicMaps.UI.Components
 
             // have to shift first, so that the tween is started in the shift first
             ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime);
-            SetMapZoom(zoomNew, zoomTweenTime);
+            SetMapZoom(zoomNew, zoomTweenTime, isMini);
         }
 
         public void ShiftMap(Vector2 shift, float tweenTime)

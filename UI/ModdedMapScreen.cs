@@ -42,6 +42,7 @@ namespace DynamicMaps.UI
         private RectTransform _parentTransform => gameObject.transform.parent as RectTransform;
 
         private bool _isShown = false;
+        private bool _isMapScreenOpen = false;
 
         // map and transport mechanism
         private ScrollRect _scrollRect;
@@ -207,14 +208,22 @@ namespace DynamicMaps.UI
             {
                 zoomAmount += 1f;
             }
-
+            
             if (zoomAmount != 0f && !_peekComponent.ShowingMiniMap)
             {
-                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomCurrent;
-                var zoomDelta = _mapView.ZoomCurrent * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
+                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
+                var zoomDelta = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                 _mapView.IncrementalZoomInto(zoomDelta, currentCenter, 0f);
             }
-
+            else if ((_peekComponent.IsPeeking && zoomAmount == 0f) || (_isMapScreenOpen && zoomAmount == 0f))
+            {
+                _mapView.SetMapZoom(_mapView.ZoomMain, 0f, true);
+            }
+            else if (_peekComponent.ShowingMiniMap)
+            {
+                _mapView.SetMapZoom(_mapView.ZoomMini, 0f, true);
+            }
+            
             if (_centerPlayerShortcut.BetterIsDown() || _peekComponent.ShowingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
@@ -242,6 +251,7 @@ namespace DynamicMaps.UI
         internal void OnMapScreenShow()
         {
             _peekComponent.WasMiniMapActive = _peekComponent.ShowingMiniMap;
+            _isMapScreenOpen = true;
             
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
@@ -256,6 +266,8 @@ namespace DynamicMaps.UI
         internal void OnMapScreenClose()
         {
             Hide();
+            
+            _isMapScreenOpen = false;
             
             if (_peekComponent.WasMiniMapActive)
             {
@@ -339,6 +351,8 @@ namespace DynamicMaps.UI
 
             // reset peek and remove reference, it will be destroyed very shortly with parent object
             _peekComponent?.EndPeek();
+            _peekComponent?.EndMiniMap();
+            
             Destroy(_peekComponent.gameObject);
             _peekComponent = null;
 
@@ -383,8 +397,6 @@ namespace DynamicMaps.UI
             // adjust mask
             _scrollMask.GetRectTransform().anchoredPosition = _maskPositionInRaid;
             _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + _maskSizeModifierInRaid;
-
-            _mapView.SetMapZoom(_mapView.ZoomCurrent, 0f);
             
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
@@ -396,8 +408,6 @@ namespace DynamicMaps.UI
             // adjust mask
             _scrollMask.GetRectTransform().anchoredPosition = Vector2.zero;
             _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta;
-
-            _mapView.SetMapZoom(_mapView.ZoomCurrent, 0f);
             
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
@@ -412,8 +422,6 @@ namespace DynamicMaps.UI
             _scrollMask.GetRectTransform().anchorMax = new Vector2(1f, 1f);
             _scrollMask.GetRectTransform().pivot = new Vector2(1f, 1f);
             
-            _mapView.SetMapZoom(2f, 0f, true);
-            
             _levelSelectSlider.gameObject.SetActive(false);
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
@@ -423,14 +431,17 @@ namespace DynamicMaps.UI
         {
             if (_peekComponent.ShowingMiniMap)
             {
+                Plugin.Log.LogWarning("Switching to mini mode");
                 AdjustForMiniMap();
             }
             else if (_isPeeking)
             {
+                Plugin.Log.LogWarning("Switching to peek mode");
                 AdjustForPeek();
             }
             else
             {
+                Plugin.Log.LogWarning("Switching to inventory mode");
                 AdjustForInRaid();
             }
 

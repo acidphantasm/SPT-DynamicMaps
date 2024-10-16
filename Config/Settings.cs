@@ -448,7 +448,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ZoomMiniMap = Config.Bind(
-                InRaidTitle,
+                MiniMapTitle,
                 "Mini map zoom",
                 5.0f,
                 new ConfigDescription(

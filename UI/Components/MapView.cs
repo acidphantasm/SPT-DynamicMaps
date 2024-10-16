@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
 using EFT;
@@ -30,8 +31,8 @@ namespace DynamicMaps.UI.Components
         public float ZoomMin { get; private set; }      // set when map loaded
         public float ZoomMax { get; private set; }      // set when map loaded
 
-        public float ZoomMini { get; private set; } = 5f;
-        public float ZoomMain { get; private set; } = 1f;
+        public float ZoomMain { get; set; } = Config.Settings.ZoomMainMap.Value;
+        public float ZoomMini { get; set; } = Config.Settings.ZoomMiniMap.Value;
         
         public float ZoomCurrent { get; private set; }  // set when map loaded
 
@@ -304,7 +305,7 @@ namespace DynamicMaps.UI.Components
             ShiftMapToCoordinate(midpoint, 0);
         }
 
-        public void SetMapZoom(float zoomNew, float tweenTime, bool miniMap = false)
+        public void SetMapZoom(float zoomNew, float tweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
         {
             zoomNew = Mathf.Clamp(zoomNew, ZoomMin, ZoomMax);
 
@@ -314,9 +315,16 @@ namespace DynamicMaps.UI.Components
                 return;
             }
 
-            if (!miniMap)
+            if (updateMainZoom)
             {
                 ZoomMain = zoomNew;
+                Settings.ZoomMainMap.Value = zoomNew;
+            }
+
+            if (updateMiniZoom)
+            {
+                ZoomMini = zoomNew;
+                Settings.ZoomMiniMap.Value = zoomNew;
             }
             
             ZoomCurrent = zoomNew;
@@ -324,7 +332,7 @@ namespace DynamicMaps.UI.Components
             Plugin.Log.LogDebug($"Setting Zoom to {ZoomCurrent}");
             
             // scale all map content up by scaling parent
-            RectTransform.DOScale(ZoomCurrent * Vector3.one, miniMap ? 0 : tweenTime);
+            RectTransform.DOScale(ZoomCurrent * Vector3.one, updateMainZoom ? 0 : tweenTime);
 
             // inverse scale all map markers and labels
             // FIXME: does this generate large amounts of garbage?
@@ -335,7 +343,7 @@ namespace DynamicMaps.UI.Components
             }
         }
 
-        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool isMini = false)
+        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
         {
             var zoomNew = Mathf.Clamp(ZoomCurrent + zoomDelta, ZoomMin, ZoomMax);
             var actualDelta = zoomNew - ZoomCurrent;
@@ -343,7 +351,18 @@ namespace DynamicMaps.UI.Components
 
             // have to shift first, so that the tween is started in the shift first
             ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime);
-            SetMapZoom(zoomNew, zoomTweenTime, isMini);
+            SetMapZoom(zoomNew, zoomTweenTime, updateMainZoom, updateMiniZoom);
+        }
+        
+        public void IncrementalZoomIntoMiniMap(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool isMini = false)
+        {
+            var zoomNew = Mathf.Clamp(ZoomMini + zoomDelta, ZoomMin, ZoomMax);
+            var actualDelta = zoomNew - ZoomMini;
+            var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
+
+            // have to shift first, so that the tween is started in the shift first
+            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime);
+            SetMapZoom(zoomNew, zoomTweenTime, false, isMini);
         }
 
         public void ShiftMap(Vector2 shift, float tweenTime)
@@ -360,6 +379,7 @@ namespace DynamicMaps.UI.Components
             }
 
             _immediateMapAnchor += shift;
+            
             RectTransform.DOAnchorPos(_immediateMapAnchor, tweenTime);
         }
 
@@ -374,6 +394,7 @@ namespace DynamicMaps.UI.Components
         {
             var smallestDimension = Mathf.Min(CurrentMapDef.Bounds.Max.x - CurrentMapDef.Bounds.Min.x,
                                               CurrentMapDef.Bounds.Max.y - CurrentMapDef.Bounds.Min.y);
+            
             var incrementSize = smallestDimension * ZoomCurrent * incrementScale;
             ShiftMap(shiftIncrements * incrementSize, 0);
         }

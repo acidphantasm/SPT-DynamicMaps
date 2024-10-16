@@ -57,6 +57,7 @@ namespace DynamicMaps.Config
         private const string InRaidTitle = "3. In-Raid";
         public static ConfigEntry<bool> ResetZoomOnCenter;
         public static ConfigEntry<float> CenteringZoomResetPoint;
+        public static ConfigEntry<float> ZoomMainMap;
         public static ConfigEntry<bool> AutoCenterOnPlayerMarker;
         public static ConfigEntry<bool> AutoSelectLevel;
         public static ConfigEntry<KeyboardShortcut> PeekShortcut;
@@ -69,6 +70,9 @@ namespace DynamicMaps.Config
         private const string MiniMapTitle = "4. Mini-map";
         public static ConfigEntry<bool> MiniMapEnabled;
         public static ConfigEntry<KeyboardShortcut> MiniMapShowOrHide;
+        public static ConfigEntry<float> ZoomMiniMap;
+        public static ConfigEntry<KeyboardShortcut> ZoomInMiniMapHotkey;
+        public static ConfigEntry<KeyboardShortcut> ZoomOutMiniMapHotkey;
         
         #endregion
         
@@ -393,7 +397,16 @@ namespace DynamicMaps.Config
                     "What zoom level should be used as while centering on the player (0 is fully zoomed out, and 1 is fully zoomed in)",
                     new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes { })));
-
+            
+            ConfigEntries.Add(ZoomMainMap = Config.Bind(
+                InRaidTitle,
+                "Main map zoom",
+                0f,
+                new ConfigDescription(
+                    "What zoom level should be used for the main map. (Tab view/Peek view) (0 is fully zoomed out, and 1 is fully zoomed in)",
+                    new AcceptableValueRange<float>(0f, 15f),
+                    new ConfigurationManagerAttributes { })));
+            
             ConfigEntries.Add(PeekShortcut = Config.Bind(
                 InRaidTitle,
                 "Peek at Map Shortcut",
@@ -433,7 +446,34 @@ namespace DynamicMaps.Config
                     "Show or hide the mini-map",
                     null,
                     new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ZoomMiniMap = Config.Bind(
+                InRaidTitle,
+                "Mini map zoom",
+                5.0f,
+                new ConfigDescription(
+                    "What zoom level should be used for the mini map. (0 is fully zoomed out, and 15 is fully zoomed in)",
+                    new AcceptableValueRange<float>(0f, 15f),
+                    new ConfigurationManagerAttributes { })));
 
+            ConfigEntries.Add(ZoomInMiniMapHotkey = Config.Bind(
+                MiniMapTitle,
+                "Zoom in key bind",
+                new KeyboardShortcut(KeyCode.Keypad8),
+                new ConfigDescription(
+                    "Zoom in on mini map key bind",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ZoomOutMiniMapHotkey = Config.Bind(
+                MiniMapTitle,
+                "Zoom out key bind",
+                new KeyboardShortcut(KeyCode.Keypad5),
+                new ConfigDescription(
+                    "Zoom out on mini map key bind",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
             #endregion
 
             RecalcOrder();

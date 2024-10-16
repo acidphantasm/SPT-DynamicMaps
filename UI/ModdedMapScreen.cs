@@ -76,8 +76,13 @@ namespace DynamicMaps.UI
         private float _moveMapSpeed = 0.25f;
         private KeyboardShortcut _moveMapLevelUpShortcut;
         private KeyboardShortcut _moveMapLevelDownShortcut;
-        private KeyboardShortcut _zoomMapInShortcut;
-        private KeyboardShortcut _zoomMapOutShortcut;
+        
+        private KeyboardShortcut _zoomMainMapInShortcut;
+        private KeyboardShortcut _zoomMainMapOutShortcut;
+        
+        private KeyboardShortcut _zoomMiniMapInShortcut;
+        private KeyboardShortcut _zoomMiniMapOutShortcut;
+        
         private float _zoomMapHotkeySpeed = 2.5f;
 
         internal static ModdedMapScreen Create(GameObject parent)
@@ -159,12 +164,12 @@ namespace DynamicMaps.UI
             }
 
             // change level hotkeys
-            if (_moveMapLevelUpShortcut.BetterIsDown())
+            if (_moveMapLevelUpShortcut.BetterIsDown() && !_peekComponent.ShowingMiniMap)
             {
                 _levelSelectSlider.ChangeLevelBy(1);
             }
 
-            if (_moveMapLevelDownShortcut.BetterIsDown())
+            if (_moveMapLevelDownShortcut.BetterIsDown() && !_peekComponent.ShowingMiniMap)
             {
                 _levelSelectSlider.ChangeLevelBy(-1);
             }
@@ -172,22 +177,22 @@ namespace DynamicMaps.UI
             // shift hotkeys
             var shiftMapX = 0f;
             var shiftMapY = 0f;
-            if (_moveMapUpShortcut.BetterIsPressed())
+            if (_moveMapUpShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
                 shiftMapY += 1f;
             }
 
-            if (_moveMapDownShortcut.BetterIsPressed())
+            if (_moveMapDownShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
                 shiftMapY -= 1f;
             }
 
-            if (_moveMapLeftShortcut.BetterIsPressed())
+            if (_moveMapLeftShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
                 shiftMapX -= 1f;
             }
 
-            if (_moveMapRightShortcut.BetterIsPressed())
+            if (_moveMapRightShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
                 shiftMapX += 1f;
             }
@@ -198,30 +203,51 @@ namespace DynamicMaps.UI
             }
 
             // zoom hotkeys
-            var zoomAmount = 0f;
-            if (_zoomMapOutShortcut.BetterIsPressed())
+            var zoomMainAmount = 0f;
+            var zoomMiniAmount = 0f;
+            if (_zoomMainMapOutShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
-                zoomAmount -= 1f;
+                zoomMainAmount -= 1f;
             }
 
-            if (_zoomMapInShortcut.BetterIsPressed())
+            if (_zoomMainMapInShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
             {
-                zoomAmount += 1f;
+                zoomMainAmount += 1f;
+            }
+
+            if (_zoomMiniMapOutShortcut.BetterIsPressed() && _peekComponent.ShowingMiniMap)
+            {
+                zoomMiniAmount -= 1f;
             }
             
-            if (zoomAmount != 0f && !_peekComponent.ShowingMiniMap)
+            if (_zoomMiniMapInShortcut.BetterIsPressed() && _peekComponent.ShowingMiniMap)
+            {
+                zoomMiniAmount += 1f;
+            }
+            
+            if (zoomMainAmount != 0f && !_peekComponent.ShowingMiniMap)
             {
                 var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
-                var zoomDelta = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
+                var zoomDelta = _mapView.ZoomMain * zoomMainAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                 _mapView.IncrementalZoomInto(zoomDelta, currentCenter, 0f);
             }
-            else if ((_peekComponent.IsPeeking && zoomAmount == 0f) || (_isMapScreenOpen && zoomAmount == 0f))
+            else if ((_peekComponent.IsPeeking && zoomMainAmount == 0f) || (_isMapScreenOpen && zoomMainAmount == 0f))
             {
-                _mapView.SetMapZoom(_mapView.ZoomMain, 0f, true);
+                _mapView.SetMapZoom(_mapView.ZoomMain, 0f);
             }
             else if (_peekComponent.ShowingMiniMap)
             {
-                _mapView.SetMapZoom(_mapView.ZoomMini, 0f, true);
+                if (zoomMiniAmount != 0f)
+                {
+                    var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMini;
+                    var zoomDelta = _mapView.ZoomMini * zoomMiniAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
+                    
+                    _mapView.IncrementalZoomIntoMiniMap(zoomDelta, currentCenter, 0.0f, true);
+                }
+                else
+                {
+                    _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false);
+                }
             }
             
             if (_centerPlayerShortcut.BetterIsDown() || _peekComponent.ShowingMiniMap)
@@ -556,7 +582,7 @@ namespace DynamicMaps.UI
 
         private void OnScroll(float scrollAmount)
         {
-            if (_isPeeking)
+            if (_isPeeking || _peekComponent.ShowingMiniMap)
             {
                 return;
             }
@@ -597,8 +623,12 @@ namespace DynamicMaps.UI
             _moveMapLevelUpShortcut = Settings.ChangeMapLevelUpHotkey.Value;
             _moveMapLevelDownShortcut = Settings.ChangeMapLevelDownHotkey.Value;
 
-            _zoomMapInShortcut = Settings.ZoomMapInHotkey.Value;
-            _zoomMapOutShortcut = Settings.ZoomMapOutHotkey.Value;
+            _zoomMainMapInShortcut = Settings.ZoomMapInHotkey.Value;
+            _zoomMainMapOutShortcut = Settings.ZoomMapOutHotkey.Value;
+            
+            _zoomMiniMapInShortcut = Settings.ZoomInMiniMapHotkey.Value;
+            _zoomMiniMapOutShortcut = Settings.ZoomOutMiniMapHotkey.Value;
+            
             _zoomMapHotkeySpeed = Settings.ZoomMapHotkeySpeed.Value;
 
             _autoCenterOnPlayerMarker = Settings.AutoCenterOnPlayerMarker.Value;
@@ -607,6 +637,12 @@ namespace DynamicMaps.UI
             _resetZoomOnCenter = Settings.ResetZoomOnCenter.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
 
+            if (_mapView != null)
+            {
+                _mapView.ZoomMain = Settings.ZoomMainMap.Value;
+                _mapView.ZoomMini = Settings.ZoomMiniMap.Value;
+            }
+            
             if (_peekComponent != null)
             {
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;

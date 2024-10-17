@@ -7,6 +7,8 @@ using DrakiaXYZ.VersionChecker;
 using DynamicMaps.Config;
 using DynamicMaps.Patches;
 using DynamicMaps.UI;
+using DynamicMaps.Utils;
+using EFT;
 using EFT.UI;
 using EFT.UI.Map;
 
@@ -74,11 +76,11 @@ namespace DynamicMaps
         /// </summary>
         internal void TryAttachToBattleUIScreen(EftBattleUIScreen battleUI)
         {
-            if (Map == null)
+            if (Map == null || GameUtils.GetMainPlayer() is HideoutPlayer)
             {
                 return;
             }
-
+            
             Map.TryAddPeekComponent(battleUI);
         }
     }

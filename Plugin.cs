@@ -36,7 +36,7 @@ namespace DynamicMaps
             Settings.Init(Config);
             Config.SettingChanged += (x, y) => Map?.ReadConfig();
 
-            Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
+            // Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
             
             Instance = this;
 

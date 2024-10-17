@@ -500,8 +500,6 @@ namespace DynamicMaps.UI
                 _mapView.ShiftMapToCoordinate(mapPosition, 0, false);
                 return;
             }
-            
-            _mapView.SetMapPos(_mapView.MainMapPos, 0f);
         }
 
         private void OnHideInRaid()

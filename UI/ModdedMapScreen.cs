@@ -412,8 +412,8 @@ namespace DynamicMaps.UI
             var speed = 0.35f;
             
             // adjust mask
-            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
@@ -425,8 +425,8 @@ namespace DynamicMaps.UI
             var speed = 0.35f;
             
             // adjust mask
-            _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
@@ -437,8 +437,8 @@ namespace DynamicMaps.UI
         {
             var speed = 0.35f;
             
-            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMin(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
@@ -452,17 +452,14 @@ namespace DynamicMaps.UI
         {
             if (_showingMiniMap)
             {
-                Plugin.Log.LogWarning("Switching to mini mode");
                 AdjustForMiniMap();
             }
             else if (_isPeeking)
             {
-                Plugin.Log.LogWarning("Switching to peek mode");
                 AdjustForPeek();
             }
             else
             {
-                Plugin.Log.LogWarning("Switching to inventory mode");
                 AdjustForInRaid();
             }
 
@@ -500,13 +497,15 @@ namespace DynamicMaps.UI
                 _mapView.SelectLevelByCoords(mapPosition);
             }
 
-            if (_rememberMapPosition && _mapView.MainMapPos != Vector2.zero)
+            // Don't set the map position if we're the mini-map, otherwise it can cause artifacting
+            if (_rememberMapPosition && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
-                _mapView.SetMapPos(_mapView.MainMapPos, 0f);
+                _mapView.SetMapPos(_mapView.MainMapPos, _transitionAnimations ? 0.35f : 0f);
                 return;
             }
             
-            if (_autoCenterOnPlayerMarker)
+            // Auto centering while the minimap is active here can cause artifacting
+            if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
                 // change zoom to desired level
                 if (_resetZoomOnCenter)

@@ -60,6 +60,8 @@ namespace DynamicMaps.UI
         private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
         private bool _showingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
         
+        public bool IsShowingMapScreen { get; private set; }
+        
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = new Dictionary<Type, IDynamicMarkerProvider>();
 
@@ -264,6 +266,7 @@ namespace DynamicMaps.UI
         internal void OnMapScreenShow()
         {
             _peekComponent.WasMiniMapActive = _showingMiniMap;
+            IsShowingMapScreen = true;
             
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
@@ -283,6 +286,8 @@ namespace DynamicMaps.UI
         internal void OnMapScreenClose()
         {
             Hide();
+
+            IsShowingMapScreen = false;
             
             if (_peekComponent.WasMiniMapActive)
             {

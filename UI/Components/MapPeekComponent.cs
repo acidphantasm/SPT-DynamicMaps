@@ -17,7 +17,6 @@ namespace DynamicMaps.UI.Components
         private bool _isMiniMapEnabled => Settings.MiniMapEnabled.Value;
         public bool ShowingMiniMap { get; private set; }
         public bool WasMiniMapActive { get; set; }
-        private bool _firstUpdate = true;
         
         internal static MapPeekComponent Create(GameObject parent)
         {
@@ -39,10 +38,9 @@ namespace DynamicMaps.UI.Components
             // Show or hide the mini-map
             if (_isMiniMapEnabled)
             {
-                if (_firstUpdate)
+                if (!IsPeeking && !MapScreen.IsShowingMapScreen && !ShowingMiniMap)
                 {
                     BeginMiniMap();
-                    _firstUpdate = false;
                 }
                 
                 if (!ShowingMiniMap && Settings.MiniMapShowOrHide.Value.BetterIsDown())
@@ -50,6 +48,13 @@ namespace DynamicMaps.UI.Components
                     BeginMiniMap();
                 }
                 else if (ShowingMiniMap && Settings.MiniMapShowOrHide.Value.BetterIsDown())
+                {
+                    EndMiniMap();
+                }
+            }
+            else
+            {
+                if (ShowingMiniMap)
                 {
                     EndMiniMap();
                 }

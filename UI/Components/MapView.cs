@@ -330,8 +330,6 @@ namespace DynamicMaps.UI.Components
             
             ZoomCurrent = zoomNew;
             
-            Plugin.Log.LogDebug($"Setting Zoom to {ZoomCurrent}");
-            
             // scale all map content up by scaling parent
             RectTransform.DOScale(ZoomCurrent * Vector3.one, updateMainZoom ? 0 : tweenTime);
 
@@ -386,16 +384,12 @@ namespace DynamicMaps.UI.Components
                 MainMapPos = _immediateMapAnchor;
             }
             
-            Plugin.Log.LogWarning($"Shifting Map to Position: {_immediateMapAnchor}");
-            
             RectTransform.DOAnchorPos(_immediateMapAnchor, tweenTime);
         }
 
         public void SetMapPos(Vector2 pos, float tweenTime)
         {
             MainMapPos = pos;
-            Plugin.Log.LogWarning($"Setting Map Position: {pos}");
-            
             RectTransform.DOAnchorPos(pos, tweenTime);
         }
         

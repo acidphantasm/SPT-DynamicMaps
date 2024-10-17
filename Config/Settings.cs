@@ -71,6 +71,7 @@ namespace DynamicMaps.Config
 
         private const string MiniMapTitle = "4. Mini-map";
         public static ConfigEntry<bool> MiniMapEnabled;
+        public static ConfigEntry<bool> MapTransitionEnabled;
         public static ConfigEntry<KeyboardShortcut> MiniMapShowOrHide;
         public static ConfigEntry<float> ZoomMiniMap;
         public static ConfigEntry<KeyboardShortcut> ZoomInMiniMapHotkey;
@@ -433,6 +434,15 @@ namespace DynamicMaps.Config
                 true,
                 new ConfigDescription(
                     "If the shortcut should be held to keep it open. If disabled, button toggles",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MapTransitionEnabled = Config.Bind(
+                InRaidTitle,
+                "Peek Transition enabled",
+                true,
+                new ConfigDescription(
+                    "Enable the map transition animations (When disabled everything will snap)",
                     null,
                     new ConfigurationManagerAttributes { })));
 

@@ -31,8 +31,8 @@ namespace DynamicMaps.UI.Components
         public float ZoomMin { get; private set; }      // set when map loaded
         public float ZoomMax { get; private set; }      // set when map loaded
 
-        public float ZoomMain { get; set; } = Config.Settings.ZoomMainMap.Value;
-        public float ZoomMini { get; set; } = Config.Settings.ZoomMiniMap.Value;
+        public float ZoomMain { get; set; } = Settings.ZoomMainMap.Value;
+        public float ZoomMini { get; set; } = Settings.ZoomMiniMap.Value;
         
         public float ZoomCurrent { get; private set; }  // set when map loaded
         public Vector2 MainMapPos { get; private set; } = Vector2.zero;

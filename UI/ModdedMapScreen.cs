@@ -11,7 +11,6 @@ using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.UI.Controls;
 using DynamicMaps.Utils;
-using EFT;
 using EFT.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,6 +58,7 @@ namespace DynamicMaps.UI
         // peek
         private MapPeekComponent _peekComponent;
         private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
+        private bool _showingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
         
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = new Dictionary<Type, IDynamicMarkerProvider>();
@@ -68,6 +68,8 @@ namespace DynamicMaps.UI
         private bool _autoSelectLevel = true;
         private bool _resetZoomOnCenter = false;
         private bool _rememberMapPosition = true;
+        private bool _transitionAnimations = true;
+        
         private float _centeringZoomResetPoint = 0f;
         private KeyboardShortcut _centerPlayerShortcut;
         private KeyboardShortcut _dumpShortcut;
@@ -166,39 +168,46 @@ namespace DynamicMaps.UI
             }
 
             // change level hotkeys
-            if (_moveMapLevelUpShortcut.BetterIsDown() && !_peekComponent.ShowingMiniMap)
+            if (!_showingMiniMap)
             {
-                _levelSelectSlider.ChangeLevelBy(1);
-            }
+                if (_moveMapLevelUpShortcut.BetterIsDown())
+                {
+                    _levelSelectSlider.ChangeLevelBy(1);
+                }
 
-            if (_moveMapLevelDownShortcut.BetterIsDown() && !_peekComponent.ShowingMiniMap)
-            {
-                _levelSelectSlider.ChangeLevelBy(-1);
+                if (_moveMapLevelDownShortcut.BetterIsDown())
+                {
+                    _levelSelectSlider.ChangeLevelBy(-1);
+                }
             }
-
+            
             // shift hotkeys
             var shiftMapX = 0f;
             var shiftMapY = 0f;
-            if (_moveMapUpShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
-            {
-                shiftMapY += 1f;
-            }
 
-            if (_moveMapDownShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
+            if (!_showingMiniMap)
             {
-                shiftMapY -= 1f;
-            }
+                if (_moveMapUpShortcut.BetterIsPressed())
+                {
+                    shiftMapY += 1f;
+                }
 
-            if (_moveMapLeftShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
-            {
-                shiftMapX -= 1f;
-            }
+                if (_moveMapDownShortcut.BetterIsPressed())
+                {
+                    shiftMapY -= 1f;
+                }
 
-            if (_moveMapRightShortcut.BetterIsPressed() && !_peekComponent.ShowingMiniMap)
-            {
-                shiftMapX += 1f;
-            }
+                if (_moveMapLeftShortcut.BetterIsPressed())
+                {
+                    shiftMapX -= 1f;
+                }
 
+                if (_moveMapRightShortcut.BetterIsPressed())
+                {
+                    shiftMapX += 1f;
+                }
+            }
+            
             if (shiftMapX != 0f || shiftMapY != 0f)
             {
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
@@ -208,19 +217,7 @@ namespace DynamicMaps.UI
             var zoomMainAmount = 0f;
             var zoomMiniAmount = 0f;
             
-            if (!_peekComponent.ShowingMiniMap)
-            {
-                if (_zoomMainMapOutShortcut.BetterIsPressed())
-                {
-                    zoomMainAmount -= 1f;
-                }
-
-                if (_zoomMainMapInShortcut.BetterIsPressed())
-                {
-                    zoomMainAmount += 1f;
-                }
-            }
-            else
+            if (_showingMiniMap)
             {
                 if (_zoomMiniMapOutShortcut.BetterIsPressed())
                 {
@@ -231,10 +228,24 @@ namespace DynamicMaps.UI
                 {
                     zoomMiniAmount += 1f;
                 }
+                
+                OnZoomMini(zoomMiniAmount);
+            }
+            else
+            {
+                if (_zoomMainMapOutShortcut.BetterIsPressed())
+                {
+                    zoomMainAmount -= 1f;
+                }
+
+                if (_zoomMainMapInShortcut.BetterIsPressed())
+                {
+                    zoomMainAmount += 1f;
+                }
+                
+                OnZoomMain(zoomMainAmount);
             }
             
-            OnZoomMain(zoomMainAmount);
-            OnZoomMini(zoomMiniAmount);
             OnCenter();
             
             if (_dumpShortcut.BetterIsDown())
@@ -252,7 +263,7 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenShow()
         {
-            _peekComponent.WasMiniMapActive = _peekComponent.ShowingMiniMap;
+            _peekComponent.WasMiniMapActive = _showingMiniMap;
             
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
@@ -398,9 +409,11 @@ namespace DynamicMaps.UI
 
         private void AdjustForInRaid()
         {
+            var speed = 0.35f;
+            
             // adjust mask
-            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, 0.35f);
-            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, 0.35f);
+            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
@@ -409,9 +422,11 @@ namespace DynamicMaps.UI
 
         private void AdjustForPeek()
         {
+            var speed = 0.35f;
+            
             // adjust mask
-            _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, 0.35f);
-            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, 0.35f);
+            _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
@@ -420,11 +435,13 @@ namespace DynamicMaps.UI
 
         private void AdjustForMiniMap()
         {
-            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), 0.35f);
-            _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), 0.35f);
-            _scrollMask.GetRectTransform().DOAnchorMin(new Vector2(1f, 1f), 0.35f);
-            _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), 0.35f);
-            _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), 0.35f);
+            var speed = 0.35f;
+            
+            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorMin(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
             
             _levelSelectSlider.gameObject.SetActive(false);
             _cursorPositionText.gameObject.SetActive(false);
@@ -433,7 +450,7 @@ namespace DynamicMaps.UI
 
         private void OnShowInRaid()
         {
-            if (_peekComponent.ShowingMiniMap)
+            if (_showingMiniMap)
             {
                 Plugin.Log.LogWarning("Switching to mini mode");
                 AdjustForMiniMap();
@@ -566,7 +583,7 @@ namespace DynamicMaps.UI
 
         private void OnScroll(float scrollAmount)
         {
-            if (_isPeeking || _peekComponent.ShowingMiniMap)
+            if (_isPeeking || _showingMiniMap)
             {
                 return;
             }
@@ -594,38 +611,37 @@ namespace DynamicMaps.UI
 
         private void OnZoomMain(float zoomDelta)
         {
-            if (zoomDelta != 0f && !_peekComponent.ShowingMiniMap)
+            if (zoomDelta != 0f)
             {
                 var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
                 zoomDelta = _mapView.ZoomMain * zoomDelta * (_zoomMapHotkeySpeed * Time.deltaTime);
                 _mapView.IncrementalZoomInto(zoomDelta, currentCenter, 0f);
+                
+                return;
             }
-            
-            if (_peekComponent.ShowingMiniMap) return;
             
             _mapView.SetMapZoom(_mapView.ZoomMain, 0f);
         }
 
         private void OnZoomMini(float zoomDelta)
         {
-            if (!_peekComponent.ShowingMiniMap) return;
-            
             if (zoomDelta != 0f)
             {
-                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMini;
+                var player = GameUtils.GetMainPlayer();
+                var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
                 zoomDelta = _mapView.ZoomMini * zoomDelta * (_zoomMapHotkeySpeed * Time.deltaTime);
                     
-                _mapView.IncrementalZoomIntoMiniMap(zoomDelta, currentCenter, 0.0f);
+                _mapView.IncrementalZoomIntoMiniMap(zoomDelta, mapPosition, 0.0f);
                 
                 return;
             }
             
-            _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false);
+            _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false, true);
         }
 
         private void OnCenter()
         {
-            if (_centerPlayerShortcut.BetterIsDown() || _peekComponent.ShowingMiniMap)
+            if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
                 
@@ -635,8 +651,8 @@ namespace DynamicMaps.UI
                     
                     _mapView.ShiftMapToCoordinate(
                         mapPosition, 
-                        _peekComponent.ShowingMiniMap ? 0f : _positionTweenTime, 
-                        _peekComponent.ShowingMiniMap);
+                        _showingMiniMap ? 0f : _positionTweenTime, 
+                        _showingMiniMap);
                     
                     _mapView.SelectLevelByCoords(mapPosition);
                 }
@@ -673,6 +689,8 @@ namespace DynamicMaps.UI
             _autoSelectLevel = Settings.AutoSelectLevel.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
 
+            _transitionAnimations = Settings.MapTransitionEnabled.Value;
+            
             if (_mapView != null)
             {
                 _mapView.ZoomMain = Settings.ZoomMainMap.Value;

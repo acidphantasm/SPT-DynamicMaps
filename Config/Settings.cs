@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BepInEx.Configuration;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<float> CenteringZoomResetPoint;
         public static ConfigEntry<float> ZoomMainMap;
         public static ConfigEntry<bool> AutoCenterOnPlayerMarker;
+        public static ConfigEntry<bool> RetainMapPosition;
         public static ConfigEntry<bool> AutoSelectLevel;
         public static ConfigEntry<KeyboardShortcut> PeekShortcut;
         public static ConfigEntry<bool> HoldForPeek;
@@ -376,19 +378,28 @@ namespace DynamicMaps.Config
                 "Auto Center On Player Marker",
                 false,
                 new ConfigDescription(
-                    "If the player marker should be centered when showing the map in raid",
+                    "If the player marker should be centered when showing the map in raid (Conflicts with 'Remember Map Position')",
                     null,
                     new ConfigurationManagerAttributes { })));
 
             ConfigEntries.Add(ResetZoomOnCenter = Config.Bind(
                 InRaidTitle,
                 "Reset Zoom On Center",
-                true,
+                false,
                 new ConfigDescription(
-                    "If the zoom level should be reset each time that the map is opened while in raid",
+                    "If the zoom level should be reset each time that the map is opened while in raid (Conflicts with 'Remember Map Position')",
                     null,
                     new ConfigurationManagerAttributes { })));
 
+            ConfigEntries.Add(RetainMapPosition = Config.Bind(
+                InRaidTitle,
+                "Remember Map Position",
+                true,
+                new ConfigDescription(
+                    "Should we remember the map position (Map position memory is only maintained for the current raid) (Conflicts with 'Auto Center On Player Marker' and 'Reset Zoom On Center')",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
             ConfigEntries.Add(CenteringZoomResetPoint = Config.Bind(
                 InRaidTitle,
                 "Centering On Player Zoom Level",
@@ -427,6 +438,10 @@ namespace DynamicMaps.Config
 
             #endregion
 
+            AutoCenterOnPlayerMarker.SettingChanged += (sender, args) => OnAutoOrCenterEnable(sender, args);
+            ResetZoomOnCenter.SettingChanged += (sender, args) => OnAutoOrCenterEnable(sender, args);
+            RetainMapPosition.SettingChanged += (sender, args) => OnPositionRetainEnable(sender, args);
+            
             #region Mini Map
 
             ConfigEntries.Add(MiniMapEnabled = Config.Bind(
@@ -475,7 +490,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             #endregion
-
+            
             RecalcOrder();
         }
 
@@ -492,6 +507,23 @@ namespace DynamicMaps.Config
                 }
 
                 settingOrder--;
+            }
+        }
+
+        private static void OnAutoOrCenterEnable(object sender, EventArgs e)
+        {
+            if (AutoCenterOnPlayerMarker.Value || ResetZoomOnCenter.Value)
+            {
+                RetainMapPosition.Value = false;
+            }
+        }
+        
+        private static void OnPositionRetainEnable(object sender, EventArgs e)
+        {
+            if (RetainMapPosition.Value)
+            {
+                AutoCenterOnPlayerMarker.Value = false;
+                ResetZoomOnCenter.Value = false;
             }
         }
     }

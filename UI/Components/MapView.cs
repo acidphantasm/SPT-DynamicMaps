@@ -35,7 +35,8 @@ namespace DynamicMaps.UI.Components
         public float ZoomMini { get; set; } = Config.Settings.ZoomMiniMap.Value;
         
         public float ZoomCurrent { get; private set; }  // set when map loaded
-
+        public Vector2 MainMapPos { get; private set; } = Vector2.zero;
+        
         private Vector2 _immediateMapAnchor = Vector2.zero;
 
         private List<MapMarker> _markers = new List<MapMarker>();
@@ -302,7 +303,7 @@ namespace DynamicMaps.UI.Components
             RectTransform.anchoredPosition = Vector2.zero;
 
             var midpoint = MathUtils.GetMidpoint(CurrentMapDef.Bounds.Min, CurrentMapDef.Bounds.Max);
-            ShiftMapToCoordinate(midpoint, 0);
+            ShiftMapToCoordinate(midpoint, 0, false);
         }
 
         public void SetMapZoom(float zoomNew, float tweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
@@ -343,29 +344,29 @@ namespace DynamicMaps.UI.Components
             }
         }
 
-        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
+        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
         {
             var zoomNew = Mathf.Clamp(ZoomCurrent + zoomDelta, ZoomMin, ZoomMax);
             var actualDelta = zoomNew - ZoomCurrent;
             var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
 
             // have to shift first, so that the tween is started in the shift first
-            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime);
-            SetMapZoom(zoomNew, zoomTweenTime, updateMainZoom, updateMiniZoom);
+            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime, false);
+            SetMapZoom(zoomNew, zoomTweenTime);
         }
         
-        public void IncrementalZoomIntoMiniMap(float zoomDelta, Vector2 rectPoint, float zoomTweenTime, bool isMini = false)
+        public void IncrementalZoomIntoMiniMap(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
         {
             var zoomNew = Mathf.Clamp(ZoomMini + zoomDelta, ZoomMin, ZoomMax);
             var actualDelta = zoomNew - ZoomMini;
             var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
 
             // have to shift first, so that the tween is started in the shift first
-            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime);
-            SetMapZoom(zoomNew, zoomTweenTime, false, isMini);
+            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime, true);
+            SetMapZoom(zoomNew, zoomTweenTime, false, true);
         }
 
-        public void ShiftMap(Vector2 shift, float tweenTime)
+        public void ShiftMap(Vector2 shift, float tweenTime, bool isMini)
         {
             if (shift == Vector2.zero)
             {
@@ -379,24 +380,39 @@ namespace DynamicMaps.UI.Components
             }
 
             _immediateMapAnchor += shift;
+
+            if (!isMini)
+            {
+                MainMapPos = _immediateMapAnchor;
+            }
+            
+            Plugin.Log.LogWarning($"Shifting Map to Position: {_immediateMapAnchor}");
             
             RectTransform.DOAnchorPos(_immediateMapAnchor, tweenTime);
         }
 
-        public void ShiftMapToCoordinate(Vector2 coord, float tweenTime)
+        public void SetMapPos(Vector2 pos, float tweenTime)
+        {
+            MainMapPos = pos;
+            Plugin.Log.LogWarning($"Setting Map Position: {pos}");
+            
+            RectTransform.DOAnchorPos(pos, tweenTime);
+        }
+        
+        public void ShiftMapToCoordinate(Vector2 coord, float tweenTime, bool isMini)
         {
             var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
             var currentCenter = RectTransform.anchoredPosition / ZoomCurrent;
-            ShiftMap((-rotatedCoord - currentCenter) * ZoomCurrent, tweenTime);
+            ShiftMap((-rotatedCoord - currentCenter) * ZoomCurrent, tweenTime, isMini);
         }
 
-        public void ScaledShiftMap(Vector2 shiftIncrements, float incrementScale)
+        public void ScaledShiftMap(Vector2 shiftIncrements, float incrementScale, bool isMini)
         {
             var smallestDimension = Mathf.Min(CurrentMapDef.Bounds.Max.x - CurrentMapDef.Bounds.Min.x,
                                               CurrentMapDef.Bounds.Max.y - CurrentMapDef.Bounds.Min.y);
             
             var incrementSize = smallestDimension * ZoomCurrent * incrementScale;
-            ShiftMap(shiftIncrements * incrementSize, 0);
+            ShiftMap(shiftIncrements * incrementSize, 0, isMini);
         }
 
         private MapLayer FindMatchingLayerByCoordinate(Vector3 coordinate)

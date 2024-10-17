@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BepInEx.Configuration;
 using Comfort.Common;
+using DG.Tweening;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.DynamicMarkers;
@@ -398,8 +399,8 @@ namespace DynamicMaps.UI
         private void AdjustForInRaid()
         {
             // adjust mask
-            _scrollMask.GetRectTransform().anchoredPosition = _maskPositionInRaid;
-            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + _maskSizeModifierInRaid;
+            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, 0.35f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, 0.35f);
             
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
@@ -409,8 +410,8 @@ namespace DynamicMaps.UI
         private void AdjustForPeek()
         {
             // adjust mask
-            _scrollMask.GetRectTransform().anchoredPosition = Vector2.zero;
-            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta;
+            _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, 0.35f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, 0.35f);
             
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
@@ -419,11 +420,11 @@ namespace DynamicMaps.UI
 
         private void AdjustForMiniMap()
         {
-            _scrollMask.GetRectTransform().anchoredPosition = new Vector2(-10f, -10f);
-            _scrollMask.GetRectTransform().sizeDelta = new Vector2(275f, 275f);
-            _scrollMask.GetRectTransform().anchorMin = new Vector2(1f, 1f);
-            _scrollMask.GetRectTransform().anchorMax = new Vector2(1f, 1f);
-            _scrollMask.GetRectTransform().pivot = new Vector2(1f, 1f);
+            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), 0.35f);
+            _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), 0.35f);
+            _scrollMask.GetRectTransform().DOAnchorMin(new Vector2(1f, 1f), 0.35f);
+            _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), 0.35f);
+            _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), 0.35f);
             
             _levelSelectSlider.gameObject.SetActive(false);
             _cursorPositionText.gameObject.SetActive(false);

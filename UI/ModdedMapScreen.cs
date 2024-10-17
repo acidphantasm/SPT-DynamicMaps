@@ -19,6 +19,8 @@ namespace DynamicMaps.UI
 {
     public class ModdedMapScreen : MonoBehaviour
     {
+        #region Variables and Declerations
+
         private const string _mapRelPath = "Maps";
 
         private static float _positionTweenTime = 0.25f;
@@ -91,11 +93,15 @@ namespace DynamicMaps.UI
         
         private float _zoomMapHotkeySpeed = 2.5f;
 
+        #endregion
+        
         internal static ModdedMapScreen Create(GameObject parent)
         {
             var go = UIUtils.CreateUIGameObject(parent, "ModdedMapBlock");
             return go.AddComponent<ModdedMapScreen>();
         }
+
+        #region Unity Methods
 
         private void Awake()
         {
@@ -263,6 +269,10 @@ namespace DynamicMaps.UI
         //     OnHide();
         // }
 
+        #endregion
+
+        #region Show And Hide Top Level
+
         internal void OnMapScreenShow()
         {
             _peekComponent.WasMiniMapActive = _showingMiniMap;
@@ -337,23 +347,7 @@ namespace DynamicMaps.UI
             gameObject.SetActive(false);
         }
 
-        internal void TryAddPeekComponent(EftBattleUIScreen battleUI)
-        {
-            if (_peekComponent != null)
-            {
-                return;
-            }
-
-            Plugin.Log.LogInfo("Trying to attach peek component to BattleUI");
-
-            _peekComponent = MapPeekComponent.Create(battleUI.gameObject);
-            _peekComponent.MapScreen = this;
-            _peekComponent.MapScreenTrueParent = _parentTransform;
-
-            ReadConfig();
-        }
-
-        internal void OnRaidEnd()
+        private void OnRaidEnd()
         {
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
@@ -379,7 +373,11 @@ namespace DynamicMaps.UI
             // unload map completely when raid ends, since we've removed markers
             _mapView.UnloadMap();
         }
-
+        
+        #endregion
+        
+        #region Size And Positioning
+        
         private void AdjustSizeAndPosition()
         {
             // set width and height based on inventory screen
@@ -452,6 +450,10 @@ namespace DynamicMaps.UI
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
         }
+
+        #endregion
+
+        #region Show And Hide Bottom Level
 
         private void OnShowInRaid()
         {
@@ -585,6 +587,10 @@ namespace DynamicMaps.UI
             }
         }
 
+        #endregion
+        
+        #region Map Manipulation
+
         private void OnScroll(float scrollAmount)
         {
             if (_isPeeking || _showingMiniMap)
@@ -662,7 +668,11 @@ namespace DynamicMaps.UI
                 }
             }
         }
-        
+
+        #endregion
+
+        #region Config and Marker Providers
+
         internal void ReadConfig()
         {
             IsReplacingMapScreen = Settings.ReplaceMapScreen.Value;
@@ -757,6 +767,22 @@ namespace DynamicMaps.UI
             }
         }
 
+        internal void TryAddPeekComponent(EftBattleUIScreen battleUI)
+        {
+            if (_peekComponent != null)
+            {
+                return;
+            }
+
+            Plugin.Log.LogInfo("Trying to attach peek component to BattleUI");
+
+            _peekComponent = MapPeekComponent.Create(battleUI.gameObject);
+            _peekComponent.MapScreen = this;
+            _peekComponent.MapScreenTrueParent = _parentTransform;
+
+            ReadConfig();
+        }
+        
         private void AddRemoveMarkerProvider<T>(bool status) where T : IDynamicMarkerProvider, new()
         {
             if (status && !_dynamicMarkerProviders.ContainsKey(typeof(T)))
@@ -789,6 +815,10 @@ namespace DynamicMaps.UI
 
             return (T)_dynamicMarkerProviders[typeof(T)];
         }
+
+        #endregion
+
+        #region Utils And Caching
 
         private float GetInRaidStartingZoom()
         {
@@ -846,5 +876,7 @@ namespace DynamicMaps.UI
                 }
             }
         }
+
+        #endregion
     }
 }

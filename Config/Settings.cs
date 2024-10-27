@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BepInEx.Configuration;
+using DynamicMaps.ExternalModSupport;
+using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using UnityEngine;
 
 // THIS IS HEAVILY BASED ON DRAKIAXYZ'S SPT-QuickMoveToContainer
@@ -77,6 +79,16 @@ namespace DynamicMaps.Config
         public static ConfigEntry<KeyboardShortcut> ZoomInMiniMapHotkey;
         public static ConfigEntry<KeyboardShortcut> ZoomOutMiniMapHotkey;
         
+        #endregion
+        // HotZones
+        #region Externam Mod Support
+
+        #region SamSWAT HeliCrash
+        private const string SamSWATTitle = "6. Mini-map";
+        public static ConfigEntry<bool> ShowHeliCrashMarker;
+        public static ConfigEntry<string> HeliCrashItemID;
+        #endregion
+
         #endregion
         
         // public static ConfigEntry<KeyboardShortcut> KeyboardShortcut;
@@ -499,6 +511,35 @@ namespace DynamicMaps.Config
                     null,
                     new ConfigurationManagerAttributes { })));
             
+            #endregion
+
+            #region ExternalModSupport
+            #region SamSWAT HeliCrash
+
+            ConfigEntries.Add(ShowHeliCrashMarker = Config.Bind(
+                SamSWATTitle,
+                "Show Heli Crash Marker",
+                true,
+                new ConfigDescription(
+                    "If the Heli Crash Side should be marked in raid",
+                    null,
+                    new ConfigurationManagerAttributes { 
+                        Browsable = ModDetection.HeliCrashLoaded
+                    })));
+            
+            ConfigEntries.Add(HeliCrashItemID = Config.Bind(
+                SamSWATTitle,
+                "Heli Crash Item ID",
+                "6223349b3136504a544d1608",
+                new ConfigDescription(
+                    "The ID of the Heli Crash Side InGame object / item (needs only to be changed if HeliCrashMod changes it)",
+                    null,
+                    new ConfigurationManagerAttributes {
+                        IsAdvanced = true,
+                        Browsable = ModDetection.HeliCrashLoaded
+                     })));
+
+            #endregion
             #endregion
             
             RecalcOrder();

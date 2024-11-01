@@ -526,18 +526,6 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { 
                         Browsable = ModDetection.HeliCrashLoaded
                     })));
-            
-            ConfigEntries.Add(HeliCrashItemID = Config.Bind(
-                SamSWATTitle,
-                "Heli Crash Item ID",
-                "6223349b3136504a544d1608",
-                new ConfigDescription(
-                    "The ID of the Heli Crash Side InGame object / item (needs only to be changed if HeliCrashMod changes it)",
-                    null,
-                    new ConfigurationManagerAttributes {
-                        IsAdvanced = true,
-                        Browsable = ModDetection.HeliCrashLoaded
-                     })));
 
             #endregion
             #endregion

@@ -58,7 +58,7 @@ namespace DynamicMaps.ExternalModSupport.SamSWATHeliCrash
         private void TryAddMarker()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
-            var HeliCrashWorldItem = gameWorld.FindItemWithWorldData(Settings.HeliCrashItemID.Value);
+            var HeliCrashWorldItem = gameWorld.FindItemWithWorldData("6223349b3136504a544d1608");
             var (itemData, WorldData) = HeliCrashWorldItem.Value;
 
             if (itemData == null){

@@ -275,11 +275,15 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenShow()
         {
-            _peekComponent.WasMiniMapActive = _showingMiniMap;
+            if (_peekComponent != null)
+            {
+                _peekComponent.WasMiniMapActive = _showingMiniMap;
+                
+                _peekComponent?.EndPeek();
+                _peekComponent?.EndMiniMap();
+            }
+
             IsShowingMapScreen = true;
-            
-            _peekComponent?.EndPeek();
-            _peekComponent?.EndMiniMap();
 
             if (_rememberMapPosition)
             {
@@ -299,7 +303,7 @@ namespace DynamicMaps.UI
 
             IsShowingMapScreen = false;
             
-            if (_peekComponent.WasMiniMapActive)
+            if ( _peekComponent != null && _peekComponent.WasMiniMapActive)
             {
                 _peekComponent.BeginMiniMap();
             }

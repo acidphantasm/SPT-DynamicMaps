@@ -17,7 +17,7 @@ namespace DynamicMaps
 {
     // the version number here is generated on build and may have a warning if not yet built
     [BepInPlugin("com.mpstark.DynamicMaps", "DynamicMaps", BuildInfo.Version)]
-    [BepInDependency("com.SPT.custom")]
+    [BepInDependency("com.SPT.custom", "3.9.0")]
     [BepInDependency("com.SamSWAT.HeliCrash.ArysReloaded", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {

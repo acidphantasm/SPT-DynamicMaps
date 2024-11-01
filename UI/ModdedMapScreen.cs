@@ -11,9 +11,12 @@ using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.UI.Controls;
 using DynamicMaps.Utils;
+using DynamicMaps.ExternalModSupport;
+using EFT.InventoryLogic;
 using EFT.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 
 namespace DynamicMaps.UI
 {
@@ -769,6 +772,11 @@ namespace DynamicMaps.UI
                 provider.ShowBossCorpses = Settings.ShowBossCorpsesInRaid.Value;
                 provider.ShowOtherCorpses = Settings.ShowOtherCorpsesInRaid.Value;
             }
+            
+            if (ModDetection.HeliCrashLoaded)
+            {
+                AddRemoveMarkerProvider<HeliCrashMarkerProvider>(Settings.ShowHeliCrashMarker.Value);
+            }
         }
 
         internal void TryAddPeekComponent(EftBattleUIScreen battleUI)
@@ -787,7 +795,7 @@ namespace DynamicMaps.UI
             ReadConfig();
         }
         
-        private void AddRemoveMarkerProvider<T>(bool status) where T : IDynamicMarkerProvider, new()
+        public void AddRemoveMarkerProvider<T>(bool status) where T : IDynamicMarkerProvider, new()
         {
             if (status && !_dynamicMarkerProviders.ContainsKey(typeof(T)))
             {

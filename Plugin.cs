@@ -11,12 +11,14 @@ using DynamicMaps.Utils;
 using EFT;
 using EFT.UI;
 using EFT.UI.Map;
+using UnityEngine;
 
 namespace DynamicMaps
 {
     // the version number here is generated on build and may have a warning if not yet built
     [BepInPlugin("com.mpstark.DynamicMaps", "DynamicMaps", BuildInfo.Version)]
     [BepInDependency("com.SPT.custom")]
+    [BepInDependency("com.SamSWAT.HeliCrash.ArysReloaded", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         public const int TarkovVersion = 30626;
@@ -32,6 +34,8 @@ namespace DynamicMaps
             {
                 throw new Exception("Invalid EFT Version");
             }
+
+            ExternalModSupport.ModDetection.CheckforMods();
 
             Settings.Init(Config);
             Config.SettingChanged += (x, y) => Map?.ReadConfig();

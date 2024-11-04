@@ -80,15 +80,12 @@ namespace DynamicMaps.Config
         public static ConfigEntry<KeyboardShortcut> ZoomOutMiniMapHotkey;
         
         #endregion
-        // HotZones
-        #region Externam Mod Support
 
-        #region SamSWAT HeliCrash
-        private const string SamSWATTitle = "6. Mini-map";
+        #region External Mod Support
+        
+        private const string ExternModSupport = "5. External Mod Support";
         public static ConfigEntry<bool> ShowHeliCrashMarker;
-        public static ConfigEntry<string> HeliCrashItemID;
-        #endregion
-
+        
         #endregion
         
         // public static ConfigEntry<KeyboardShortcut> KeyboardShortcut;
@@ -517,7 +514,7 @@ namespace DynamicMaps.Config
             #region SamSWAT HeliCrash
 
             ConfigEntries.Add(ShowHeliCrashMarker = Config.Bind(
-                SamSWATTitle,
+                ExternModSupport,
                 "Show Heli Crash Marker",
                 true,
                 new ConfigDescription(

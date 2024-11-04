@@ -11,7 +11,6 @@ using DynamicMaps.Utils;
 using EFT;
 using EFT.UI;
 using EFT.UI.Map;
-using UnityEngine;
 
 namespace DynamicMaps
 {

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
@@ -9,7 +7,6 @@ using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
-using EFT.SpeedTree;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers

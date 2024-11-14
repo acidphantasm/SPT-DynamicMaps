@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using BepInEx.Configuration;
 using Comfort.Common;
 using DG.Tweening;
@@ -13,13 +12,10 @@ using DynamicMaps.UI.Components;
 using DynamicMaps.UI.Controls;
 using DynamicMaps.Utils;
 using DynamicMaps.ExternalModSupport;
-using EFT.InventoryLogic;
 using EFT.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
-using EFT;
-using EFT.SpeedTree;
 
 namespace DynamicMaps.UI
 {

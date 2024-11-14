@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using Comfort.Common;
 using DynamicMaps.Config;
 using SPT.Custom.Airdrops;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
-using EFT;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers

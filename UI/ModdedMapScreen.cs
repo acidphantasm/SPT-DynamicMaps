@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BepInEx.Configuration;
 using Comfort.Common;
 using DG.Tweening;
@@ -17,6 +18,8 @@ using EFT.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
+using EFT;
+using EFT.SpeedTree;
 
 namespace DynamicMaps.UI
 {
@@ -306,7 +309,7 @@ namespace DynamicMaps.UI
 
             IsShowingMapScreen = false;
             
-            if ( _peekComponent != null && _peekComponent.WasMiniMapActive)
+            if (_peekComponent != null && _peekComponent.WasMiniMapActive)
             {
                 _peekComponent.BeginMiniMap();
             }
@@ -384,7 +387,7 @@ namespace DynamicMaps.UI
         #endregion
         
         #region Size And Positioning
-        
+
         private void AdjustSizeAndPosition()
         {
             // set width and height based on inventory screen
@@ -453,7 +456,6 @@ namespace DynamicMaps.UI
             _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
             
-            _levelSelectSlider.gameObject.SetActive(false);
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
         }
@@ -467,16 +469,19 @@ namespace DynamicMaps.UI
             if (_showingMiniMap)
             {
                 AdjustForMiniMap();
+                _levelSelectSlider.gameObject.SetActive(false);
             }
             else if (_isPeeking)
             {
                 AdjustForPeek();
+                _levelSelectSlider.gameObject.SetActive(false);
             }
             else
             {
                 AdjustForInRaid();
+                _levelSelectSlider.gameObject.SetActive(true);
             }
-
+            
             // filter dropdown to only maps containing the internal map name
             var mapInternalName = GameUtils.GetCurrentMapInternalName();
             _mapSelectDropdown.FilterByInternalMapName(mapInternalName);
@@ -498,7 +503,7 @@ namespace DynamicMaps.UI
 
             // rest of this function needs player
             var player = GameUtils.GetMainPlayer();
-            if (player == null)
+            if (player is null)
             {
                 return;
             }
@@ -730,7 +735,13 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
             AddRemoveMarkerProvider<BTRMarkerProvider>(Settings.ShowBTRInRaid.Value);
             AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
-
+            
+            if (Settings.ShowAirdropsInRaid.Value)
+            {
+                GetMarkerProvider<AirdropMarkerProvider>()
+                    .RefreshMarkers();
+            }
+            
             // extracts
             AddRemoveMarkerProvider<ExtractMarkerProvider>(Settings.ShowExtractsInRaid.Value);
             if (Settings.ShowExtractsInRaid.Value)
@@ -746,6 +757,7 @@ namespace DynamicMaps.UI
                                       || Settings.ShowScavMarkersInRaid.Value;
 
             AddRemoveMarkerProvider<OtherPlayersMarkerProvider>(needOtherPlayerMarkers);
+            
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
@@ -753,6 +765,8 @@ namespace DynamicMaps.UI
                 provider.ShowEnemyPlayers = Settings.ShowEnemyPlayerMarkersInRaid.Value;
                 provider.ShowScavs = Settings.ShowScavMarkersInRaid.Value;
                 provider.ShowBosses = Settings.ShowBossMarkersInRaid.Value;
+                
+                provider.RefreshMarkers();
             }
 
             // corpse markers
@@ -771,6 +785,8 @@ namespace DynamicMaps.UI
                 provider.ShowFriendlyKilledCorpses = Settings.ShowFriendlyKilledCorpsesInRaid.Value;
                 provider.ShowBossCorpses = Settings.ShowBossCorpsesInRaid.Value;
                 provider.ShowOtherCorpses = Settings.ShowOtherCorpsesInRaid.Value;
+                
+                provider.RefreshMarkers();
             }
             
             if (ModDetection.HeliCrashLoaded)

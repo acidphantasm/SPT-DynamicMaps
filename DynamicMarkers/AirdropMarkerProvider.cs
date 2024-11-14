@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using Comfort.Common;
+using DynamicMaps.Config;
 using SPT.Custom.Airdrops;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
+using EFT;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
@@ -64,6 +68,21 @@ namespace DynamicMaps.DynamicMarkers
             OnRaidEnd(map);
         }
 
+        public void RefreshMarkers()
+        {
+            if (!GameUtils.IsInRaid()) return;
+
+            foreach (var drop in _airdropMarkers.ToArray())
+            {
+                TryRemoveMarker(drop.Key);
+            }
+
+            foreach (var drop in AirdropBoxOnBoxLandPatch.Airdrops)
+            {
+                TryAddMarker(drop);
+            }
+        }
+        
         private void TryAddMarker(AirdropBox airdrop)
         {
             if (_airdropMarkers.ContainsKey(airdrop))
@@ -71,6 +90,10 @@ namespace DynamicMaps.DynamicMarkers
                 return;
             }
 
+            var intelLevel = GameUtils.GetIntelLevel();
+
+            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) return;
+            
             var markerDef = new MapMarkerDef
             {
                 Category = _airdropCategory,

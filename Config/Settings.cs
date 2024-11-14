@@ -55,9 +55,22 @@ namespace DynamicMaps.Config
         
         #endregion
 
+        #region IntelCenter
+
+        private const string IntelCenterTitle = "3. Intel Center";
+        
+        public static ConfigEntry<int> ShowPmcIntelLevel;
+        public static ConfigEntry<int> ShowBossIntelLevel;
+        public static ConfigEntry<int> ShowScavIntelLevel;
+        public static ConfigEntry<int> ShowFriendlyIntelLevel;
+        public static ConfigEntry<int> ShowCorpseIntelLevel;
+        public static ConfigEntry<int> ShowAirdropIntelLevel;
+
+        #endregion
+        
         #region In Raid
 
-        private const string InRaidTitle = "3. In-Raid";
+        private const string InRaidTitle = "4. In-Raid";
         public static ConfigEntry<bool> ResetZoomOnCenter;
         public static ConfigEntry<float> CenteringZoomResetPoint;
         public static ConfigEntry<float> ZoomMainMap;
@@ -71,7 +84,7 @@ namespace DynamicMaps.Config
 
         #region Mini Map
 
-        private const string MiniMapTitle = "4. Mini-map";
+        private const string MiniMapTitle = "5. Mini-map";
         public static ConfigEntry<bool> MiniMapEnabled;
         public static ConfigEntry<bool> MapTransitionEnabled;
         public static ConfigEntry<KeyboardShortcut> MiniMapShowOrHide;
@@ -83,7 +96,7 @@ namespace DynamicMaps.Config
 
         #region External Mod Support
         
-        private const string ExternModSupport = "5. External Mod Support";
+        private const string ExternModSupport = "6. External Mod Support";
         public static ConfigEntry<bool> ShowHeliCrashMarker;
         
         #endregion
@@ -371,7 +384,65 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
 
             #endregion
+            
+            #region IntelCenter
 
+            ConfigEntries.Add(ShowPmcIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show PMCs",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show PMCs",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowBossIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show bosses",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show bosses",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowScavIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show scavs",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show scavs",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowFriendlyIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show friendly PMCs",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show friendly PMCs",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowCorpseIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show corpses",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show corpses",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowAirdropIntelLevel = Config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show airdrops",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show airdrops",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+
+            #endregion
+            
             #region In Raid
 
              ConfigEntries.Add(AutoSelectLevel = Config.Bind(
@@ -518,7 +589,7 @@ namespace DynamicMaps.Config
                 "Show Heli Crash Marker",
                 true,
                 new ConfigDescription(
-                    "If the Heli Crash Side should be marked in raid",
+                    "If the heli crash site should be marked in raid",
                     null,
                     new ConfigurationManagerAttributes { 
                         Browsable = ModDetection.HeliCrashLoaded
@@ -529,7 +600,7 @@ namespace DynamicMaps.Config
             
             RecalcOrder();
         }
-
+        
         private static void RecalcOrder()
         {
             // Set the Order field for all settings, to avoid unnecessary changes when adding new settings

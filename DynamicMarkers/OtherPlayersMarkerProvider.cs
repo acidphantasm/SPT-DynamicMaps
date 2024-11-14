@@ -1,11 +1,15 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
+using EFT.SpeedTree;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
@@ -31,8 +35,7 @@ namespace DynamicMaps.DynamicMarkers
         private const string _bossCategory = "Boss";
         private const string _bossImagePath = _starImagePath;
         private static Color _bossColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
-        //
-
+        
         private bool _showFriendlyPlayers = true;
         public bool ShowFriendlyPlayers
         {
@@ -172,7 +175,7 @@ namespace DynamicMaps.DynamicMarkers
             {
                 return;
             }
-
+            
             // add all players that have spawned already in raid
             var gameWorld = Singleton<GameWorld>.Instance;
             foreach (var player in gameWorld.AllAlivePlayersList)
@@ -209,41 +212,62 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
 
+        public void RefreshMarkers()
+        {
+            if (!GameUtils.IsInRaid()) return;
+
+            foreach (var player in _playerMarkers.ToArray())
+            {
+                if (player.Key.IsYourPlayer) continue;
+                
+                TryRemoveMarker(player.Key);
+                TryAddMarker(player.Key);
+            }
+        }
+        
         private void TryAddMarker(IPlayer iPlayer)
         {
             var player = iPlayer as Player;
-            if (player == null || player.IsDedicatedServer())
+            if (player is null || player.IsDedicatedServer())
             {
                 return;
             }
 
-            if (_lastMapView == null || player.IsBTRShooter() || _playerMarkers.ContainsKey(player))
+            if (_lastMapView is null || player.IsBTRShooter() || _playerMarkers.ContainsKey(player))
             {
                 return;
             }
-
+            
             // set category and color
-            var category = _scavCategory;
-            var imagePath = _scavImagePath;
-            var color = _scavColor;
+            var category = string.Empty;
+            var imagePath = string.Empty;
+            var color = Color.clear;
 
-            if (player.IsGroupedWithMainPlayer())
+            var intelLevel = GameUtils.GetIntelLevel();
+            
+            if (player.IsGroupedWithMainPlayer() && Settings.ShowFriendlyIntelLevel.Value <= intelLevel)
             {
                 category = _friendlyPlayerCategory;
                 imagePath = _friendlyPlayerImagePath;
                 color = _friendlyPlayerColor;
             }
-            else if (player.IsTrackedBoss())
+            else if (player.IsTrackedBoss() && Settings.ShowBossIntelLevel.Value <= intelLevel)
             {
                 category = _bossCategory;
                 imagePath = _bossImagePath;
                 color = _bossColor;
             }
-            else if (player.IsPMC())
+            else if (player.IsPMC() && Settings.ShowPmcIntelLevel.Value <= intelLevel)
             {
                 category = _enemyPlayerCategory;
                 imagePath = _enemyPlayerImagePath;
                 color = _enemyPlayerColor;
+            }
+            else if (player.IsScav() && Settings.ShowScavIntelLevel.Value <= intelLevel)
+            {
+                category = _scavCategory;
+                imagePath = _scavImagePath;
+                color = _scavColor;
             }
 
             if (!ShouldShowCategory(category))

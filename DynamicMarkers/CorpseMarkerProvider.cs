@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
@@ -200,18 +201,40 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
 
+        public void RefreshMarkers()
+        {
+            if (!GameUtils.IsInRaid()) return;
+
+            foreach (var marker in _corpseMarkers.ToArray())
+            {
+                TryRemoveMarker(marker.Key);
+            }
+
+            var corpses = Singleton<GameWorld>.Instance.AllPlayersEverExisted
+                .Where(p => p.HasCorpse());
+            
+            foreach (var corpse in corpses)
+            {
+                TryAddMarker(corpse);
+            }
+        }
+        
         private void TryAddMarker(Player player)
         {
-            if (_lastMapView == null || _corpseMarkers.ContainsKey(player))
+            if (_lastMapView is null || _corpseMarkers.ContainsKey(player))
             {
                 return;
             }
 
+            var intelLevel = GameUtils.GetIntelLevel();
+            
+            if (Settings.ShowCorpseIntelLevel.Value > intelLevel) return;
+            
             // set category and color
             var category = _otherCorpseCategory;
             var imagePath = _otherCorpseImagePath;
             var color = _otherCorpseColor;
-
+            
             if (player.IsGroupedWithMainPlayer())
             {
                 category = _friendlyCorpseCategory;

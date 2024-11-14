@@ -115,6 +115,11 @@ namespace DynamicMaps.Utils
             return player.Profile.Side == EPlayerSide.Bear || player.Profile.Side == EPlayerSide.Usec;
         }
 
+        public static bool IsScav(this IPlayer player)
+        {
+            return player.Profile.Side == EPlayerSide.Savage;
+        }
+
         public static bool DidMainPlayerKill(this IPlayer player)
         {
             var aggressor = _playerLastAggressorField.GetValue(player) as IPlayer;
@@ -164,6 +169,12 @@ namespace DynamicMaps.Utils
         {
             var pattern = @"^dedicated_[a-fA-F0-9]{24}$";
             return Regex.IsMatch(player.Profile.GetCorrectedNickname(), pattern);
+        }
+
+        public static int? GetIntelLevel()
+        {
+            return PlayerProfile.Hideout.Areas
+                .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.level;
         }
     }
 }

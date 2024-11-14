@@ -54,7 +54,7 @@ namespace DynamicMaps.UI.Controls
 
         public static LevelSelectSlider Create(GameObject prefab, Transform parent)
         {
-            var go = GameObject.Instantiate(prefab);
+            var go = Instantiate(prefab);
             go.name = "LevelSelectScrollbar";
             go.transform.SetParent(parent);
             go.transform.localScale = Vector3.one;
@@ -63,7 +63,7 @@ namespace DynamicMaps.UI.Controls
             var oldPosition = go.GetRectTransform().anchoredPosition;
 
             // remove useless component
-            GameObject.Destroy(go.GetComponent<MapZoomer>());
+            Destroy(go.GetComponent<MapZoomer>());
 
             var slider = go.AddComponent<LevelSelectSlider>();
             return slider;
@@ -168,10 +168,7 @@ namespace DynamicMaps.UI.Controls
             if (_levels.Count() == 1)
             {
                 gameObject.SetActive(false);
-                return;
             }
-
-            gameObject.SetActive(true);
         }
     }
 }

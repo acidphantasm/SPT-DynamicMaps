@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
@@ -17,7 +18,6 @@ namespace DynamicMaps.DynamicMarkers
         // TODO: move to config
         private const string _backpackCategory = "Backpack";
         private const string _backpackImagePath = "Markers/backpack.png";
-        private static Color _backpackColor = Color.green;
         private static Vector2 _backpackSize = new Vector2(30f, 30f);
         //
 
@@ -100,7 +100,7 @@ namespace DynamicMaps.DynamicMarkers
 
         private void OnRegisterLoot(LootItem lootItem)
         {
-            if (lootItem == null || lootItem.Item == null)
+            if (lootItem is null || lootItem.Item is null)
             {
                 return;
             }
@@ -120,7 +120,7 @@ namespace DynamicMaps.DynamicMarkers
 
         private void OnDestroyLoot(LootItem lootItem)
         {
-            if (lootItem == null || lootItem.Item == null)
+            if (lootItem is null || lootItem.Item is null)
             {
                 return;
             }
@@ -145,7 +145,7 @@ namespace DynamicMaps.DynamicMarkers
 
         private void TryAddMarker(MapView map, LootItem lootItem)
         {
-            if (lootItem == null || lootItem.Item == null)
+            if (lootItem is null || lootItem.Item is null)
             {
                 return;
             }
@@ -156,9 +156,11 @@ namespace DynamicMaps.DynamicMarkers
                 return;
             }
 
+            var color = Settings.BackpackColor.Value;
+
             // try adding the marker
             var marker = map.AddTransformMarker(lootItem.TrackableTransform, lootItem.Item.ShortName.BSGLocalized(),
-                                                _backpackCategory, _backpackColor, _backpackImagePath, _backpackSize);
+                                                _backpackCategory, color, _backpackImagePath, _backpackSize);
 
             _backpackMarkers[itemNetId] = marker;
         }

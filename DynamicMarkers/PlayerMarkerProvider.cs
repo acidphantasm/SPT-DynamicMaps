@@ -1,3 +1,4 @@
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
@@ -10,7 +11,6 @@ namespace DynamicMaps.DynamicMarkers
         // TODO: move to config
         private const string _playerCategory = "Main Player";
         private const string _playerImagePath = "Markers/arrow.png";
-        private static Color _playerColor = Color.green;
         //
 
         private PlayerMapMarker _playerMarker;
@@ -42,24 +42,26 @@ namespace DynamicMaps.DynamicMarkers
 
         private void TryAddMarker(MapView map)
         {
-            if (_playerMarker != null)
+            if (_playerMarker is not null)
             {
                 return;
             }
 
             var player = GameUtils.GetMainPlayer();
-            if (player == null || player.IsDedicatedServer())
+            if (player is null || player.IsDedicatedServer())
             {
                 return;
             }
 
+            var color = Settings.PlayerColor.Value;
+            
             // try adding the marker
-            _playerMarker = map.AddPlayerMarker(player, _playerCategory, _playerColor, _playerImagePath);
+            _playerMarker = map.AddPlayerMarker(player, _playerCategory, color, _playerImagePath);
         }
 
         private void TryRemoveMarker()
         {
-            if (_playerMarker == null)
+            if (_playerMarker is null)
             {
                 return;
             }

@@ -20,13 +20,12 @@ namespace DynamicMaps.DynamicMarkers
         private const string _airdropCategory = "Airdrop";
         private const string _airdropImagePath = "Markers/airdrop.png";
         private static Vector2 _airdropPivot = new Vector2(0.5f, 0.25f);
-        private static Color _airdropColor = Color.Lerp(Color.red, Color.white, 0.333f);
         //
 
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-
+            
             // add all existing airdrops
             foreach (var airdrop in AirdropBoxOnBoxLandPatch.Airdrops)
             {
@@ -94,7 +93,7 @@ namespace DynamicMaps.DynamicMarkers
             var markerDef = new MapMarkerDef
             {
                 Category = _airdropCategory,
-                Color = _airdropColor,
+                Color = Settings.AirdropColor.Value,
                 ImagePath = _airdropImagePath,
                 Position = MathUtils.ConvertToMapPosition(airdrop.transform),
                 Pivot = _airdropPivot,

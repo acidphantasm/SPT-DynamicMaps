@@ -15,23 +15,19 @@ namespace DynamicMaps.DynamicMarkers
     {
         private const string _arrowImagePath = "Markers/arrow.png";
         private const string _starImagePath = "Markers/star.png";
-
-        // TODO: bring these all out to config
+        
         private const string _friendlyPlayerCategory = "Friendly Player";
         private const string _friendlyPlayerImagePath = _arrowImagePath;
         private static Color _friendlyPlayerColor = Color.Lerp(Color.blue, Color.white, 0.5f);
 
         private const string _enemyPlayerCategory = "Enemy Player";
         private const string _enemyPlayerImagePath = _arrowImagePath;
-        private static Color _enemyPlayerColor = Color.red;
 
         private const string _scavCategory = "Scav";
         private const string _scavImagePath = _arrowImagePath;
-        private static Color _scavColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
 
         private const string _bossCategory = "Boss";
         private const string _bossImagePath = _starImagePath;
-        private static Color _bossColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
         
         private bool _showFriendlyPlayers = true;
         public bool ShowFriendlyPlayers
@@ -90,12 +86,12 @@ namespace DynamicMaps.DynamicMarkers
         }
 
         private MapView _lastMapView;
-        private Dictionary<Player, PlayerMapMarker> _playerMarkers = new Dictionary<Player, PlayerMapMarker>();
+        private Dictionary<Player, PlayerMapMarker> _playerMarkers = [];
 
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-
+            
             TryAddMarkers();
             RemoveNonActivePlayers();
 
@@ -119,7 +115,7 @@ namespace DynamicMaps.DynamicMarkers
         {
             // unregister from events since map is ending
             var gameWorld = Singleton<GameWorld>.Instance;
-            if (gameWorld != null)
+            if (gameWorld is not null)
             {
                 gameWorld.OnPersonAdd -= TryAddMarker;
             }
@@ -145,7 +141,7 @@ namespace DynamicMaps.DynamicMarkers
         {
             // unregister from events since provider is being disabled
             var gameWorld = Singleton<GameWorld>.Instance;
-            if (gameWorld != null)
+            if (gameWorld is not null)
             {
                 gameWorld.OnPersonAdd -= TryAddMarker;
             }
@@ -189,7 +185,7 @@ namespace DynamicMaps.DynamicMarkers
         private void OnUnregisterPlayer(IPlayer iPlayer)
         {
             var player = iPlayer as Player;
-            if (player == null)
+            if (player is null)
             {
                 return;
             }
@@ -239,7 +235,7 @@ namespace DynamicMaps.DynamicMarkers
             var category = string.Empty;
             var imagePath = string.Empty;
             var color = Color.clear;
-
+            
             var intelLevel = GameUtils.GetIntelLevel();
             
             if (player.IsGroupedWithMainPlayer() && Settings.ShowFriendlyIntelLevel.Value <= intelLevel)
@@ -252,19 +248,22 @@ namespace DynamicMaps.DynamicMarkers
             {
                 category = _bossCategory;
                 imagePath = _bossImagePath;
-                color = _bossColor;
+                color = Settings.BossColor.Value;
             }
             else if (player.IsPMC() && Settings.ShowPmcIntelLevel.Value <= intelLevel)
             {
                 category = _enemyPlayerCategory;
                 imagePath = _enemyPlayerImagePath;
-                color = _enemyPlayerColor;
+                color = player.Side == EPlayerSide.Bear
+                    ? Settings.PmcBearColor.Value
+                    : Settings.PmcUsecColor.Value;
+                    
             }
             else if (player.IsScav() && Settings.ShowScavIntelLevel.Value <= intelLevel)
             {
                 category = _scavCategory;
                 imagePath = _scavImagePath;
-                color = _scavColor;
+                color = Settings.ScavColor.Value;
             }
 
             if (!ShouldShowCategory(category))

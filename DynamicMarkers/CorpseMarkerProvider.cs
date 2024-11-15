@@ -22,15 +22,12 @@ namespace DynamicMaps.DynamicMarkers
 
         private const string _killedCorpseCategory = "Killed Corpse";
         private const string _killedCorpseImagePath = _skullImagePath;
-        private static Color _killedCorpseColor = Color.red;
 
         private const string _killedBossCorpseCategory = "Killed Boss Corpse";
         private const string _killedBossCorpseImagePath = _skullImagePath;
-        private static Color _killedBossCorpseColor = Color.magenta;
 
         private const string _bossCorpseCategory = "Boss Corpse";
         private const string _bossCorpseImagePath = _skullImagePath;
-        private static Color _bossCorpseColor = Color.magenta;
 
         private const string _friendlyKilledCorpseCategory = "Friendly Killed Corpse";
         private const string _friendlyKilledCorpseImagePath = _skullImagePath;
@@ -38,11 +35,9 @@ namespace DynamicMaps.DynamicMarkers
 
         private const string _friendlyKilledBossCorpseCategory = "Friendly Killed Boss Corpse";
         private const string _friendlyKilledBossCorpseImagePath = _skullImagePath;
-        private static Color _friendlyKilledBossCorpseColor = Color.magenta;
 
         private const string _otherCorpseCategory = "Other Corpse";
         private const string _otherCorpseImagePath = _skullImagePath;
-        private static Color _otherCorpseColor = Color.white;
         //
 
         private bool _showFriendlyCorpses = true;
@@ -116,12 +111,12 @@ namespace DynamicMaps.DynamicMarkers
         }
 
         private MapView _lastMapView;
-        private Dictionary<Player, MapMarker> _corpseMarkers = new Dictionary<Player, MapMarker>();
+        private Dictionary<Player, MapMarker> _corpseMarkers = [];
 
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-
+            
             TryAddMarkers();
 
             GameWorldUnregisterPlayerPatch.OnUnregisterPlayer += OnUnregisterPlayer;
@@ -159,7 +154,7 @@ namespace DynamicMaps.DynamicMarkers
 
         private void OnUnregisterPlayer(IPlayer iPlayer)
         {
-            if (!(iPlayer is Player))
+            if (iPlayer is not Player)
             {
                 return;
             }
@@ -233,7 +228,7 @@ namespace DynamicMaps.DynamicMarkers
             // set category and color
             var category = _otherCorpseCategory;
             var imagePath = _otherCorpseImagePath;
-            var color = _otherCorpseColor;
+            var color = Settings.KilledOtherColor.Value;
             
             if (player.IsGroupedWithMainPlayer())
             {
@@ -245,19 +240,19 @@ namespace DynamicMaps.DynamicMarkers
             {
                 category = _killedBossCorpseCategory;
                 imagePath = _killedBossCorpseImagePath;
-                color = _killedBossCorpseColor;
+                color = Settings.KilledBossColor.Value;
             }
             else if (player.DidMainPlayerKill())
             {
                 category = _killedCorpseCategory;
                 imagePath = _killedCorpseImagePath;
-                color = _killedCorpseColor;
+                color = Settings.KilledCorpseColor.Value;
             }
             else if (player.IsTrackedBoss() && player.DidTeammateKill())
             {
                 category = _friendlyKilledBossCorpseCategory;
                 imagePath = _friendlyKilledBossCorpseImagePath;
-                color = _friendlyKilledBossCorpseColor;
+                color = Settings.KilledBossColor.Value;
             }
             else if (player.DidTeammateKill())
             {
@@ -269,7 +264,7 @@ namespace DynamicMaps.DynamicMarkers
             {
                 category = _bossCorpseCategory;
                 imagePath = _bossCorpseImagePath;
-                color = _bossCorpseColor;
+                color = Settings.KilledBossColor.Value;
             }
 
             if (!ShouldShowCategory(category))

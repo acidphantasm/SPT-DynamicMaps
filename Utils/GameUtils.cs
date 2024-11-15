@@ -176,5 +176,10 @@ namespace DynamicMaps.Utils
             return PlayerProfile.Hideout.Areas
                 .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.level;
         }
+
+        public static string[] GetWishListItems()
+        {
+            return PlayerProfile.WishList;
+        }
     }
 }

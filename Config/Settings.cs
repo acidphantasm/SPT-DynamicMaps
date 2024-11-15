@@ -43,6 +43,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowExtractsInRaid;
         public static ConfigEntry<bool> ShowExtractStatusInRaid;
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
+        public static ConfigEntry<bool> ShowWishListItemsInRaid;
         public static ConfigEntry<bool> ShowBTRInRaid;
         public static ConfigEntry<bool> ShowAirdropsInRaid;
         public static ConfigEntry<bool> ShowFriendlyCorpsesInRaid;
@@ -63,7 +64,8 @@ namespace DynamicMaps.Config
         public static ConfigEntry<int> ShowFriendlyIntelLevel;
         public static ConfigEntry<int> ShowCorpseIntelLevel;
         public static ConfigEntry<int> ShowAirdropIntelLevel;
-
+        public static ConfigEntry<int> ShowWishListItemsIntelLevel;
+        
         #endregion
         
         #region In Raid
@@ -92,9 +94,31 @@ namespace DynamicMaps.Config
         
         #endregion
 
+        #region Colors
+
+        private const string MarkerColors = "6. Marker Colors";
+        public static ConfigEntry<Color> PlayerColor;
+        public static ConfigEntry<Color> PmcBearColor;
+        public static ConfigEntry<Color> PmcUsecColor;
+        public static ConfigEntry<Color> ScavColor;
+        public static ConfigEntry<Color> BossColor;
+        public static ConfigEntry<Color> AirdropColor;
+        public static ConfigEntry<Color> BackpackColor;
+        public static ConfigEntry<Color> LootItemColor;
+        public static ConfigEntry<Color> KilledCorpseColor;
+        public static ConfigEntry<Color> KilledBossColor;
+        public static ConfigEntry<Color> KilledOtherColor;
+        public static ConfigEntry<Color> BtrColor;
+        public static ConfigEntry<Color> ExtractDefaultColor;
+        public static ConfigEntry<Color> ExtractOpenColor;
+        public static ConfigEntry<Color> ExtractClosedColor;
+        public static ConfigEntry<Color> ExtractHasRequirementsColor;
+        
+        #endregion
+        
         #region External Mod Support
         
-        private const string ExternModSupport = "6. External Mod Support";
+        private const string ExternModSupport = "7. External Mod Support";
         public static ConfigEntry<bool> ShowHeliCrashMarker;
         
         #endregion
@@ -315,6 +339,15 @@ namespace DynamicMaps.Config
                     "If the player's dropped backpacks (not anyone elses) should be shown in raid",
                     null,
                     new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowWishListItemsInRaid = config.Bind(
+                DynamicMarkerTitle,
+                "Show wish listed items In Raid",
+                true,
+                new ConfigDescription(
+                    "Shows items that are in your wishlist on the map in raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
 
             ConfigEntries.Add(ShowBTRInRaid = config.Bind(
                 DynamicMarkerTitle,
@@ -434,6 +467,15 @@ namespace DynamicMaps.Config
                 0,
                 new ConfigDescription(
                     "If intel level is at or below this value it will show airdrops",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowWishListItemsIntelLevel = config.Bind(
+                IntelCenterTitle,
+                "Intel level required to show wish listed loot items",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show wish listed loot items",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
 
@@ -577,8 +619,155 @@ namespace DynamicMaps.Config
             
             #endregion
 
+            #region MarkerColors
+
+            ConfigEntries.Add(PlayerColor = config.Bind(
+                MarkerColors,
+                "Your player marker color",
+                new Color(0, 1, 0),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(PmcBearColor = config.Bind(
+                MarkerColors,
+                "Bear marker color",
+                new Color(1, 0, 0),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(PmcUsecColor = config.Bind(
+                MarkerColors,
+                "Usec marker color",
+                new Color(1, 1, 0),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ScavColor = config.Bind(
+                MarkerColors,
+                "Scav marker color",
+                new Color(1, 0.45f, 0.007f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(BossColor = config.Bind(
+                MarkerColors,
+                "Boss marker color",
+                new Color(1f, 0.45f, 0.007f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(AirdropColor = config.Bind(
+                MarkerColors,
+                "Airdrop marker color",
+                new Color(1f, 0.30f, 0.007f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(BackpackColor = config.Bind(
+                MarkerColors,
+                "Backpack marker color",
+                new Color(0f, 1f, 0.0f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(LootItemColor = config.Bind(
+                MarkerColors,
+                "Loot marker color",
+                new Color(0.98f, 0.81f, 0.007f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(KilledCorpseColor = config.Bind(
+                MarkerColors,
+                "Killed corpse marker color",
+                new Color(1f, 0.0f, 0.0f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+
+            ConfigEntries.Add(KilledBossColor = config.Bind(
+                MarkerColors,
+                "Killed boss corpse marker color",
+                new Color(1f, 0.0f, 1.0f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(KilledOtherColor = config.Bind(
+                MarkerColors,
+                "Killed by other corpse marker color",
+                new Color(1f, 1f, 1f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(BtrColor = config.Bind(
+                MarkerColors,
+                "BTR marker color",
+                new Color(0.21f, 0.39f, 0.16f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ExtractDefaultColor = config.Bind(
+                MarkerColors,
+                "Extract default marker color",
+                new Color(1f, 0.92f, 0.01f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ExtractOpenColor = config.Bind(
+                MarkerColors,
+                "Extract open marker color",
+                new Color(0f, 1f, 0f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ExtractClosedColor = config.Bind(
+                MarkerColors,
+                "Extract closed marker color",
+                new Color(1f, 0f, 0f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ExtractHasRequirementsColor = config.Bind(
+                MarkerColors,
+                "Extract has requirements marker color",
+                new Color(1f, 0.92f, 0.01f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            #endregion
+            
             #region ExternalModSupport
-            #region SamSWAT HeliCrash
 
             ConfigEntries.Add(ShowHeliCrashMarker = config.Bind(
                 ExternModSupport,
@@ -590,8 +779,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { 
                         Browsable = ModDetection.HeliCrashLoaded
                     })));
-
-            #endregion
+            
             #endregion
             
             RecalcOrder();
@@ -612,7 +800,7 @@ namespace DynamicMaps.Config
                 settingOrder--;
             }
         }
-
+        
         private static void OnAutoOrCenterEnable(object sender, EventArgs e)
         {
             if (AutoCenterOnPlayerMarker.Value || ResetZoomOnCenter.Value)

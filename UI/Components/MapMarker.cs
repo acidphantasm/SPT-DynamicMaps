@@ -146,7 +146,7 @@ namespace DynamicMaps.UI.Components
         public static MapMarker Create(GameObject parent, MapMarkerDef def, Vector2 size, float degreesRotation, float scale)
         {
             var mapMarker = Create<MapMarker>(parent, def.Text, def.Category, def.ImagePath, def.Color, def.Position, size,
-                                              def.Pivot, degreesRotation, scale, def.ShowInRaid);
+                                              def.Pivot, degreesRotation, scale, def.ShowInRaid, def.Sprite);
             mapMarker.AssociatedItemId = def.AssociatedItemId;
 
             return mapMarker;
@@ -154,7 +154,7 @@ namespace DynamicMaps.UI.Components
 
         public static T Create<T>(GameObject parent, string text, string category, string imageRelativePath, Color color,
                                   Vector3 position, Vector2 size, Vector2 pivot, float degreesRotation, float scale,
-                                  bool showInRaid = true)
+                                  bool showInRaid = true, Sprite sprite = null)
                             where T : MapMarker
         {
             var go = UIUtils.CreateUIGameObject(parent, $"MapMarker {text}");
@@ -185,7 +185,9 @@ namespace DynamicMaps.UI.Components
             imageGO.GetRectTransform().pivot = new Vector2(0.5f, 0.5f);
             marker.Image = imageGO.AddComponent<Image>();
             marker.Image.raycastTarget = false;
-            marker.Image.sprite = TextureUtils.GetOrLoadCachedSprite(imageRelativePath);
+            marker.Image.sprite = sprite is null 
+                ? TextureUtils.GetOrLoadCachedSprite(imageRelativePath)
+                : sprite;
             marker.Image.type = Image.Type.Simple;
 
             // var outline = imageGO.AddComponent<Outline>();

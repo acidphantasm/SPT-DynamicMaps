@@ -1,3 +1,4 @@
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
@@ -9,8 +10,7 @@ namespace DynamicMaps.DynamicMarkers
     {
         // TODO: move to config
         private static string _btrIconPath = "Markers/btr.png";
-        private static Color _btrColor = new Color(54f/255f, 100f/255f, 42f/255f);
-        private static Vector2 _btrSize = new Vector2(45, 45f);
+        private static Vector2 _btrSize = new(45, 45f);
         private static string _btrName = "BTR";
         private static string _btrCategory = "BTR";
         //
@@ -19,7 +19,7 @@ namespace DynamicMaps.DynamicMarkers
 
         public void OnShowInRaid(MapView map)
         {
-            if (_btrMarker != null)
+            if (_btrMarker is not null)
             {
                 return;
             }
@@ -51,19 +51,21 @@ namespace DynamicMaps.DynamicMarkers
             }
 
             var btrView = GameUtils.GetBTRView();
-            if (btrView == null)
+            if (btrView is null)
             {
                 return;
             }
 
+            var color = Settings.BtrColor.Value;
+            
             // try adding the marker
-            _btrMarker = map.AddTransformMarker(btrView.transform, _btrName, _btrCategory, _btrColor,
+            _btrMarker = map.AddTransformMarker(btrView.transform, _btrName, _btrCategory, color,
                                                 _btrIconPath, _btrSize);
         }
 
         private void TryRemoveMarker()
         {
-            if (_btrMarker == null)
+            if (_btrMarker is null)
             {
                 return;
             }

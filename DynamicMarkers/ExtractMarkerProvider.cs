@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
@@ -15,10 +16,6 @@ namespace DynamicMaps.DynamicMarkers
         // TODO: move to config
         private const string _extractCategory = "Extract";
         private const string _extractImagePath = "Markers/exit.png";
-        private static Color _extractDefaultColor = Color.yellow;
-        private static Color _extractOpenColor = Color.green;
-        private static Color _extractHasRequirementsColor = Color.yellow;
-        private static Color _extractClosedColor = Color.red;
         //
 
         private bool _showExtractStatusInRaid = true;
@@ -46,8 +43,7 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
 
-        private Dictionary<ExfiltrationPoint, MapMarker> _extractMarkers
-            = new Dictionary<ExfiltrationPoint, MapMarker>();
+        private Dictionary<ExfiltrationPoint, MapMarker> _extractMarkers = [];
 
         public void OnShowInRaid(MapView map)
         {
@@ -104,8 +100,7 @@ namespace DynamicMaps.DynamicMarkers
             if (GameUtils.IsScavRaid())
             {
                 extracts = gameWorld.ExfiltrationController.ScavExfiltrationPoints
-                                .Where(p => p.isActiveAndEnabled && p.InfiltrationMatch(player))
-                                .Cast<ExfiltrationPoint>();
+                                .Where(p => p.isActiveAndEnabled && p.InfiltrationMatch(player));
             }
             else
             {
@@ -138,20 +133,20 @@ namespace DynamicMaps.DynamicMarkers
             var marker = _extractMarkers[extract];
             if (!_showExtractStatusInRaid)
             {
-                marker.Color = _extractDefaultColor;
+                marker.Color = Settings.ExtractDefaultColor.Value;
                 return;
             }
 
             switch (extract.Status)
             {
                 case EExfiltrationStatus.NotPresent:
-                    marker.Color = _extractClosedColor;
+                    marker.Color = Settings.ExtractClosedColor.Value;
                     break;
                 case EExfiltrationStatus.UncompleteRequirements:
-                    marker.Color = _extractHasRequirementsColor;
+                    marker.Color = Settings.ExtractHasRequirementsColor.Value;
                     return;
                 default:
-                    marker.Color = _extractOpenColor;
+                    marker.Color = Settings.ExtractOpenColor.Value;
                     break;
             }
         }

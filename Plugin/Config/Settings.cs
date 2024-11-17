@@ -9,7 +9,7 @@ namespace DynamicMaps.Config
 {
     internal static class Settings
     {
-        private static readonly List<ConfigEntryBase> ConfigEntries = new List<ConfigEntryBase>();
+        private static readonly List<ConfigEntryBase> ConfigEntries = [];
 
         #region General
 
@@ -46,6 +46,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowWishListItemsInRaid;
         public static ConfigEntry<bool> ShowBTRInRaid;
         public static ConfigEntry<bool> ShowAirdropsInRaid;
+        public static ConfigEntry<bool> ShowHiddenStashesInRaid;
         public static ConfigEntry<bool> ShowFriendlyCorpsesInRaid;
         public static ConfigEntry<bool> ShowKilledCorpsesInRaid;
         public static ConfigEntry<bool> ShowFriendlyKilledCorpsesInRaid;
@@ -56,8 +57,7 @@ namespace DynamicMaps.Config
 
         #region IntelCenter
 
-        private const string IntelCenterTitle = "3. Progression";
-        
+        private const string ProgressionTitle = "3. Progression";
         public static ConfigEntry<bool> RequireMapInInventory;
         public static ConfigEntry<int> ShowPmcIntelLevel;
         public static ConfigEntry<int> ShowBossIntelLevel;
@@ -66,6 +66,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<int> ShowCorpseIntelLevel;
         public static ConfigEntry<int> ShowAirdropIntelLevel;
         public static ConfigEntry<int> ShowWishListItemsIntelLevel;
+        public static ConfigEntry<int> ShowHiddenStashIntelLevel;
         
         #endregion
         
@@ -114,6 +115,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<Color> ExtractOpenColor;
         public static ConfigEntry<Color> ExtractClosedColor;
         public static ConfigEntry<Color> ExtractHasRequirementsColor;
+        public static ConfigEntry<Color> HiddenStashColor;
         
         #endregion
         
@@ -367,6 +369,15 @@ namespace DynamicMaps.Config
                     "If airdrops should be shown in raid when they land",
                     null,
                     new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowHiddenStashesInRaid = config.Bind(
+                DynamicMarkerTitle,
+                "Show Hidden Stashes In Raid",
+                true,
+                new ConfigDescription(
+                    "If hidden stashes should be shown in raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
 
             ConfigEntries.Add(ShowFriendlyCorpsesInRaid = config.Bind(
                 DynamicMarkerTitle,
@@ -415,10 +426,10 @@ namespace DynamicMaps.Config
 
             #endregion
             
-            #region IntelCenter
+            #region Progression
 
             ConfigEntries.Add(RequireMapInInventory = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Require a map in your inventory",
                 true,
                 new ConfigDescription(
@@ -427,7 +438,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowPmcIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show PMCs",
                 0,
                 new ConfigDescription(
@@ -436,7 +447,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowBossIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show bosses",
                 0,
                 new ConfigDescription(
@@ -445,7 +456,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowScavIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show scavs",
                 0,
                 new ConfigDescription(
@@ -454,7 +465,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowFriendlyIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show friendly PMCs",
                 0,
                 new ConfigDescription(
@@ -463,7 +474,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowCorpseIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show corpses",
                 0,
                 new ConfigDescription(
@@ -472,7 +483,7 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowAirdropIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show airdrops",
                 0,
                 new ConfigDescription(
@@ -481,11 +492,20 @@ namespace DynamicMaps.Config
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(ShowWishListItemsIntelLevel = config.Bind(
-                IntelCenterTitle,
+                ProgressionTitle,
                 "Intel level required to show wish listed loot items",
                 0,
                 new ConfigDescription(
                     "If intel level is at or below this value it will show wish listed loot items",
+                    new AcceptableValueRange<int>(0, 3),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowHiddenStashIntelLevel = config.Bind(
+                ProgressionTitle,
+                "Intel level required to show hidden stashes",
+                0,
+                new ConfigDescription(
+                    "If intel level is at or below this value it will show hidden stashes",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
 
@@ -770,6 +790,15 @@ namespace DynamicMaps.Config
                 MarkerColors,
                 "Extract has requirements marker color",
                 new Color(1f, 0.92f, 0.01f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(HiddenStashColor = config.Bind(
+                MarkerColors,
+                "Extract has requirements marker color",
+                new Color(0.1f, 0.0f, 0.51f),
                 new ConfigDescription(
                     "Color of the marker",
                     null,

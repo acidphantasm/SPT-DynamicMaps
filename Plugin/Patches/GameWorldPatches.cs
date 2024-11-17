@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using SPT.Reflection.Patching;
@@ -8,6 +9,29 @@ using HarmonyLib;
 
 namespace DynamicMaps.Patches
 {
+    internal class LocationSceneAwakePatch : ModulePatch
+    {
+        public static List<LootableContainer> HiddenStashes { get; private set; } = [];
+        
+        protected override MethodBase GetTargetMethod()
+        {
+            return AccessTools.Method(typeof(LocationScene), nameof(LocationScene.Awake));
+        }
+
+        [PatchPostfix]
+        public static void PatchPostfix(LocationScene __instance)
+        {
+            // Credit to RaiRai for finding the hidden stash names
+            var caches = __instance.LootableContainers.Where(x => 
+                    x.name.StartsWith("scontainer_wood_CAP") || 
+                    x.name.StartsWith("scontainer_Blue_Barrel_Base_Cap"))
+                .ToList();
+            
+            
+            HiddenStashes.AddRange(caches);
+        }
+    }
+    
     internal class GameWorldOnDestroyPatch : ModulePatch
     {
         internal static event Action OnRaidEnd;

@@ -26,7 +26,6 @@ namespace DynamicMaps.DynamicMarkers
             {
                 if (GameUtils.GetWishListItems().Contains(item.Item.TemplateId))
                 {
-                    Plugin.Log.LogError($"Item {item.Item.TemplateId.BSGLocalized()} found in raid");
                     TryAddMarker(item);
                 }
             }

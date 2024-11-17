@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using SPT.Reflection.Patching;
 using DynamicMaps.Config;
+using DynamicMaps.Utils;
 using EFT.UI.Map;
 using HarmonyLib;
 
@@ -19,7 +20,7 @@ namespace DynamicMaps.Patches
         {
             try
             {
-                if (!Settings.ReplaceMapScreen.Value)
+                if (!Settings.ReplaceMapScreen.Value || !GameUtils.ShouldShowMapInRaid())
                 {
                     // mod is disabled
                     Plugin.Instance.Map?.OnMapScreenClose();
@@ -53,7 +54,7 @@ namespace DynamicMaps.Patches
         {
             try
             {
-                if (!Settings.ReplaceMapScreen.Value)
+                if (!Settings.ReplaceMapScreen.Value || !GameUtils.ShouldShowMapInRaid())
                 {
                     // mod is disabled
                     return true;

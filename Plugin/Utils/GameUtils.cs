@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using SPT.Reflection.Utils;
 using Comfort.Common;
+using DynamicMaps.Config;
 using EFT;
 using EFT.Vehicle;
 using HarmonyLib;
@@ -48,6 +49,22 @@ namespace DynamicMaps.Utils
             (WildSpawnType) 199,                // Legion
         };
 
+        private static readonly Dictionary<string, string> MapLookUp = new()
+        {
+            { "factory4_day", "574eb85c245977648157eec3" },
+            { "factory4_night", "574eb85c245977648157eec3" },
+            { "Woods", "5900b89686f7744e704a8747" },
+            { "bigmap", "5798a2832459774b53341029" },
+            { "Interchange", "5be4038986f774527d3fae60" },
+            { "RezervBase", "6738034a9713b5f42b4a8b78" },
+            { "Shoreline", "5a8036fb86f77407252ddc02" },
+            { "laboratory", "6738034e9d22459ad7cd1b81" },
+            { "Lighthouse", "6738035350b24a4ae4a57997" },
+            { "TarkovStreets", "673803448cb3819668d77b1b" },
+            { "Sandbox", "6738033eb7305d3bdafe9518"},
+            { "Sandbox_high", "6738033eb7305d3bdafe9518"},
+        };
+        
         public static bool IsInRaid()
         {
             var game = Singleton<AbstractGame>.Instance;
@@ -181,15 +198,25 @@ namespace DynamicMaps.Utils
         {
             return PlayerProfile.WishList;
         }
-
-        public static class Maps
+        
+        public static bool ShouldShowMapInRaid()
         {
-            public const string
-                FactoryMap = "574eb85c245977648157eec3",
-                Customs = "5798a2832459774b53341029",
-                Interchange = "5be4038986f774527d3fae60",
-                Shoreline = "5a8036fb86f77407252ddc02",
-                Woods = "5900b89686f7744e704a8747";
+            if (!Settings.RequireMapInInventory.Value) return true;
+            
+            var player = GetMainPlayer();
+            var currentLocation = player.Location;
+
+            if (!MapLookUp.TryGetValue(currentLocation, out var id))
+            {
+                Plugin.Log.LogWarning($"Could not find map id for location {currentLocation} is this a new location?");
+                return true;
+            }
+                    
+            var isMapInInventory = player.Inventory.Equipment
+                .GetAllItems()
+                .Any(m => m.TemplateId == id);
+            
+            return isMapInInventory;
         }
     }
 }

@@ -40,8 +40,7 @@ namespace DynamicMaps.UI
         private static Vector2 _cursorPositionTextOffset = new Vector2(15f, -52f);
         private static Vector2 _playerPositionTextOffset = new Vector2(15f, -68f);
         private static float _positionTextFontSize = 15f;
-
-        public bool IsReplacingMapScreen = true;
+        
         public RectTransform RectTransform => gameObject.GetRectTransform();
 
         private RectTransform _parentTransform => gameObject.transform.parent as RectTransform;
@@ -277,7 +276,7 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenShow()
         {
-            if (_peekComponent != null)
+            if (_peekComponent is not null)
             {
                 _peekComponent.WasMiniMapActive = _showingMiniMap;
                 
@@ -296,7 +295,7 @@ namespace DynamicMaps.UI
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
             transform.parent.gameObject.SetActive(true);
 
-            Show();
+            Show(false);
         }
 
         internal void OnMapScreenClose()
@@ -305,18 +304,18 @@ namespace DynamicMaps.UI
 
             IsShowingMapScreen = false;
             
-            if (_peekComponent != null && _peekComponent.WasMiniMapActive)
+            if (_peekComponent is not null && _peekComponent.WasMiniMapActive)
             {
                 _peekComponent.BeginMiniMap();
             }
         }
 
-        internal void Show()
+        internal void Show(bool playAnimation)
         {
             AdjustSizeAndPosition();
 
             _isShown = true;
-            gameObject.SetActive(true);
+            gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
 
             // populate map select dropdown
             _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
@@ -324,7 +323,7 @@ namespace DynamicMaps.UI
             if (GameUtils.IsInRaid())
             {
                 Plugin.Log.LogInfo("Showing map in raid");
-                OnShowInRaid();
+                OnShowInRaid(playAnimation);
             }
             else
             {
@@ -355,6 +354,8 @@ namespace DynamicMaps.UI
 
         private void OnRaidEnd()
         {
+            if (!BattleUIScreenShowPatch.IsAttached) return;
+            
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
                 try
@@ -416,9 +417,9 @@ namespace DynamicMaps.UI
             _playerPositionText.gameObject.SetActive(false);
         }
 
-        private void AdjustForInRaid()
+        private void AdjustForInRaid(bool playAnimation)
         {
-            var speed = 0.35f;
+            var speed = playAnimation ? 0.35f : 0f;
             
             // adjust mask
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
@@ -427,11 +428,12 @@ namespace DynamicMaps.UI
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(true);
+            _levelSelectSlider.gameObject.SetActive(true);
         }
 
-        private void AdjustForPeek()
+        private void AdjustForPeek(bool playAnimation)
         {
-            var speed = 0.35f;
+            var speed = playAnimation ? 0.35f : 0f;
             
             // adjust mask
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
@@ -440,11 +442,12 @@ namespace DynamicMaps.UI
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
+            _levelSelectSlider.gameObject.SetActive(false);
         }
 
-        private void AdjustForMiniMap()
+        private void AdjustForMiniMap(bool playAnimation)
         {
-            var speed = 0.35f;
+            var speed = playAnimation ? 0.35f : 0f;
             
             _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), _transitionAnimations ? speed : 0f);
@@ -454,28 +457,26 @@ namespace DynamicMaps.UI
             
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
+            _levelSelectSlider.gameObject.SetActive(false);
         }
 
         #endregion
 
         #region Show And Hide Bottom Level
 
-        private void OnShowInRaid()
+        private void OnShowInRaid(bool playAnimation)
         {
             if (_showingMiniMap)
             {
-                AdjustForMiniMap();
-                _levelSelectSlider.gameObject.SetActive(false);
+                AdjustForMiniMap(playAnimation);
             }
             else if (_isPeeking)
             {
-                AdjustForPeek();
-                _levelSelectSlider.gameObject.SetActive(false);
+                AdjustForPeek(playAnimation);
             }
             else
             {
-                AdjustForInRaid();
-                _levelSelectSlider.gameObject.SetActive(true);
+                AdjustForInRaid(playAnimation);
             }
             
             // filter dropdown to only maps containing the internal map name
@@ -663,7 +664,7 @@ namespace DynamicMaps.UI
             {
                 var player = GameUtils.GetMainPlayer();
                 
-                if (player != null)
+                if (player is not null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
                     
@@ -683,7 +684,6 @@ namespace DynamicMaps.UI
 
         internal void ReadConfig()
         {
-            IsReplacingMapScreen = Settings.ReplaceMapScreen.Value;
             _centerPlayerShortcut = Settings.CenterOnPlayerHotkey.Value;
             _dumpShortcut = Settings.DumpInfoHotkey.Value;
 
@@ -713,16 +713,17 @@ namespace DynamicMaps.UI
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
             
-            if (_mapView != null)
+            if (_mapView is not null)
             {
                 _mapView.ZoomMain = Settings.ZoomMainMap.Value;
                 _mapView.ZoomMini = Settings.ZoomMiniMap.Value;
             }
             
-            if (_peekComponent != null)
+            if (_peekComponent is not null)
             {
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;
                 _peekComponent.HoldForPeek = Settings.HoldForPeek.Value;
+                _peekComponent.HideMinimapShortcut = Settings.MiniMapShowOrHide.Value;
             }
 
             AddRemoveMarkerProvider<PlayerMarkerProvider>(Settings.ShowPlayerMarker.Value);
@@ -800,7 +801,8 @@ namespace DynamicMaps.UI
 
         internal void TryAddPeekComponent(EftBattleUIScreen battleUI)
         {
-            if (_peekComponent != null)
+            // Peek component already instantiated, return
+            if (_peekComponent is not null)
             {
                 return;
             }

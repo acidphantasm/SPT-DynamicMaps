@@ -12,11 +12,13 @@ namespace DynamicMaps.UI.Components
 
         public RectTransform RectTransform { get; private set; }
         public KeyboardShortcut PeekShortcut { get; set; }
+        public KeyboardShortcut HideMinimapShortcut { get; set; }
         public bool HoldForPeek { get; set; }  // opposite is peek toggle
         public bool IsPeeking { get; private set; }
-        private bool _isMiniMapEnabled => Settings.MiniMapEnabled.Value;
+        private static bool IsMiniMapEnabled => Settings.MiniMapEnabled.Value;
         public bool ShowingMiniMap { get; private set; }
         public bool WasMiniMapActive { get; set; }
+        private bool IsMiniMapHidden = false;
         
         internal static MapPeekComponent Create(GameObject parent)
         {
@@ -35,31 +37,59 @@ namespace DynamicMaps.UI.Components
 
         private void Update()
         {
-            // Show or hide the mini-map
-            if (_isMiniMapEnabled)
-            {
-                if (!IsPeeking && !MapScreen.IsShowingMapScreen && !ShowingMiniMap)
-                {
-                    BeginMiniMap();
-                }
-                
-                if (!ShowingMiniMap && Settings.MiniMapShowOrHide.Value.BetterIsDown())
-                {
-                    BeginMiniMap();
-                }
-                else if (ShowingMiniMap && Settings.MiniMapShowOrHide.Value.BetterIsDown())
-                {
-                    EndMiniMap();
-                }
-            }
-            else
+            if (!GameUtils.ShouldShowMapInRaid())
             {
                 if (ShowingMiniMap)
                 {
                     EndMiniMap();
                 }
+
+                if (IsPeeking)
+                {
+                    EndPeek();
+                }
+
+                return;
             }
             
+            HandleMinimapState();
+            HandlePeekState();
+        }
+
+        private void HandleMinimapState()
+        {
+            if (!IsMiniMapEnabled) return;
+            
+            if (HideMinimapShortcut.BetterIsDown())
+            {
+                IsMiniMapHidden = !IsMiniMapHidden;
+                
+                if (!IsMiniMapHidden && !ShowingMiniMap)
+                {
+                    BeginMiniMap(false);
+                }
+                else
+                {
+                    EndMiniMap();
+                }
+
+                return;
+            }
+
+            if (IsMiniMapHidden) return;
+            
+            if (!IsPeeking && !MapScreen.IsShowingMapScreen)
+            {
+                BeginMiniMap();
+            }
+            else
+            {
+                EndMiniMap();
+            }
+        }
+
+        private void HandlePeekState()
+        {
             if (HoldForPeek && PeekShortcut.BetterIsPressed() != IsPeeking)
             {
                 // hold for peek
@@ -67,7 +97,7 @@ namespace DynamicMaps.UI.Components
                 {
                     WasMiniMapActive = ShowingMiniMap;
                     EndMiniMap();
-                    BeginPeek();
+                    BeginPeek(WasMiniMapActive && !IsMiniMapHidden);
                 }
                 else
                 {
@@ -81,7 +111,7 @@ namespace DynamicMaps.UI.Components
                 {
                     WasMiniMapActive = ShowingMiniMap;
                     EndMiniMap();
-                    BeginPeek();
+                    BeginPeek(WasMiniMapActive);
                 }
                 else
                 {
@@ -89,8 +119,8 @@ namespace DynamicMaps.UI.Components
                 }
             }
         }
-
-        internal void BeginPeek()
+        
+        private void BeginPeek(bool playAnimation = true)
         {
             if (IsPeeking) return;
             
@@ -101,7 +131,7 @@ namespace DynamicMaps.UI.Components
             
             // attach map screen to peek mask
             MapScreen.transform.SetParent(RectTransform);
-            MapScreen.Show();
+            MapScreen.Show(playAnimation);
         }
 
         internal void EndPeek()
@@ -120,19 +150,23 @@ namespace DynamicMaps.UI.Components
             }
         }
     
-        internal void BeginMiniMap()
+        internal void BeginMiniMap(bool playAnimation = true)
         {
+            if (ShowingMiniMap) return;
+            
             ShowingMiniMap = true;
             
             // just in case something else is attached and tries to be in front
             transform.SetAsLastSibling();
             
             MapScreen.transform.SetParent(RectTransform);
-            MapScreen.Show();
+            MapScreen.Show(playAnimation);
         }
 
         internal void EndMiniMap()
         {
+            if (!ShowingMiniMap) return;
+            
             ShowingMiniMap = false;
             
             MapScreen.Hide();

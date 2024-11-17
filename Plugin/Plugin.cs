@@ -62,11 +62,8 @@ namespace DynamicMaps
         /// </summary>
         internal void TryAttachToMapScreen(MapScreen mapScreen)
         {
-            if (Map != null)
-            {
-                return;
-            }
-
+            if (Map is not null) return;
+            
             Log.LogInfo("Trying to attach to MapScreen");
 
             // attach to common UI first to call awake and set things up, then attach to sleeping map screen
@@ -79,7 +76,7 @@ namespace DynamicMaps
         /// </summary>
         internal void TryAttachToBattleUIScreen(EftBattleUIScreen battleUI)
         {
-            if (Map == null || GameUtils.GetMainPlayer() is HideoutPlayer)
+            if (Map is null || GameUtils.GetMainPlayer() is HideoutPlayer)
             {
                 return;
             }

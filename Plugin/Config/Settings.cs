@@ -56,7 +56,7 @@ namespace DynamicMaps.Config
 
         #region IntelCenter
 
-        private const string IntelCenterTitle = "3. Intel Center";
+        private const string IntelCenterTitle = "3. Progression";
         
         public static ConfigEntry<bool> RequireMapInInventory;
         public static ConfigEntry<int> ShowPmcIntelLevel;

@@ -1,6 +1,6 @@
 {
     "name": "SPT-DynamicMaps",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "sptVersion": "~3.9",
     "loadBefore": [],
     "loadAfter": [],
@@ -9,8 +9,8 @@
     "main": "src/mod.js",
     "scripts": {
         "setup": "npm i",
-        "build": "node ./build.mjs",
-        "buildinfo": "node ./build.mjs --verbose"
+        "build": "node ./packageBuild.ts",
+        "buildinfo": "node ./packageBuild.ts --verbose"
     },
     "devDependencies": {
         "@types/node": "20.11",
@@ -22,11 +22,15 @@
         "ignore": "^5.2",
         "tsyringe": "4.8.0",
         "typescript": "5.4",
-        "winston": "3.12"
+        "winston": "3.12",
+        "bestzip": "^2.2.1"
     },
     "author": "mpstark",
     "contributors": [
         "dirtbikercj"
     ],
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        
+    }
 }

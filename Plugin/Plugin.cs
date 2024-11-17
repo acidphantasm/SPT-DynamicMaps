@@ -55,6 +55,7 @@ namespace DynamicMaps
             new AirdropBoxOnBoxLandPatch().Enable();
             new PlayerOnDeadPatch().Enable();
             new PlayerInventoryThrowItemPatch().Enable();
+            new ShowViewButtonPatch().Enable();
         }
 
         /// <summary>

@@ -437,7 +437,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(RequireMapInInventory = config.Bind(
                 ProgressionTitle,
                 "Require a map in your inventory",
-                true,
+                false,
                 new ConfigDescription(
                     "Requires you to have a map in your inventory in order to view the map in raid.",
                     null,

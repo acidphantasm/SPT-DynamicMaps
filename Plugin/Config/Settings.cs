@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BepInEx.Configuration;
 using DynamicMaps.ExternalModSupport;
+using DynamicMaps.Utils;
 using UnityEngine;
 
 // THIS IS HEAVILY BASED ON DRAKIAXYZ'S SPT-QuickMoveToContainer
@@ -88,6 +89,11 @@ namespace DynamicMaps.Config
 
         private const string MiniMapTitle = "5. Mini-map";
         public static ConfigEntry<bool> MiniMapEnabled;
+        public static ConfigEntry<EMiniMapPosition> MiniMapPosition;
+        public static ConfigEntry<float> MiniMapSizeX;
+        public static ConfigEntry<float> MiniMapSizeY;
+        public static ConfigEntry<float> MiniMapScreenOffsetX;
+        public static ConfigEntry<float> MiniMapScreenOffsetY;
         public static ConfigEntry<bool> MapTransitionEnabled;
         public static ConfigEntry<KeyboardShortcut> MiniMapShowOrHide;
         public static ConfigEntry<float> ZoomMiniMap;
@@ -609,6 +615,51 @@ namespace DynamicMaps.Config
                 new ConfigDescription(
                     "Enable the mini-map",
                     null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapPosition = config.Bind(
+                MiniMapTitle,
+                "Mini-map position",
+                EMiniMapPosition.TopRight,
+                new ConfigDescription(
+                    "What corner is the mini-map displayed in",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapSizeX = config.Bind(
+                MiniMapTitle,
+                "Mini-map size horizontal",
+                275.0f,
+                new ConfigDescription(
+                    "Horizontal size of the mini-map",
+                    new AcceptableValueRange<float>(0f, 850f),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapSizeY = config.Bind(
+                MiniMapTitle,
+                "Mini-map size vertical",
+                275.0f,
+                new ConfigDescription(
+                    "Vertical size of the mini-map",
+                    new AcceptableValueRange<float>(0f, 850f),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapScreenOffsetX = config.Bind(
+                MiniMapTitle,
+                "Mini-map offset horizontal",
+                0.0f,
+                new ConfigDescription(
+                    "Horizontal Offset from the edge",
+                    new AcceptableValueRange<float>(0f, 650f),
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(MiniMapScreenOffsetY = config.Bind(
+                MiniMapTitle,
+                "Mini-map offset vertical",
+                0.0f,
+                new ConfigDescription(
+                    "Vertical offset from the edge",
+                    new AcceptableValueRange<float>(0f, 500f),
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(MiniMapShowOrHide = config.Bind(

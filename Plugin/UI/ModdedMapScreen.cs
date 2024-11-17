@@ -68,7 +68,7 @@ namespace DynamicMaps.UI
         public bool IsShowingMapScreen { get; private set; }
         
         // dynamic map marker providers
-        private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = new Dictionary<Type, IDynamicMarkerProvider>();
+        private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
 
         // config
         private bool _autoCenterOnPlayerMarker = true;
@@ -112,6 +112,12 @@ namespace DynamicMaps.UI
             var scrollRectGO = UIUtils.CreateUIGameObject(gameObject, "Scroll");
             var scrollMaskGO = UIUtils.CreateUIGameObject(scrollRectGO, "ScrollMask");
 
+            Settings.MiniMapPosition.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapScreenOffsetX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapScreenOffsetY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapSizeX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapSizeY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            
             _mapView = MapView.Create(scrollMaskGO, "MapView");
 
             // set up mask; size will be set later in Raid/NoRaid
@@ -164,6 +170,12 @@ namespace DynamicMaps.UI
         private void OnDestroy()
         {
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
+            
+            Settings.MiniMapPosition.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapScreenOffsetX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapScreenOffsetY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapSizeX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapSizeY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
         }
 
         private void Update()
@@ -425,17 +437,74 @@ namespace DynamicMaps.UI
         {
             var speed = playAnimation ? 0.35f : 0f;
             
-            _scrollMask.GetRectTransform().DOSizeDelta(new Vector2(275f, 275f), _transitionAnimations ? speed : 0f);
-            _scrollMask.GetRectTransform().DOAnchorPos(new Vector2(-10f, -10f), _transitionAnimations ? speed : 0f);
-            _scrollMask.GetRectTransform().DOAnchorMin(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
-            _scrollMask.GetRectTransform().DOAnchorMax(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
-            _scrollMask.GetRectTransform().DOPivot(new Vector2(1f, 1f), _transitionAnimations ? speed : 0f);
+            var cornerPosition = ConvertEnumToScreenPos(Settings.MiniMapPosition.Value);
+            
+            var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value);
+            offset *= ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
+            
+            var size = new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
+            
+            _scrollMask.GetRectTransform().DOSizeDelta(size, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorPos(offset, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorMin(cornerPosition, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorMax(cornerPosition, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOPivot(cornerPosition, _transitionAnimations ? speed : 0f);
             
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
             _levelSelectSlider.gameObject.SetActive(false);
         }
 
+        private Vector2 ConvertEnumToScreenPos(EMiniMapPosition pos)
+        {
+            // 0,0 Bottom left
+            // 0,1 Top left
+            // 1,1 Top right
+            // 1,0 Bottom right
+            
+            switch (pos)
+            {
+                case EMiniMapPosition.TopRight:
+                    return new Vector2(1, 1);
+                
+                case EMiniMapPosition.BottomRight:
+                    return new Vector2(1, 0);
+                
+                case EMiniMapPosition.TopLeft:
+                    return new Vector2(0, 1);
+                
+                case EMiniMapPosition.BottomLeft:
+                    return new Vector2(0, 0);
+            }
+
+            return Vector2.zero;
+        }
+
+        private Vector2 ConvertEnumToScenePivot(EMiniMapPosition pos)
+        {
+            // Top right = neg neg
+            // Bottom right = neg pos
+            // Top left = pos neg
+            // Bottom left = pos pos
+            
+            switch (pos)
+            {
+                case EMiniMapPosition.TopRight:
+                    return new Vector2(-1, -1);
+                
+                case EMiniMapPosition.BottomRight:
+                    return new Vector2(-1, 1);
+                
+                case EMiniMapPosition.TopLeft:
+                    return new Vector2(1, -1);
+                
+                case EMiniMapPosition.BottomLeft:
+                    return new Vector2(1, 1);
+            }
+
+            return Vector2.zero;
+        }
+        
         #endregion
 
         #region Show And Hide Bottom Level

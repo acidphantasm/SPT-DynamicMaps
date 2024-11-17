@@ -9,28 +9,30 @@ using HarmonyLib;
 
 namespace DynamicMaps.Patches
 {
-    internal class LocationSceneAwakePatch : ModulePatch
+    internal class GameStartedPatch : ModulePatch
     {
-        public static List<LootableContainer> HiddenStashes { get; private set; } = [];
+        public static List<LootableContainer> HiddenStashes { get; } = [];
         
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(LocationScene), nameof(LocationScene.Awake));
+            return AccessTools.Method(typeof(GameWorld), nameof(GameWorld.OnGameStarted));
         }
 
         [PatchPostfix]
-        public static void PatchPostfix(LocationScene __instance)
+        public static void PatchPostfix(GameWorld __instance)
         {
             // Credit to RaiRai for finding the hidden stash names
-            var caches = __instance.LootableContainers.Where(x => 
-                    x.name.StartsWith("scontainer_wood_CAP") || 
+            var caches = LocationScene.GetAllObjects<LootableContainer>()
+                .Where( x => 
+                    x.name.StartsWith("scontainer_wood_CAP")  || 
                     x.name.StartsWith("scontainer_Blue_Barrel_Base_Cap"))
                 .ToList();
-            
-            // Add range instead of assigning it direct because
-            // LocationScene.Awake() has the potential to run multiple times and
-            // stashes may be split between scenes
-            HiddenStashes.AddRange(caches);
+
+
+            foreach (var cache in caches)
+            {
+                HiddenStashes.Add(cache);
+            }
         }
     }
     
@@ -49,6 +51,7 @@ namespace DynamicMaps.Patches
             try
             {
                 OnRaidEnd?.Invoke();
+                GameStartedPatch.HiddenStashes.Clear();
             }
             catch(Exception e)
             {

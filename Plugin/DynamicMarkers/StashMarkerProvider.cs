@@ -19,7 +19,7 @@ public class HiddenStashMarkerProvider : IDynamicMarkerProvider
     {
         _lastMapView = map;
 
-        foreach (var stash in LocationSceneAwakePatch.HiddenStashes)
+        foreach (var stash in GameStartedPatch.HiddenStashes)
         {
             TryAddMarker(stash);
         }

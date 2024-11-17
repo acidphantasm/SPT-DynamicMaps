@@ -10,7 +10,7 @@ namespace DynamicMaps.Patches
     internal class AirdropBoxOnBoxLandPatch : ModulePatch
     {
         internal static event Action<AirdropBox> OnAirdropLanded;
-        internal static List<AirdropBox> Airdrops = new List<AirdropBox>();
+        internal static List<AirdropBox> Airdrops = [];
 
         private bool _hasRegisteredEvents = false;
 

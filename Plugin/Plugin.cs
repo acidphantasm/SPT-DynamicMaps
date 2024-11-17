@@ -48,7 +48,7 @@ namespace DynamicMaps
             new CommonUIAwakePatch().Enable();
             new MapScreenShowPatch().Enable();
             new MapScreenClosePatch().Enable();
-            new LocationSceneAwakePatch().Enable();
+            new GameStartedPatch().Enable();
             new GameWorldOnDestroyPatch().Enable();
             new GameWorldUnregisterPlayerPatch().Enable();
             new GameWorldRegisterLootItemPatch().Enable();

@@ -27,7 +27,9 @@ namespace DynamicMaps.Patches
                     x.name.StartsWith("scontainer_Blue_Barrel_Base_Cap"))
                 .ToList();
             
-            
+            // Add range instead of assigning it direct because
+            // LocationScene.Awake() has the potential to run multiple times and
+            // stashes may be split between scenes
             HiddenStashes.AddRange(caches);
         }
     }

@@ -25,6 +25,8 @@ namespace DynamicMaps.UI
 
         private const string _mapRelPath = "Maps";
 
+        private bool _initialized = false;
+        
         private static float _positionTweenTime = 0.25f;
         private static float _scrollZoomScaler = 1.75f;
         private static float _zoomScrollTweenTime = 0.25f;
@@ -93,7 +95,7 @@ namespace DynamicMaps.UI
         private KeyboardShortcut _zoomMiniMapOutShortcut;
         
         private float _zoomMapHotkeySpeed = 2.5f;
-
+        
         #endregion
         
         internal static ModdedMapScreen Create(GameObject parent)
@@ -221,39 +223,9 @@ namespace DynamicMaps.UI
             {
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
             }
-
-            // zoom hotkeys
-            var zoomMainAmount = 0f;
-            var zoomMiniAmount = 0f;
             
-            if (_showingMiniMap)
-            {
-                if (_zoomMiniMapOutShortcut.BetterIsPressed())
-                {
-                    zoomMiniAmount -= 1f;
-                }
-            
-                if (_zoomMiniMapInShortcut.BetterIsPressed())
-                {
-                    zoomMiniAmount += 1f;
-                }
-                
-                OnZoomMini(zoomMiniAmount);
-            }
-            else
-            {
-                if (_zoomMainMapOutShortcut.BetterIsPressed())
-                {
-                    zoomMainAmount -= 1f;
-                }
-
-                if (_zoomMainMapInShortcut.BetterIsPressed())
-                {
-                    zoomMainAmount += 1f;
-                }
-                
-                OnZoomMain(zoomMainAmount);
-            }
+            HandleMiniMapZoomInput();
+            HandleMainMapZoomInput();
             
             OnCenter();
             
@@ -312,8 +284,12 @@ namespace DynamicMaps.UI
 
         internal void Show(bool playAnimation)
         {
-            AdjustSizeAndPosition();
-
+            if (!_initialized)
+            {
+                AdjustSizeAndPosition();
+                _initialized = true;
+            }
+            
             _isShown = true;
             gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
 
@@ -436,8 +412,8 @@ namespace DynamicMaps.UI
             var speed = playAnimation ? 0.35f : 0f;
             
             // adjust mask
-            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
@@ -600,6 +576,44 @@ namespace DynamicMaps.UI
         
         #region Map Manipulation
 
+        private void HandleMiniMapZoomInput()
+        {
+            if (!_showingMiniMap) return;
+            
+            var zoomMiniAmount = 0f;
+            
+            if (_zoomMiniMapOutShortcut.BetterIsPressed())
+            {
+                zoomMiniAmount -= 1f;
+            }
+            
+            if (_zoomMiniMapInShortcut.BetterIsPressed())
+            {
+                zoomMiniAmount += 1f;
+            }
+
+            OnZoomMini(zoomMiniAmount);
+        }
+
+        private void HandleMainMapZoomInput()
+        {
+            if (_showingMiniMap) return;
+            
+            var zoomMainAmount = 0f;
+            
+            if (_zoomMainMapOutShortcut.BetterIsPressed())
+            {
+                zoomMainAmount -= 1f;
+            }
+
+            if (_zoomMainMapInShortcut.BetterIsPressed())
+            {
+                zoomMainAmount += 1f;
+            }
+
+            OnZoomMain(zoomMainAmount);
+        }
+        
         private void OnScroll(float scrollAmount)
         {
             if (_isPeeking || _showingMiniMap)

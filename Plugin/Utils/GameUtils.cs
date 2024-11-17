@@ -81,7 +81,7 @@ namespace DynamicMaps.Utils
             var gameWorld = Singleton<GameWorld>.Instance;
             return gameWorld?.MainPlayer?.Location;
         }
-
+        
         public static Player GetMainPlayer()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
@@ -201,7 +201,7 @@ namespace DynamicMaps.Utils
         
         public static bool ShouldShowMapInRaid()
         {
-            if (!Settings.RequireMapInInventory.Value) return true;
+            if (!Settings.RequireMapInInventory.Value || !IsInRaid()) return true;
             
             var player = GetMainPlayer();
             var currentLocation = player.Location;

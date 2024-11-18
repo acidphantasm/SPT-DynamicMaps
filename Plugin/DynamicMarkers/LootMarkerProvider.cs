@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
@@ -7,6 +8,7 @@ using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
 using EFT.UI.DragAndDrop;
+using HarmonyLib;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
@@ -15,13 +17,16 @@ namespace DynamicMaps.DynamicMarkers
     {
         private MapView _lastMapView;
         private Dictionary<LootItemPositionClass, MapMarker> _lootMarkers = [];
+
+        private FieldInfo lootListField = AccessTools.Field(typeof(GameWorld), "list_1");
         
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
 
-            var loot = Singleton<GameWorld>.Instance.GetJsonLootItems();
-
+            var gameWorld = Singleton<GameWorld>.Instance;
+            var loot = (List<LootItemPositionClass>)lootListField.GetValue(gameWorld);
+            
             foreach (var item in loot)
             {
                 if (GameUtils.GetWishListItems().Contains(item.Item.TemplateId))

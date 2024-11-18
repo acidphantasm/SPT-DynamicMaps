@@ -69,48 +69,113 @@
     },
     "Labels": [
         {
-            "Text": "Office Building",
-            "Position": {"x": 21, "y": 39, "z": 0},
+            "Text": "Pit",
+            "Position": {"x": 0, "y": 17, "z": 0},
             "FontSize": 14
         },
         {
-            "Text": "Med Tent",
-            "Position": {"x": -17.5, "y": -28, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Silos",
-            "Position": {"x": 4.5, "y": 10.5, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Heli Crash",
-            "Position": {"x": 30, "y": -8.5, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Scav Bunker",
-            "Position": {"x": -20.5, "y": 23, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Blue Containers",
-            "Position": {"x": -18, "y": 50, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Glass Hall",
-            "Position": {"x": 69.3, "y": -20, "z": 0},
+            "Text": "Underground Stash",
+            "Position": {"x": -2, "y": -22, "z": 0},
             "FontSize": 14
         },
         {
             "Text": "Boilers",
-            "Position": {"x": 58, "y": 6.3, "z": 0},
+            "Position": {"x": 56, "y": 6, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Pumping Station",
+            "Position": {"x": 42, "y": -12, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Glass Hall",
+            "Position": {"x": 70, "y": -15, "z": 0},
             "FontSize": 14
         },
         {
             "Text": "Forklifts",
-            "Position": {"x": 66, "y": -42, "z": 0},
+            "Position": {"x": 66, "y": -41, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "East Halls",
+            "Position": {"x": 45, "y": -40, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Heli Crash",
+            "Position": {"x": 33, "y": -6, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Rafters",
+            "Position": {"x": 19, "y": 6, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Silos",
+            "Position": {"x": 5, "y": 11, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Connector",
+            "Position": {"x": 30, "y": 18, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Sky Bridge",
+            "Position": {"x": 35, "y": 28, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "North Stairs",
+            "Position": {"x": 36.5, "y": 38, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Locked Office",
+            "Position": {"x": 30, "y": 40, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Breach Room",
+            "Position": {"x": 24, "y": 40, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Main Office",
+            "Position": {"x": 16, "y": 40, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "South Stairs",
+            "Position": {"x": 9, "y": 40, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Platform",
+            "Position": {"x": -2, "y": 36, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Blue Containers",
+            "Position": {"x": -17, "y": 50, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Wood Room",
+            "Position": {"x": -45, "y": 61, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Scav Bunker",
+            "Position": {"x": -20, "y": 23, "z": 0},
+            "FontSize": 14
+        },
+        {
+            "Text": "Med Tent",
+            "Position": {"x": -18, "y": -28, "z": 0},
             "FontSize": 14
         }
     ],
@@ -196,7 +261,7 @@
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
         },
         {
-            "Text": "TerraGroup Storage Room",
+            "Text": "Terraroup Storage Room",
             "ImagePath": "Markers/door_with_lock.png",
             "Position": { "x": -20.4309616, "y": 44.06125, "z": -1.51576364 },
             "Category": "LockedDoor",

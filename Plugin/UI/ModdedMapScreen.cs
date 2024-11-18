@@ -402,6 +402,7 @@ namespace DynamicMaps.UI
 
             // turn on cursor and off player position texts
             _cursorPositionText.gameObject.SetActive(true);
+            _levelSelectSlider.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(false);
         }
 

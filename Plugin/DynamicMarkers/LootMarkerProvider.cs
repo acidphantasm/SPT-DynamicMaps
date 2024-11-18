@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
@@ -9,8 +8,6 @@ using DynamicMaps.Utils;
 using EFT;
 using EFT.Interactive;
 using EFT.UI.DragAndDrop;
-using HarmonyLib;
-using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {

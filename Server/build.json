@@ -8,7 +8,7 @@
     "CopyBundles": true,
     "BuildZip": false,
     "BuildDir": "./build",
-    "PathToGame": "G:/3.9.3 - Dev",
+    "PathToGame": "G:/3.10 - Dev",
     "CopyToGame": true,
     "StartServer": true,
     "StartDelay": 0,

@@ -118,7 +118,7 @@
         {
             "Text": "Camera Bunker Door",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -14.5749989, "y": 40.36, "z": -2.086 },
+            "Position": { "x": -15.71578, "y": 40.1081123, "z": -1.64766669 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
@@ -134,7 +134,7 @@
         {
             "Text": "Cellars",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": 77.529, "y": -28.891, "z": -4.657 },
+            "Position": { "x": 73.89422, "y": -29.0818882, "z": -3.2876668 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -142,7 +142,7 @@
         {
             "Text": "Gate 3",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": 58.709, "y": 64.112, "z": 0.84 },
+            "Position": { "x": 58.43222, "y": 63.29811, "z": 3.17233324 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -150,7 +150,7 @@
         {
             "Text": "Gate 0",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -63.7400055, "y": 55.902, "z": 1.749 },
+            "Position": { "x": -63.66578, "y": 55.8781128, "z": 2.85233331 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -158,7 +158,15 @@
         {
             "Text": "Med Tent Gate",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -18.4857769, "y": -60.1718826, "z": 1.16133332 },
+            "Position": { "x": -17.5257778, "y": -61.27189, "z": 1.99233329 },
+            "Category": "Extract",
+            "ShowInRaid": false,
+            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Courtyard Gate",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 23.7642212, "y": 68.93811, "z": 1.3623333 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -166,23 +174,15 @@
         {
             "Text": "Locked Office",
             "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 29.2459984, "y": 36.52492, "z": 9.155067 },
+            "Position": { "x": 29.1163082, "y": 36.51697, "z": 9.08 },
             "Category": "LockedDoor",
             "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
         },
         {
-            "Text": "Pumping Station",
+            "Text": "Med Tent",
             "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 43.1875839, "y": -14.1608534, "z": 1.01413012 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "57a349b2245977762b199ec7",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Gate 0",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -53.754, "y": 58.93033, "z": 2.33300042 },
+            "Position": { "x": -19.077774, "y": -48.57139, "z": 1.44520187 },
             "Category": "LockedDoor",
             "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
@@ -190,25 +190,17 @@
         {
             "Text": "Cellars",
             "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 66.42518, "y": -29.8983536, "z": -1.53579187 },
+            "Position": { "x": 66.8279953, "y": -29.3244076, "z": -1.60700011 },
             "Category": "LockedDoor",
             "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
         },
         {
-            "Text": "Pumping Station",
+            "Text": "TerraGroup Storage Room",
             "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 40.9448547, "y": -6.261415, "z": 0.9631303 },
+            "Position": { "x": -20.4309616, "y": 44.06125, "z": -1.51576364 },
             "Category": "LockedDoor",
-            "AssociatedItemId": "593858c486f774253a24cb52",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Med Tent",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -20.3113289, "y": -49.138, "z": 1.27600038 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+            "AssociatedItemId": "66acd6702b17692df20144c0",
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
         }
     ]

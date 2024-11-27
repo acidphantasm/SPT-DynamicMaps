@@ -105,6 +105,17 @@ namespace DynamicMaps.Utils
             return IsInRaid() && (player != null) && player.Side == EPlayerSide.Savage;
         }
 
+        public static string BSGLocalized(this MongoID id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return "";
+            }
+
+            // TODO: use reflection to get rid of this gclass reference
+            return id.ToString().Localized();
+        }
+        
         public static string BSGLocalized(this string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -191,12 +202,14 @@ namespace DynamicMaps.Utils
         public static int? GetIntelLevel()
         {
             return PlayerProfile.Hideout.Areas
-                .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.level;
+                .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.Level;
         }
 
-        public static string[] GetWishListItems()
+        public static MongoID[] GetWishListItems()
         {
-            return PlayerProfile.WishList;
+            var wishList = PlayerProfile.WishlistManager.GetWishlist();
+            
+            return wishList.Keys.ToArray();
         }
         
         public static bool ShouldShowMapInRaid()

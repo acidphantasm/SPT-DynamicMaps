@@ -6,27 +6,29 @@ using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
+using EFT.Interactive;
 using EFT.UI.DragAndDrop;
-using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {
     public class LootMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private Dictionary<LootItemPositionClass, MapMarker> _lootMarkers = [];
+        private Dictionary<LootItem, MapMarker> _lootMarkers = [];
         
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-
-            var loot = Singleton<GameWorld>.Instance.GetJsonLootItems();
-
-            foreach (var item in loot)
+            
+            var lootList = Singleton<GameWorld>.Instance.LootList;
+            
+            foreach (var item in lootList)
             {
-                if (GameUtils.GetWishListItems().Contains(item.Item.TemplateId))
+                if (item is not LootItem loot) continue;
+                
+                if (GameUtils.GetWishListItems().Contains(loot.TemplateId))
                 {
-                    TryAddMarker(item);
+                    TryAddMarker(loot);
                 }
             }
         }
@@ -69,7 +71,7 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
         
-        private void TryAddMarker(LootItemPositionClass item)
+        private void TryAddMarker(LootItem item)
         {
             if (_lootMarkers.ContainsKey(item)) return;
             if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
@@ -83,7 +85,7 @@ namespace DynamicMaps.DynamicMarkers
                 Category = "Loot",
                 Color = Settings.LootItemColor.Value,
                 Sprite = itemSprite,
-                Position = MathUtils.ConvertToMapPosition(item.Position),
+                Position = MathUtils.ConvertToMapPosition(item.transform),
                 Text = item.Item.TemplateId.LocalizedName()
             };
             
@@ -99,7 +101,7 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
 
-        private void TryRemoveMarker(LootItemPositionClass item)
+        private void TryRemoveMarker(LootItem item)
         {
             if (!_lootMarkers.ContainsKey(item)) return;
             

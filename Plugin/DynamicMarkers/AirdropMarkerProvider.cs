@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using DynamicMaps.Config;
-using SPT.Custom.Airdrops;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
+using EFT.SynchronizableObjects;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
@@ -13,7 +13,7 @@ namespace DynamicMaps.DynamicMarkers
     public class AirdropMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private Dictionary<AirdropBox, MapMarker> _airdropMarkers = new Dictionary<AirdropBox, MapMarker>();
+        private Dictionary<AirdropSynchronizableObject, MapMarker> _airdropMarkers = [];
 
         // TODO: move to config
         private const string _airdropName = "Airdrop";
@@ -79,7 +79,7 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
         
-        private void TryAddMarker(AirdropBox airdrop)
+        private void TryAddMarker(AirdropSynchronizableObject airdrop)
         {
             if (_airdropMarkers.ContainsKey(airdrop))
             {
@@ -112,7 +112,7 @@ namespace DynamicMaps.DynamicMarkers
             }
         }
 
-        private void TryRemoveMarker(AirdropBox airdrop)
+        private void TryRemoveMarker(AirdropSynchronizableObject airdrop)
         {
             if (!_airdropMarkers.ContainsKey(airdrop))
             {

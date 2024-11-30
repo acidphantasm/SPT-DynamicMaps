@@ -660,8 +660,8 @@ namespace DynamicMaps.Config
                 "Mini-map offset horizontal",
                 0.0f,
                 new ConfigDescription(
-                    "Horizontal Offset from the edge",
-                    new AcceptableValueRange<float>(0f, 650f),
+                    "Horizontal Offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
+                    new AcceptableValueRange<float>(-Screen.width / 4f, Screen.width),
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(MiniMapScreenOffsetY = config.Bind(
@@ -669,8 +669,8 @@ namespace DynamicMaps.Config
                 "Mini-map offset vertical",
                 0.0f,
                 new ConfigDescription(
-                    "Vertical offset from the edge",
-                    new AcceptableValueRange<float>(0f, 500f),
+                    "Vertical offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
+                    new AcceptableValueRange<float>(-Screen.height / 4f, Screen.height),
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(MiniMapShowOrHide = config.Bind(

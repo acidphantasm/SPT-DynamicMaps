@@ -58,7 +58,16 @@ namespace DynamicMaps.UI.Components
 
         private void HandleMinimapState()
         {
-            if (!IsMiniMapEnabled) return;
+            if (!IsMiniMapEnabled)
+            {
+                if (ShowingMiniMap)
+                {
+                    EndMiniMap();
+                    WasMiniMapActive = false;
+                }
+                
+                return;
+            }
             
             if (HideMinimapShortcut.BetterIsDown())
             {

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Comfort.Common;
 using DynamicMaps.Data;
+using DynamicMaps.Patches;
 using EFT;
 using EFT.Interactive;
 using Newtonsoft.Json;
@@ -11,36 +12,41 @@ namespace DynamicMaps.Utils
 {
     public static class DumpUtils
     {
-        private const string _extractCategory = "Extract";
-        private const string _extractImagePath = "Markers/exit.png";
-        private static Color _extractScavColor = Color.Lerp(Color.yellow, Color.red, 0.5f);
-        private static Color _extractPMCColor = Color.green;
+        private const string ExtractCategory = "Extract";
+        private const string ExtractImagePath = "Markers/exit.png";
 
-        private const string _switchCategory = "Switch";
-        private const string _switchImagePath = "Markers/lever.png";
+        private const string TransitCategory = "Transit";
+        private const string TransitImagePath = "Makers/transit.png";
+        
+        private static readonly Color ExtractScavColor = Color.Lerp(Color.yellow, Color.red, 0.5f);
+        private static readonly Color TransitColor = Color.Lerp(Color.yellow, Color.red, 0.6f);
+        private static readonly Color ExtractPmcColor = Color.green;
 
-        private const string _lockedDoorCategory = "Locked Door";
-        private const string _lockedDoorImagePath = "Markers/door_with_lock.png";
-        private static Color _lockedDoorColor = Color.yellow;
+        private const string SwitchCategory = "Switch";
+        private const string SwitchImagePath = "Markers/lever.png";
+
+        private const string LockedDoorCategory = "Locked Door";
+        private const string LockedDoorImagePath = "Markers/door_with_lock.png";
+        private static readonly Color LockedDoorColor = Color.yellow;
 
         public static void DumpExtracts()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
             var scavExfils = gameWorld.ExfiltrationController.ScavExfiltrationPoints;
             var pmcExfils = gameWorld.ExfiltrationController.ExfiltrationPoints;
-
+            
             var dump = new List<MapMarkerDef>();
 
             foreach (var scavExfil in scavExfils)
             {
                 var dumped = new MapMarkerDef
                 {
-                    Category = _extractCategory,
+                    Category = ExtractCategory,
                     ShowInRaid = false,
-                    ImagePath = _extractImagePath,
+                    ImagePath = ExtractImagePath,
                     Text = scavExfil.Settings.Name.BSGLocalized(),
                     Position = MathUtils.ConvertToMapPosition(scavExfil.transform),
-                    Color = _extractScavColor
+                    Color = ExtractScavColor
                 };
 
                 dump.Add(dumped);
@@ -50,14 +56,29 @@ namespace DynamicMaps.Utils
             {
                 var dumped = new MapMarkerDef
                 {
-                    Category = _extractCategory,
+                    Category = ExtractCategory,
                     ShowInRaid = false,
-                    ImagePath = _extractImagePath,
+                    ImagePath = ExtractImagePath,
                     Text = pmcExfil.Settings.Name.BSGLocalized(),
                     Position = MathUtils.ConvertToMapPosition(pmcExfil.transform),
-                    Color = _extractPMCColor
+                    Color = ExtractPmcColor
                 };
 
+                dump.Add(dumped);
+            }
+
+            foreach (var transit in LocationScene.GetAllObjects<TransitPoint>(true))
+            {
+                var dumped = new MapMarkerDef
+                {
+                    Category = TransitCategory,
+                    ShowInRaid = false,
+                    ImagePath = TransitImagePath,
+                    Text = transit.parameters.description.BSGLocalized(),
+                    Position = MathUtils.ConvertToMapPosition(transit.transform),
+                    Color = TransitColor
+                };
+                
                 dump.Add(dumped);
             }
 
@@ -82,8 +103,8 @@ namespace DynamicMaps.Utils
 
                 var dumped = new MapMarkerDef
                 {
-                    Category = _switchCategory,
-                    ImagePath = _switchImagePath,
+                    Category = SwitchCategory,
+                    ImagePath = SwitchImagePath,
                     Text = @switch.name,
                     Position = MathUtils.ConvertToMapPosition(@switch.transform)
                 };
@@ -114,11 +135,11 @@ namespace DynamicMaps.Utils
                 var dumped = new MapMarkerDef
                 {
                     Text = $"door {i++}",
-                    Category = _lockedDoorCategory,
-                    ImagePath = _lockedDoorImagePath,
+                    Category = LockedDoorCategory,
+                    ImagePath = LockedDoorImagePath,
                     Position = MathUtils.ConvertToMapPosition(locked.transform),
                     AssociatedItemId = locked.KeyId,
-                    Color = _lockedDoorColor
+                    Color = LockedDoorColor
                 };
 
                 dump.Add(dumped);

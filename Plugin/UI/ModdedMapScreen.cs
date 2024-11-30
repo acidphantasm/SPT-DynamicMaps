@@ -235,9 +235,16 @@ namespace DynamicMaps.UI
             {
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
             }
-            
-            HandleMiniMapZoomInput();
-            HandleMainMapZoomInput();
+
+            if (_showingMiniMap)
+            {
+                OnZoomMini();
+
+            }
+            else
+            {
+                OnZoomMain();
+            }
             
             OnCenter();
             
@@ -645,44 +652,6 @@ namespace DynamicMaps.UI
         #endregion
         
         #region Map Manipulation
-
-        private void HandleMiniMapZoomInput()
-        {
-            if (!_showingMiniMap) return;
-            
-            var zoomMiniAmount = 0f;
-            
-            if (_zoomMiniMapOutShortcut.BetterIsPressed())
-            {
-                zoomMiniAmount -= 1f;
-            }
-            
-            if (_zoomMiniMapInShortcut.BetterIsPressed())
-            {
-                zoomMiniAmount += 1f;
-            }
-
-            OnZoomMini(zoomMiniAmount);
-        }
-
-        private void HandleMainMapZoomInput()
-        {
-            if (_showingMiniMap) return;
-            
-            var zoomMainAmount = 0f;
-            
-            if (_zoomMainMapOutShortcut.BetterIsPressed())
-            {
-                zoomMainAmount -= 1f;
-            }
-
-            if (_zoomMainMapInShortcut.BetterIsPressed())
-            {
-                zoomMainAmount += 1f;
-            }
-
-            OnZoomMain(zoomMainAmount);
-        }
         
         private void OnScroll(float scrollAmount)
         {
@@ -712,13 +681,25 @@ namespace DynamicMaps.UI
             _mapView.IncrementalZoomInto(zoomDelta, mouseRelative, _zoomScrollTweenTime);
         }
 
-        private void OnZoomMain(float zoomDelta)
+        private void OnZoomMain()
         {
-            if (zoomDelta != 0f)
+            var zoomAmount = 0f;
+            
+            if (_zoomMainMapOutShortcut.BetterIsPressed())
+            {
+                zoomAmount -= 1f;
+            }
+
+            if (_zoomMainMapInShortcut.BetterIsPressed())
+            {
+                zoomAmount += 1f;
+            }
+            
+            if (zoomAmount != 0f)
             {
                 var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
-                zoomDelta = _mapView.ZoomMain * zoomDelta * (_zoomMapHotkeySpeed * Time.deltaTime);
-                _mapView.IncrementalZoomInto(zoomDelta, currentCenter, 0f);
+                zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
+                _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
                 
                 return;
             }
@@ -726,15 +707,27 @@ namespace DynamicMaps.UI
             _mapView.SetMapZoom(_mapView.ZoomMain, 0f);
         }
 
-        private void OnZoomMini(float zoomDelta)
+        private void OnZoomMini()
         {
-            if (zoomDelta != 0f)
+            var zoomAmount = 0f;
+            
+            if (_zoomMiniMapOutShortcut.BetterIsPressed())
+            {
+                zoomAmount -= 1f;
+            }
+            
+            if (_zoomMiniMapInShortcut.BetterIsPressed())
+            {
+                zoomAmount += 1f;
+            }
+            
+            if (zoomAmount != 0f)
             {
                 var player = GameUtils.GetMainPlayer();
                 var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
-                zoomDelta = _mapView.ZoomMini * zoomDelta * (_zoomMapHotkeySpeed * Time.deltaTime);
+                zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                     
-                _mapView.IncrementalZoomIntoMiniMap(zoomDelta, mapPosition, 0.0f);
+                _mapView.IncrementalZoomIntoMiniMap(zoomAmount, mapPosition, 0.0f);
                 
                 return;
             }

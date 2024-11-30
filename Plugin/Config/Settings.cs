@@ -43,6 +43,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowQuestsInRaid;
         public static ConfigEntry<bool> ShowExtractsInRaid;
         public static ConfigEntry<bool> ShowExtractStatusInRaid;
+        public static ConfigEntry<bool> ShowTransitPointsInRaid;
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
         public static ConfigEntry<bool> ShowWishListItemsInRaid;
         public static ConfigEntry<bool> ShowBTRInRaid;
@@ -121,6 +122,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<Color> ExtractOpenColor;
         public static ConfigEntry<Color> ExtractClosedColor;
         public static ConfigEntry<Color> ExtractHasRequirementsColor;
+        public static ConfigEntry<Color> TransPointColor;
         public static ConfigEntry<Color> HiddenStashColor;
         
         #endregion
@@ -337,6 +339,15 @@ namespace DynamicMaps.Config
                 true,
                 new ConfigDescription(
                     "If extracts should be colored according to their status in raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(ShowTransitPointsInRaid = config.Bind(
+                DynamicMarkerTitle,
+                "Show Transit Points In Raid",
+                true,
+                new ConfigDescription(
+                    "If transits should be shown in raid",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -841,6 +852,15 @@ namespace DynamicMaps.Config
                 MarkerColors,
                 "Extract has requirements marker color",
                 new Color(1f, 0.92f, 0.01f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
+            ConfigEntries.Add(TransPointColor = config.Bind(
+                MarkerColors,
+                "Transit point marker color",
+                new Color(1f, 0.62f, 0.20f),
                 new ConfigDescription(
                     "Color of the marker",
                     null,

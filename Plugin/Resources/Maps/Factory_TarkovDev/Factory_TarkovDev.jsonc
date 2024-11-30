@@ -267,30 +267,6 @@
             "Category": "LockedDoor",
             "AssociatedItemId": "66acd6702b17692df20144c0",
             "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Woods",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 23.7, "y": 61.61, "z": 0.84 },
-            "Category": "Transit",
-            "AssociatedItemId": "",
-            "Color": { "r": 1, "g": 0.62, "b": 0.20, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 18.51, "y": -48.33, "z": -0.423 },
-            "Category": "Transit",
-            "AssociatedItemId": "",
-            "Color": { "r": 1, "g": 0.62, "b": 0.20, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to The Lab",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -26.539, "y": -42.013, "z": -4.085 },
-            "Category": "Transit",
-            "AssociatedItemId": "5c94bbff86f7747ee735c08f",
-            "Color": { "r": 1, "g": 0.62, "b": 0.20, "a": 1.0 }
         }
     ]
 }

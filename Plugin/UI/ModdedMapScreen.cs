@@ -310,12 +310,12 @@ namespace DynamicMaps.UI
 
             if (GameUtils.IsInRaid())
             {
-                Plugin.Log.LogInfo("Showing map in raid");
+                // Plugin.Log.LogInfo("Showing map in raid");
                 OnShowInRaid(playAnimation);
             }
             else
             {
-                Plugin.Log.LogInfo("Showing map out-of-raid");
+                // Plugin.Log.LogInfo("Showing map out-of-raid");
                 OnShowOutOfRaid();
             }
         }
@@ -327,12 +327,12 @@ namespace DynamicMaps.UI
             // close isn't called when hidden
             if (GameUtils.IsInRaid())
             {
-                Plugin.Log.LogInfo("Hiding map in raid");
+                // Plugin.Log.LogInfo("Hiding map in raid");
                 OnHideInRaid();
             }
             else
             {
-                Plugin.Log.LogInfo("Hiding map out-of-raid");
+                // Plugin.Log.LogInfo("Hiding map out-of-raid");
                 OnHideOutOfRaid();
             }
 

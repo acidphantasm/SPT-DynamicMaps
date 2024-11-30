@@ -70,7 +70,7 @@ namespace DynamicMaps.Utils
             }
             catch
             {
-                Plugin.Log.LogWarning($"Failed at setting outline. Will likely try again on next enable");
+                // Plugin.Log.LogWarning($"Failed at setting outline. Will likely try again on next enable");
             }
 
             return false;

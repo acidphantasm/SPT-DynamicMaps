@@ -45,8 +45,8 @@ namespace DynamicMaps.Utils
             WildSpawnType.gifter,               // Santa
             WildSpawnType.arenaFighterEvent,    // Blood Hounds
             WildSpawnType.sectantPriest,        // Cultist Priest
-            (WildSpawnType) 4206927,            // Punisher
             (WildSpawnType) 199,                // Legion
+            (WildSpawnType) 801,                // Punisher
         };
 
         private static readonly Dictionary<string, string> MapLookUp = new()

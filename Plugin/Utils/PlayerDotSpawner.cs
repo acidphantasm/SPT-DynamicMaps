@@ -1,6 +1,7 @@
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
+using EFT;
 using UnityEngine;
 
 namespace DynamicMaps
@@ -33,7 +34,7 @@ namespace DynamicMaps
             var markerDef = new MapMarkerDef
             {
                 ImagePath = "Markers/dot.png",
-                Position = MathUtils.ConvertToMapPosition(GameUtils.GetMainPlayer().Position)
+                Position = MathUtils.ConvertToMapPosition(((IPlayer)GameUtils.GetMainPlayer()).Position)
             };
 
             MapView.AddMapMarker(markerDef);

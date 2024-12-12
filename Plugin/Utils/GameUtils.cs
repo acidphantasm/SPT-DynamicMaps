@@ -41,6 +41,7 @@ namespace DynamicMaps.Utils
             WildSpawnType.bossKojaniy,          // Shturman
             WildSpawnType.bossSanitar,
             WildSpawnType.bossTagilla,
+            WildSpawnType.bossPartisan,
             WildSpawnType.bossZryachiy,
             WildSpawnType.gifter,               // Santa
             WildSpawnType.arenaFighterEvent,    // Blood Hounds

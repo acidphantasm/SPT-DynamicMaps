@@ -278,7 +278,7 @@ namespace DynamicMaps.DynamicMarkers
                 ImagePath = imagePath,
                 Text = player.Profile.GetCorrectedNickname(),
                 Color = color,
-                Position = MathUtils.ConvertToMapPosition(player.Position)
+                Position = MathUtils.ConvertToMapPosition(((IPlayer)player).Position)
             };
 
             // try adding marker

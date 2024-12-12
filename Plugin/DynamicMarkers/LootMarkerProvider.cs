@@ -26,7 +26,7 @@ namespace DynamicMaps.DynamicMarkers
             {
                 if (item is not LootItem loot) continue;
                 
-                if (GameUtils.GetWishListItems().Contains(loot.TemplateId))
+                if (GameUtils.GetWishListItems().Contains(new MongoID(loot.TemplateId)))
                 {
                     TryAddMarker(loot);
                 }

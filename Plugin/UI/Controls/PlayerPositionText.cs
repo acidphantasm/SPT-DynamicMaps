@@ -1,4 +1,5 @@
 using DynamicMaps.Utils;
+using EFT;
 using UnityEngine;
 
 namespace DynamicMaps.UI.Controls
@@ -19,7 +20,7 @@ namespace DynamicMaps.UI.Controls
                 return;
             }
 
-            var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
+            var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
             Text.text = $"Player: {mapPosition.x:F} {mapPosition.y:F} {mapPosition.z:F}";
         }
     }

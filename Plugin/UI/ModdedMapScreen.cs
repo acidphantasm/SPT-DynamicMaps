@@ -16,6 +16,7 @@ using EFT.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
+using EFT;
 
 namespace DynamicMaps.UI
 {
@@ -558,7 +559,7 @@ namespace DynamicMaps.UI
                 return;
             }
 
-            var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
+            var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
 
             // select layers to show
             if (_autoSelectLevel)
@@ -724,7 +725,7 @@ namespace DynamicMaps.UI
             if (zoomAmount != 0f)
             {
                 var player = GameUtils.GetMainPlayer();
-                var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
+                var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                     
                 _mapView.IncrementalZoomIntoMiniMap(zoomAmount, mapPosition, 0.0f);
@@ -743,7 +744,7 @@ namespace DynamicMaps.UI
                 
                 if (player is not null)
                 {
-                    var mapPosition = MathUtils.ConvertToMapPosition(player.Position);
+                    var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                     
                     _mapView.ShiftMapToCoordinate(
                         mapPosition, 

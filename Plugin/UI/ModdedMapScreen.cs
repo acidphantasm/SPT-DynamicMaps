@@ -584,7 +584,7 @@ namespace DynamicMaps.UI
                 }
 
                 // shift map to player position, Vector3 to Vector2 discards z
-                _mapView.ShiftMapToCoordinate(mapPosition, 0, false);
+                _mapView.ShiftMapToPlayer(mapPosition, 0, false);
             }
         }
 

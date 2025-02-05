@@ -400,6 +400,13 @@ namespace DynamicMaps.UI.Components
             ShiftMap((-rotatedCoord - currentCenter) * ZoomCurrent, tweenTime, isMini);
         }
 
+        public void ShiftMapToPlayer(Vector2 coord, float tweenTime, bool isMini)
+        {
+            var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
+            var currentCenter = RectTransform.anchoredPosition / ZoomMain;
+            ShiftMap((-rotatedCoord - currentCenter) * ZoomMain, tweenTime, isMini);
+        }
+
         public void ScaledShiftMap(Vector2 shiftIncrements, float incrementScale, bool isMini)
         {
             var smallestDimension = Mathf.Min(CurrentMapDef.Bounds.Max.x - CurrentMapDef.Bounds.Min.x,

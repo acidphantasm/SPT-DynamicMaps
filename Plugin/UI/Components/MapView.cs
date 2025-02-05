@@ -344,8 +344,8 @@ namespace DynamicMaps.UI.Components
 
         public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
         {
-            var zoomNew = Mathf.Clamp(ZoomCurrent + zoomDelta, ZoomMin, ZoomMax);
-            var actualDelta = zoomNew - ZoomCurrent;
+            var zoomNew = Mathf.Clamp(ZoomMain + zoomDelta, ZoomMin, ZoomMax);
+            var actualDelta = zoomNew - ZoomMain;
             var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
 
             // have to shift first, so that the tween is started in the shift first
@@ -398,6 +398,13 @@ namespace DynamicMaps.UI.Components
             var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
             var currentCenter = RectTransform.anchoredPosition / ZoomCurrent;
             ShiftMap((-rotatedCoord - currentCenter) * ZoomCurrent, tweenTime, isMini);
+        }
+
+        public void ShiftMapToPlayer(Vector2 coord, float tweenTime, bool isMini)
+        {
+            var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
+            var currentCenter = RectTransform.anchoredPosition / ZoomMain;
+            ShiftMap((-rotatedCoord - currentCenter) * ZoomMain, tweenTime, isMini);
         }
 
         public void ScaledShiftMap(Vector2 shiftIncrements, float incrementScale, bool isMini)

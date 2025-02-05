@@ -344,8 +344,8 @@ namespace DynamicMaps.UI.Components
 
         public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
         {
-            var zoomNew = Mathf.Clamp(ZoomCurrent + zoomDelta, ZoomMin, ZoomMax);
-            var actualDelta = zoomNew - ZoomCurrent;
+            var zoomNew = Mathf.Clamp(ZoomMain + zoomDelta, ZoomMin, ZoomMax);
+            var actualDelta = zoomNew - ZoomMain;
             var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
 
             // have to shift first, so that the tween is started in the shift first

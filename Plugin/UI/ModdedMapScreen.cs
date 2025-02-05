@@ -698,9 +698,11 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
-                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
+                var player = GameUtils.GetMainPlayer();
+                var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-                _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+
+                _mapView.IncrementalZoomInto(zoomAmount, mapPosition, 0.0f);
                 
                 return;
             }

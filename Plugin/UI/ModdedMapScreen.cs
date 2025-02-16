@@ -306,6 +306,7 @@ namespace DynamicMaps.UI
         {
             if (!_initialized)
             {
+                //Plugin.Log.LogInfo("Map was not initialized, is resetting size and position");
                 AdjustSizeAndPosition();
                 _initialized = true;
             }
@@ -698,11 +699,9 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
-                var player = GameUtils.GetMainPlayer();
-                var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-
-                _mapView.IncrementalZoomInto(zoomAmount, mapPosition, 0.0f);
+                _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
                 
                 return;
             }
@@ -963,6 +962,13 @@ namespace DynamicMaps.UI
             }
 
             Plugin.Log.LogInfo($"MapScreen: Loading map {mapDef.DisplayName}");
+
+            // Reset size and position when loading map and in raid
+            if (GameUtils.IsInRaid())
+            {
+                Plugin.Log.LogInfo($"MapScreen: Resetting Map Size");
+                AdjustSizeAndPosition();
+            }
 
             _mapView.LoadMap(mapDef);
 

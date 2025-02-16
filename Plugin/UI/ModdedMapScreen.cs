@@ -966,7 +966,7 @@ namespace DynamicMaps.UI
             // Reset size and position when loading map and in raid
             if (GameUtils.IsInRaid())
             {
-                Plugin.Log.LogInfo($"MapScreen: Resetting Map Size");
+                // Plugin.Log.LogInfo($"MapScreen: Resetting Map Size");
                 AdjustSizeAndPosition();
             }
 

@@ -23,7 +23,7 @@ namespace DynamicMaps.Patches
             }
 
             // thanks to TechHappy for the breadcrumb of what method to patch
-            return AccessTools.Method(typeof(AirdropLogicClass), nameof(AirdropLogicClass.method_11));
+            return AccessTools.Method(typeof(AirdropLogicClass), nameof(AirdropLogicClass.method_13));
         }
 
         [PatchPostfix]

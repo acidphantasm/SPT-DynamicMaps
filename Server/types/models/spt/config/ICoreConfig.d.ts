@@ -1,3 +1,4 @@
+import { ISurveyResponseData } from "@spt/models/eft/game/ISurveyResponseData";
 import { IBaseConfig } from "@spt/models/spt/config/IBaseConfig";
 export interface ICoreConfig extends IBaseConfig {
     kind: "spt-core";
@@ -11,6 +12,7 @@ export interface ICoreConfig extends IBaseConfig {
     bsgLogging: IBsgLogging;
     release: IRelease;
     fixes: IGameFixes;
+    survey: ISurveyResponseData;
     features: IServerFeatures;
     /** Commit hash build server was created from */
     commit?: string;
@@ -55,6 +57,8 @@ export interface IGameFixes {
     fixShotgunDispersion: boolean;
     /** Remove items added by mods when the mod no longer exists - can fix dead profiles stuck at game load */
     removeModItemsFromProfile: boolean;
+    /** Remove invalid traders from profile - trader data can be leftover when player removes trader mod */
+    removeInvalidTradersFromProfile: boolean;
     /** Fix issues that cause the game to not start due to inventory item issues */
     fixProfileBreakingInventoryItemIssues: boolean;
 }
@@ -67,9 +71,11 @@ export interface IServerFeatures {
 }
 export interface IChatbotFeatures {
     sptFriendEnabled: boolean;
+    sptFriendGiftsEnabled: boolean;
     commandoEnabled: boolean;
     commandoFeatures: ICommandoFeatures;
     commandUseLimits: Record<string, number>;
+    ids: Record<string, string>;
 }
 export interface ICommandoFeatures {
     giveCommandEnabled: boolean;

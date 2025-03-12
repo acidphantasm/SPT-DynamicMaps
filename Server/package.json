@@ -1,7 +1,7 @@
 {
     "name": "SPT-DynamicMaps",
-    "version": "0.5.1",
-    "sptVersion": "~3.10",
+    "version": "0.5.4",
+    "sptVersion": "~3.11",
     "loadBefore": [],
     "loadAfter": [],
     "incompatibilities": [],
@@ -27,7 +27,8 @@
     },
     "author": "mpstark",
     "contributors": [
-        "dirtbikercj"
+        "dirtbikercj",
+        "AcidPhantasm"
     ],
     "license": "MIT",
     "dependencies": {

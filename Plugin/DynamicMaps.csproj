@@ -3,7 +3,7 @@
     <TargetFramework>net471</TargetFramework>
     <AssemblyName>DynamicMaps</AssemblyName>
     <Description>Dynamic in-game maps for SPT</Description>
-    <LangVersion>12</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <Deterministic>true</Deterministic>
   </PropertyGroup>

@@ -1,110 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" id="svg235" version="1.1" viewBox="0 0 977.09998 977.09998">
-  <style id="style_common">
-    .trees { fill:#144043 }
-    .cement { fill:#c6c2c2 }
-    .land { fill:#1f5054 }
-    .rock { fill:#dcd5b6 }
-    .water { fill:#4a6b96 }
-    .wood { fill:#593700 }
-    .tarmac { fill:#768089 }
-    .gravel { fill:#946d3e }
-    .building { fill:#1a2632 }
-    .floor { fill:#70777f }
-    .locked { fill:#37414c }
-    .map_border { fill:none;stroke:#000;stroke-width:2 }
-    .fence { fill:none;stroke:#c4e3c3;stroke-width:1 }
-    .road_tarmac { fill:none;stroke:#888 }
-    .road_gravel { fill:none;stroke:#946d3e }
-    .road_small { stroke-width:5 }
-    .road_medium { stroke-width:8 }
-    .road_large { stroke-width:12 }
-    .railroad { fill:none;stroke:#914833;stroke-dasharray:6;stroke-width:3 }
-    .powerline { fill:none;stroke:#ffce00;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:6,6 }
-    .danger { fill:red;fill-opacity:.4;stroke:red;stroke-dasharray:4,2;stroke-width:2 }
-    .task { fill:#000 }
-    .stairs { fill:#FFD700 }
-    .shadow { filter:drop-shadow(0 0 2px #000) }
-  </style>
-  <style id="style_interchange">
-    .structure{ fill:#4b4b4b }
-  </style>
-  <defs id="defs1">
-    <linearGradient id="rampDown_l2r">
-      <stop id="stop200" offset="0" style="stop-color:#777777;stop-opacity:0;"/>
-      <stop id="stop199" offset="1" style="stop-color:#000000;stop-opacity:0.5;"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg235" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 977.1 977.1">
+  <!-- Generator: Adobe Illustrator 29.3.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 151)  -->
+  <defs>
+    <style>
+      .st0 {
+        stroke: url(#linear-gradient1);
+      }
+
+      .st0, .st1, .st2, .st3, .st4 {
+        fill: none;
+        stroke-miterlimit: 3.5546;
+        stroke-width: 4.4432px;
+      }
+
+      .st5 {
+        fill: #70777f;
+      }
+
+      .st1 {
+        stroke: url(#linear-gradient3);
+      }
+
+      .st2 {
+        stroke: url(#linear-gradient);
+      }
+
+      .st3 {
+        stroke: url(#linear-gradient4);
+      }
+
+      .st6 {
+        fill: #1a2632;
+      }
+
+      .st4 {
+        stroke: url(#linear-gradient2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="736.6555" y1="526.0476" x2="757.1288" y2="526.0476" gradientTransform="translate(-156.7568 766.282) scale(.8886 -.8886)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#777" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".5"/>
     </linearGradient>
-    <linearGradient id="rampDown_r2l">
-      <stop id="stop84" offset="0" style="stop-color:#000000;stop-opacity:0.5;"/>
-      <stop id="stop85" offset="1" style="stop-color:#777777;stop-opacity:0;"/>
+    <linearGradient id="linear-gradient1" x1="751.8852" y1="385.678" x2="773.706" y2="385.678" gradientTransform="translate(-156.7568 766.282) scale(.8886 -.8886)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#777" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="rampUp_l2r">
-      <stop id="stop168" offset="0" style="stop-color:#ffffff;stop-opacity:0;"/>
-      <stop id="stop169" offset="1" style="stop-color:#ffffff;stop-opacity:0.5;"/>
+    <linearGradient id="linear-gradient2" x1="792.1473" y1="385.771" x2="813.6612" y2="385.771" gradientTransform="translate(-156.7568 766.282) scale(.8886 -.8886)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#777" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".5"/>
     </linearGradient>
-    <linearGradient id="rampUp_r2l">
-      <stop id="stop176" offset="0" style="stop-color:#ffffff;stop-opacity:0.5;"/>
-      <stop id="stop175" offset="1" style="stop-color:#ffffff;stop-opacity:0;"/>
+    <linearGradient id="linear-gradient3" x1="852.2846" y1="385.6651" x2="874.3579" y2="385.6651" gradientTransform="translate(-156.7568 766.282) scale(.8886 -.8886)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#777" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient xlink:href="#rampDown_l2r" id="linearGradient199" x1="559.72021" x2="580.3277" y1="616.02795" y2="616.02795" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_l2r" id="linearGradient204" x1="615.41016" x2="636.92401" y1="475.4502" y2="475.4502" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_l2r" id="linearGradient208" x1="559.91833" x2="580.39166" y1="335.18094" y2="335.18094" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_l2r" id="linearGradient244" x1="654.29987" x2="666.34497" y1="622.46558" y2="622.46558" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient178" x1="534.58289" x2="551.11755" y1="475.25916" y2="475.25916" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient183" x1="562.59283" x2="578.76257" y1="648.22321" y2="648.22321" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient185" x1="689.42633" x2="716.38831" y1="638.20557" y2="638.20557" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient190" x1="653.56561" x2="665.01868" y1="326.37051" y2="326.37051" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient192" x1="563.65216" x2="577.10272" y1="216.61259" y2="216.61259" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient194" x1="547.94702" x2="578.65472" y1="313.95453" y2="313.95453" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient202" x1="675.54742" x2="697.62073" y1="475.55551" y2="475.55551" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient206" x1="575.14801" x2="596.96887" y1="475.6763" y2="475.6763" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient240" x1="887.88232" x2="887.88232" y1="481.81339" y2="469.19424" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampDown_r2l" id="linearGradient84" x1="655.97345" x2="655.97345" y1="565.0498" y2="554.98608" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient169" x1="674.61407" x2="687.49237" y1="475.59064" y2="475.59064" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient175" x1="574.55939" x2="586.74683" y1="475.59064" y2="475.59064" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient229" x1="566.33783" x2="574.46753" y1="216.59996" y2="216.59996" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient231" x1="547.76813" x2="566.72144" y1="314.01965" y2="314.01965" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient233" x1="534.90833" x2="545.61707" y1="475.27277" y2="475.27277" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient235" x1="563.2301" x2="574.45557" y1="648.18005" y2="648.18005" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient237" x1="652.07996" x2="652.07996" y1="570.19727" y2="552.70618" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_l2r" id="linearGradient239" x1="688.47986" x2="705.50806" y1="638.04413" y2="638.04413" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient173" x1="624.84644" x2="637.6651" y1="475.40985" y2="475.40985" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient180" x1="569.98462" x2="582.73511" y1="615.86151" y2="615.86151" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient187" x1="569.39502" x2="583.13763" y1="335.23236" y2="335.23236" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient219" x1="887.76825" x2="887.76825" y1="481.87787" y2="469.13779" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient221" x1="882.4549" x2="882.4549" y1="298.95959" y2="261.57394" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient223" x1="848.27881" x2="886.75024" y1="182.32352" y2="182.32352" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient225" x1="882.44916" x2="882.44916" y1="650.49103" y2="691.24506" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient227" x1="848.47076" x2="886.86646" y1="767.81689" y2="767.81689" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient242" x1="660.83087" x2="668.61353" y1="326.46893" y2="326.46893" gradientUnits="userSpaceOnUse"/>
-    <linearGradient xlink:href="#rampUp_r2l" id="linearGradient246" x1="660.5708" x2="669.35779" y1="622.61993" y2="622.61993" gradientUnits="userSpaceOnUse"/>
+    <linearGradient id="linear-gradient4" x1="736.4574" y1="245.3185" x2="757.0648" y2="245.3185" gradientTransform="translate(-156.7568 766.282) scale(.8886 -.8886)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#777" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".5"/>
+    </linearGradient>
   </defs>
-  
-  
-  <g id="Second_Floor" data-name="Second Floor">
-    <g id="Structure-2" class="structure shadow" data-name="Structure">
-      <path d="M478.391 150.707v136.225h-7.941v272.691h8.001v134.16l245.835.01-.453-133.83h55.112V449.782h16.527v-53.269h-17.089V286.785h-54.232V150.707Zm101.016 190.75h8.169l5.72 5.748v8.211l-5.72 5.749h-8.169l-5.721-5.749v-8.211zm.457 73.049h7.368l2.522 2.522h28.601l2.815 2.791v7.215l-2.878 2.876h-28.653l-2.589 2.588h-7.232l-2.587-2.588h-28.387l-2.961-2.961v-7.13l2.793-2.791h28.646zm-81.455 2.522h30.392l2.815 2.791v7.215l-2.878 2.876H498.58l-2.961-2.961v-7.13zm80.918 68.909h8.152l5.706 5.741v8.202l-5.706 5.744h-8.152l-5.707-5.744v-8.202z"/>
+  <g id="Second_Floor">
+    <g id="Structure-2">
+      <path class="st6" d="M478.391,150.707v136.225h-7.941v272.691h8.001v134.16l245.5054.01v-133.83h54.9886v-110.1811h16.527v-53.269h-17.089v-109.728h-54.4266v-136.078h-245.5654ZM579.407,341.457h8.169l5.72,5.748v8.211l-5.72,5.749h-8.169l-5.721-5.749v-8.211l5.721-5.748ZM579.864,414.506h7.368l2.522,2.522h28.601l2.815,2.791v7.215l-2.878,2.876h-28.653l-2.589,2.588h-7.232l-2.587-2.588h-28.387l-2.961-2.961v-7.13l2.793-2.791h28.646l2.542-2.522ZM498.4089,417.028h30.392l2.815,2.791v7.215l-2.878,2.876h-30.158l-2.961-2.961v-7.13l2.7899-2.791h0ZM579.3269,485.937h8.152l5.706,5.741v8.202l-5.706,5.744h-8.152l-5.707-5.744v-8.202l5.707-5.741Z"/>
     </g>
-    <g id="Floor-2" class="cement" data-name="Floor">
-      <path d="M472.049 288.252v270.324h127.979v-.96H660.3v-6.669h-23.032v-254.34h23.033v-7.21h-60.193v-1.145z"/>
+    <g id="Floor-2">
+      <path class="st5" d="M492.617,288.8953v7.7759l-9.4661,5.1478-.005,41.9074h-1.7191v-11.4053l-9.3588-.0152v39.1718h9.3588v-13.1471h1.7191v14.8662h-11.078v33.674h-7.7429v5.1322l-2.2438,4.1686v13.5679l2.2437,4.1728v5.4537h7.743v33.6869h11.1164v16.5551h-1.7191v-14.836h-9.3973v39.0584h9.3973v-12.4503h1.7191v25.7057h-1.7191v-8.2737h-9.3973v40.2236h18.5454v-8.4488l-9.1481-5.034v-5.557h1.7191v4.5135l9.1481,5.0323v9.4939h31.125v-11.673h5.4537v1.7191h-3.7346v9.9539h27.2695v-9.9539h-4.6412v-1.7191c28.7661,0-39.6624-.026,41.0571-.026v11.6994h9.8893v-5.6905h1.7191v5.6905h34.8554v-3.3401h1.7191v3.3401h23.3545v-8.9827h-7.9124v3.1755h3.9629v1.7191h-5.6821v-4.8947h-13.611v.8378l-.1116.5028v1.5815h-1.7191v-2.0843h-3.7044v-8.9525h-3.3224v6.9672h.8428v1.7191h-13.9637v-1.7191h9.9237v-14.0839h-6.8808v12.4545h-10.6162v-12.4545h-7.1343v14.0839h9.8893v1.7191h-9.8893v.7437h-1.7192v-14.723l-45.94-.0218v-1.7191h5.949v-13.428h-14.416v13.428h5.6226v1.7191h-7.3417v-34.7586h8.3087v1.7191h-6.5896v13.5089h29.4538v-4.6765l-1.2457-1.2424,1.2163-1.2163,1.2037,1.2037h15.0699l11.5656-11.5656h24.1387v-9.9153h4.6412v1.7191h-2.922v8.1961h3.3569v-4.6034h-1.6377v-1.7191h4.9896v1.7191h-1.6327v4.6034h3.7942v-8.1961h-3.5365v-1.7191h3.5365v-23.3284h-2.6769v-1.7191h2.6769v-83.0793h-3.6532v-1.7191h3.6532v-22.6429h-2.8532v-1.7191h2.8532v-8.0593h-4.0695v4.7067h1.2163v1.7191h-3.9931v-1.7191h1.0577v-4.7067h-2.5922v8.0593h2.8112v1.7191l-4.5304-.0007v-9.7776h-3.5457v.6195l-1.7191-.0007v-2.0029h-20.1l-11.379-11.0476h-12.4932l-2.7577,2.8053-1.2163-1.2121.7731-.7731v-7.6971h-29.5463v14.7625h7.5156v1.7191l-9.2347-.0007v-34.8859l7.3225.0007v1.7191h-5.6033v14.1479h14.5138v-14.1486h-4.4447v-1.7191l44.6028.009v-14.9801h1.7191v1.6503h9.305v1.7191h-9.305l.0427,15.3925h7.0654v-13.6457h10.345v13.6457h7.2208v-15.3922h-9.7692v-1.7191h13.9722v1.7191l-.6019.0336v6.9362h3.2964v-6.9698h-.6312v-1.7191l3.9621.0007v-1.6512h1.7192v2.5065h22.4949v-8.3414h-7.1125v2.9229h4.0914v1.7191h-5.8105v-4.642h-13.6633v2.964h-1.7192v-2.964h-34.9024v2.964h-1.7191v-2.964h-10.4744v10.1604h-34.1284l-.502.1226h-6.8606v-1.7191h5.4235v-8.5635h-26.8095v8.5638h16.9379v1.7191h-18.6571v-10.2829h-31.2367l.0006.0009h0ZM496.8712,294.933h21.9795v7.8523h-21.9795v-1.7191h20.2604v-4.414h-20.2603v-1.7191h0ZM495.0791,309.105h10.3493v1.72h-8.6301v10.3528h12.2967v-11.4676h4.5429v11.4676h12.9666v-10.3528h-8.6133v-1.72h10.3325v23.6972h-1.7191v-9.4821h-9.572v5.9322h-1.7191v-5.9322h-1.6755v19.9724h12.9666v-6.8463h1.7191v21.6221l-1.0526.0209h-18.1761v-11.5007h-12.2967v9.6053h7.7194v1.7191h-9.4385v-20.7323h1.7191v6.5459h12.2967v-20.4063h-12.2967v8.9356h-1.7191v-23.1507h-.0001ZM518.9666,327.3006h1.7191v12.541h3.2838v1.7191l-5.003-.0007v-14.2595h0ZM515.3134,332.2558h1.7191v8.4455h-1.7191v-8.4455ZM568.2374,340.8817l1.2163,1.2163-2.488,2.488-8.8156.0007v-1.7191h8.1021l1.9852-1.9859h0ZM579.4069,341.457h8.169l5.72,5.748v8.211l-5.72,5.749h-8.169l-5.721-5.749v-8.211l5.721-5.748ZM481.4275,348.8193h1.7191v3.9629h-1.7191v-3.9629ZM620.9717,355.6113h1.7191v3.0933l-21.5707.0007-1.5815,1.5815-1.2163-1.2121,2.0843-2.0893,20.5651.0007v-1.3747h0ZM543.2509,358.4544h23.1641l10.3055,9.9848-.0511,26.0759h-1.7192v-2.326h-28.49v15.0467h7.0268v1.7191h-17.8873v-1.7191h7.6038v-9.7088h-21.0606v9.7088h6.4552v1.7191l-25.1332-.001-1.9131-1.9122,1.2163-1.2163,1.4136,1.4102h11.7939v-7.7269h-.6237v-1.7191h.6237v-24.45h-.6237v-1.7191l27.8989-.0177v-13.1484h0ZM591.3811,366.0767l1.2163,1.2163-1.1861,1.1861v10.4859l5.1406-.0608v-9.227h11.7755v1.5949h6.0992v-1.5949h8.2185v6.6063h-1.7191v-4.8871h-4.7802v4.8871h-1.7191v-3.2922h-6.0992v3.2922h-1.7191v-4.8871h-8.3372v7.5078h8.3372v-.7085h1.7191v.7085h6.0992v-.7085h1.7191v.7085h4.7802v-.7085h1.7191v1.6396h2.0577v1.7191h-2.0577v17.2323h-1.7191v-16.3839h-9.5255v3.5583l-.0763.5339h-1.6855l-.1007-.5339h-2.5854v14.5187h2.6862v-1.2163h1.7191v2.9355h-4.4053v5.0366h13.9736v-5.1004h1.7191v6.8187h-32.9531v-19.5838h1.7192v17.8655h11.1534v-24.8327l-11.1534.0608v1.8568h-1.7191v-16.5423l1.6889-1.7015h-.0001ZM495.6254,371.6196l17.1142.0007v1.7191h-.6195v4.2804h-1.7191v-4.2804h-1.9206v4.2804h-1.7191v-4.2804h-9.4167v5.9223l14.7755-.0007v7.4533h-1.7191v-5.7333h-1.9206v5.7333h-1.7191v-5.7333h-9.4167v7.3752l14.7755-.001v6.9974h-1.7191v-5.2775h-1.9206v5.2775h-1.7191v-5.2775h-9.4167v7.7143h16.3016v1.7191h-16.3016l.0235.6295,1.0854,1.0854-1.2121,1.2163-1.6159-1.6167v-29.2035h-.0002ZM609.6385,388.7297h1.7191v8.9012h-1.7191v-8.9012ZM574.9501,397.631h1.7192v11.323l-8.0752.0007v-1.7191h6.356v-9.6045h0ZM559.1648,407.2357h3.8378v1.7191h-3.8378v-1.7191ZM579.864,414.506h7.368l2.522,2.522h28.601l2.815,2.791.0292,1.5395h-21.8652v4.349l21.8652.0942-.0292,1.2323-2.878,2.876h-28.653l-2.589,2.588h-7.232l-2.587-2.588h-28.387l-2.961-2.961-.1087-1.2415h21.6057v-4.3606l-21.4969-.0826v-1.4453l2.793-2.791h28.646l2.5419-2.522ZM528.801,417.028l2.815,2.791v1.528h-21.3832v4.4432h21.3832v1.2438l-2.878,2.876h-30.1581l-2.961-2.961v-7.13l2.79-2.791h30.3921ZM503.465,437.4369h50.0222v1.7191h-7.0268v4.9984h1.6243v1.7191h-1.6243v8.6469h2.5099v-5.4579h-1.3708v-1.7191h4.3407v1.7191h-1.2507v5.4579h2.5829v-8.6469h-3.1503v-1.7191h4.8695v3.189h8.871v2.342h6.9798v1.7191h-6.9798v1.5303h-1.7191v-3.8723h-7.1519v5.4579h14.2559v-2.1355h1.7191v2.1355h4.2711v-15.3644h-7.0168v-1.7191h8.7359v40.4908l-9.7164,9.8873h-8.0753v-1.7191h7.3575l8.715-8.8758v-18.6075h-6.8363c0,15.6837-.026-8.5632-.026,14.5481h-3.4626v-1.7191h2.3983v-8.0845h-2.7936v4.59h1.2079v1.7191h-4.135v-1.7191h1.2079v-4.59h-2.9229v8.0845h3.2276v1.7191h-5.6014v-5.6905h-2.5527v-1.7191h2.5527l-.0127-7.1385h-13.4005l-.0176,7.1385h7.8696v1.7191h-9.5887v-3.6146h-7.3962v-5.243h-14.2946v3.5239h.8293v1.7191h-.8293v9.2124h9.2571v1.7191h-14.6211v-1.7191h1.1215v-22.8237h-19.6107v6.3435h9.9581v-4.5774h1.7191v4.5774h2.5485v-4.5774h1.7191v6.2965h-15.9449v7.444h9.9581v-5.1919h1.7191v5.1919h2.5485v-5.1919h1.7191v6.911h-15.9449v5.5978h9.9581v-3.6722h1.7191v3.6722h2.5485v-3.6722h1.7191v5.3913h-17.664v-28.4537l1.521-1.5219,1.2163,1.2163-1.0182,1.0191v1.4782h7.8217v-.6917h1.7191v.6917h11.6734v-2.9397h-11.6734l-.2342.3996h-1.485v-2.1187h13.3926v-4.7104h-13.8433l-1.4102,1.4094-1.2163-1.2163,1.9129-1.9121.0004.0002ZM559.165,437.4369h3.283v1.7191h-3.283v-1.7191ZM589.4349,437.4369h33.6318v6.9794h-1.7191v-5.2603h-14.3949v5.9486h3.5676v2.4108h-1.7191v-.6917h-1.8484v14.8142h1.8484v-.8764h1.7191v3.8723h10.8273v-16.4309h1.7191v16.4309h1.5583v1.7191h-3.696v.7731h-1.7192v-.7731h-2.9262v2.321h-1.7191v-2.321h-16.2585v8.3422h8.6895v-4.9904h1.7191v4.9904h5.85v-2.7508h1.7191v2.7508h2.9262v-4.9904h1.7192v6.7095h-24.3422v-10.0613h-5.4327v10.8311l2.2354,2.2388-1.2164,1.2121-2.7382-2.734v-15.5923h1.7191v2.3252h5.4327v-9.206h2.2346v-3.6146h1.7191v3.6146h1.5479v1.7191h-3.7824v7.4868h5.0332v-11.9609h-1.2507v-1.7191h1.2507v-11.7977h-12.1851v18.8506h-1.7191v-20.5696h-.0001ZM608.801,449.5779h1.7191v8.9441h-1.7191v-8.9441ZM523.7245,462.1365h8.6041v1.7191h-8.6041v-1.7191ZM535.4235,473.0681h9.1425v13.0278h8.9211v1.7191h-10.6402v-13.0278h-7.4234v-1.7191ZM579.327,485.937h8.152l5.706,5.741v8.202l-5.706,5.744h-8.152l-5.707-5.744v-8.202l5.707-5.741ZM599.5128,485.7873l1.469,1.4656h20.9789v3.288h-1.7191v-1.5689h-19.9724l-1.9684-1.9684,1.2121-1.2163h0ZM513.2468,488.3274v11.5408h14.2341v2.4877h-14.2341v14.8965h4.9333v2.1145h-1.7191v-.3954h-3.2142v3.9131h3.2142v-2.0353h1.7191v2.0353h7.6724v-9.4491h1.7191v23.5674h-10.251v-1.7191h8.5319v-9.3585h-12.6057v11.1218h-3.4263v-11.1218h-13.013v9.3585h8.0367v1.7191h-9.7558v-22.9781h1.7191v8.8599h13.013v-20.5287h-2.6601v10.8395h1.2423v1.7191h-2.9615v-12.5587h-8.6338v5.9843h-1.7191l.0642-19.9997,18.0942-.0131h0ZM481.4661,493.7257h1.7191v4.0225h-1.7191v-4.0225ZM556.41,501.8657h10.126l2.295,2.295-1.2164,1.2121-1.7913-1.788h-9.4133v-1.7191h0ZM481.4661,530.8074h1.7191v6.1245h-1.7191v-6.1245ZM496.4265,544.3295h22.2464v7.8949h-22.2464v-1.7191h20.5273v-4.4566h-20.5273v-1.7192h0ZM532.3202,547.3633h9.9757v1.7191h-9.9757v-1.7191Z"/>
     </g>
-    <g id="Enclosed_Spaces-2" class="building" data-name="Enclosed Spaces">
-      <path d="M590.315 437.982v41.026l10.292 10.179h21.313v11.945h-21.313l-9.434 9.331h-16.296l-7.719-7.634h-24.297v33.9h56.744v13.475h37.571v-83.953h-14.591v-28.269z"/>
-      <path d="M495.451 489.342v47.582h31.759v-47.582z"/>
-      <path d="m503.735 438.051-8.354 9.416v27.258h47.928v12.921h23.503l9.39-9.148v-40.447z"/>
-      <path d="M523.58 548.17v10.345h65.631V548.17Z"/>
-      <path d="M471.959 474.044v84.349l19.852-.029v-7.659l-9.265-5.224v-71.437z"/>
-      <path d="M600.013 296.802v12.535h-57.792v34.64h24.73l7.719-8.208h16.296l9.434 9.331h21.616v12.885H600.4l-10.292 10.18v40.806h32.426v-28.418h14.69v-83.751z"/>
-      <path d="M495.47 310.104v47.666h31.681v-47.666z"/>
-      <path d="M543.197 359.27v12.902h-47.715v27.48l8.165 9.159h72.488v-40.212l-9.357-9.329z"/>
-      <path d="M523.41 288.419v10.209h65.87v-10.209z"/>
-      <path d="M472.068 288.672v84.208h10.539v-71.437l8.973-5.291v-7.48z"/>
-    </g>
-    <g id="Ramps-2" class="road_tarmac road_small" transform="translate(.294605 .974665) scale(.888648)">
-      <path d="M558.473 335.185h23.139" style="stroke:url(#linearGradient208)"/>
-      <path d="M598.056 475.547h-24.22" style="stroke:url(#linearGradient206)"/>
-      <path d="M613.831 475.454h24.313" style="stroke:url(#linearGradient204)"/>
-      <path d="M698.707 475.56h-24.605" style="stroke:url(#linearGradient202)"/>
-      <path d="M558.541 615.899h22.873" style="stroke:url(#linearGradient199)"/>
+    <g id="Ramps-2">
+      <path class="st2" d="M496.5805,298.8361h20.5624"/>
+      <path class="st0" d="M531.7559,423.5685h-21.523"/>
+      <path class="st4" d="M545.7743,423.4859h21.6057"/>
+      <path class="st1" d="M621.1991,423.58h-21.8652"/>
+      <path class="st3" d="M496.6409,548.292h20.326"/>
     </g>
   </g>
 </svg>

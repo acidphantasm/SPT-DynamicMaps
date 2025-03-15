@@ -18,6 +18,10 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
+                {   // patch .16 expansion switch
+                    "Min": {"x": 239, "y": -41, "z": -100},
+                    "Max": {"x": 270, "y": 4, "z": 0.5}
+                },
                 {   // zb-1011
                     "Min": {"x": 620, "y": -137, "z": -100},
                     "Max": {"x": 635, "y": -125, "z": 0.5}
@@ -62,6 +66,10 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
+                {   // patch .16 expansion switch
+                    "Min": {"x": 240, "y": -85, "z": 2.7},
+                    "Max": {"x": 300, "y": 4, "z": 7.5}
+                },
                 {   // dorms
                     "Min": {"x": 165, "y": 125, "z": 2.7},
                     "Max": {"x": 243, "y": 190, "z": 5.0}
@@ -124,9 +132,27 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
+                {   // patch .16 expansion switch
+                    "Min": {"x": 240, "y": -85, "z": 7.5},
+                    "Max": {"x": 300, "y": 4, "z": 9.8}
+                },
                 {   // dorms
                     "Min": {"x": 165, "y": 125, "z": 5.0},
                     "Max": {"x": 234, "y": 190, "z": 100}
+                }
+            ]
+        },
+        "4th Floor": {
+            "Level": 3,
+            "ImagePath": "Maps/Customs_TarkovDev/Layers/customs_level_3.png",
+            "ImageBounds": {
+                "Min": {"x": -372, "y": -306},
+                "Max": {"x": 698, "y": 235}
+            },
+            "GameBounds": [
+                {   // patch .16 expansion switch
+                    "Min": {"x": 237, "y": -85, "z": 9.8},
+                    "Max": {"x": 300, "y": 4, "z": 100}
                 }
             ]
         }

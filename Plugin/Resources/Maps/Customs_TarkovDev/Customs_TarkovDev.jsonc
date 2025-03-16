@@ -18,7 +18,11 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
-                {   // patch .16 expansion switch
+                {   // next to warehouse 17 switch
+                    "Min": {"x": 98, "y": -78, "z": -100},
+                    "Max": {"x": 127, "y": -30, "z": 0.5}
+                },
+                {   // smokestack building
                     "Min": {"x": 239, "y": -41, "z": -100},
                     "Max": {"x": 270, "y": 4, "z": 0.5}
                 },
@@ -66,7 +70,15 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
-                {   // patch .16 expansion switch
+                {   // next to warehouse 17 switch
+                    "Min": {"x": 80, "y": -82, "z": 2.7},
+                    "Max": {"x": 130, "y": -27, "z": 6.5}
+                },
+                {   // warehouse 17 switch
+                    "Min": {"x": 17, "y": -100, "z": 2.7},
+                    "Max": {"x": 77, "y": -28, "z": 7.5}
+                },
+                {   // smokestack building
                     "Min": {"x": 240, "y": -85, "z": 2.7},
                     "Max": {"x": 300, "y": 4, "z": 7.5}
                 },
@@ -132,7 +144,15 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
-                {   // patch .16 expansion switch
+                {   // next to warehouse 17 switch
+                    "Min": {"x": 80, "y": -82, "z": 6.5},
+                    "Max": {"x": 130, "y": -27, "z": 100}
+                },
+                {   // warehouse 17 switch
+                    "Min": {"x": 17, "y": -100, "z": 7.5},
+                    "Max": {"x": 77, "y": -28, "z": 100}
+                },
+                {   // smokestack building
                     "Min": {"x": 240, "y": -85, "z": 7.5},
                     "Max": {"x": 300, "y": 4, "z": 9.8}
                 },
@@ -150,7 +170,7 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
-                {   // patch .16 expansion switch
+                {   // smokestack building
                     "Min": {"x": 237, "y": -85, "z": 9.8},
                     "Max": {"x": 300, "y": 4, "z": 100}
                 }

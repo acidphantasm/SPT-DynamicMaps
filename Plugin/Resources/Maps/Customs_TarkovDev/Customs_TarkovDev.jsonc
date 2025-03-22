@@ -542,7 +542,7 @@
             "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
         },
         {
-            "Text": "Smugglers' Boat",
+            "Text": "Smugglers' Boat (Secret)",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": -41.5100021, "y": 122.67, "z": -12.633 },
             "Category": "Secret",
@@ -550,7 +550,7 @@
             "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
         },
         {
-            "Text": "Smugglers' Bunker (ZB-1012)",
+            "Text": "Smugglers' Bunker (Secret)",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": 463.18, "y": -112.36, "z": -1.46 },
             "Category": "Secret",

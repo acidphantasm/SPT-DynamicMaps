@@ -494,22 +494,6 @@
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
         },
         {
-            "Text": "Smuggler's Boat",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -43.11017, "y": 119.40004, "z": -14.2250118 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "ZB-1012",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 459.427826, "y": -111.042969, "z": -2.31699228 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
             "Text": "Railroad Passage (Flare)",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": 139.592712, "y": -324.7145, "z": 3.800012 },

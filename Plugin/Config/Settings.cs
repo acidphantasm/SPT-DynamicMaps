@@ -889,7 +889,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(HiddenStashColor = config.Bind(
                 MarkerColors,
                 "Hidden stash marker color",
-                new Color(0.1f, 0.0f, 0.51f),
+                new Color(1f, 0.92f, 0.01f),
                 new ConfigDescription(
                     "Color of the marker",
                     null,

@@ -70,6 +70,10 @@
                 "Max": {"x": 698, "y": 235}
             },
             "GameBounds": [
+                {   // warehouse 3 switch
+                    "Min": {"x": 406, "y": -98, "z": 2.7},
+                    "Max": {"x": 422, "y": -83, "z": 100}
+                },
                 {   // next to warehouse 17 switch
                     "Min": {"x": 80, "y": -82, "z": 2.7},
                     "Max": {"x": 130, "y": -27, "z": 6.5}
@@ -380,7 +384,7 @@
         {
             "Text": "Warehouse 17",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": 45.9998779, "y": -78.43004, "z": 3.61000967 },
+            "Position": { "x": 50.7402344, "y": -69.8183746, "z": 2.13601065 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
@@ -504,6 +508,70 @@
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Railroad Passage (Flare)",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 139.592712, "y": -324.7145, "z": 3.800012 },
+            "Category": "Extract",
+            "ShowInRaid": false,
+            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Boiler Room Basement (Co-op)",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 100.56, "y": -44.42, "z": -4.98 },
+            "Category": "Extract",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
+        },
+        {
+            "Text": "Transit to Reserve",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 651.7, "y": 124.6, "z": 1.99 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
+        },
+        {
+            "Text": "Transit to Factory",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 354.31, "y": -190.1, "z": 2.31 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
+        },
+        {
+            "Text": "Transit to Interchange",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": -335.24, "y": -205.68, "z": 2.11 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
+        },
+        {
+            "Text": "Transit to Shoreline",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 23.67, "y": 139.53, "z": -1.3999995 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
+        },
+        {
+            "Text": "Smugglers' Boat",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": -41.5100021, "y": 122.67, "z": -12.633 },
+            "Category": "Secret",
+            "ShowInRaid": false,
+            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
+        },
+        {
+            "Text": "Smugglers' Bunker (ZB-1012)",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 463.18, "y": -112.36, "z": -1.46 },
+            "Category": "Secret",
+            "ShowInRaid": false,
+            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 },
         },
         {
             "Text": "Tarcone Director's Office",
@@ -768,6 +836,14 @@
             "Category": "LockedDoor",
             "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
             "AssociatedItemId": "5938144586f77473c2087145"
+        },
+        {
+            "Text": "Company Director Room",
+            "ImagePath": "Markers/door_with_lock.png",
+            "Position": { "x": 96.02269, "y": -58.42183, "z": 8.23889 },
+            "Category": "LockedDoor",
+            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+            "AssociatedItemId": "6761a6f90575f25e020816a4"
         }
     ]
 }

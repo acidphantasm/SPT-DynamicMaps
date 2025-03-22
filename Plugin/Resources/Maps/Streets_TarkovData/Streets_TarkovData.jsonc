@@ -525,14 +525,6 @@
     ],
     "StaticMarkers": [
         {
-            "Text": "Basement Descent",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 74.769, "y": 49.22, "z": -0.701999664 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
             "Text": "Entrance to Catacombs",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": -249.008026, "y": 243.797, "z": 2.566 },
@@ -623,7 +615,7 @@
         {
             "Text": "Sewer River",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -264.267, "y": 223.92, "z": -1.535 },
+            "Position": { "x": -267.04, "y": 219.48, "z": -1.535 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -667,6 +659,38 @@
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Ground Zero",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": -260.05, "y": 103.645729, "z": 2.18500137 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Interchange",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 286.670776, "y": 505.539978, "z": 3.39350128 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to The Lab",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 206.955, "y": 82.194, "z": -8.382 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Smugglers' Basement",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 75.99, "y": 50.0100021, "z": -0.6029999 },
+            "Category": "Secret",
+            "ShowInRaid": false,
+            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
         },
         {
             "Text": "MVD Academy Entrance Hall Guard Room",

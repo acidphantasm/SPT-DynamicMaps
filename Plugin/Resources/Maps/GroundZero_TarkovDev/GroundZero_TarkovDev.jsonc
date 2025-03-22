@@ -184,6 +184,22 @@
             "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
         },
         {
+            "Text": "Transit to Streets of Tarkov",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 222.829117, "y": 65.72, "z": 15.993 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": {"r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Tartowers Sales Office (Secret)",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": 190.804, "y": 133.388992, "z": 17.6449986 },
+            "Category": "Secret",
+            "ShowInRaid": false,
+            "Color": {"r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
+        },
+        {
             "Text": "Underground Parking Utility Room",
             "ImagePath": "Markers/door_with_lock.png",
             "Position": { "x": 107.056, "y": 50.6362534, "z": 13.499 },
@@ -198,6 +214,22 @@
             "Category": "LockedDoor",
             "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
             "AssociatedItemId": "658199aa38c79576a2569e13"
+        },
+        {
+            "Text": "Unity Credit Bank Cash Register",
+            "ImagePath": "Markers/door_with_lock.png",
+            "Position": { "x": 58.2430344, "y": 172.438, "z": 24.5026741 },
+            "Category": "LockedDoor",
+            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
+            "AssociatedItemId": "6581998038c79576a2569e11"
+        },
+        {
+            "Text": "Horse Restaurant Toilet",
+            "ImagePath": "Markers/door_with_lock.png",
+            "Position": { "x": 120.074966, "y": 149.382675, "z": 25.4368019 },
+            "Category": "LockedDoor",
+            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
+            "AssociatedItemId": "658199a0490414548c0fa83b"
         }
     ]
 }

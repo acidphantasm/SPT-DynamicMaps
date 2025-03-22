@@ -24,7 +24,7 @@ namespace DynamicMaps.Utils
         
         private static readonly Color ExtractScavColor = Color.Lerp(Color.yellow, Color.red, 0.5f);
         private static readonly Color TransitColor = Color.Lerp(Color.yellow, Color.red, 0.6f);
-        private static readonly Color SecretColor = new Color(1f, 0.62f, 0.20f);
+        private static readonly Color SecretColor = new Color(0.1f, 0.6f, 0.6f);
         private static readonly Color ExtractPmcColor = Color.green;
 
         private const string SwitchCategory = "Switch";

@@ -44,6 +44,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowExtractsInRaid;
         public static ConfigEntry<bool> ShowExtractStatusInRaid;
         public static ConfigEntry<bool> ShowTransitPointsInRaid;
+        public static ConfigEntry<bool> ShowSecretPointsInRaid;
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
         public static ConfigEntry<bool> ShowWishListItemsInRaid;
         public static ConfigEntry<bool> ShowBTRInRaid;
@@ -123,6 +124,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<Color> ExtractClosedColor;
         public static ConfigEntry<Color> ExtractHasRequirementsColor;
         public static ConfigEntry<Color> TransPointColor;
+        public static ConfigEntry<Color> SecretPointColor;
         public static ConfigEntry<Color> HiddenStashColor;
         
         #endregion
@@ -348,6 +350,15 @@ namespace DynamicMaps.Config
                 true,
                 new ConfigDescription(
                     "If transits should be shown in raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+
+            ConfigEntries.Add(ShowSecretPointsInRaid = config.Bind(
+                DynamicMarkerTitle,
+                "Show Secret Exfil Points In Raid",
+                true,
+                new ConfigDescription(
+                    "If secret exfils should be shown in raid",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -865,7 +876,16 @@ namespace DynamicMaps.Config
                     "Color of the marker",
                     null,
                     new ConfigurationManagerAttributes { })));
-            
+
+            ConfigEntries.Add(SecretPointColor = config.Bind(
+                MarkerColors,
+                "Secret exfil point marker color",
+                new Color(0.1f, 0.6f, 0.6f),
+                new ConfigDescription(
+                    "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+
             ConfigEntries.Add(HiddenStashColor = config.Bind(
                 MarkerColors,
                 "Extract has requirements marker color",

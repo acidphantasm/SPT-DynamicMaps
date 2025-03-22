@@ -21,6 +21,18 @@ namespace DynamicMaps.UI.Components
                     {LayerStatus.OnTop, 1.0f},
                     {LayerStatus.FullReveal, 1.0f},
                 }},
+                {"Secret", new Dictionary<LayerStatus, float> {
+                    {LayerStatus.Hidden, 0.50f},
+                    {LayerStatus.Underneath, 0.75f},
+                    {LayerStatus.OnTop, 1.0f},
+                    {LayerStatus.FullReveal, 1.0f},
+                }},
+                {"Transit", new Dictionary<LayerStatus, float> {
+                    {LayerStatus.Hidden, 0.50f},
+                    {LayerStatus.Underneath, 0.75f},
+                    {LayerStatus.OnTop, 1.0f},
+                    {LayerStatus.FullReveal, 1.0f},
+                }},
                 {"Quest", new Dictionary<LayerStatus, float> {
                     {LayerStatus.Hidden, 0.50f},
                     {LayerStatus.Underneath, 0.75f},
@@ -32,6 +44,18 @@ namespace DynamicMaps.UI.Components
             = new Dictionary<string, Dictionary<LayerStatus, float>>
             {
                 {"Extract", new Dictionary<LayerStatus, float> {
+                    {LayerStatus.Hidden, 0.0f},
+                    {LayerStatus.Underneath, 0.0f},
+                    {LayerStatus.OnTop, 1.0f},
+                    {LayerStatus.FullReveal, 1.0f},
+                }},
+                {"Secret", new Dictionary<LayerStatus, float> {
+                    {LayerStatus.Hidden, 0.0f},
+                    {LayerStatus.Underneath, 0.0f},
+                    {LayerStatus.OnTop, 1.0f},
+                    {LayerStatus.FullReveal, 1.0f},
+                }},
+                {"Transit", new Dictionary<LayerStatus, float> {
                     {LayerStatus.Hidden, 0.0f},
                     {LayerStatus.Underneath, 0.0f},
                     {LayerStatus.OnTop, 1.0f},

@@ -292,7 +292,7 @@
             "ImagePath": "Markers/transit.png",
             "Position": { "x": -362.45, "y": 360.7704, "z": 0.821269155 },
             "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Extract",
+            "Category": "Transit",
             "ShowInRaid": false
         },
         {
@@ -300,7 +300,7 @@
             "ImagePath": "Markers/transit.png",
             "Position": { "x": 246.06, "y": 369.9, "z": -10.22 },
             "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Extract",
+            "Category": "Transit",
             "ShowInRaid": false
         },
         {
@@ -308,7 +308,7 @@
             "ImagePath": "Markers/transit.png",
             "Position": { "x": 494.34, "y": 345.37, "z": -16.77 },
             "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Extract",
+            "Category": "Transit",
             "ShowInRaid": false
         },
         {
@@ -316,7 +316,7 @@
             "ImagePath": "Markers/transit.png",
             "Position": { "x": -153.05, "y": 402.13, "z": 1.07 },
             "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Extract",
+            "Category": "Transit",
             "ShowInRaid": false
         },
         {

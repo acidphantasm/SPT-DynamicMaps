@@ -653,7 +653,7 @@
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
         },
         {
-            "Text": "Klimov Street",
+            "Text": "Klimov Street (Flare)",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": -263.41, "y": 43.19, "z": 2.9 },
             "Category": "Extract",

@@ -888,7 +888,7 @@ namespace DynamicMaps.Config
 
             ConfigEntries.Add(HiddenStashColor = config.Bind(
                 MarkerColors,
-                "Extract has requirements marker color",
+                "Hidden stash marker color",
                 new Color(0.1f, 0.0f, 0.51f),
                 new ConfigDescription(
                     "Color of the marker",

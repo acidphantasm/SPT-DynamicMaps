@@ -226,6 +226,38 @@
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
         },
+        {
+            "Text": "Transit to Shoreline",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": -338.6, "y": -168.9, "z": 17.5 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Reserve",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": -294.6, "y": -780.1, "z": 15.2591143 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Woods",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 106.3, "y": -958.1, "z": 6.74 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Passage by the Lake (Secret)",
+            "ImagePath": "Markers/exit.png",
+            "Position": { "x": -360.0, "y": -564.87, "z": 27.19 },
+            "Category": "Secret",
+            "ShowInRaid": false,
+            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
+        },
         // {
         //     "Text": "OuterSwitcher",
         //     "ImagePath": "Markers/lever.png",

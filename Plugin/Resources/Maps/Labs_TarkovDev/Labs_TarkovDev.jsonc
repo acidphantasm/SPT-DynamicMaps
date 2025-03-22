@@ -91,7 +91,7 @@
         {
             "Text": "Sewage Conduit",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -123.711, "y": -255.3735, "z": -3.6609993 },
+            "Position": { "x": -122.889992, "y": -258.3245, "z": -3.65600014 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -111,6 +111,14 @@
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Streets of Tarkov",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": -169.079956, "y": -420.878052, "z": 1.32 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
         },
         {
             "Text": "Medical Block Elevator Power",
@@ -295,6 +303,14 @@
             "Category": "LockedDoor",
             "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
             "AssociatedItemId": "5c1f79a086f7746ed066fb8f"
+        },
+        {
+            "Text": "Residential Unit",
+            "ImagePath": "Markers/door_with_lock.png",
+            "Position": { "x": -117.3155, "y": -439.54068, "z": 1.12753034 },
+            "Category": "LockedDoor",
+            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+            "AssociatedItemId": "6711039f9e648049e50b3307"
         }
     ]
 }

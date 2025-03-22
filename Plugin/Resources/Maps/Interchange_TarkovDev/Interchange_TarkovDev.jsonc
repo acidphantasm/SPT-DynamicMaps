@@ -480,7 +480,7 @@
         {
             "Text": "Emercom Checkpoint",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -317.21, "y": 267.94, "z": 21.94955 },
+            "Position": { "x": -321.56, "y": 266.74, "z": 21.94955 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -488,7 +488,7 @@
         {
             "Text": "Railway Exfil",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": 474.67, "y": -436.09, "z": 20.92 },
+            "Position": { "x": 472.32, "y": -429.74, "z": 20.92 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -496,7 +496,7 @@
         {
             "Text": "Power Station V-Ex",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -251.93, "y": -366.99, "z": 21.7130013 },
+            "Position": { "x": -251.92, "y": -367.13, "z": 21.72 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -504,7 +504,7 @@
         {
             "Text": "Scav Camp (Co-Op)",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": 284.442, "y": -27.493, "z": 21.94955 },
+            "Position": { "x": 278.69, "y": -30.97, "z": 21.94955 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
@@ -512,7 +512,7 @@
         {
             "Text": "Hole in the Fence",
             "ImagePath": "Markers/exit.png",
-            "Position": { "x": -224.16, "y": -40.91, "z": 22.79 },
+            "Position": { "x": -219.92, "y": -37.02, "z": 22.79 },
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
@@ -524,6 +524,22 @@
             "Category": "Extract",
             "ShowInRaid": false,
             "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Customs",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 274.3, "y": 395.93, "z": 23.2799988 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+        },
+        {
+            "Text": "Transit to Streets of Tarkov",
+            "ImagePath": "Markers/transit.png",
+            "Position": { "x": 263.1, "y": -444.4, "z": 24.1 },
+            "Category": "Transit",
+            "ShowInRaid": false,
+            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
         },
         {
             "Text": "Power Substation Utility Cabin",

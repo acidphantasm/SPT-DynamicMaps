@@ -814,6 +814,7 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
             AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
             AddRemoveMarkerProvider<TransitMarkerProvider>(Settings.ShowTransitPointsInRaid.Value);
+            AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
             
             if (Settings.ShowAirdropsInRaid.Value)
             {
@@ -838,7 +839,13 @@ namespace DynamicMaps.UI
                 GetMarkerProvider<TransitMarkerProvider>()
                     .RefreshMarkers(_mapView);
             }
-            
+
+            if (Settings.ShowSecretPointsInRaid.Value)
+            {
+                GetMarkerProvider<SecretMarkerProvider>()
+                    .RefreshMarkers(_mapView);
+            }
+
             // extracts
             AddRemoveMarkerProvider<ExtractMarkerProvider>(Settings.ShowExtractsInRaid.Value);
             if (Settings.ShowExtractsInRaid.Value)

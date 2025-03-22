@@ -5,6 +5,7 @@ using DynamicMaps.Data;
 using DynamicMaps.Patches;
 using EFT;
 using EFT.Interactive;
+using EFT.Interactive.SecretExfiltrations;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -15,11 +16,15 @@ namespace DynamicMaps.Utils
         private const string ExtractCategory = "Extract";
         private const string ExtractImagePath = "Markers/exit.png";
 
+        private const string SecretCategory = "Secret";
+        private const string SecretImagePath = "Markers/exit.png";
+
         private const string TransitCategory = "Transit";
         private const string TransitImagePath = "Makers/transit.png";
         
         private static readonly Color ExtractScavColor = Color.Lerp(Color.yellow, Color.red, 0.5f);
         private static readonly Color TransitColor = Color.Lerp(Color.yellow, Color.red, 0.6f);
+        private static readonly Color SecretColor = new Color(0.1f, 0.6f, 0.6f);
         private static readonly Color ExtractPmcColor = Color.green;
 
         private const string SwitchCategory = "Switch";
@@ -34,7 +39,8 @@ namespace DynamicMaps.Utils
             var gameWorld = Singleton<GameWorld>.Instance;
             var scavExfils = gameWorld.ExfiltrationController.ScavExfiltrationPoints;
             var pmcExfils = gameWorld.ExfiltrationController.ExfiltrationPoints;
-            
+            var secretExfils = gameWorld.ExfiltrationController.SecretExfiltrationPoints;
+
             var dump = new List<MapMarkerDef>();
 
             foreach (var scavExfil in scavExfils)
@@ -79,6 +85,21 @@ namespace DynamicMaps.Utils
                     Color = TransitColor
                 };
                 
+                dump.Add(dumped);
+            }
+
+            foreach (var secret in secretExfils)
+            {
+                var dumped = new MapMarkerDef
+                {
+                    Category = SecretCategory,
+                    ShowInRaid = false,
+                    ImagePath = SecretImagePath,
+                    Text = secret.Settings.Name.BSGLocalized(),
+                    Position = MathUtils.ConvertToMapPosition(secret.transform),
+                    Color = SecretColor
+                };
+
                 dump.Add(dumped);
             }
 

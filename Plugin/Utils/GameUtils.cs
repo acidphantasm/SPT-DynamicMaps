@@ -196,7 +196,7 @@ namespace DynamicMaps.Utils
 
         public static bool IsDedicatedServer(this IPlayer player)
         {
-            var pattern = @"^dedicated_[a-fA-F0-9]{24}$";
+            var pattern = @"^headless_[a-fA-F0-9]{24}$";
             return Regex.IsMatch(player.Profile.GetCorrectedNickname(), pattern);
         }
 

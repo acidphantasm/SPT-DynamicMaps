@@ -176,7 +176,7 @@
             "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
         },
         {
-            "Text": "Mira Ave",
+            "Text": "Mira Ave (Flare)",
             "ImagePath": "Markers/exit.png",
             "Position": { "x": 218.225, "y": -38.5065842, "z": 17.9920559 },
             "Category": "Extract",

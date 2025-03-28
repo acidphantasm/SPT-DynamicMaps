@@ -834,19 +834,22 @@ namespace DynamicMaps.UI
                     .RefreshMarkers();
             }
 
+            // Transits
             if (Settings.ShowTransitPointsInRaid.Value)
             {
                 GetMarkerProvider<TransitMarkerProvider>()
                     .RefreshMarkers(_mapView);
             }
 
+            // Secret Exfils
+            AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
             if (Settings.ShowSecretPointsInRaid.Value)
             {
-                GetMarkerProvider<SecretMarkerProvider>()
-                    .RefreshMarkers(_mapView);
+                var provider = GetMarkerProvider<SecretMarkerProvider>();
+                provider.ShowExtractStatusInRaid = Settings.ShowExtractStatusInRaid.Value;
             }
 
-            // extracts
+            // Exfils
             AddRemoveMarkerProvider<ExtractMarkerProvider>(Settings.ShowExtractsInRaid.Value);
             if (Settings.ShowExtractsInRaid.Value)
             {

@@ -21,16 +21,18 @@ namespace DynamicMaps.Patches
                 GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
                 _hasRegisteredEvents = true;
             }
-
             // thanks to TechHappy for the breadcrumb of what method to patch
-            return AccessTools.Method(typeof(AirdropLogicClass), nameof(AirdropLogicClass.method_13));
+            return AccessTools.Method(typeof(AirdropLogicClass), nameof(AirdropLogicClass.method_3));
         }
 
         [PatchPostfix]
-        public static void PatchPostfix(AirdropSynchronizableObject container)
+        public static void PatchPostfix(AirdropLogicClass __instance)
         {
-            Airdrops.Add(container);
-            OnAirdropLanded?.Invoke(container);
+            if (__instance != null && !Airdrops.Contains(__instance.airdropSynchronizableObject_0))
+            {
+                Airdrops.Add(__instance.airdropSynchronizableObject_0);
+                OnAirdropLanded?.Invoke(__instance.airdropSynchronizableObject_0);
+            }
         }
 
         internal static void OnRaidEnd()

@@ -355,10 +355,10 @@ namespace DynamicMaps.Config
 
             ConfigEntries.Add(ShowSecretPointsInRaid = config.Bind(
                 DynamicMarkerTitle,
-                "Show Secret Exfil Points In Raid",
+                "Show Secret Extracts In Raid",
                 true,
                 new ConfigDescription(
-                    "If secret exfils should be shown in raid",
+                    "If secret extracts should be shown in raid",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -470,7 +470,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show PMCs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show PMCs",
+                    "If intel level is at or above this value it will show PMCs",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -479,7 +479,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show bosses",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show bosses",
+                    "If intel level is at or above this value it will show bosses",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -488,7 +488,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show scavs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show scavs",
+                    "If intel level is at or above this value it will show scavs",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -497,7 +497,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show friendly PMCs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show friendly PMCs",
+                    "If intel level is at or above this value it will show friendly PMCs",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -506,7 +506,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show corpses",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show corpses",
+                    "If intel level is at or above this value it will show corpses",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -515,7 +515,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show airdrops",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show airdrops",
+                    "If intel level is at or above this value it will show airdrops",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -524,7 +524,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show wish listed loot items",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show wish listed loot items",
+                    "If intel level is at or above this value it will show wish listed loot items",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -533,7 +533,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show hidden stashes",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or below this value it will show hidden stashes",
+                    "If intel level is at or above this value it will show hidden stashes",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
 

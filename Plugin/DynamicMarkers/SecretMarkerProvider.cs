@@ -17,6 +17,32 @@ public class SecretMarkerProvider : IDynamicMarkerProvider
     private const string SecretCategory = "Secret";
     private const string SecretImagePath = "Markers/exit.png";
 
+
+    private bool _showExtractStatusInRaid = true;
+    public bool ShowExtractStatusInRaid
+    {
+        get
+        {
+            return _showExtractStatusInRaid;
+        }
+
+        set
+        {
+            if (_showExtractStatusInRaid == value)
+            {
+                return;
+            }
+
+            _showExtractStatusInRaid = value;
+
+            // force update all statuses
+            foreach (var point in _secretMarkers.Keys)
+            {
+                UpdateSecretExtractStatus(point, point.Status);
+            }
+        }
+    }
+
     private Dictionary<SecretExfiltrationPoint, MapMarker> _secretMarkers = [];
     
     public void OnShowInRaid(MapView map)
@@ -26,11 +52,23 @@ public class SecretMarkerProvider : IDynamicMarkerProvider
         {
             AddSecretMarkers(map);
         }
+
+        foreach (var point in _secretMarkers.Keys)
+        {
+            // update color based on exfil status
+            UpdateSecretExtractStatus(point, point.Status);
+
+            // subscribe to status changes while map is shown
+            point.OnStatusChanged += UpdateSecretExtractStatus;
+        }
     }
 
     public void OnHideInRaid(MapView map)
     {
-        // Do Nothing
+        foreach (var extract in _secretMarkers.Keys)
+        {
+            extract.OnStatusChanged -= UpdateSecretExtractStatus;
+        }
     }
 
     public void OnRaidEnd(MapView map)
@@ -94,6 +132,9 @@ public class SecretMarkerProvider : IDynamicMarkerProvider
 
         var marker = map.AddMapMarker(markerDef);
         _secretMarkers[point] = marker;
+
+
+        UpdateSecretExtractStatus(point, point.Status);
     }
 
     private void TryRemoveMarkers()
@@ -104,12 +145,45 @@ public class SecretMarkerProvider : IDynamicMarkerProvider
         }
     }
 
+    private void UpdateSecretExtractStatus(ExfiltrationPoint point, EExfiltrationStatus status)
+    {
+        if (!_secretMarkers.ContainsKey(point as SecretExfiltrationPoint))
+        {
+            return;
+        }
+
+        var marker = _secretMarkers[point as SecretExfiltrationPoint];
+        if (!_showExtractStatusInRaid)
+        {
+            marker.Color = Settings.SecretPointColor.Value;
+            return;
+        }
+
+        switch (point.Status)
+        {
+            case EExfiltrationStatus.Hidden:
+                marker.Color = Settings.SecretPointColor.Value;
+                return;
+            case EExfiltrationStatus.UncompleteRequirements:
+                marker.Color = Settings.ExtractHasRequirementsColor.Value;
+                return;
+            case EExfiltrationStatus.Countdown:
+                marker.Color = Settings.ExtractOpenColor.Value;
+                return;
+            default:
+                marker.Color = Settings.SecretPointColor.Value;
+                break;
+        }
+    }
+
     private void TryRemoveMarker(SecretExfiltrationPoint secret)
     {
         if (!_secretMarkers.ContainsKey(secret))
         {
             return;
         }
+
+        secret.OnStatusChanged -= UpdateSecretExtractStatus;
 
         _secretMarkers[secret].ContainingMapView.RemoveMapMarker(_secretMarkers[secret]);
         _secretMarkers.Remove(secret);

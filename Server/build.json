@@ -8,9 +8,9 @@
     "CopyBundles": true,
     "BuildZip": false,
     "BuildDir": "./build",
-    "PathToGame": "G:/3.11 - Dev",
+    "PathToGame": "D:/SPT 3.11 Dev",
     "CopyToGame": true,
-    "StartServer": true,
+    "StartServer": false,
     "StartDelay": 0,
     "IgnoreList": [
         "node_modules/",

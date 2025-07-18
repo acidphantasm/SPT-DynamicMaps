@@ -5,31 +5,31 @@ import { IExit } from "@spt/models/eft/common/ILocationBase";
 import { ITraderInfo } from "@spt/models/eft/common/tables/IBotBase";
 import { IQuestCondition, IQuestConditionCounterCondition } from "@spt/models/eft/common/tables/IQuest";
 import { IRepeatableQuest } from "@spt/models/eft/common/tables/IRepeatableQuests";
-import { IBossInfo, IEliminationConfig, IQuestConfig, IRepeatableQuestConfig } from "@spt/models/spt/config/IQuestConfig";
+import { IBossInfo, ICompletion, IEliminationConfig, IQuestConfig, IRepeatableQuestConfig } from "@spt/models/spt/config/IQuestConfig";
 import { IQuestTypePool } from "@spt/models/spt/repeatable/IQuestTypePool";
-import { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
 import { ConfigServer } from "@spt/servers/ConfigServer";
 import { DatabaseService } from "@spt/services/DatabaseService";
 import { LocalisationService } from "@spt/services/LocalisationService";
+import { HashUtil } from "@spt/utils/HashUtil";
 import { MathUtil } from "@spt/utils/MathUtil";
-import { ObjectId } from "@spt/utils/ObjectId";
 import { ProbabilityObjectArray, RandomUtil } from "@spt/utils/RandomUtil";
-import { ICloner } from "@spt/utils/cloners/ICloner";
+import type { ICloner } from "@spt/utils/cloners/ICloner";
 export declare class RepeatableQuestGenerator {
     protected logger: ILogger;
+    protected hashUtil: HashUtil;
     protected randomUtil: RandomUtil;
     protected mathUtil: MathUtil;
     protected databaseService: DatabaseService;
     protected itemHelper: ItemHelper;
     protected localisationService: LocalisationService;
-    protected objectId: ObjectId;
     protected repeatableQuestHelper: RepeatableQuestHelper;
     protected repeatableQuestRewardGenerator: RepeatableQuestRewardGenerator;
     protected configServer: ConfigServer;
     protected cloner: ICloner;
     protected questConfig: IQuestConfig;
     protected maxRandomNumberAttempts: number;
-    constructor(logger: ILogger, randomUtil: RandomUtil, mathUtil: MathUtil, databaseService: DatabaseService, itemHelper: ItemHelper, localisationService: LocalisationService, objectId: ObjectId, repeatableQuestHelper: RepeatableQuestHelper, repeatableQuestRewardGenerator: RepeatableQuestRewardGenerator, configServer: ConfigServer, cloner: ICloner);
+    constructor(logger: ILogger, hashUtil: HashUtil, randomUtil: RandomUtil, mathUtil: MathUtil, databaseService: DatabaseService, itemHelper: ItemHelper, localisationService: LocalisationService, repeatableQuestHelper: RepeatableQuestHelper, repeatableQuestRewardGenerator: RepeatableQuestRewardGenerator, configServer: ConfigServer, cloner: ICloner);
     /**
      * This method is called by /GetClientRepeatableQuests/ and creates one element of quest type format (see assets/database/templates/repeatableQuests.json).
      * It randomly draws a quest type (currently Elimination, Completion or Exploration) as well as a trader who is providing the quest
@@ -88,12 +88,12 @@ export declare class RepeatableQuestGenerator {
     /**
      * A repeatable quest, besides some more or less static components, exists of reward and condition (see assets/database/templates/repeatableQuests.json)
      * This is a helper method for GenerateCompletionQuest to create a completion condition (of which a completion quest theoretically can have many)
-     *
-     * @param   {string}    itemTpl    id of the item to request
-     * @param   {integer}   value           amount of items of this specific type to request
-     * @returns {object}                    object of "Completion"-condition
+     * @param itemTpl Tpl of item to add create condition around
+     * @param value Number of items to add to condition
+     * @param completionConfig completion config from quest.json
+     * @returns Quest condition object
      */
-    protected generateCompletionAvailableForFinish(itemTpl: string, value: number): IQuestCondition;
+    protected generateCompletionAvailableForFinish(itemTpl: string, value: number, completionConfig: ICompletion): IQuestCondition;
     /**
      * Generates a valid Exploration quest
      *

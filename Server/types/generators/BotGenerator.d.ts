@@ -11,7 +11,7 @@ import { IAppearance, IBodyPart, IBotType, IHealth, IInventory } from "@spt/mode
 import { IBotGenerationDetails } from "@spt/models/spt/bots/BotGenerationDetails";
 import { IBotConfig } from "@spt/models/spt/config/IBotConfig";
 import { IPmcConfig } from "@spt/models/spt/config/IPmcConfig";
-import { ILogger } from "@spt/models/spt/utils/ILogger";
+import type { ILogger } from "@spt/models/spt/utils/ILogger";
 import { ConfigServer } from "@spt/servers/ConfigServer";
 import { BotEquipmentFilterService } from "@spt/services/BotEquipmentFilterService";
 import { BotNameService } from "@spt/services/BotNameService";
@@ -21,7 +21,7 @@ import { SeasonalEventService } from "@spt/services/SeasonalEventService";
 import { HashUtil } from "@spt/utils/HashUtil";
 import { RandomUtil } from "@spt/utils/RandomUtil";
 import { TimeUtil } from "@spt/utils/TimeUtil";
-import { ICloner } from "@spt/utils/cloners/ICloner";
+import type { ICloner } from "@spt/utils/cloners/ICloner";
 export declare class BotGenerator {
     protected logger: ILogger;
     protected hashUtil: HashUtil;
@@ -58,7 +58,7 @@ export declare class BotGenerator {
      * @param botGenerationDetails details on how to generate bots
      * @returns constructed bot
      */
-    prepareAndGenerateBot(sessionId: string, botGenerationDetails: IBotGenerationDetails): IBotBase;
+    prepareAndGenerateBot(sessionId: string, botGenerationDetails: IBotGenerationDetails): Promise<IBotBase>;
     /**
      * Get a clone of the default bot base object and adjust its role/side/difficulty values
      * @param botRole Role bot should have
@@ -82,7 +82,7 @@ export declare class BotGenerator {
      */
     protected generateBot(sessionId: string, bot: IBotBase, botJsonTemplate: IBotType, botGenerationDetails: IBotGenerationDetails): IBotBase;
     /**
-     * Should this bot have a name like "name (Pmc Name)" and be alterd by client patch to be hostile to player
+     * Should this bot have a name like "name (Pmc Name)" and be altered by client patch to be hostile to player
      * @param botRole Role bot has
      * @returns True if name should be simulated pscav
      */

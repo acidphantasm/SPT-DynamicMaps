@@ -29,6 +29,7 @@ export interface IBotBase {
     RagfairInfo: IRagfairInfo;
     /** Achievement id and timestamp */
     Achievements: Record<string, number>;
+    Prestige: Record<string, number>;
     RepeatableQuests: IPmcDataRepeatableQuest[];
     Bonuses: IBonus[];
     Notes: INotes;
@@ -81,12 +82,14 @@ export interface IInfo {
     NicknameChangeDate: number;
     NeedWipeOptions: any[];
     lastCompletedWipe: ILastCompleted;
+    lastWipeTimestamp: number;
     Bans: IBan[];
     BannedState: boolean;
     BannedUntil: number;
     IsStreamerModeAvailable: boolean;
     lastCompletedEvent?: ILastCompleted;
     isMigratedSkills: boolean;
+    PrestigeLevel: number;
 }
 export interface IBotInfoSettings {
     Role: string;
@@ -114,6 +117,7 @@ export interface ICustomization {
     Body: string;
     Feet: string;
     Hands: string;
+    DogTag: string;
 }
 export interface IHealth {
     Hydration: ICurrentMax;
@@ -155,6 +159,7 @@ export interface IInventory {
     hideoutAreaStashes: Record<string, string>;
     fastPanel: Record<string, string>;
     favoriteItems: string[];
+    hideoutCustomizationStashId: string;
 }
 export interface IBaseJsonSkills {
     Common: Record<string, Common>;
@@ -306,8 +311,9 @@ export interface IHideout {
     Areas: IBotHideoutArea[];
     Improvements: Record<string, IHideoutImprovement>;
     HideoutCounters: IHideoutCounters;
-    Seed: number;
-    MannequinPoses: string[];
+    Seed: string;
+    Customization: Record<string, string>;
+    MannequinPoses: Record<string, string>;
     sptUpdateLastRunTimestamp: number;
 }
 export interface IHideoutCounters {
@@ -415,6 +421,8 @@ export interface ITraderInfo {
 export interface IRagfairInfo {
     rating: number;
     isRatingGrowing: boolean;
+    sellSum: number;
+    notSellSum: number;
     offers: IRagfairOffer[];
 }
 export interface IBonus {

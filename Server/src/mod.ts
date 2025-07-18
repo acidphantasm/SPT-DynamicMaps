@@ -1,20 +1,25 @@
 import type { DependencyContainer } from "tsyringe";
 import type { IPostDBLoadMod } from "@spt/models/external/IPostDBLoadMod";
 import type { IPreSptLoadMod } from "@spt/models/external/IPreSptLoadMod";
-import type { Item } from "@spt/models/eft/common/tables/IItem";
+import type { IItem } from "@spt/models/eft/common/tables/IItem";
 import type { IBarterScheme } from "@spt/models/eft/common/tables/ITrader";
 import type { NewItemFromCloneDetails } from "@spt/models/spt/mod/NewItemDetails";
 import { Traders } from "@spt/models/enums/Traders";
 import { InstanceManager } from "./InstanceManager";
+import path from "node:path";
 
 class DynamicMaps implements IPreSptLoadMod, IPostDBLoadMod
 {
+    private config: DynamicMapsConfig;
+
     // eslint-disable-next-line @typescript-eslint/naming-convention
     protected InstanceManager: InstanceManager = new InstanceManager();
 
     public preSptLoad(container: DependencyContainer): void
     {
         this.InstanceManager.preSptLoad(container);
+
+        this.registerRouterHooks();
     }
 
     public postDBLoad(container: DependencyContainer): void
@@ -177,7 +182,7 @@ class DynamicMaps implements IPreSptLoadMod, IPostDBLoadMod
     {
         const assort = this.InstanceManager.database.traders[traderId].assort;
 
-        const item: Item = {
+        const item: IItem = {
             _id: assortId,
             _tpl: itemId,
             parentId: "hideout",
@@ -203,6 +208,39 @@ class DynamicMaps implements IPreSptLoadMod, IPostDBLoadMod
         assort.barter_scheme[assortId] = scheme;
         assort.loyal_level_items[assortId] = 1;
     }
+
+    public registerRouterHooks(): void
+    {
+        this.InstanceManager.staticRouter.registerStaticRouter(
+            "DynamicMaps-LoadServerConfig",
+            [
+                {
+                    url: "/dynamicmaps/load",
+                    action: async (url, info, sessionId, output) => JSON.stringify(this.config)
+                }
+            ],
+            "DynamicMaps"
+        );
+
+        this.load();
+    }
+
+    public load(): void
+    {
+        const filename = path.join(__dirname,  "../config/config.json");
+        if (this.InstanceManager.fs.exists(filename)) 
+        {
+            const jsonData = this.InstanceManager.fs.readJson(filename);
+            this.config = jsonData;
+        }
+    }
 }
 
+interface DynamicMapsConfig
+{
+    allowShowFriendlyPlayerMarkersInRaid: boolean,
+    allowShowEnemyPlayerMarkersInRaid: boolean,
+    allowShowBossMarkersInRaid: boolean,
+    allowShowScavMarkersInRaid: boolean,
+}
 export const mod = new DynamicMaps();

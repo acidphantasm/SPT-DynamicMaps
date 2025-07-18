@@ -1,6 +1,6 @@
 {
     "name": "SPT-DynamicMaps",
-    "version": "0.5.7",
+    "version": "0.5.8",
     "sptVersion": "~3.11",
     "loadBefore": [],
     "loadAfter": [],

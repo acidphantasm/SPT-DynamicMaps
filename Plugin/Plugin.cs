@@ -57,6 +57,7 @@ namespace DynamicMaps
             new PlayerOnDeadPatch().Enable();
             new PlayerInventoryThrowItemPatch().Enable();
             new ShowViewButtonPatch().Enable();
+            new MenuLoadPatch().Enable();
         }
 
         /// <summary>

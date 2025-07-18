@@ -17,6 +17,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
+using BepInEx;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using SPT.Common.Http;
 
 namespace DynamicMaps.UI
 {
@@ -94,7 +98,17 @@ namespace DynamicMaps.UI
         
         private KeyboardShortcut _zoomMiniMapInShortcut;
         private KeyboardShortcut _zoomMiniMapOutShortcut;
-        
+
+        public static DMServerConfig _serverConfig;
+        public class DMServerConfig
+        {
+            public bool allowShowFriendlyPlayerMarkersInRaid;
+            public bool allowShowEnemyPlayerMarkersInRaid;
+            public bool allowShowBossMarkersInRaid;
+            public bool allowShowScavMarkersInRaid;
+        }
+
+
         private float _zoomMapHotkeySpeed = 2.5f;
         
         #endregion
@@ -790,6 +804,7 @@ namespace DynamicMaps.UI
             _autoSelectLevel = Settings.AutoSelectLevel.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
 
+
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
             
             if (_mapView is not null)
@@ -868,10 +883,10 @@ namespace DynamicMaps.UI
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
-                provider.ShowFriendlyPlayers = Settings.ShowFriendlyPlayerMarkersInRaid.Value;
-                provider.ShowEnemyPlayers = Settings.ShowEnemyPlayerMarkersInRaid.Value;
-                provider.ShowScavs = Settings.ShowScavMarkersInRaid.Value;
-                provider.ShowBosses = Settings.ShowBossMarkersInRaid.Value;
+                provider.ShowFriendlyPlayers = _serverConfig.allowShowFriendlyPlayerMarkersInRaid ? Settings.ShowFriendlyPlayerMarkersInRaid.Value : false;
+                provider.ShowEnemyPlayers = _serverConfig.allowShowEnemyPlayerMarkersInRaid ? Settings.ShowEnemyPlayerMarkersInRaid.Value : false;
+                provider.ShowScavs = _serverConfig.allowShowScavMarkersInRaid ? Settings.ShowScavMarkersInRaid.Value : false;
+                provider.ShowBosses = _serverConfig.allowShowBossMarkersInRaid ? Settings.ShowBossMarkersInRaid.Value : false;
                 
                 provider.RefreshMarkers();
             }

@@ -88,6 +88,9 @@
     <Reference Include="spt-custom">
       <HintPath>$(TarkovPluginsSPTDir)spt-custom.dll</HintPath>
     </Reference>
+    <Reference Include="spt-common">
+      <HintPath>$(TarkovPluginsSPTDir)spt-common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <!-- Gets the commit hash from git -->

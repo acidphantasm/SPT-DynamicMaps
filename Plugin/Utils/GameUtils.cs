@@ -9,6 +9,7 @@ using DynamicMaps.Config;
 using EFT;
 using EFT.Vehicle;
 using HarmonyLib;
+using UnityEngine.Profiling;
 
 namespace DynamicMaps.Utils
 {
@@ -196,8 +197,7 @@ namespace DynamicMaps.Utils
 
         public static bool IsDedicatedServer(this IPlayer player)
         {
-            var pattern = @"^headless_[a-fA-F0-9]{24}$";
-            return Regex.IsMatch(player.Profile.GetCorrectedNickname(), pattern);
+            return player.Profile.Nickname.Contains("headless_");
         }
 
         public static int? GetIntelLevel()

@@ -20,16 +20,16 @@ namespace DynamicMaps.Utils
         // reflection
         private static FieldInfo _playerQuestControllerField = AccessTools.Field(typeof(Player), "_questController");
         private static PropertyInfo _questControllerQuestsProperty = AccessTools.Property(typeof(AbstractQuestControllerClass), "Quests");
-        private static FieldInfo _questsListField = AccessTools.Field(_questControllerQuestsProperty.PropertyType, "list_1");
+        private static FieldInfo _questsListField = AccessTools.Field(_questControllerQuestsProperty.PropertyType, "List_1");
 
         private static MethodInfo _questsGetConditionalMethod = AccessTools.Method(_questControllerQuestsProperty.PropertyType, "GetConditional", new Type[] { typeof(string) });
 
         private static Type _questType = _questControllerQuestsProperty.PropertyType.BaseType.GetGenericArguments()[0];
         private static MethodInfo _questIsConditionDone = AccessTools.Method(_questType, "IsConditionDone");
 
-        private static FieldInfo _conditionCounterTemplateField = AccessTools.Field(typeof(ConditionCounterCreator), "_templateConditions");
+        private static FieldInfo _conditionCounterTemplateField = AccessTools.Field(typeof(ConditionCounterCreator), "TemplateConditions");
         private static FieldInfo _templateConditionsConditionsField = AccessTools.Field(_conditionCounterTemplateField.FieldType, "Conditions");
-        private static FieldInfo _conditionListField = AccessTools.Field(_templateConditionsConditionsField.FieldType, "list_0");
+        private static FieldInfo _conditionListField = AccessTools.Field(_templateConditionsConditionsField.FieldType, "List_0");
         //
 
         // TODO: move to config
@@ -55,7 +55,7 @@ namespace DynamicMaps.Utils
             {
                 QuestItems = Traverse.Create(gameWorld)
                     .Field("LootItems")
-                    .Field("list_0")
+                    .Field("List_0")
                     .GetValue<List<LootItem>>()
                     .Where(i => i.Item.QuestItem).ToList();
             }

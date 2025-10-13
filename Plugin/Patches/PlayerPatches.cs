@@ -28,7 +28,7 @@ namespace DynamicMaps.Patches
 
     internal class PlayerInventoryThrowItemPatch : ModulePatch
     {
-        private static FieldInfo _playerInventoryControllerPlayerField = AccessTools.Field(typeof(Player.PlayerInventoryController), "player_0");
+        private static FieldInfo _playerInventoryControllerPlayerField = AccessTools.Field(typeof(Player.PlayerInventoryController), "Player_0");
 
         internal static event Action<int, Item> OnThrowItem;
         internal static Dictionary<int, Item> ThrownItems = new Dictionary<int, Item>();

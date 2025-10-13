@@ -18,7 +18,7 @@ public class ShowViewButtonPatch : ModulePatch
         var type = PatchConstants.EftTypes
             .SingleCustom(t => t.GetProperty("EItemViewType_0") != null);
 
-        _itemFieldInfo = AccessTools.Field(type, "item_0");
+        _itemFieldInfo = AccessTools.Field(type, "Item_0");
         
         return type.GetMethod("IsActive");
     }

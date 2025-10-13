@@ -221,7 +221,7 @@ namespace DynamicMaps.DynamicMarkers
         private void TryAddMarker(IPlayer iPlayer)
         {
             var player = iPlayer as Player;
-            if (player is null || player.IsDedicatedServer())
+            if (player is null || player.IsHeadlessClient())
             {
                 return;
             }

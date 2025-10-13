@@ -15,9 +15,9 @@ namespace DynamicMaps.Utils
 {
     public static class GameUtils
     {
-        // reflection
+        // reflection/*
         private static FieldInfo _playerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
-        private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
+        private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");*/
         private static Type _profileInterface = typeof(ISession).GetInterfaces().First(i =>
             {
                 var properties = i.GetProperties();
@@ -195,9 +195,9 @@ namespace DynamicMaps.Utils
             return _playerCorpseField.GetValue(player) != null;
         }
 
-        public static bool IsDedicatedServer(this IPlayer player)
+        public static bool IsHeadlessClient(this IPlayer player)
         {
-            return player.Profile.Nickname.Contains("headless_");
+            return player.Profile.Info.MemberCategory == EMemberCategory.UnitTest;
         }
 
         public static int? GetIntelLevel()

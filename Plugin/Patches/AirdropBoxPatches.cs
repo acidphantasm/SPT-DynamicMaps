@@ -28,10 +28,10 @@ namespace DynamicMaps.Patches
         [PatchPostfix]
         public static void PatchPostfix(AirdropLogicClass __instance)
         {
-            if (__instance != null && !Airdrops.Contains(__instance.airdropSynchronizableObject_0))
+            if (__instance != null && !Airdrops.Contains(__instance.AirdropSynchronizableObject_0))
             {
-                Airdrops.Add(__instance.airdropSynchronizableObject_0);
-                OnAirdropLanded?.Invoke(__instance.airdropSynchronizableObject_0);
+                Airdrops.Add(__instance.AirdropSynchronizableObject_0);
+                OnAirdropLanded?.Invoke(__instance.AirdropSynchronizableObject_0);
             }
         }
 

@@ -23,7 +23,7 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "Dynamic Maps";
     public override string Author { get; init; } = "mpstark";
     public override List<string>? Contributors { get; init; } = [" dirtbikercj, acidphantasm"];
-    public override SemanticVersioning.Version Version { get; init; } = new("1.0.1");
+    public override SemanticVersioning.Version Version { get; init; } = new("1.0.2");
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
@@ -60,6 +60,7 @@ public class DynamicMapsServer(
         CreateReserveMap();
         CreateLabsMap();
         CreateLighthouseMap();
+        CreateLabyrinthMap();
     }
 
     private void CreateGroundZeroMap()
@@ -230,6 +231,40 @@ public class DynamicMapsServer(
         var assortId = "6738077be5a03fda63c9917d";
         customItemService.CreateItemFromClone(lighthouseMap);
         PushToTraderAssort(Traders.THERAPIST, lighthouseMap.NewId, lighthouseMap.HandbookPriceRoubles, assortId);
+    }
+    
+    private void CreateLabyrinthMap()
+    {
+        NewItemFromCloneDetails labyrinthMap = new NewItemFromCloneDetails()
+        {
+            ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
+            ParentId = "567849dd4bdc2d150f8b456e",
+            NewId = "68f1ad32317cc52f4c0b6fae",
+            FleaPriceRoubles = 25000,
+            HandbookPriceRoubles = 32500,
+            HandbookParentId = "5b47574386f77428ca22b343",
+            OverrideProperties = new TemplateItemProperties
+            {
+                Name = "Labyrinth plan map",
+                ShortName = "Labyrinth",
+                Description = "A map of Labyrinth. Ignore the fact there's two separate Ground Zero maps but they're the same. Crazy.",
+            },
+            Locales = new Dictionary<string, LocaleDetails>()
+            {
+                {
+                    "en",  new LocaleDetails()
+                    {
+                        Name = "Labyrinth plan map",
+                        ShortName = "Labyrinth",
+                        Description = "A map of Labyrinth. Ignore the fact there's two separate Ground Zero maps but they're the same. Crazy."
+                    }
+                }
+            }
+        };
+
+        var assortId = "68f1ad38317cc52f4c0b6faf";
+        customItemService.CreateItemFromClone(labyrinthMap);
+        PushToTraderAssort(Traders.THERAPIST, labyrinthMap.NewId, labyrinthMap.HandbookPriceRoubles, assortId);
     }
 
     private void PushToTraderAssort(MongoId traderId, MongoId itemId, double? price, MongoId assortId)

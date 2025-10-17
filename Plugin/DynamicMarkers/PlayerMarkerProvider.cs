@@ -48,7 +48,7 @@ namespace DynamicMaps.DynamicMarkers
             }
 
             var player = GameUtils.GetMainPlayer();
-            if (player is null || player.IsDedicatedServer())
+            if (player is null || player.IsHeadlessClient())
             {
                 return;
             }

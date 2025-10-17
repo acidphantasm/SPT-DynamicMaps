@@ -43,19 +43,23 @@ namespace DynamicMaps.Utils
 
             var dump = new List<MapMarkerDef>();
 
-            foreach (var scavExfil in scavExfils)
+            if (scavExfils is not null)
             {
-                var dumped = new MapMarkerDef
-                {
-                    Category = ExtractCategory,
-                    ShowInRaid = false,
-                    ImagePath = ExtractImagePath,
-                    Text = scavExfil.Settings.Name.BSGLocalized(),
-                    Position = MathUtils.ConvertToMapPosition(scavExfil.transform),
-                    Color = ExtractScavColor
-                };
 
-                dump.Add(dumped);
+                foreach (var scavExfil in scavExfils)
+                {
+                    var dumped = new MapMarkerDef
+                    {
+                        Category = ExtractCategory,
+                        ShowInRaid = false,
+                        ImagePath = ExtractImagePath,
+                        Text = scavExfil.Settings.Name.BSGLocalized(),
+                        Position = MathUtils.ConvertToMapPosition(scavExfil.transform),
+                        Color = ExtractScavColor
+                    };
+
+                    dump.Add(dumped);
+                }
             }
 
             foreach (var pmcExfil in pmcExfils)
@@ -88,19 +92,22 @@ namespace DynamicMaps.Utils
                 dump.Add(dumped);
             }
 
-            foreach (var secret in secretExfils)
+            if (secretExfils is not null)
             {
-                var dumped = new MapMarkerDef
+                foreach (var secret in secretExfils)
                 {
-                    Category = SecretCategory,
-                    ShowInRaid = false,
-                    ImagePath = SecretImagePath,
-                    Text = secret.Settings.Name.BSGLocalized(),
-                    Position = MathUtils.ConvertToMapPosition(secret.transform),
-                    Color = SecretColor
-                };
+                    var dumped = new MapMarkerDef
+                    {
+                        Category = SecretCategory,
+                        ShowInRaid = false,
+                        ImagePath = SecretImagePath,
+                        Text = secret.Settings.Name.BSGLocalized(),
+                        Position = MathUtils.ConvertToMapPosition(secret.transform),
+                        Color = SecretColor
+                    };
 
-                dump.Add(dumped);
+                    dump.Add(dumped);
+                }
             }
 
             var mapName = GameUtils.GetCurrentMapInternalName();

@@ -28,12 +28,10 @@ namespace DynamicMaps.Patches
 
     internal class PlayerInventoryThrowItemPatch : ModulePatch
     {
-        private static FieldInfo _playerInventoryControllerPlayerField = AccessTools.Field(typeof(Player.PlayerInventoryController), "Player_0");
-
         internal static event Action<int, Item> OnThrowItem;
-        internal static Dictionary<int, Item> ThrownItems = new Dictionary<int, Item>();
+        internal static Dictionary<int, Item> ThrownItems = [];
 
-        private bool _hasRegisteredEvents = false;
+        private bool _hasRegisteredEvents;
 
         protected override MethodBase GetTargetMethod()
         {
@@ -52,7 +50,7 @@ namespace DynamicMaps.Patches
         public static void PatchPostfix(Player.PlayerInventoryController __instance, Item item)
         {
             // only look at main player's dropped items
-            var player = _playerInventoryControllerPlayerField.GetValue(__instance) as Player;
+            var player = __instance.Player_0;
             if (player == null || player != GameUtils.GetMainPlayer())
             {
                 return;

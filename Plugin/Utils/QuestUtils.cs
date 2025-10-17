@@ -18,7 +18,7 @@ namespace DynamicMaps.Utils
     public static class QuestUtils
     {
         // reflection
-        private static FieldInfo _playerQuestControllerField = AccessTools.Field(typeof(Player), "_questController");
+        /*private static FieldInfo _playerQuestControllerField = AccessTools.Field(typeof(Player), "_questController");
         private static PropertyInfo _questControllerQuestsProperty = AccessTools.Property(typeof(AbstractQuestControllerClass), "Quests");
         private static FieldInfo _questsListField = AccessTools.Field(_questControllerQuestsProperty.PropertyType, "List_1");
 
@@ -29,7 +29,7 @@ namespace DynamicMaps.Utils
 
         private static FieldInfo _conditionCounterTemplateField = AccessTools.Field(typeof(ConditionCounterCreator), "TemplateConditions");
         private static FieldInfo _templateConditionsConditionsField = AccessTools.Field(_conditionCounterTemplateField.FieldType, "Conditions");
-        private static FieldInfo _conditionListField = AccessTools.Field(_templateConditionsConditionsField.FieldType, "List_0");
+        private static FieldInfo _conditionListField = AccessTools.Field(_templateConditionsConditionsField.FieldType, "List_0");*/
         //
 
         // TODO: move to config
@@ -213,11 +213,8 @@ namespace DynamicMaps.Utils
         private static IEnumerable<Vector3> GetPositionsForConditionCreator(ConditionCounterCreator conditionCreator,
                                                                             string questName, string conditionDescription)
         {
-            var counter = _conditionCounterTemplateField.GetValue(conditionCreator);
-            var conditions = _templateConditionsConditionsField.GetValue(counter);
-            var conditionsList = _conditionListField.GetValue(conditions) as IList<Condition>;
-
-            foreach (var condition in conditionsList)
+            var counter = conditionCreator.TemplateConditions;
+            foreach (var condition in counter.Conditions)
             {
                 foreach (var position in GetPositionsForCondition(condition, questName, conditionDescription))
                 {
@@ -285,21 +282,21 @@ namespace DynamicMaps.Utils
 
         private static IEnumerable<QuestDataClass> GetIncompleteQuests(Player player)
         {
-            var questController = _playerQuestControllerField.GetValue(player);
+            var questController = player.AbstractQuestControllerClass;
             if (questController == null)
             {
                 Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questController is null");
                 yield break;
             }
 
-            var quests = _questControllerQuestsProperty.GetValue(questController);
+            var quests = questController.Quests;
             if (quests == null)
             {
                 Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, quests is null");
                 yield break;
             }
 
-            var questsList = _questsListField.GetValue(quests) as List<QuestDataClass>;
+            var questsList = quests.List_1;
             if (questsList == null)
             {
                 Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questsList is null");
@@ -331,25 +328,25 @@ namespace DynamicMaps.Utils
                 return false;
             }
 
-            var questController = _playerQuestControllerField.GetValue(player);
+            var questController = player.AbstractQuestControllerClass;
             if (questController == null)
             {
                 return false;
             }
 
-            var quests = _questControllerQuestsProperty.GetValue(questController);
+            var quests = questController.Quests;
             if (quests == null)
             {
                 return false;
             }
 
-            var quest = _questsGetConditionalMethod.Invoke(quests, new object[] { questData.Id });
+            var quest = quests.GetConditional(questData.Id);
             if (quest == null)
             {
                 return false;
             }
 
-            return (bool)_questIsConditionDone.Invoke(quest, new object[] { condition });
+            return quest.IsConditionDone(condition);
         }
 
         private static IEnumerable<TriggerWithId> GetZoneTriggers(this IEnumerable<TriggerWithId> triggerWithIds, string zoneId)

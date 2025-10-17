@@ -15,9 +15,10 @@ namespace DynamicMaps.Utils
 {
     public static class GameUtils
     {
-        // reflection/*
+        // reflection        
         private static FieldInfo _playerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
-        private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");*/
+        private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
+        
         private static Type _profileInterface = typeof(ISession).GetInterfaces().First(i =>
             {
                 var properties = i.GetProperties();
@@ -65,6 +66,7 @@ namespace DynamicMaps.Utils
             { "TarkovStreets", "673803448cb3819668d77b1b" },
             { "Sandbox", "6738033eb7305d3bdafe9518"},
             { "Sandbox_high", "6738033eb7305d3bdafe9518"},
+            { "Labyrinth", "68f1ad32317cc52f4c0b6fae" }
         };
         
         public static bool IsInRaid()

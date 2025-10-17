@@ -1,0 +1,438 @@
+{
+  "DisplayName": "Labyrinth",
+  "Author": "acidphantasm",
+  "AuthorLink": "https://github.com/acidphantasm/SPT-DynamicMaps/",
+  "MapInternalNames": [ "Labyrinth" ],
+  "CoordinateRotation": 90,
+  "Bounds": {
+    "Min": {
+      "x": -52.5,
+      "y": -36.5
+    },
+    "Max": {
+      "x": 50.7,
+      "y": 75.3
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Ground Level": {
+      "Level": 0,
+      "ImagePath": "Maps/Labyrinth/Layers/labyrinth_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -52.5,
+          "y": -36.5
+        },
+        "Max": {
+          "x": 50.7,
+          "y": 75.3
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -52.5,
+            "y": -36.5,
+            "z": -100
+          },
+          "Max": {
+            "x": 50.7,
+            "y": 75.3,
+            "z": -1
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [],
+  "StaticMarkers": [
+    {
+      "Text": "The Way Up",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -7.31,
+        "y": 40.127,
+        "z": -0.0119999647
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Ariadne's Path",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 19.443,
+        "y": 0.495,
+        "z": 1.07
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Alarm Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -4.279,
+        "y": 55.87111,
+        "z": 1.51507258
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Alarm Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": 1.05600023,
+        "y": 7.16910934,
+        "z": 1.50388885
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Alarm Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -13.3701,
+        "y": 36.08191,
+        "z": 1.63888884
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Alarm Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": 8.937,
+        "y": 28.68511,
+        "z": 1.54792
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Fire Trap Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -43.587,
+        "y": -10.9208889,
+        "z": 1.56588888
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Alarm Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -9.011,
+        "y": 1.57610893,
+        "z": 1.66788888
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Toxic Pool Trap Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -31.7254715,
+        "y": 58.2143,
+        "z": 2.08068
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Shotgun Trap Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": 25.4025669,
+        "y": 59.453,
+        "z": 1.37
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Toxic Puddle Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": 46.42,
+        "y": 11.084,
+        "z": 1.031
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Steam Trap Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": 2.659,
+        "y": -31.705,
+        "z": 2.109861
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Key 1",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -31.014473,
+        "y": 58.9146423,
+        "z": 1.75901747
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baa2c61f588ae2b062a24"
+    },
+    {
+      "Text": "Key 2",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -2.48107839,
+        "y": -34.2012634,
+        "z": 2.29478168
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baa4f59b8961f370dd683"
+    },
+    {
+      "Text": "Key 3",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -30.080019,
+        "y": -15.5193338,
+        "z": 2.01908755
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baa5a59b8961f370dd685"
+    },
+    {
+      "Text": "Key 4",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 17.1429634,
+        "y": 62.8580856,
+        "z": 1.1481005
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baa9091966fe40408f149"
+    },
+    {
+      "Text": "Corpse Room Key",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 9.654029,
+        "y": -11.1337557,
+        "z": 1.2547729
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679bab714e9ca6b3d80586b4"
+    },
+    {
+      "Text": "Torture Room Key",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 17.53276,
+        "y": 6.93186951,
+        "z": 1.25286007
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baae891966fe40408f14c"
+    },
+    {
+      "Text": "Labyrinth Key",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -10.399806,
+        "y": 39.65776,
+        "z": 1.24885988
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679bac1d61f588ae2b062a26"
+    },
+    {
+      "Text": "Observation Room Key",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 9.36803,
+        "y": 7.66224,
+        "z": 1.26510465
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "679baace4e9ca6b3d80586b2"
+    },
+    {
+      "Text": "Blowtorch",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 40.1832,
+        "y": 19.1903,
+        "z": 0.298618853
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "67ab3d4b83869afd170fdd3f"
+    },
+    {
+      "Text": "Blowtorch",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -49.34948,
+        "y": -11.756073,
+        "z": 1.70373631
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "67ab3d4b83869afd170fdd3f"
+    },
+    {
+      "Text": "Valve Handwheel",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 2.659,
+        "y": -31.705,
+        "z": 2.109861
+      },
+      "Sprite": null,
+      "ShowInRaid": true,
+      "Category": "Locked Door",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "AssociatedItemId": "678fa929819ddc4c350c0317"
+    }
+  ]
+}

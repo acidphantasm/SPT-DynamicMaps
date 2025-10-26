@@ -48,6 +48,9 @@ namespace DynamicMaps.Utils
             WildSpawnType.gifter,               // Santa
             WildSpawnType.arenaFighterEvent,    // Blood Hounds
             WildSpawnType.sectantPriest,        // Cultist Priest
+            WildSpawnType.bossTagillaAgro,      // Tagilla Labyrinth
+            WildSpawnType.bossKillaAgro,        // Killa Labyrinth
+            WildSpawnType.tagillaHelperAgro,    // Tagilla Helper Labyrinth
             (WildSpawnType) 199,                // Legion
             (WildSpawnType) 801,                // Punisher
         };

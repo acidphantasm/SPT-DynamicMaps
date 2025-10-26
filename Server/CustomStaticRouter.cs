@@ -1,5 +1,7 @@
-﻿﻿using System.Text.Json;
- using SPTarkov.DI.Annotations;
+﻿using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
@@ -8,7 +10,7 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
 
-namespace _dynamicMapsServer;
+namespace DynamicMaps.Server;
 
 [Injectable]
 public class CustomStaticRouter : StaticRouter
@@ -32,7 +34,7 @@ public class CustomStaticRouter : StaticRouter
         return
         [
             new RouteAction<EmptyRequestData>(
-                "/dynamicmaps/load",
+                "/dynamicmaps/load ",
                 async (
                     url,
                     info,

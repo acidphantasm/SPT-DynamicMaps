@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>DynamicMaps.Server</AssemblyName>
+    <RootNamespace>DynamicMaps.Server</RootNamespace>
+    <Nullable>enable</Nullable>
+    <!-- The two lines below will set the output path for the binaries -->
+    <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)-$(Version)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SPTarkov.Common" Version="4.0.1" />
+    <PackageReference Include="SPTarkov.DI" Version="4.0.1" />
+    <PackageReference Include="SPTarkov.Server.Core" Version="4.0.1" />
+  </ItemGroup>
+
+  <!-- Gets the commit hash from git -->
+  <Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
+    <Exec Command="git describe --long --always --dirty --exclude=* --abbrev=8" IgnoreExitCode="False">
+      <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
+    </Exec>
+  </Target>
+  
+  <Target Name="ServerPostBuild" AfterTargets="PostBuildEvent">
+    <Message Importance="high" Text="Server Built" />
+    <ItemGroup>
+      <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
+      <DebugFile Include="$(ProjectDir)$(OutDir)$(TargetName).pdb" Condition=" '$(Configuration)' == 'Debug'" /><!--Include the pdb if debuging -->
+      <License Include="$(SolutionDir)LICENSE" />
+      <Config Include="$(ProjectDir)config.json" />
+    </ItemGroup>
+
+    <!-- Clears the tarkov game and release folders -->
+    <RemoveDir Directories="$(ActiveTarkovDir)SPT\user\mods\DynamicMaps" />
+    <RemoveDir Directories="$(SolutionDir)release\SPT" />
+
+    <!-- Copies the output and config to tarkov game folder -->
+    <Copy SourceFiles="@(OutputDLL);@(Config);@(License);@(DebugFile)" DestinationFolder="$(ActiveTarkovDir)SPT\user\mods\DynamicMaps\%(RecursiveDir)" />
+    
+    <!-- Copies the files to combined release folder -->
+    <Copy SourceFiles="@(OutputDLL);@(Config);@(License);@(DebugFile)" DestinationFolder="$(SolutionDir)release\SPT\user\mods\DynamicMaps\%(RecursiveDir)" />
+  </Target>
+</Project>

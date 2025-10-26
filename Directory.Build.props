@@ -1,0 +1,39 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Description>Dynamic in-game maps for SPT</Description>
+    <LangVersion>latest</LangVersion>
+    <OutputType>Library</OutputType>
+    <Deterministic>true</Deterministic>
+    <Version>1.0.2</Version>
+    <SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
+    
+    <!-- Set the path to your Tarkov directory -->
+    <TarkovDir Condition=" '$(TarkovDir)' == '' ">C:\Tarkov\SPT-4.0.1\</TarkovDir>
+    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">C:\Tarkov\SPT-4.0.1\</TarkovDebugDir>
+
+    <ClientBuildPath>$(TarkovDir)BepInEx\plugins\$(MSBuildProjectName)</ClientBuildPath>
+    <ServerBuildPath>$(TarkovDir)SPT\user\mods\$(MSBuildProjectName)</ServerBuildPath>
+    <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
+    <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
+    <SPTPluginsDir>$(TarkovDir)BepInEx\plugins\spt\</SPTPluginsDir>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)' == 'release' ">
+    <DebugType>none</DebugType>
+    <ActiveTarkovDir>$(TarkovDir)</ActiveTarkovDir>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+    <ActiveTarkovDir>$(TarkovDebugDir)</ActiveTarkovDir>
+  </PropertyGroup>
+  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+    <!-- Removes the last release's zip file -->
+    <Delete Files="$(SolutionDir)Release\*.zip" />
+  </Target>
+  <!--  <Target Name="MakeZipFile" AfterTargets="AfterBuild">-->
+  <!--    &lt;!&ndash; Creates a zip file &ndash;&gt;-->
+  <!--    <ZipDirectory SourceDirectory="$(SolutionDir)release\" DestinationFile="$(SolutionDir)release\DynamicMaps-$(Version)-$(SourceRevisionId).zip" />-->
+  <!--  </Target>-->
+</Project>

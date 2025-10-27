@@ -5,9 +5,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{F4802B9A-7F36-4AF2-8141-CC39D9B2D943}"
 EndProject
 Project("{FA092D49-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMaps.Client", "Client\DynamicMaps.Client.csproj", "{49EEA63A-07E0-4CA2-8EA8-22A42E269490}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FA092D49-A683-F6B6-CA05-C8D61B1E02C9} = {FA092D49-A683-F6B6-CA05-C8D61B1E02C9}
-	EndProjectSection
 EndProject
 Project("{FA092D49-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMaps.Server", "Server\DynamicMaps.Server.csproj", "{FA092D49-A683-F6B6-CA05-C8D61B1E02C9}"
 EndProject
@@ -17,7 +14,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
-					HideSolutionNode = FALSE
+	HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0437F2B7-59AC-4239-AE7E-80429D2F5118}

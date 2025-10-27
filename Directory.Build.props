@@ -1,11 +1,10 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
     <Description>Dynamic in-game maps for SPT</Description>
     <LangVersion>latest</LangVersion>
     <OutputType>Library</OutputType>
     <Deterministic>true</Deterministic>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
     
     <!-- Set the path to your Tarkov directory -->
@@ -28,12 +27,4 @@
     <DebugType>full</DebugType>
     <ActiveTarkovDir>$(TarkovDebugDir)</ActiveTarkovDir>
   </PropertyGroup>
-  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
-    <!-- Removes the last release's zip file -->
-    <Delete Files="$(SolutionDir)Release\*.zip" />
-  </Target>
-  <!--  <Target Name="MakeZipFile" AfterTargets="AfterBuild">-->
-  <!--    &lt;!&ndash; Creates a zip file &ndash;&gt;-->
-  <!--    <ZipDirectory SourceDirectory="$(SolutionDir)release\" DestinationFile="$(SolutionDir)release\DynamicMaps-$(Version)-$(SourceRevisionId).zip" />-->
-  <!--  </Target>-->
 </Project>

@@ -111,7 +111,7 @@
   </Target>
   
   <Target Name="ClientPostBuild" AfterTargets="PostBuildEvent">
-    <Message Importance="high" Text="Client Built  $(SolutionDir)" />
+    <Message Importance="high" Text="Building Client" />
     <ItemGroup>
       <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
       <DebugFile Include="$(ProjectDir)$(OutDir)$(TargetName).pdb" Condition=" '$(Configuration)' == 'Debug'" /><!--Include the pdb if debuging -->
@@ -128,10 +128,5 @@
     
     <!-- Copies the files to combined release folder -->
     <Copy SourceFiles="@(OutputDLL);@(Resources);@(License);@(DebugFile)" DestinationFolder="$(SolutionDir)release\BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
-
-    <!-- Creates a zip file -->
-    <ItemGroup><FilesToDelete Include="$(SolutionDir)release\*.zip"/></ItemGroup><Delete Files="@(FilesToDelete)" /><!-- Remove old zip -->
-    <ZipDirectory SourceDirectory="$(SolutionDir)release\" DestinationFile="$(SolutionDir)DynamicMaps-$(Version)-$(SourceRevisionId).zip" /><!-- Make new zip in different folder to prevent problems -->
-    <Move SourceFiles="$(SolutionDir)DynamicMaps-$(Version)-$(SourceRevisionId).zip" DestinationFolder="$(SolutionDir)release\" /><!-- Move new zip to release folder -->
-  </Target>
+    </Target>
 </Project>

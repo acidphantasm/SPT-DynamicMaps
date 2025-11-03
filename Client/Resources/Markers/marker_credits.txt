@@ -37,6 +37,9 @@ https://game-icons.net/1x1/delapouite/backpack.html
 Helicopter icon by Delapouite under CC BY 3.0
 https://game-icons.net/1x1/delapouite/helicopter.html
 
+Unknown icon under by Lorc under CC BY 3.0
+https://game-icons.net/1x1/lorc/uncertainty.html
+
 Above images were changed with the below changes
   - Scaled down to 60x60 images
   - Black outline added

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
@@ -8,6 +10,7 @@ using DynamicMaps.Utils;
 using EFT;
 using EFT.Interactive;
 using EFT.UI.DragAndDrop;
+using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {
@@ -76,18 +79,42 @@ namespace DynamicMaps.DynamicMarkers
             if (_lootMarkers.ContainsKey(item)) return;
             if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
             
-            var staticIcons = EFTHardSettings.Instance.StaticIcons;
             var itemType = ItemViewFactory.GetItemType(item.Item.GetType());
-            var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
-
-            var markerDef = new MapMarkerDef
+            MapMarkerDef markerDef;
+            //Some items don't have sprites so use a placeholder
+            if (itemType == EItemType.None)
             {
-                Category = "Loot",
-                Color = Settings.LootItemColor.Value,
-                Sprite = itemSprite,
-                Position = MathUtils.ConvertToMapPosition(item.transform),
-                Text = item.Item.TemplateId.LocalizedName()
-            };
+                markerDef = new MapMarkerDef
+                {
+                    Category = "Loot",
+                    Color = new Color(1f, 0f, 0f),
+                    ImagePath = "Markers/Unknown.png",
+                    Position = MathUtils.ConvertToMapPosition(item.transform),
+                    Text = item.Item.TemplateId.LocalizedName()
+                };
+            }
+            else if (EFTHardSettings.Instance.StaticIcons.ItemTypeSprites.GetValueOrDefault(itemType) is null)
+            {
+                markerDef = new MapMarkerDef
+                {
+                    Category = "Loot",
+                    Color = new Color(1f, 0f, 0f),
+                    ImagePath = "Markers/Unknown.png",
+                    Position = MathUtils.ConvertToMapPosition(item.transform),
+                    Text = item.Item.TemplateId.LocalizedName()
+                };
+            }
+            else 
+            {
+                markerDef = new MapMarkerDef
+                {
+                    Category = "Loot",
+                    Color = Settings.LootItemColor.Value,
+                    Sprite = EFTHardSettings.Instance.StaticIcons.ItemTypeSprites.GetValueOrDefault(itemType),
+                    Position = MathUtils.ConvertToMapPosition(item.transform),
+                    Text = item.Item.TemplateId.LocalizedName()
+                };
+            }
             
             var marker = _lastMapView.AddMapMarker(markerDef);
             _lootMarkers[item] = marker;

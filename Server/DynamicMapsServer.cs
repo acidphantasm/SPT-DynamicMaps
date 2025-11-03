@@ -17,7 +17,7 @@ using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 
-namespace DynamicMaps.Server;
+namespace _dynamicMapsServer;
 
 public record ModMetadata : AbstractModMetadata
 {

@@ -170,6 +170,7 @@ namespace DynamicMaps.UI.Components
             
             MapScreen.transform.SetParent(RectTransform);
             MapScreen.Show(playAnimation);
+            MapScreen.forceRunOnCenter = true;
         }
 
         internal void EndMiniMap()

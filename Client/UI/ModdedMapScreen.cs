@@ -227,22 +227,22 @@ namespace DynamicMaps.UI
             {
                 if (_moveMapUpShortcut.BetterIsPressed())
                 {
-                    shiftMapY += 1f;
+                    shiftMapY -= 1f;
                 }
 
                 if (_moveMapDownShortcut.BetterIsPressed())
                 {
-                    shiftMapY -= 1f;
+                    shiftMapY += 1f;
                 }
 
                 if (_moveMapLeftShortcut.BetterIsPressed())
                 {
-                    shiftMapX -= 1f;
+                    shiftMapX += 1f;
                 }
 
                 if (_moveMapRightShortcut.BetterIsPressed())
                 {
-                    shiftMapX += 1f;
+                    shiftMapX -= 1f;
                 }
             }
             
@@ -751,8 +751,11 @@ namespace DynamicMaps.UI
             _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false, true);
         }
 
+        public Vector2 LastPlayerPosition=Vector2.positiveInfinity;
+        public bool forceRunOnCenter = true;
         private void OnCenter()
         {
+            Plugin.Log.LogInfo("OnCenter");
             if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
@@ -760,6 +763,16 @@ namespace DynamicMaps.UI
                 if (player is not null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+                    //if the player is not moving we don't need to re-center the map as the map would look the exact same
+                    Plugin.Log.LogInfo($"Distance: {Vector2.Distance(LastPlayerPosition,mapPosition)}");
+                    if (!forceRunOnCenter && Vector2.Distance(LastPlayerPosition,mapPosition)<0.05)
+                    {
+                        return;
+                    }
+                    
+                    forceRunOnCenter = false;
+                    LastPlayerPosition.x=mapPosition.x;
+                    LastPlayerPosition.y=mapPosition.y;
                     
                     _mapView.ShiftMapToCoordinate(
                         mapPosition, 

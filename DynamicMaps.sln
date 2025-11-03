@@ -7,6 +7,9 @@ EndProject
 Project("{FA092D49-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMaps.Client", "Client\DynamicMaps.Client.csproj", "{49EEA63A-07E0-4CA2-8EA8-22A42E269490}"
 EndProject
 Project("{FA092D49-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMaps.Server", "Server\DynamicMaps.Server.csproj", "{FA092D49-A683-F6B6-CA05-C8D61B1E02C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{49EEA63A-07E0-4CA2-8EA8-22A42E269490} = {49EEA63A-07E0-4CA2-8EA8-22A42E269490}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

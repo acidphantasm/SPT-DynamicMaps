@@ -10,7 +10,7 @@ using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Utils;
 
-namespace DynamicMaps.Server;
+namespace _dynamicMapsServer;
 
 [Injectable]
 public class CustomStaticRouter : StaticRouter
@@ -34,7 +34,7 @@ public class CustomStaticRouter : StaticRouter
         return
         [
             new RouteAction<EmptyRequestData>(
-                "/dynamicmaps/load ",
+                "/dynamicmaps/load",
                 async (
                     url,
                     info,

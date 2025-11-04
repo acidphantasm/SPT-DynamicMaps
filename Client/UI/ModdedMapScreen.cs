@@ -751,11 +751,8 @@ namespace DynamicMaps.UI
             _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false, true);
         }
 
-        public Vector2 LastPlayerPosition=Vector2.positiveInfinity;
-        public bool forceRunOnCenter = true;
         private void OnCenter()
         {
-            Plugin.Log.LogInfo("OnCenter");
             if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
@@ -763,16 +760,10 @@ namespace DynamicMaps.UI
                 if (player is not null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-                    //if the player is not moving we don't need to re-center the map as the map would look the exact same
-                    Plugin.Log.LogInfo($"Distance: {Vector2.Distance(LastPlayerPosition,mapPosition)}");
-                    if (!forceRunOnCenter && Vector2.Distance(LastPlayerPosition,mapPosition)<0.05)
+                    if (Vector2.Distance(_mapView.RectTransform.anchoredPosition / _mapView.ZoomCurrent,mapPosition)<0.05 && !_centerPlayerShortcut.BetterIsDown())
                     {
                         return;
                     }
-                    
-                    forceRunOnCenter = false;
-                    LastPlayerPosition.x=mapPosition.x;
-                    LastPlayerPosition.y=mapPosition.y;
                     
                     _mapView.ShiftMapToCoordinate(
                         mapPosition, 

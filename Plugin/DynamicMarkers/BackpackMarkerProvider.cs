@@ -32,7 +32,7 @@ namespace DynamicMaps.DynamicMarkers
             AddThrownBackpacks();
 
             // register for if an item is registered
-            GameWorldRegisterLootItemPatch.OnRegisterLoot += OnRegisterLoot;
+            LootItemInitPatch.OnRegisterLoot += OnRegisterLoot;
 
             // register for if item is destroyed (probably picked up)
             GameWorldDestroyLootPatch.OnDestroyLoot += OnDestroyLoot;
@@ -40,7 +40,7 @@ namespace DynamicMaps.DynamicMarkers
 
         public void OnHideInRaid(MapView map)
         {
-            GameWorldRegisterLootItemPatch.OnRegisterLoot -= OnRegisterLoot;
+            LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
             GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
         }
 
@@ -65,14 +65,14 @@ namespace DynamicMaps.DynamicMarkers
 
         public void OnRaidEnd(MapView map)
         {
-            GameWorldRegisterLootItemPatch.OnRegisterLoot -= OnRegisterLoot;
+            LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
             GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
             TryRemoveMarkers();
         }
 
         public void OnDisable(MapView map)
         {
-            GameWorldRegisterLootItemPatch.OnRegisterLoot -= OnRegisterLoot;
+            LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
             GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
             TryRemoveMarkers();
         }

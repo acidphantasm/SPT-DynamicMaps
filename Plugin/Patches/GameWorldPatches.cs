@@ -5,6 +5,7 @@ using System.Reflection;
 using SPT.Reflection.Patching;
 using EFT;
 using EFT.Interactive;
+using EFT.InventoryLogic;
 using HarmonyLib;
 
 namespace DynamicMaps.Patches
@@ -78,19 +79,21 @@ namespace DynamicMaps.Patches
         }
     }
 
-    internal class GameWorldRegisterLootItemPatch : ModulePatch
+    internal class LootItemInitPatch : ModulePatch
     {
         internal static event Action<LootItem> OnRegisterLoot;
 
         protected override MethodBase GetTargetMethod()
         {
-            return typeof(GameWorld).GetMethod("RegisterLoot").MakeGenericMethod(typeof(LootItem));
+            return AccessTools.Method(typeof(LootItem), nameof(LootItem.Init));
+            //return typeof(GameWorld).GetMethod("RegisterLoot").MakeGenericMethod(typeof(LootItem));
         }
 
         [PatchPostfix]
-        public static void PatchPostfix(LootItem loot)
+        public static void PatchPostfix(LootItem __instance, Item item)
         {
-            OnRegisterLoot?.Invoke(loot);
+            if (item == null) return;
+            OnRegisterLoot?.Invoke(__instance); 
         }
     }
 

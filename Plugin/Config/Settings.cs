@@ -268,7 +268,7 @@ namespace DynamicMaps.Config
                 "Show Player Marker",
                 true,
                 new ConfigDescription(
-                    "If the player marker should be shown in raid",
+                    "If the player marker should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -277,7 +277,7 @@ namespace DynamicMaps.Config
                 "Show Friendly Player Markers",
                 true,
                 new ConfigDescription(
-                    "If friendly player markers should be shown in-raid",
+                    "If friendly player markers should be shown in-raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -286,7 +286,7 @@ namespace DynamicMaps.Config
                 "Show Enemy Player Markers",
                 false,
                 new ConfigDescription(
-                    "If enemy player markers should be shown in-raid (generally for debug)",
+                    "If enemy player markers should be shown in-raid (generally for debug, can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -295,7 +295,7 @@ namespace DynamicMaps.Config
                 "Show Scav Markers",
                 false,
                 new ConfigDescription(
-                    "If enemy scav markers should be shown in-raid (generally for debug)",
+                    "If enemy scav markers should be shown in-raid (generally for debug, can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -304,7 +304,7 @@ namespace DynamicMaps.Config
                 "Show Boss Markers",
                 false,
                 new ConfigDescription(
-                    "If enemy boss markers should be shown in-raid",
+                    "If enemy boss markers should be shown in-raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -313,7 +313,7 @@ namespace DynamicMaps.Config
                 "Show Locked Door Status",
                 true,
                 new ConfigDescription(
-                    "If locked door markers should be updated with status based on key acquisition",
+                    "If locked door markers should be updated with status based on key acquisition (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -322,7 +322,7 @@ namespace DynamicMaps.Config
                 "Show Quests In Raid",
                 true,
                 new ConfigDescription(
-                    "If quests should be shown in raid",
+                    "If quests should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -331,7 +331,7 @@ namespace DynamicMaps.Config
                 "Show Extracts In Raid",
                 true,
                 new ConfigDescription(
-                    "If extracts should be shown in raid",
+                    "If extracts should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -340,7 +340,7 @@ namespace DynamicMaps.Config
                 "Show Extracts Status In Raid",
                 true,
                 new ConfigDescription(
-                    "If extracts should be colored according to their status in raid",
+                    "If extracts should be colored according to their status in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
             
@@ -349,7 +349,7 @@ namespace DynamicMaps.Config
                 "Show Transit Points In Raid",
                 true,
                 new ConfigDescription(
-                    "If transits should be shown in raid",
+                    "If transits should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -358,7 +358,7 @@ namespace DynamicMaps.Config
                 "Show Secret Extracts In Raid",
                 true,
                 new ConfigDescription(
-                    "If secret extracts should be shown in raid",
+                    "If secret extracts should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -367,7 +367,7 @@ namespace DynamicMaps.Config
                 "Show Dropped Backpack In Raid",
                 true,
                 new ConfigDescription(
-                    "If the player's dropped backpacks (not anyone elses) should be shown in raid",
+                    "If the player's dropped backpacks (not anyone elses) should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
             
@@ -376,7 +376,7 @@ namespace DynamicMaps.Config
                 "Show wish listed items In Raid",
                 true,
                 new ConfigDescription(
-                    "Shows items that are in your wishlist on the map in raid",
+                    "Shows items that are in your wishlist on the map in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -385,7 +385,7 @@ namespace DynamicMaps.Config
                 "Show BTR In Raid",
                 true,
                 new ConfigDescription(
-                    "If the BTR should be shown in raid",
+                    "If the BTR should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -394,7 +394,7 @@ namespace DynamicMaps.Config
                 "Show Airdrops In Raid",
                 true,
                 new ConfigDescription(
-                    "If airdrops should be shown in raid when they land",
+                    "If airdrops should be shown in raid when they land (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
             
@@ -403,7 +403,7 @@ namespace DynamicMaps.Config
                 "Show Hidden Stashes In Raid",
                 true,
                 new ConfigDescription(
-                    "If hidden stashes should be shown in raid",
+                    "If hidden stashes should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -412,7 +412,7 @@ namespace DynamicMaps.Config
                 "Show Friendly Corpses In Raid",
                 true,
                 new ConfigDescription(
-                    "If friendly corpses should be shown in raid",
+                    "If friendly corpses should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -421,7 +421,7 @@ namespace DynamicMaps.Config
                 "Show Player-killed Corpses In Raid",
                 true,
                 new ConfigDescription(
-                    "If corpses killed by the player should be shown in raid, killed bosses will be shown in another color",
+                    "If corpses killed by the player should be shown in raid, killed bosses will be shown in another color (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -430,7 +430,7 @@ namespace DynamicMaps.Config
                 "Show Friendly-killed Corpses In Raid",
                 true,
                 new ConfigDescription(
-                    "If corpses killed by friendly players should be shown in raid, killed bosses will be shown in another color",
+                    "If corpses killed by friendly players should be shown in raid, killed bosses will be shown in another color (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -439,7 +439,7 @@ namespace DynamicMaps.Config
                 "Show Boss Corpses In Raid",
                 false,
                 new ConfigDescription(
-                    "If boss corpses (other than ones killed by the player) should be shown in raid",
+                    "If boss corpses (other than ones killed by the player) should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -448,7 +448,7 @@ namespace DynamicMaps.Config
                 "Show Other Corpses In Raid",
                 false,
                 new ConfigDescription(
-                    "If corpses (other than friendly ones or ones killed by the player) should be shown in raid",
+                    "If corpses (other than friendly ones or ones killed by the player) should be shown in raid (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
 
@@ -461,7 +461,7 @@ namespace DynamicMaps.Config
                 "Require a map in your inventory",
                 false,
                 new ConfigDescription(
-                    "Requires you to have a map in your inventory in order to view the map in raid.",
+                    "Requires you to have a map in your inventory in order to view the map in raid (can be overridden by server).",
                     null,
                     new ConfigurationManagerAttributes { })));
             
@@ -470,7 +470,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show PMCs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show PMCs",
+                    "If intel level is at or above this value it will show PMCs (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -479,7 +479,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show bosses",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show bosses",
+                    "If intel level is at or above this value it will show bosses (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -488,7 +488,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show scavs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show scavs",
+                    "If intel level is at or above this value it will show scavs (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -497,7 +497,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show friendly PMCs",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show friendly PMCs",
+                    "If intel level is at or above this value it will show friendly PMCs (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -506,7 +506,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show corpses",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show corpses",
+                    "If intel level is at or above this value it will show corpses (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -515,7 +515,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show airdrops",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show airdrops",
+                    "If intel level is at or above this value it will show airdrops (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -524,7 +524,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show wish listed loot items",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show wish listed loot items",
+                    "If intel level is at or above this value it will show wish listed loot items (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
             
@@ -533,7 +533,7 @@ namespace DynamicMaps.Config
                 "Intel level required to show hidden stashes",
                 0,
                 new ConfigDescription(
-                    "If intel level is at or above this value it will show hidden stashes",
+                    "If intel level is at or above this value it will show hidden stashes (can be overridden by server)",
                     new AcceptableValueRange<int>(0, 3),
                     new ConfigurationManagerAttributes { })));
 
@@ -635,7 +635,7 @@ namespace DynamicMaps.Config
                 "Mini-map enabled",
                 true,
                 new ConfigDescription(
-                    "Enable the mini-map",
+                    "Enable the mini-map (can be overridden by server)",
                     null,
                     new ConfigurationManagerAttributes { })));
             

@@ -31,7 +31,7 @@ namespace DynamicMaps.UI
         private const string _mapRelPath = "Maps";
 
         private bool _initialized = false;
-        
+
         private static float _positionTweenTime = 0.25f;
         private static float _scrollZoomScaler = 1.75f;
         private static float _zoomScrollTweenTime = 0.25f;
@@ -47,7 +47,7 @@ namespace DynamicMaps.UI
         private static Vector2 _cursorPositionTextOffset = new Vector2(15f, -52f);
         private static Vector2 _playerPositionTextOffset = new Vector2(15f, -68f);
         private static float _positionTextFontSize = 15f;
-        
+
         public RectTransform RectTransform => gameObject.GetRectTransform();
 
         private RectTransform _parentTransform => gameObject.transform.parent as RectTransform;
@@ -69,9 +69,9 @@ namespace DynamicMaps.UI
         private MapPeekComponent _peekComponent;
         private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
         private bool _showingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
-        
+
         public bool IsShowingMapScreen { get; private set; }
-        
+
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
 
@@ -81,7 +81,7 @@ namespace DynamicMaps.UI
         private bool _resetZoomOnCenter = false;
         private bool _rememberMapPosition = true;
         private bool _transitionAnimations = true;
-        
+
         private float _centeringZoomResetPoint = 0f;
         private KeyboardShortcut _centerPlayerShortcut;
         private KeyboardShortcut _dumpShortcut;
@@ -92,27 +92,57 @@ namespace DynamicMaps.UI
         private float _moveMapSpeed = 0.25f;
         private KeyboardShortcut _moveMapLevelUpShortcut;
         private KeyboardShortcut _moveMapLevelDownShortcut;
-        
+
         private KeyboardShortcut _zoomMainMapInShortcut;
         private KeyboardShortcut _zoomMainMapOutShortcut;
-        
+
         private KeyboardShortcut _zoomMiniMapInShortcut;
         private KeyboardShortcut _zoomMiniMapOutShortcut;
 
-        public static DMServerConfig _serverConfig;
-        public class DMServerConfig
+        internal static CombinedConfig _config;
+
+        internal class CombinedConfig(MenuLoadPatch.DMServerConfig ServerConfig)
         {
-            public bool allowShowFriendlyPlayerMarkersInRaid;
-            public bool allowShowEnemyPlayerMarkersInRaid;
-            public bool allowShowBossMarkersInRaid;
-            public bool allowShowScavMarkersInRaid;
+            public bool ShowPlayerMarker => ServerConfig.AllowShowPlayerMarker && Settings.ShowPlayerMarker.Value;
+            public bool ShowFriendlyPlayerMarkersInRaid => ServerConfig.AllowShowFriendlyPlayerMarkersInRaid && Settings.ShowFriendlyPlayerMarkersInRaid.Value;
+            public bool ShowEnemyPlayerMarkersInRaid => ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
+            public bool ShowScavMarkersInRaid => ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
+            public bool ShowBossMarkersInRaid => ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
+            public bool ShowLockedDoorStatus => ServerConfig.AllowShowLockedDoorStatus && Settings.ShowLockedDoorStatus.Value;
+            public bool ShowQuestsInRaid => ServerConfig.AllowShowQuestsInRaid && Settings.ShowQuestsInRaid.Value;
+            public bool ShowExtractsInRaid => ServerConfig.AllowShowExtractsInRaid && Settings.ShowExtractsInRaid.Value;
+            public bool ShowExtractsStatusInRaid => ServerConfig.AllowShowExtractStatusInRaid && Settings.ShowExtractStatusInRaid.Value;
+            public bool ShowTransitPointsInRaid => ServerConfig.AllowShowTransitPointsInRaid && Settings.ShowTransitPointsInRaid.Value;
+            public bool ShowSecretExtractsInRaid => ServerConfig.AllowShowSecretExtractsInRaid && Settings.ShowSecretPointsInRaid.Value;
+            public bool ShowDroppedBackpackInRaid => ServerConfig.AllowShowDroppedBackpackInRaid && Settings.ShowDroppedBackpackInRaid.Value;
+            public bool ShowWishlistedItemsInRaid => ServerConfig.AllowShowWishlistedItemsInRaid && Settings.ShowWishListItemsInRaid.Value;
+            public bool ShowBTRInRaid => ServerConfig.AllowShowBTRInRaid && Settings.ShowBTRInRaid.Value;
+            public bool ShowAirdropsInRaid => ServerConfig.AllowShowAirdropsInRaid && Settings.ShowAirdropsInRaid.Value;
+            public bool ShowHiddenStashesInRaid => ServerConfig.AllowShowHiddenStashesInRaid && Settings.ShowHiddenStashesInRaid.Value;
+            public bool ShowFriendlyCorpses => ServerConfig.AllowShowFriendlyCorpses && Settings.ShowFriendlyCorpsesInRaid.Value;
+            public bool ShowKilledCorpses => ServerConfig.AllowShowKilledCorpses && Settings.ShowKilledCorpsesInRaid.Value;
+            public bool ShowFriendlyKilledCorpses => ServerConfig.AllowShowFriendlyKilledCorpses && Settings.ShowFriendlyKilledCorpsesInRaid.Value;
+            public bool ShowBossCorpses => ServerConfig.AllowShowBossCorpses && Settings.ShowBossCorpsesInRaid.Value;
+            public bool ShowOtherCorpses => ServerConfig.AllowShowOtherCorpses && Settings.ShowOtherCorpsesInRaid.Value;
+            public bool ShowHeliCrashSiteInRaid => ServerConfig.AllowShowHeliCrashSiteInRaid && Settings.ShowHeliCrashMarker.Value;
+            public bool AllowMiniMap => ServerConfig.AllowMiniMap && Settings.MiniMapEnabled.Value;
+            public bool RequireMapInInventory => ServerConfig.RequireMapInInventory || Settings.RequireMapInInventory.Value;
+            public int ShowScavIntelLevel => ServerConfig.ShowScavIntelLevel > Settings.ShowScavIntelLevel.Value ? ServerConfig.ShowScavIntelLevel : Settings.ShowScavIntelLevel.Value;
+            public int ShowPmcIntelLevel => ServerConfig.ShowPmcIntelLevel > Settings.ShowPmcIntelLevel.Value ? ServerConfig.ShowPmcIntelLevel : Settings.ShowPmcIntelLevel.Value;
+            public int ShowBossIntelLevel => ServerConfig.ShowBossIntelLevel > Settings.ShowBossIntelLevel.Value ? ServerConfig.ShowBossIntelLevel : Settings.ShowBossIntelLevel.Value;
+            public int ShowFriendlyIntelLevel => ServerConfig.ShowFriendlyIntelLevel > Settings.ShowFriendlyIntelLevel.Value ? ServerConfig.ShowFriendlyIntelLevel : Settings.ShowFriendlyIntelLevel.Value;
+            public int ShowAirdropIntelLevel => ServerConfig.ShowAirdropIntelLevel > Settings.ShowAirdropIntelLevel.Value ? ServerConfig.ShowAirdropIntelLevel : Settings.ShowAirdropIntelLevel.Value;
+            public int ShowCorpseIntelLevel => ServerConfig.ShowCorpseIntelLevel > Settings.ShowCorpseIntelLevel.Value ? ServerConfig.ShowCorpseIntelLevel : Settings.ShowCorpseIntelLevel.Value;
+
+            public int? ShowWishListItemsIntelLevel => ServerConfig.ShowWishListIntelLevel > Settings.ShowWishListItemsIntelLevel.Value ? ServerConfig.ShowWishListIntelLevel : Settings.ShowWishListItemsIntelLevel.Value;
+
+            public int ShowHiddenStashIntelLevel => ServerConfig.ShowHiddenStashIntelLevel > Settings.ShowHiddenStashIntelLevel.Value ? ServerConfig.ShowHiddenStashIntelLevel : Settings.ShowHiddenStashIntelLevel.Value;
         }
 
-
         private float _zoomMapHotkeySpeed = 2.5f;
-        
+
         #endregion
-        
+
         internal static ModdedMapScreen Create(GameObject parent)
         {
             var go = UIUtils.CreateUIGameObject(parent, "ModdedMapBlock");
@@ -127,12 +157,12 @@ namespace DynamicMaps.UI
             var scrollRectGO = UIUtils.CreateUIGameObject(gameObject, "Scroll");
             var scrollMaskGO = UIUtils.CreateUIGameObject(scrollRectGO, "ScrollMask");
 
-            Settings.MiniMapPosition.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            
+            Settings.MiniMapPosition.SettingChanged += (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapScreenOffsetX.SettingChanged += (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapScreenOffsetY.SettingChanged += (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapSizeX.SettingChanged += (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapSizeY.SettingChanged += (sender, args) => AdjustForMiniMap(false);
+
             _mapView = MapView.Create(scrollMaskGO, "MapView");
 
             // set up mask; size will be set later in Raid/NoRaid
@@ -185,12 +215,12 @@ namespace DynamicMaps.UI
         private void OnDestroy()
         {
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
-            
-            Settings.MiniMapPosition.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+
+            Settings.MiniMapPosition.SettingChanged -= (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapScreenOffsetX.SettingChanged -= (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapScreenOffsetY.SettingChanged -= (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapSizeX.SettingChanged -= (sender, args) => AdjustForMiniMap(false);
+            Settings.MiniMapSizeY.SettingChanged -= (sender, args) => AdjustForMiniMap(false);
         }
 
         private void Update()
@@ -218,7 +248,7 @@ namespace DynamicMaps.UI
                     _levelSelectSlider.ChangeLevelBy(-1);
                 }
             }
-            
+
             // shift hotkeys
             var shiftMapX = 0f;
             var shiftMapY = 0f;
@@ -245,7 +275,7 @@ namespace DynamicMaps.UI
                     shiftMapX += 1f;
                 }
             }
-            
+
             if (shiftMapX != 0f || shiftMapY != 0f)
             {
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
@@ -260,9 +290,9 @@ namespace DynamicMaps.UI
             {
                 OnZoomMain();
             }
-            
+
             OnCenter();
-            
+
             if (_dumpShortcut.BetterIsDown())
             {
                 DumpUtils.DumpExtracts();
@@ -285,7 +315,7 @@ namespace DynamicMaps.UI
             if (_peekComponent is not null)
             {
                 _peekComponent.WasMiniMapActive = _showingMiniMap;
-                
+
                 _peekComponent?.EndPeek();
                 _peekComponent?.EndMiniMap();
             }
@@ -296,7 +326,7 @@ namespace DynamicMaps.UI
             {
                 _mapView.SetMapPos(_mapView.MainMapPos, 0f);
             }
-            
+
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
             transform.parent.gameObject.SetActive(true);
@@ -309,7 +339,7 @@ namespace DynamicMaps.UI
             Hide();
 
             IsShowingMapScreen = false;
-            
+
             if (_peekComponent is not null && _peekComponent.WasMiniMapActive)
             {
                 _peekComponent.BeginMiniMap();
@@ -324,7 +354,7 @@ namespace DynamicMaps.UI
                 AdjustSizeAndPosition();
                 _initialized = true;
             }
-            
+
             _isShown = true;
             gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
 
@@ -366,7 +396,7 @@ namespace DynamicMaps.UI
         private void OnRaidEnd()
         {
             if (!BattleUIScreenShowPatch.IsAttached) return;
-            
+
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
                 try
@@ -384,16 +414,16 @@ namespace DynamicMaps.UI
             // reset peek and remove reference, it will be destroyed very shortly with parent object
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
-            
+
             Destroy(_peekComponent.gameObject);
             _peekComponent = null;
 
             // unload map completely when raid ends, since we've removed markers
             _mapView.UnloadMap();
         }
-        
+
         #endregion
-        
+
         #region Size And Positioning
 
         private void AdjustSizeAndPosition()
@@ -432,11 +462,11 @@ namespace DynamicMaps.UI
         private void AdjustForInRaid(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             // adjust mask
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, _transitionAnimations ? speed : 0f);
-            
+
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(true);
@@ -446,11 +476,11 @@ namespace DynamicMaps.UI
         private void AdjustForPeek(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             // adjust mask
             _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
-            
+
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
@@ -460,20 +490,20 @@ namespace DynamicMaps.UI
         private void AdjustForMiniMap(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             var cornerPosition = ConvertEnumToScreenPos(Settings.MiniMapPosition.Value);
-            
+
             var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value);
             offset *= ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
-            
+
             var size = new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
-            
+
             _scrollMask.GetRectTransform().DOSizeDelta(size, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(offset, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMin(cornerPosition, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMax(cornerPosition, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOPivot(cornerPosition, _transitionAnimations ? speed : 0f);
-            
+
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
             _levelSelectSlider.gameObject.SetActive(false);
@@ -485,18 +515,18 @@ namespace DynamicMaps.UI
             // 0,1 Top left
             // 1,1 Top right
             // 1,0 Bottom right
-            
+
             switch (pos)
             {
                 case EMiniMapPosition.TopRight:
                     return new Vector2(1, 1);
-                
+
                 case EMiniMapPosition.BottomRight:
                     return new Vector2(1, 0);
-                
+
                 case EMiniMapPosition.TopLeft:
                     return new Vector2(0, 1);
-                
+
                 case EMiniMapPosition.BottomLeft:
                     return new Vector2(0, 0);
             }
@@ -510,25 +540,25 @@ namespace DynamicMaps.UI
             // Bottom right = neg pos
             // Top left = pos neg
             // Bottom left = pos pos
-            
+
             switch (pos)
             {
                 case EMiniMapPosition.TopRight:
                     return new Vector2(-1, -1);
-                
+
                 case EMiniMapPosition.BottomRight:
                     return new Vector2(-1, 1);
-                
+
                 case EMiniMapPosition.TopLeft:
                     return new Vector2(1, -1);
-                
+
                 case EMiniMapPosition.BottomLeft:
                     return new Vector2(1, 1);
             }
 
             return Vector2.zero;
         }
-        
+
         #endregion
 
         #region Show And Hide Bottom Level
@@ -547,7 +577,7 @@ namespace DynamicMaps.UI
             {
                 AdjustForInRaid(playAnimation);
             }
-            
+
             // filter dropdown to only maps containing the internal map name
             var mapInternalName = GameUtils.GetCurrentMapInternalName();
             _mapSelectDropdown.FilterByInternalMapName(mapInternalName);
@@ -588,7 +618,7 @@ namespace DynamicMaps.UI
                 _mapView.SetMapPos(_mapView.MainMapPos, _transitionAnimations ? 0.35f : 0f);
                 return;
             }
-            
+
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
@@ -666,9 +696,9 @@ namespace DynamicMaps.UI
         }
 
         #endregion
-        
+
         #region Map Manipulation
-        
+
         private void OnScroll(float scrollAmount)
         {
             if (_isPeeking || _showingMiniMap)
@@ -700,7 +730,7 @@ namespace DynamicMaps.UI
         private void OnZoomMain()
         {
             var zoomAmount = 0f;
-            
+
             if (_zoomMainMapOutShortcut.BetterIsPressed())
             {
                 zoomAmount -= 1f;
@@ -710,44 +740,44 @@ namespace DynamicMaps.UI
             {
                 zoomAmount += 1f;
             }
-            
+
             if (zoomAmount != 0f)
             {
                 var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                 _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
-                
+
                 return;
             }
-            
+
             _mapView.SetMapZoom(_mapView.ZoomMain, 0f);
         }
 
         private void OnZoomMini()
         {
             var zoomAmount = 0f;
-            
+
             if (_zoomMiniMapOutShortcut.BetterIsPressed())
             {
                 zoomAmount -= 1f;
             }
-            
+
             if (_zoomMiniMapInShortcut.BetterIsPressed())
             {
                 zoomAmount += 1f;
             }
-            
+
             if (zoomAmount != 0f)
             {
                 var player = GameUtils.GetMainPlayer();
                 var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-                    
+
                 _mapView.IncrementalZoomIntoMiniMap(zoomAmount, mapPosition, 0.0f);
-                
+
                 return;
             }
-            
+
             _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false, true);
         }
 
@@ -756,16 +786,16 @@ namespace DynamicMaps.UI
             if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
             {
                 var player = GameUtils.GetMainPlayer();
-                
+
                 if (player is not null)
                 {
                     var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-                    
+
                     _mapView.ShiftMapToCoordinate(
-                        mapPosition, 
-                        _showingMiniMap ? 0f : _positionTweenTime, 
+                        mapPosition,
+                        _showingMiniMap ? 0f : _positionTweenTime,
                         _showingMiniMap);
-                    
+
                     _mapView.SelectLevelByCoords(mapPosition);
                 }
             }
@@ -791,28 +821,28 @@ namespace DynamicMaps.UI
 
             _zoomMainMapInShortcut = Settings.ZoomMapInHotkey.Value;
             _zoomMainMapOutShortcut = Settings.ZoomMapOutHotkey.Value;
-            
+
             _zoomMiniMapInShortcut = Settings.ZoomInMiniMapHotkey.Value;
             _zoomMiniMapOutShortcut = Settings.ZoomOutMiniMapHotkey.Value;
-            
+
             _zoomMapHotkeySpeed = Settings.ZoomMapHotkeySpeed.Value;
 
             _autoCenterOnPlayerMarker = Settings.AutoCenterOnPlayerMarker.Value;
             _resetZoomOnCenter = Settings.ResetZoomOnCenter.Value;
             _rememberMapPosition = Settings.RetainMapPosition.Value;
-            
+
             _autoSelectLevel = Settings.AutoSelectLevel.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
 
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
-            
+
             if (_mapView is not null)
             {
                 _mapView.ZoomMain = Settings.ZoomMainMap.Value;
                 _mapView.ZoomMini = Settings.ZoomMiniMap.Value;
             }
-            
+
             if (_peekComponent is not null)
             {
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;
@@ -820,74 +850,74 @@ namespace DynamicMaps.UI
                 _peekComponent.HideMinimapShortcut = Settings.MiniMapShowOrHide.Value;
             }
 
-            AddRemoveMarkerProvider<PlayerMarkerProvider>(Settings.ShowPlayerMarker.Value);
-            AddRemoveMarkerProvider<QuestMarkerProvider>(Settings.ShowQuestsInRaid.Value);
-            AddRemoveMarkerProvider<LockedDoorMarkerMutator>(Settings.ShowLockedDoorStatus.Value);
-            AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
-            AddRemoveMarkerProvider<BTRMarkerProvider>(Settings.ShowBTRInRaid.Value);
-            AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
-            AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
-            AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
-            AddRemoveMarkerProvider<TransitMarkerProvider>(Settings.ShowTransitPointsInRaid.Value);
-            AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
-            
-            if (Settings.ShowAirdropsInRaid.Value)
+            AddRemoveMarkerProvider<PlayerMarkerProvider>(_config.ShowPlayerMarker);
+            AddRemoveMarkerProvider<QuestMarkerProvider>(_config.ShowQuestsInRaid);
+            AddRemoveMarkerProvider<LockedDoorMarkerMutator>(_config.ShowLockedDoorStatus);
+            AddRemoveMarkerProvider<BackpackMarkerProvider>(_config.ShowDroppedBackpackInRaid);
+            AddRemoveMarkerProvider<BTRMarkerProvider>(_config.ShowBTRInRaid);
+            AddRemoveMarkerProvider<AirdropMarkerProvider>(_config.ShowAirdropsInRaid);
+            AddRemoveMarkerProvider<LootMarkerProvider>(_config.ShowWishlistedItemsInRaid);
+            AddRemoveMarkerProvider<HiddenStashMarkerProvider>(_config.ShowHiddenStashesInRaid);
+            AddRemoveMarkerProvider<TransitMarkerProvider>(_config.ShowTransitPointsInRaid);
+            AddRemoveMarkerProvider<SecretMarkerProvider>(_config.ShowSecretExtractsInRaid);
+
+            if (_config.ShowAirdropsInRaid)
             {
                 GetMarkerProvider<AirdropMarkerProvider>()
                     .RefreshMarkers();
             }
 
-            if (Settings.ShowWishListItemsInRaid.Value)
+            if (_config.ShowWishlistedItemsInRaid)
             {
                 GetMarkerProvider<LootMarkerProvider>()
                     .RefreshMarkers();
             }
 
-            if (Settings.ShowHiddenStashesInRaid.Value)
+            if (_config.ShowHiddenStashesInRaid)
             {
                 GetMarkerProvider<HiddenStashMarkerProvider>()
                     .RefreshMarkers();
             }
 
             // Transits
-            if (Settings.ShowTransitPointsInRaid.Value)
+            if (_config.ShowTransitPointsInRaid)
             {
                 GetMarkerProvider<TransitMarkerProvider>()
                     .RefreshMarkers(_mapView);
             }
 
             // Secret Exfils
-            AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
-            if (Settings.ShowSecretPointsInRaid.Value)
+            AddRemoveMarkerProvider<SecretMarkerProvider>(_config.ShowSecretExtractsInRaid);
+            if (_config.ShowSecretExtractsInRaid)
             {
                 var provider = GetMarkerProvider<SecretMarkerProvider>();
-                provider.ShowExtractStatusInRaid = Settings.ShowExtractStatusInRaid.Value;
+                provider.ShowExtractStatusInRaid = _config.ShowExtractsStatusInRaid;
             }
 
             // Exfils
-            AddRemoveMarkerProvider<ExtractMarkerProvider>(Settings.ShowExtractsInRaid.Value);
-            if (Settings.ShowExtractsInRaid.Value)
+            AddRemoveMarkerProvider<ExtractMarkerProvider>(_config.ShowExtractsInRaid);
+            if (_config.ShowExtractsInRaid)
             {
                 var provider = GetMarkerProvider<ExtractMarkerProvider>();
-                provider.ShowExtractStatusInRaid = Settings.ShowExtractStatusInRaid.Value;
+                provider.ShowExtractStatusInRaid = _config.ShowExtractsStatusInRaid;
             }
 
             // other player markers
-            var needOtherPlayerMarkers = Settings.ShowFriendlyPlayerMarkersInRaid.Value
-                                      || Settings.ShowEnemyPlayerMarkersInRaid.Value
-                                      || Settings.ShowBossMarkersInRaid.Value
-                                      || Settings.ShowScavMarkersInRaid.Value;
+            var needOtherPlayerMarkers = _config.ShowFriendlyPlayerMarkersInRaid
+                                      || _config.ShowEnemyPlayerMarkersInRaid
+                                      || _config.ShowBossMarkersInRaid
+                                      || _config.ShowScavMarkersInRaid;
 
             AddRemoveMarkerProvider<OtherPlayersMarkerProvider>(needOtherPlayerMarkers);
-            
+
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
-                provider.ShowFriendlyPlayers = _serverConfig.allowShowFriendlyPlayerMarkersInRaid ? Settings.ShowFriendlyPlayerMarkersInRaid.Value : false;
-                provider.ShowEnemyPlayers = _serverConfig.allowShowEnemyPlayerMarkersInRaid ? Settings.ShowEnemyPlayerMarkersInRaid.Value : false;
-                provider.ShowScavs = _serverConfig.allowShowScavMarkersInRaid ? Settings.ShowScavMarkersInRaid.Value : false;
-                provider.ShowBosses = _serverConfig.allowShowBossMarkersInRaid ? Settings.ShowBossMarkersInRaid.Value : false;
-                
+                provider.ShowFriendlyPlayers = _config.ShowFriendlyPlayerMarkersInRaid;
+                provider.ShowEnemyPlayers = _config.ShowEnemyPlayerMarkersInRaid;
+                provider.ShowScavs = _config.ShowScavMarkersInRaid;
+                provider.ShowBosses = _config.ShowBossMarkersInRaid;
+
                 provider.RefreshMarkers();
             }
 
@@ -902,18 +932,18 @@ namespace DynamicMaps.UI
             if (needCorpseMarkers)
             {
                 var provider = GetMarkerProvider<CorpseMarkerProvider>();
-                provider.ShowFriendlyCorpses = Settings.ShowFriendlyCorpsesInRaid.Value;
-                provider.ShowKilledCorpses = Settings.ShowKilledCorpsesInRaid.Value;
-                provider.ShowFriendlyKilledCorpses = Settings.ShowFriendlyKilledCorpsesInRaid.Value;
-                provider.ShowBossCorpses = Settings.ShowBossCorpsesInRaid.Value;
-                provider.ShowOtherCorpses = Settings.ShowOtherCorpsesInRaid.Value;
-                
+                provider.ShowFriendlyCorpses = _config.ShowFriendlyCorpses;
+                provider.ShowKilledCorpses = _config.ShowKilledCorpses;
+                provider.ShowFriendlyKilledCorpses = _config.ShowFriendlyKilledCorpses;
+                provider.ShowBossCorpses = _config.ShowBossCorpses;
+                provider.ShowOtherCorpses = _config.ShowOtherCorpses;
+
                 provider.RefreshMarkers();
             }
-            
+
             if (ModDetection.HeliCrashLoaded)
             {
-                AddRemoveMarkerProvider<HeliCrashMarkerProvider>(Settings.ShowHeliCrashMarker.Value);
+                AddRemoveMarkerProvider<HeliCrashMarkerProvider>(_config.ShowHeliCrashSiteInRaid);
             }
         }
 
@@ -927,13 +957,13 @@ namespace DynamicMaps.UI
 
             Plugin.Log.LogInfo("Trying to attach peek component to BattleUI");
 
-            _peekComponent = MapPeekComponent.Create(battleUI.gameObject);
+            _peekComponent = MapPeekComponent.Create(battleUI.gameObject, _config);
             _peekComponent.MapScreen = this;
             _peekComponent.MapScreenTrueParent = _parentTransform;
 
             ReadConfig();
         }
-        
+
         public void AddRemoveMarkerProvider<T>(bool status) where T : IDynamicMarkerProvider, new()
         {
             if (status && !_dynamicMarkerProviders.ContainsKey(typeof(T)))

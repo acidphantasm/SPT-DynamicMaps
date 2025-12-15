@@ -3,6 +3,7 @@ using System.Linq;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
+using DynamicMaps.UI;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT.SynchronizableObjects;
@@ -25,7 +26,7 @@ namespace DynamicMaps.DynamicMarkers
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-            
+
             // add all existing airdrops
             foreach (var airdrop in AirdropBoxOnBoxLandPatch.Airdrops)
             {
@@ -78,7 +79,7 @@ namespace DynamicMaps.DynamicMarkers
                 TryAddMarker(drop);
             }
         }
-        
+
         private void TryAddMarker(AirdropSynchronizableObject airdrop)
         {
             if (_airdropMarkers.ContainsKey(airdrop))
@@ -88,21 +89,21 @@ namespace DynamicMaps.DynamicMarkers
 
             var intelLevel = GameUtils.GetIntelLevel();
 
-            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) return;
-            
-            var markerDef = new MapMarkerDef
+            if (ModdedMapScreen._config.ShowAirdropIntelLevel > intelLevel) return;
             {
-                Category = _airdropCategory,
-                Color = Settings.AirdropColor.Value,
-                ImagePath = _airdropImagePath,
-                Position = MathUtils.ConvertToMapPosition(airdrop.transform),
-                Pivot = _airdropPivot,
-                Text = _airdropName
-            };
+                var markerDef = new MapMarkerDef
+                {
+                    Category = _airdropCategory,
+                    Color = Settings.AirdropColor.Value,
+                    ImagePath = _airdropImagePath,
+                    Position = MathUtils.ConvertToMapPosition(airdrop.transform),
+                    Pivot = _airdropPivot,
+                    Text = _airdropName
+                };
 
-            var marker = _lastMapView.AddMapMarker(markerDef);
-            _airdropMarkers[airdrop] = marker;
-        }
+                var marker = _lastMapView.AddMapMarker(markerDef);
+                _airdropMarkers[airdrop] = marker;
+            }
 
         private void TryRemoveMarkers()
         {

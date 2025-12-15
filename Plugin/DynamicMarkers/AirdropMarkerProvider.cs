@@ -90,20 +90,20 @@ namespace DynamicMaps.DynamicMarkers
             var intelLevel = GameUtils.GetIntelLevel();
 
             if (ModdedMapScreen._config.ShowAirdropIntelLevel > intelLevel) return;
-            {
-                var markerDef = new MapMarkerDef
-                {
-                    Category = _airdropCategory,
-                    Color = Settings.AirdropColor.Value,
-                    ImagePath = _airdropImagePath,
-                    Position = MathUtils.ConvertToMapPosition(airdrop.transform),
-                    Pivot = _airdropPivot,
-                    Text = _airdropName
-                };
 
-                var marker = _lastMapView.AddMapMarker(markerDef);
-                _airdropMarkers[airdrop] = marker;
-            }
+            var markerDef = new MapMarkerDef
+            {
+                Category = _airdropCategory,
+                Color = Settings.AirdropColor.Value,
+                ImagePath = _airdropImagePath,
+                Position = MathUtils.ConvertToMapPosition(airdrop.transform),
+                Pivot = _airdropPivot,
+                Text = _airdropName
+            };
+
+            var marker = _lastMapView.AddMapMarker(markerDef);
+            _airdropMarkers[airdrop] = marker;
+        }
 
         private void TryRemoveMarkers()
         {

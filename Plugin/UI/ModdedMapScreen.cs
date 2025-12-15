@@ -133,9 +133,7 @@ namespace DynamicMaps.UI
             public int ShowFriendlyIntelLevel => ServerConfig.ShowFriendlyIntelLevel > Settings.ShowFriendlyIntelLevel.Value ? ServerConfig.ShowFriendlyIntelLevel : Settings.ShowFriendlyIntelLevel.Value;
             public int ShowAirdropIntelLevel => ServerConfig.ShowAirdropIntelLevel > Settings.ShowAirdropIntelLevel.Value ? ServerConfig.ShowAirdropIntelLevel : Settings.ShowAirdropIntelLevel.Value;
             public int ShowCorpseIntelLevel => ServerConfig.ShowCorpseIntelLevel > Settings.ShowCorpseIntelLevel.Value ? ServerConfig.ShowCorpseIntelLevel : Settings.ShowCorpseIntelLevel.Value;
-
-            public int? ShowWishListItemsIntelLevel => ServerConfig.ShowWishListIntelLevel > Settings.ShowWishListItemsIntelLevel.Value ? ServerConfig.ShowWishListIntelLevel : Settings.ShowWishListItemsIntelLevel.Value;
-
+            public int ShowWishListItemsIntelLevel => ServerConfig.ShowWishListIntelLevel > Settings.ShowWishListItemsIntelLevel.Value ? ServerConfig.ShowWishListIntelLevel : Settings.ShowWishListItemsIntelLevel.Value;
             public int ShowHiddenStashIntelLevel => ServerConfig.ShowHiddenStashIntelLevel > Settings.ShowHiddenStashIntelLevel.Value ? ServerConfig.ShowHiddenStashIntelLevel : Settings.ShowHiddenStashIntelLevel.Value;
         }
 

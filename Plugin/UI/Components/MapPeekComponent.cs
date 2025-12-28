@@ -1,7 +1,9 @@
 using BepInEx.Configuration;
 using DynamicMaps.Config;
 using DynamicMaps.Utils;
+using System;
 using UnityEngine;
+using static DynamicMaps.UI.ModdedMapScreen;
 
 namespace DynamicMaps.UI.Components
 {
@@ -15,17 +17,18 @@ namespace DynamicMaps.UI.Components
         public KeyboardShortcut HideMinimapShortcut { get; set; }
         public bool HoldForPeek { get; set; }  // opposite is peek toggle
         public bool IsPeeking { get; private set; }
-        private static bool IsMiniMapEnabled => Settings.MiniMapEnabled.Value;
+        public Func<bool> IsMiniMapEnabled { get; private set; }
         public bool ShowingMiniMap { get; private set; }
         public bool WasMiniMapActive { get; set; }
         private bool IsMiniMapHidden = false;
-        
-        internal static MapPeekComponent Create(GameObject parent)
+
+        internal static MapPeekComponent Create(GameObject parent, CombinedConfig config)
         {
             var go = UIUtils.CreateUIGameObject(parent, "MapPeek");
             go.GetRectTransform().sizeDelta = parent.GetRectTransform().sizeDelta;
 
             var component = go.AddComponent<MapPeekComponent>();
+            component.IsMiniMapEnabled = () => config.AllowMiniMap;
 
             return component;
         }
@@ -51,28 +54,28 @@ namespace DynamicMaps.UI.Components
 
                 return;
             }
-            
+
             HandleMinimapState();
             HandlePeekState();
         }
 
         private void HandleMinimapState()
         {
-            if (!IsMiniMapEnabled)
+            if (!IsMiniMapEnabled.Invoke())
             {
                 if (ShowingMiniMap)
                 {
                     EndMiniMap();
                     WasMiniMapActive = false;
                 }
-                
+
                 return;
             }
-            
+
             if (HideMinimapShortcut.BetterIsDown())
             {
                 IsMiniMapHidden = !IsMiniMapHidden;
-                
+
                 if (!IsMiniMapHidden && !ShowingMiniMap)
                 {
                     BeginMiniMap(false);
@@ -86,7 +89,7 @@ namespace DynamicMaps.UI.Components
             }
 
             if (IsMiniMapHidden) return;
-            
+
             if (!IsPeeking && !MapScreen.IsShowingMapScreen)
             {
                 BeginMiniMap();
@@ -128,16 +131,16 @@ namespace DynamicMaps.UI.Components
                 }
             }
         }
-        
+
         private void BeginPeek(bool playAnimation = true)
         {
             if (IsPeeking) return;
-            
+
             // just in case something else is attached and tries to be in front
             transform.SetAsLastSibling();
 
             IsPeeking = true;
-            
+
             // attach map screen to peek mask
             MapScreen.transform.SetParent(RectTransform);
             MapScreen.Show(playAnimation);
@@ -148,7 +151,7 @@ namespace DynamicMaps.UI.Components
             if (!IsPeeking) return;
 
             IsPeeking = false;
-            
+
             // un-attach map screen and re-attach to true parent
             MapScreen.Hide();
             MapScreen.transform.SetParent(MapScreenTrueParent);
@@ -158,16 +161,16 @@ namespace DynamicMaps.UI.Components
                 BeginMiniMap();
             }
         }
-    
+
         internal void BeginMiniMap(bool playAnimation = true)
         {
             if (ShowingMiniMap) return;
-            
+
             ShowingMiniMap = true;
-            
+
             // just in case something else is attached and tries to be in front
             transform.SetAsLastSibling();
-            
+
             MapScreen.transform.SetParent(RectTransform);
             MapScreen.Show(playAnimation);
         }
@@ -175,9 +178,9 @@ namespace DynamicMaps.UI.Components
         internal void EndMiniMap()
         {
             if (!ShowingMiniMap) return;
-            
+
             ShowingMiniMap = false;
-            
+
             MapScreen.Hide();
             MapScreen.transform.SetParent(MapScreenTrueParent);
         }

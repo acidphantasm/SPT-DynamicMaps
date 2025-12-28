@@ -4,6 +4,7 @@ using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
+using DynamicMaps.UI;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
@@ -223,7 +224,7 @@ namespace DynamicMaps.DynamicMarkers
 
             var intelLevel = GameUtils.GetIntelLevel();
             
-            if (Settings.ShowCorpseIntelLevel.Value > intelLevel) return;
+            if (ModdedMapScreen._config.ShowCorpseIntelLevel > intelLevel) return;
             
             // set category and color
             var category = _otherCorpseCategory;

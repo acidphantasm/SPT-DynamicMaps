@@ -4,6 +4,7 @@ using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
+using DynamicMaps.UI;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
@@ -238,19 +239,19 @@ namespace DynamicMaps.DynamicMarkers
             
             var intelLevel = GameUtils.GetIntelLevel();
             
-            if (player.IsGroupedWithMainPlayer() && Settings.ShowFriendlyIntelLevel.Value <= intelLevel)
+            if (player.IsGroupedWithMainPlayer() && ModdedMapScreen._config.ShowFriendlyIntelLevel <= intelLevel)
             {
                 category = _friendlyPlayerCategory;
                 imagePath = _friendlyPlayerImagePath;
                 color = _friendlyPlayerColor;
             }
-            else if (player.IsTrackedBoss() && Settings.ShowBossIntelLevel.Value <= intelLevel)
+            else if (player.IsTrackedBoss() && ModdedMapScreen._config.ShowBossIntelLevel <= intelLevel)
             {
                 category = _bossCategory;
                 imagePath = _bossImagePath;
                 color = Settings.BossColor.Value;
             }
-            else if (player.IsPMC() && Settings.ShowPmcIntelLevel.Value <= intelLevel)
+            else if (player.IsPMC() && ModdedMapScreen._config.ShowPmcIntelLevel <= intelLevel)
             {
                 category = _enemyPlayerCategory;
                 imagePath = _enemyPlayerImagePath;
@@ -259,7 +260,7 @@ namespace DynamicMaps.DynamicMarkers
                     : Settings.PmcUsecColor.Value;
                     
             }
-            else if (player.IsScav() && Settings.ShowScavIntelLevel.Value <= intelLevel)
+            else if (player.IsScav() && ModdedMapScreen._config.ShowScavIntelLevel <= intelLevel)
             {
                 category = _scavCategory;
                 imagePath = _scavImagePath;

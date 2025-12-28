@@ -10,6 +10,7 @@ using EFT;
 using EFT.Vehicle;
 using HarmonyLib;
 using UnityEngine.Profiling;
+using DynamicMaps.UI;
 
 namespace DynamicMaps.Utils
 {
@@ -18,7 +19,7 @@ namespace DynamicMaps.Utils
         // reflection        
         private static FieldInfo _playerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
         private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
-        
+
         private static Type _profileInterface = typeof(ISession).GetInterfaces().First(i =>
             {
                 var properties = i.GetProperties();
@@ -71,7 +72,7 @@ namespace DynamicMaps.Utils
             { "Sandbox_high", "6738033eb7305d3bdafe9518"},
             { "Labyrinth", "68f1ad32317cc52f4c0b6fae" }
         };
-        
+
         public static bool IsInRaid()
         {
             var game = Singleton<AbstractGame>.Instance;
@@ -88,7 +89,7 @@ namespace DynamicMaps.Utils
             var gameWorld = Singleton<GameWorld>.Instance;
             return gameWorld?.MainPlayer?.Location;
         }
-        
+
         public static Player GetMainPlayer()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
@@ -122,7 +123,7 @@ namespace DynamicMaps.Utils
             // TODO: use reflection to get rid of this gclass reference
             return id.ToString().Localized();
         }
-        
+
         public static string BSGLocalized(this string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -214,14 +215,14 @@ namespace DynamicMaps.Utils
         public static MongoID[] GetWishListItems()
         {
             var wishList = PlayerProfile.WishlistManager.GetWishlist();
-            
+
             return wishList.Keys.ToArray();
         }
-        
+
         public static bool ShouldShowMapInRaid()
         {
-            if (!Settings.RequireMapInInventory.Value || !IsInRaid()) return true;
-            
+            if ((!ModdedMapScreen._config.RequireMapInInventory) || !IsInRaid()) return true;
+
             var player = GetMainPlayer();
             var currentLocation = player.Location;
 
@@ -230,11 +231,11 @@ namespace DynamicMaps.Utils
                 Plugin.Log.LogWarning($"Could not find map id for location {currentLocation} is this a new location?");
                 return true;
             }
-                    
+
             var isMapInInventory = player.Inventory.Equipment
                 .GetAllItems()
                 .Any(m => m.TemplateId == id);
-            
+
             return isMapInInventory;
         }
     }

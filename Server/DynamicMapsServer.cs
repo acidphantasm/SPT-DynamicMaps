@@ -41,18 +41,18 @@ public class DynamicMapsServer(
     : IOnLoad
 {
     private ModConfig? _modConfig;
-    
+
     public Task OnLoad()
-    { 
+    {
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         _modConfig = modHelper.GetJsonDataFromFile<ModConfig>(pathToMod, "config.json");
-        
+
         customStaticRouter.PassConfig(_modConfig);
-        
+
         CreateNewMaps();
         return Task.CompletedTask;
     }
-    
+
     private void CreateNewMaps()
     {
         CreateGroundZeroMap();
@@ -232,7 +232,7 @@ public class DynamicMapsServer(
         customItemService.CreateItemFromClone(lighthouseMap);
         PushToTraderAssort(Traders.THERAPIST, lighthouseMap.NewId, lighthouseMap.HandbookPriceRoubles, assortId);
     }
-    
+
     private void CreateLabyrinthMap()
     {
         NewItemFromCloneDetails labyrinthMap = new NewItemFromCloneDetails()
@@ -291,17 +291,44 @@ public class DynamicMapsServer(
             Count = price,
             Template = ItemTpl.MONEY_ROUBLES
         };
-        
+
         assort.Items.Add(assortEntry);
         assort.BarterScheme[assortId] = [[barterScheme]];
         assort.LoyalLevelItems[assortId] = 1;
     }
 }
-    
+
 public class ModConfig
 {
-    public bool AllowShowFriendlyPlayerMarkersInRaid { get; set; }
-    public bool AllowShowEnemyPlayerMarkersInRaid { get; set; }
-    public bool AllowShowBossMarkersInRaid { get; set; }
-    public bool AllowShowScavMarkersInRaid { get; set; }
+    public bool AllowShowPlayerMarker { get; set; } = true;
+    public bool AllowShowFriendlyPlayerMarkersInRaid { get; set; } = true;
+    public bool AllowShowEnemyPlayerMarkersInRaid { get; set; } = true;
+    public bool AllowShowBossMarkersInRaid { get; set; } = true;
+    public bool AllowShowScavMarkersInRaid { get; set; } = true;
+    public bool AllowShowLockedDoorStatus { get; set; } = true;
+    public bool AllowShowQuestsInRaid { get; set; } = true;
+    public bool AllowShowExtractsInRaid { get; set; } = true;
+    public bool AllowShowExtractStatusInRaid { get; set; } = true;
+    public bool AllowShowTransitPointsInRaid { get; set; } = true;
+    public bool AllowShowSecretExtractsInRaid { get; set; } = true;
+    public bool AllowShowDroppedBackpackInRaid { get; set; } = true;
+    public bool AllowShowWishlistedItemsInRaid { get; set; } = true;
+    public bool AllowShowBTRInRaid { get; set; } = true;
+    public bool AllowShowAirdropsInRaid { get; set; } = true;
+    public bool AllowShowHiddenStashesInRaid { get; set; } = true;
+    public bool AllowShowFriendlyCorpses { get; set; } = true;
+    public bool AllowShowKilledCorpses { get; set; } = true;
+    public bool AllowShowFriendlyKilledCorpses { get; set; } = true;
+    public bool AllowShowBossCorpses { get; set; } = true;
+    public bool AllowShowOtherCorpses { get; set; } = true;
+    public bool AllowShowHeliCrashSiteInRaid { get; set; } = true;
+    public bool AllowMiniMap { get; set; } = true;
+    public bool RequireMapInInventory { get; set; } = false;
+    public int ShowScavIntelLevel { get; set; } = 0;
+    public int ShowPmcIntelLevel { get; set; } = 0;
+    public int ShowBossIntelLevel { get; set; } = 0;
+    public int ShowFriendlyIntelLevel { get; set; } = 0;
+    public int ShowCorpseIntelLevel { get; set; } = 0;
+    public int ShowWishListIntelLevel { get; set; } = 0;
+    public int ShowHiddenStashIntelLevel { get; set; } = 0;
 }

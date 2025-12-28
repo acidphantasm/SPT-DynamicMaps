@@ -3,6 +3,7 @@ using System.Linq;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Patches;
+using DynamicMaps.UI;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT.Interactive;
@@ -65,7 +66,7 @@ public class HiddenStashMarkerProvider : IDynamicMarkerProvider
     private void TryAddMarker(LootableContainer stash)
     {
         if (_stashMarkers.ContainsKey(stash)) return;
-        if (Settings.ShowHiddenStashIntelLevel.Value > GameUtils.GetIntelLevel()) return;
+        if (ModdedMapScreen._config.ShowHiddenStashIntelLevel > GameUtils.GetIntelLevel()) return;
 
         var markerDef = new MapMarkerDef
         {

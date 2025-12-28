@@ -3,6 +3,7 @@ using System.Linq;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.UI;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
@@ -74,7 +75,7 @@ namespace DynamicMaps.DynamicMarkers
         private void TryAddMarker(LootItem item)
         {
             if (_lootMarkers.ContainsKey(item)) return;
-            if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
+            if (ModdedMapScreen._config.ShowWishListItemsIntelLevel > GameUtils.GetIntelLevel()) return;
             
             var staticIcons = EFTHardSettings.Instance.StaticIcons;
             var itemType = ItemViewFactory.GetItemType(item.Item.GetType());

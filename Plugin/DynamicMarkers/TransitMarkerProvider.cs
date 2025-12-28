@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
+using EFT;
 using EFT.Interactive;
 
 namespace DynamicMaps.DynamicMarkers;
@@ -59,9 +61,13 @@ public class TransitMarkerProvider : IDynamicMarkerProvider
     
     private void AddTransitMarkers(MapView map)
     {
-        foreach (var point in LocationScene.GetAllObjects<TransitPoint>())
+        var transitController = Singleton<GameWorld>.Instance.TransitController;
+        if (transitController != null)
         {
-            TryAddMarker(map, point);
+            foreach (var point in transitController.Dictionary_0.Values)
+            {
+                TryAddMarker(map, point);
+            }
         }
     }
 

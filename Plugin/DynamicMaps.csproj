@@ -10,7 +10,6 @@
 
   <PropertyGroup>
     <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDir>
-    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDebugDir>
     <TarkovPluginsSPTDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovPluginsSPTDir>
     <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
     <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
@@ -93,13 +92,6 @@
     </Reference>
   </ItemGroup>
 
-  <!-- Gets the commit hash from git -->
-  <Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
-    <Exec Command="git describe --long --always --dirty --exclude=* --abbrev=8" ConsoleToMSBuild="True" IgnoreExitCode="False">
-      <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
-    </Exec>
-  </Target>
-
   <!-- Gets the version property from the VERSION.txt file -->
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <ItemGroup>
@@ -120,19 +112,21 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
-      <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
-      <License Include="$(ProjectDir)LICENSE" />
-      <Resources Include="$(ProjectDir)Resources\**\*.*" />
+        <ServerComponents Include="$(ProjectDir)../Server/bin/Release/mpstark-dynamicmaps/*.*" />
+        <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
+        <License Include="$(ProjectDir)LICENSE" />
+        <Resources Include="$(ProjectDir)Resources\**\*.*" />
     </ItemGroup>
 
     <!-- Copies the output and resources to tarkov game folder -->
-    <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
-    <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDebugDir)BepinEx\plugins\DynamicMaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(TarkovDir)SPT\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
 
     <!-- Creates a release zip file -->
     <RemoveDir Directories="$(ProjectDir)release" />
-    <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
-    <ZipDirectory SourceDirectory="$(ProjectDir)release\DynamicMaps\" DestinationFile="$(ProjectDir)release\DynamicMaps-$(Version)-$(SourceRevisionId).zip" />
+      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(ProjectDir)release\DynamicMaps\SPT\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
+    <ZipDirectory SourceDirectory="$(ProjectDir)release\DynamicMaps\" DestinationFile="$(ProjectDir)release\DynamicMaps-$(Version).zip" />
   </Target>
 
 </Project>

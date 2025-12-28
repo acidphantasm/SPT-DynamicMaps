@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicMaps", "Plugin\DynamicMaps.csproj", "{C09A52F5-F93E-4748-B60D-4D2B2B5A1EBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mpstark-dynamicmaps", "Server\mpstark-dynamicmaps.csproj", "{A3EF2D2C-0B00-40EB-9739-B42EE81053B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C09A52F5-F93E-4748-B60D-4D2B2B5A1EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09A52F5-F93E-4748-B60D-4D2B2B5A1EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09A52F5-F93E-4748-B60D-4D2B2B5A1EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09A52F5-F93E-4748-B60D-4D2B2B5A1EBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3EF2D2C-0B00-40EB-9739-B42EE81053B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EF2D2C-0B00-40EB-9739-B42EE81053B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EF2D2C-0B00-40EB-9739-B42EE81053B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EF2D2C-0B00-40EB-9739-B42EE81053B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

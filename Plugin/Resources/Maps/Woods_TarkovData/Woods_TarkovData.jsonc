@@ -1,371 +1,2688 @@
 {
-    "DisplayName": "Woods (TarkovData)",
-    "Author": "Shebuka",
-    "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
-    "MapInternalNames": [ "Woods" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -756, "y": -915},
-        "Max": {"x": 647, "y": 443}
+  "DisplayName": "Woods (TarkovData)",
+  "Author": "Shebuka",
+  "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
+  "MapInternalNames": [ "Woods" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -756,
+      "y": -915
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Underground": {
-            "Level": -1,
-            "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -756, "y": -915},
-                "Max": {"x": 647, "y": 443}
-            },
-            "GameBounds": [
-                {   // zb-14
-                    "Min": {"x": 435, "y": 55, "z": -100},
-                    "Max": {"x": 455, "y": 75, "z": -12.4}
-                },
-                {   // zb-16
-                    "Min": {"x": -399, "y": 9, "z": -100},
-                    "Max": {"x": -385, "y": 24, "z": 5.1}
-                },
-                {   // scav bunker
-                    "Min": {"x": 211, "y": -715, "z": -100},
-                    "Max": {"x": 245, "y": -691, "z": 22.2}
-                }
-            ]
+    "Max": {
+      "x": 647,
+      "y": 443
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Underground": {
+      "Level": -1,
+      "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -756,
+          "y": -915
         },
-        "Ground Level": {
-            "Level": 0,
-            "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -756, "y": -915},
-                "Max": {"x": 647, "y": 443}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -756, "y": -915, "z": -100},
-                    "Max": {"x": 647, "y": 443, "z": 100}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -756, "y": -915},
-                "Max": {"x": 647, "y": 443}
-            },
-            "GameBounds": [
-                {   // train depot
-                    "Min": {"x": -671, "y": 108, "z": 9.6},
-                    "Max": {"x": -548, "y": 174, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 647,
+          "y": 443
         }
+      },
+      "GameBounds": [
+        { // zb-14
+          "Min": {
+            "x": 435,
+            "y": 55,
+            "z": -100
+          },
+          "Max": {
+            "x": 455,
+            "y": 75,
+            "z": -12.4
+          }
+        },
+        { // zb-16
+          "Min": {
+            "x": -399,
+            "y": 9,
+            "z": -100
+          },
+          "Max": {
+            "x": -385,
+            "y": 24,
+            "z": 5.1
+          }
+        },
+        { // scav bunker
+          "Min": {
+            "x": 211,
+            "y": -715,
+            "z": -100
+          },
+          "Max": {
+            "x": 245,
+            "y": -691,
+            "z": 22.2
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "Sawmill",
-            "Position": {"x": 10, "y": -3, "z": 0},
-            "FontSize": 16
+    "Ground Level": {
+      "Level": 0,
+      "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -756,
+          "y": -915
         },
-        {
-            "Text": "Scav Town",
-            "Position": {"x": -485, "y": -390, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Old Sawmill",
-            "Position": {"x": -517, "y": -210, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cultist Village",
-            "Position": {"x": -80, "y": -705, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "USEC Camp",
-            "Position": {"x": 290, "y": -475, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Military Camp",
-            "Position": {"x": -188, "y": 235, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Ponds",
-            "Position": {"x": -5, "y": -515, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Crash Site",
-            "Position": {"x": -252, "y": -37, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Checkpoint",
-            "Position": {"x": 239, "y": -65, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Shack",
-            "Position": {"x": 244, "y": 125, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Lumber",
-            "Position": {"x": -16, "y": -122, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Cabins",
-            "Position": {"x": -3, "y": -74, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Bus Stop",
-            "Position": {"x": -234, "y": 368, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Jaeger's Camp",
-            "Position": {"x": -327, "y": 19, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Sniper Rock",
-            "Position": {"x": 85, "y": -147, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Convoy",
-            "Position": {"x": 200, "y": -606, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "ZB-016",
-            "Position": {"x": -397, "y": 18, "z": 6},
-            "FontSize": 12
-        },
-        {
-            "Text": "ZB-014",
-            "Position": {"x": 438, "y": 65, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Train Depot",
-            "Position": {"x": -657, "y": 138, "z": 0},
-            "FontSize": 12
+        "Max": {
+          "x": 647,
+          "y": 443
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Friendship Bridge (Co-Op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 93.17, "y": -843.98, "z": 16.57 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Dead Man's Place",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 195.550049, "y": 259.210022, "z": -20.72 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Boat",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 176.640015, "y": 215.859985, "z": -20.72 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Scav House",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 413.47998, "y": 240.5, "z": -12.875 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Scav Bunker",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 220.426651, "y": -705.7956, "z": 20.538269 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Mountain Stash",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -206.59436, "y": -215.9796, "z": 31.47127 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Eastern Rocks",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -509.364319, "y": -35.3295975, "z": 23.9912682 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Old Railway Depot",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -517.93, "y": 149.19, "z": 10.67 },
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "RUAF Gate",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -134.26001, "y": 419.8, "z": -2.37 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "ZB-016",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -389.159973, "y": 11.0449905, "z": 4.147001 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "ZB-014",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 447.659973, "y": 57.46, "z": -13.46346 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "UN Roadblock",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -527.8743, "y": 288.2304, "z": 1.68126917 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Bridge V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -484.5639, "y": -506.413239, "z": 15.5812693 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Outskirts",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 347.15567, "y": 360.0704, "z": -11.15 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Northern UN Roadblock",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -557.324341, "y": -67.0496, "z": 9.321269 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Power Line Passage (Flare)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 573.985657, "y": -85.2596, "z": -1.7487309 },
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Transit to Factory",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -362.45, "y": 360.7704, "z": 0.821269155 },
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Transit",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Transit to Reserve",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 246.06, "y": 369.9, "z": -10.22 },
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Transit",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Transit to Lighthouse",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 494.34, "y": 345.37, "z": -16.77 },
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Transit",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -153.05, "y": 402.13, "z": 1.07 },
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 },
-            "Category": "Transit",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Railway Bridge to Tarkov (Secret)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -730.43, "y": 129.32, "z": 8.7 },
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 },
-            "Category": "Secret",
-            "ShowInRaid": false
-        },
-        {
-            "Text": "Yotota Car",
-            "ImagePath": "Markers/car_door.png",
-            "Position": { "x": -0.1508789, "y": -61.946167, "z": -0.680201769 },
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "591ae8f986f77406f854be45"
-        },
-        {
-            "Text": "ZB-014",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 448.623047, "y": 65.5839844, "z": -13.269 },
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "591afe0186f77431bd616a11"
-        },
-        {
-            "Text": "Shatun's hideout",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -512.66, "y": -387.99, "z": 15.51 },
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "664d3db6db5dea2bad286955"
-        },
-        // {
-        //     "Text": "Shturman's Stash",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 25.1087952, "y": -29.55574, "z": -1.47199988 },
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "Category": "LockedDoor",
-        //     "AssociatedItemId": "5d08d21286f774736e7c94c3"
-        // },
-        {
-            "Text": "Old House",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -655.1675, "y": 183.086014, "z": 8.68574 },
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "6761a6ccd9bbb27ad703c48a"
+          "Min": {
+            "x": -756,
+            "y": -915,
+            "z": -100
+          },
+          "Max": {
+            "x": 647,
+            "y": 443,
+            "z": 100
+          }
         }
-    ]
+      ]
+    },
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Woods_TarkovData/Layers/woods_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -756,
+          "y": -915
+        },
+        "Max": {
+          "x": 647,
+          "y": 443
+        }
+      },
+      "GameBounds": [
+        { // train depot
+          "Min": {
+            "x": -671,
+            "y": 108,
+            "z": 9.6
+          },
+          "Max": {
+            "x": -548,
+            "y": 174,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Sawmill",
+      "Position": {
+        "x": 10,
+        "y": -3,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Scav Town",
+      "Position": {
+        "x": -485,
+        "y": -390,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Old Sawmill",
+      "Position": {
+        "x": -517,
+        "y": -210,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cultist Village",
+      "Position": {
+        "x": -80,
+        "y": -705,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "USEC Camp",
+      "Position": {
+        "x": 290,
+        "y": -475,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Military Camp",
+      "Position": {
+        "x": -188,
+        "y": 235,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Ponds",
+      "Position": {
+        "x": -5,
+        "y": -515,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Crash Site",
+      "Position": {
+        "x": -252,
+        "y": -37,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Checkpoint",
+      "Position": {
+        "x": 239,
+        "y": -65,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Shack",
+      "Position": {
+        "x": 244,
+        "y": 125,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Lumber",
+      "Position": {
+        "x": -16,
+        "y": -122,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Cabins",
+      "Position": {
+        "x": -3,
+        "y": -74,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Bus Stop",
+      "Position": {
+        "x": -234,
+        "y": 368,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Jaeger's Camp",
+      "Position": {
+        "x": -327,
+        "y": 19,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Sniper Rock",
+      "Position": {
+        "x": 85,
+        "y": -147,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Convoy",
+      "Position": {
+        "x": 200,
+        "y": -606,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "ZB-016",
+      "Position": {
+        "x": -397,
+        "y": 18,
+        "z": 6
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "ZB-014",
+      "Position": {
+        "x": 438,
+        "y": 65,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Train Depot",
+      "Position": {
+        "x": -657,
+        "y": 138,
+        "z": 0
+      },
+      "FontSize": 12
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Friendship Bridge (Co-Op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 93.17,
+        "y": -843.98,
+        "z": 16.57
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Dead Man's Place",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 195.550049,
+        "y": 259.210022,
+        "z": -20.72
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Boat",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 176.640015,
+        "y": 215.859985,
+        "z": -20.72
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Scav House",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 413.47998,
+        "y": 240.5,
+        "z": -12.875
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Scav Bunker",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 220.426651,
+        "y": -705.7956,
+        "z": 20.538269
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Mountain Stash",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -206.59436,
+        "y": -215.9796,
+        "z": 31.47127
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Eastern Rocks",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -509.364319,
+        "y": -35.3295975,
+        "z": 23.9912682
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Old Railway Depot",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -517.93,
+        "y": 149.19,
+        "z": 10.67
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "RUAF Gate",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -134.26001,
+        "y": 419.8,
+        "z": -2.37
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "ZB-016",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -389.159973,
+        "y": 11.0449905,
+        "z": 4.147001
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "ZB-014",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 447.659973,
+        "y": 57.46,
+        "z": -13.46346
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "UN Roadblock",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -527.8743,
+        "y": 288.2304,
+        "z": 1.68126917
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Bridge V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -484.5639,
+        "y": -506.413239,
+        "z": 15.5812693
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Outskirts",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 347.15567,
+        "y": 360.0704,
+        "z": -11.15
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Northern UN Roadblock",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -557.324341,
+        "y": -67.0496,
+        "z": 9.321269
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Power Line Passage (Flare)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 573.985657,
+        "y": -85.2596,
+        "z": -1.7487309
+      },
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Transit to Factory",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -362.45,
+        "y": 360.7704,
+        "z": 0.821269155
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      },
+      "Category": "Transit",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Transit to Reserve",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 246.06,
+        "y": 369.9,
+        "z": -10.22
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      },
+      "Category": "Transit",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Transit to Lighthouse",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 494.34,
+        "y": 345.37,
+        "z": -16.77
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      },
+      "Category": "Transit",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Transit to Customs",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -153.05,
+        "y": 402.13,
+        "z": 1.07
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      },
+      "Category": "Transit",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Railway Bridge to Tarkov (Secret)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -730.43,
+        "y": 129.32,
+        "z": 8.7
+      },
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      },
+      "Category": "Secret",
+      "ShowInRaid": false
+    },
+    {
+      "Text": "Yotota Car",
+      "ImagePath": "Markers/car_door.png",
+      "Position": {
+        "x": -0.1508789,
+        "y": -61.946167,
+        "z": -0.680201769
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "591ae8f986f77406f854be45"
+    },
+    {
+      "Text": "ZB-014",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 448.623047,
+        "y": 65.5839844,
+        "z": -13.269
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "591afe0186f77431bd616a11"
+    },
+    {
+      "Text": "Shatun's hideout",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -512.66,
+        "y": -387.99,
+        "z": 15.51
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "664d3db6db5dea2bad286955"
+    },
+    // {
+    //     "Text": "Shturman's Stash",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 25.1087952, "y": -29.55574, "z": -1.47199988 },
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "Category": "LockedDoor",
+    //     "AssociatedItemId": "5d08d21286f774736e7c94c3"
+    // },
+    {
+      "Text": "Old House",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -655.1675,
+        "y": 183.086014,
+        "z": 8.68574
+      },
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "6761a6ccd9bbb27ad703c48a"
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "place_THX_15",
+      "Position": {
+        "x": 23.7940063,
+        "y": -15.413,
+        "z": 99.84198
+      },
+      "Bounds": {
+        "center": {
+          "x": 23.7940063,
+          "y": -15.413,
+          "z": 99.84198
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.0,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_THX_15",
+      "Position": {
+        "x": 23.7940063,
+        "y": -15.413,
+        "z": 99.84198
+      },
+      "Bounds": {
+        "center": {
+          "x": 23.7940063,
+          "y": -15.413,
+          "z": 99.84198
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.0,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "em_quest4_1",
+      "Position": {
+        "x": -533.285034,
+        "y": 18.813,
+        "z": -206.508972
+      },
+      "Bounds": {
+        "center": {
+          "x": -534.20874,
+          "y": 18.6916771,
+          "z": -207.2174
+        },
+        "size": {
+          "x": 2.230835,
+          "y": 1.29498291,
+          "z": 1.80911255
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.16137518,
+        "z": 0.0,
+        "w": 0.9868931
+      }
+    },
+    {
+      "Id": "achiv_plane",
+      "Position": {
+        "x": -252.799988,
+        "y": 14.1,
+        "z": -30.2000122
+      },
+      "Bounds": {
+        "center": {
+          "x": -252.799988,
+          "y": 14.1,
+          "z": -30.2000122
+        },
+        "size": {
+          "x": 49.5917969,
+          "y": 15.0000038,
+          "z": 49.393425
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.389154345,
+        "z": 0.0,
+        "w": 0.9211726
+      }
+    },
+    {
+      "Id": "place_keeper5_1",
+      "Position": {
+        "x": 289.967041,
+        "y": 23.515,
+        "z": -439.011963
+      },
+      "Bounds": {
+        "center": {
+          "x": 289.967041,
+          "y": 23.515,
+          "z": -439.011963
+        },
+        "size": {
+          "x": 2.22253418,
+          "y": 1.0,
+          "z": 1.63049316
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.175826,
+        "z": 0.0,
+        "w": 0.9844213
+      }
+    },
+    {
+      "Id": "NosQuests_8_wood_place",
+      "Position": {
+        "x": -219.22699,
+        "y": 64.622,
+        "z": -224.43396
+      },
+      "Bounds": {
+        "center": {
+          "x": -219.22699,
+          "y": 64.622,
+          "z": -224.43396
+        },
+        "size": {
+          "x": 2.48812866,
+          "y": 2.0,
+          "z": 2.48812866
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.144390032,
+        "z": 0.0,
+        "w": 0.9895209
+      }
+    },
+    {
+      "Id": "meh_45_radio_area_mark_1",
+      "Position": {
+        "x": 222.160034,
+        "y": 21.382,
+        "z": -706.6
+      },
+      "Bounds": {
+        "center": {
+          "x": 222.160034,
+          "y": 21.382,
+          "z": -706.6
+        },
+        "size": {
+          "x": 8.200195,
+          "y": 2.89373016,
+          "z": 8.327026
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305243,
+        "z": 0.0,
+        "w": 0.9914451
+      }
+    },
+    {
+      "Id": "huntsman_001",
+      "Position": {
+        "x": -256.0,
+        "y": 9.58,
+        "z": 9.700012
+      },
+      "Bounds": {
+        "center": {
+          "x": -256.0,
+          "y": 9.58,
+          "z": 9.700012
+        },
+        "size": {
+          "x": 10.0,
+          "y": 3.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_terminal_ zone_3",
+      "Position": {
+        "x": -174.238037,
+        "y": 52.084,
+        "z": -232.506958
+      },
+      "Bounds": {
+        "center": {
+          "x": -174.289429,
+          "y": 50.7509155,
+          "z": -232.562256
+        },
+        "size": {
+          "x": 2.0402832,
+          "y": 1.33383179,
+          "z": 2.24954224
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.20183441,
+        "z": 0.0,
+        "w": 0.979419649
+      }
+    },
+    {
+      "Id": "q14_8_5",
+      "Position": {
+        "x": -447.077,
+        "y": 2.061,
+        "z": 249.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -447.077,
+          "y": 2.06100035,
+          "z": 249.0
+        },
+        "size": {
+          "x": 3.03765869,
+          "y": 4.000001,
+          "z": 3.03768921
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "meh_45_radio_area_mark_2",
+      "Position": {
+        "x": -156.091,
+        "y": 52.27,
+        "z": -273.31897
+      },
+      "Bounds": {
+        "center": {
+          "x": -156.091,
+          "y": 52.27,
+          "z": -273.31897
+        },
+        "size": {
+          "x": 4.971985,
+          "y": 3.25669861,
+          "z": 3.133606
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.131613255,
+        "z": 0.0,
+        "w": 0.9913011
+      }
+    },
+    {
+      "Id": "Depo_Zone_2",
+      "Position": {
+        "x": -615.69,
+        "y": 8.094838,
+        "z": 128.68
+      },
+      "Bounds": {
+        "center": {
+          "x": -614.9485,
+          "y": 9.700243,
+          "z": 129.587341
+        },
+        "size": {
+          "x": 13.6871338,
+          "y": 4.358917,
+          "z": 6.968933
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0932546258,
+        "z": 0.0,
+        "w": 0.9956423
+      }
+    },
+    {
+      "Id": "new_year_2024_market_woods",
+      "Position": {
+        "x": 21.22998,
+        "y": -1.22,
+        "z": 16.78003
+      },
+      "Bounds": {
+        "center": {
+          "x": 21.22998,
+          "y": -1.22000027,
+          "z": 16.78003
+        },
+        "size": {
+          "x": 26.4330139,
+          "y": 13.0000019,
+          "z": 36.41382
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.221974015,
+        "z": 0.0,
+        "w": 0.9750526
+      }
+    },
+    {
+      "Id": "Depo_Zone_1",
+      "Position": {
+        "x": -617.2,
+        "y": 8.094838,
+        "z": 154.150024
+      },
+      "Bounds": {
+        "center": {
+          "x": -615.969,
+          "y": 9.700243,
+          "z": 156.42688
+        },
+        "size": {
+          "x": 19.2939453,
+          "y": 4.358917,
+          "z": 20.0244751
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0932546258,
+        "z": 0.0,
+        "w": 0.9956423
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": 410.0,
+        "y": 13.6,
+        "z": -329.0
+      },
+      "Bounds": {
+        "center": {
+          "x": 410.0,
+          "y": 13.5999985,
+          "z": -329.0
+        },
+        "size": {
+          "x": 500.0,
+          "y": 100.0,
+          "z": 1600.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Pack_of_cartridges_2",
+      "Position": {
+        "x": -268.927979,
+        "y": 7.687,
+        "z": -412.652954
+      },
+      "Bounds": {
+        "center": {
+          "x": -269.8039,
+          "y": 8.115383,
+          "z": -412.441772
+        },
+        "size": {
+          "x": 1.85821533,
+          "y": 2.00136566,
+          "z": 3.138733
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0198249016,
+        "z": 0.0,
+        "w": 0.9998035
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": 49.0,
+        "y": 13.6,
+        "z": -372.5
+      },
+      "Bounds": {
+        "center": {
+          "x": 49.0,
+          "y": 13.5999985,
+          "z": -372.5
+        },
+        "size": {
+          "x": 346.0,
+          "y": 100.0,
+          "z": 421.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "bar_fuel3_2",
+      "Position": {
+        "x": -325.042,
+        "y": 15.319,
+        "z": 23.9849854
+      },
+      "Bounds": {
+        "center": {
+          "x": -325.042,
+          "y": 15.319,
+          "z": 23.9849854
+        },
+        "size": {
+          "x": 8.301636,
+          "y": 2.16980743,
+          "z": 8.340885
+        }
+      },
+      "Rotation": {
+        "x": 0.009013214,
+        "y": 0.476693362,
+        "z": 0.00488793151,
+        "w": 0.879009843
+      }
+    },
+    {
+      "Id": "Lost_caravan",
+      "Position": {
+        "x": -39.0599976,
+        "y": 19.884,
+        "z": -250.38
+      },
+      "Bounds": {
+        "center": {
+          "x": -44.4366455,
+          "y": 20.6149712,
+          "z": -251.503662
+        },
+        "size": {
+          "x": 7.10800171,
+          "y": 6.10778046,
+          "z": 8.161377
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.722285032,
+        "z": 0.0,
+        "w": 0.6915955
+      }
+    },
+    {
+      "Id": "em_quest4_2",
+      "Position": {
+        "x": -59.5770264,
+        "y": 10.942,
+        "z": -649.366943
+      },
+      "Bounds": {
+        "center": {
+          "x": -60.3925171,
+          "y": 10.8206778,
+          "z": -650.197754
+        },
+        "size": {
+          "x": 1.73436737,
+          "y": 0.809999466,
+          "z": 1.92651367
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.09174135,
+        "z": 0.0,
+        "w": 0.9957829
+      }
+    },
+    {
+      "Id": "place_peacemaker_007_2_N2_1",
+      "Position": {
+        "x": -88.70001,
+        "y": 12.55,
+        "z": -717.61
+      },
+      "Bounds": {
+        "center": {
+          "x": -88.70001,
+          "y": 12.55,
+          "z": -717.61
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.0,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "q14_8_3",
+      "Position": {
+        "x": -97.25,
+        "y": 13.993,
+        "z": -542.050049
+      },
+      "Bounds": {
+        "center": {
+          "x": -97.25,
+          "y": 13.993,
+          "z": -542.050049
+        },
+        "size": {
+          "x": 3.03768921,
+          "y": 4.0,
+          "z": 3.03771973
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "quest_terminal_ zone_1",
+      "Position": {
+        "x": -234.830017,
+        "y": 68.563,
+        "z": -228.06897
+      },
+      "Bounds": {
+        "center": {
+          "x": -234.8905,
+          "y": 68.44168,
+          "z": -229.168335
+        },
+        "size": {
+          "x": 2.10739136,
+          "y": 1.29498291,
+          "z": 1.8550415
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.221127123,
+        "z": 0.0,
+        "w": 0.975245
+      }
+    },
+    {
+      "Id": "place_keeper5_2",
+      "Position": {
+        "x": 292.484,
+        "y": 23.353,
+        "z": -507.383057
+      },
+      "Bounds": {
+        "center": {
+          "x": 292.484,
+          "y": 23.353,
+          "z": -507.383057
+        },
+        "size": {
+          "x": 1.44464111,
+          "y": 1.0,
+          "z": 2.64172363
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6384556,
+        "z": 0.0,
+        "w": 0.7696586
+      }
+    },
+    {
+      "Id": "NosQuests_5_Flaer_off",
+      "Position": {
+        "x": -529.6,
+        "y": 18.2,
+        "z": -185.099976
+      },
+      "Bounds": {
+        "center": {
+          "x": -529.6,
+          "y": 18.2,
+          "z": -185.099976
+        },
+        "size": {
+          "x": 46.8563538,
+          "y": 15.0,
+          "z": 54.1040344
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.293940336,
+        "z": 0.0,
+        "w": 0.9558238
+      }
+    },
+    {
+      "Id": "place_skier_11_1",
+      "Position": {
+        "x": 31.086792,
+        "y": -13.6127291,
+        "z": 83.0115356
+      },
+      "Bounds": {
+        "center": {
+          "x": 31.086792,
+          "y": -13.6127291,
+          "z": 83.0115356
+        },
+        "size": {
+          "x": 9.426863,
+          "y": 4.000002,
+          "z": 5.086075
+        }
+      },
+      "Rotation": {
+        "x": 8.608912E-08,
+        "y": -0.0621756464,
+        "z": -1.35041756E-08,
+        "w": 0.9980653
+      }
+    },
+    {
+      "Id": "meh_45_radio_area_mark_4",
+      "Position": {
+        "x": 446.337036,
+        "y": -13.139,
+        "z": 69.18402
+      },
+      "Bounds": {
+        "center": {
+          "x": 446.337036,
+          "y": -13.139,
+          "z": 69.18402
+        },
+        "size": {
+          "x": 6.40002441,
+          "y": 3.21999931,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "bar_fuel3_1",
+      "Position": {
+        "x": 356.449951,
+        "y": 0.35,
+        "z": -85.8800049
+      },
+      "Bounds": {
+        "center": {
+          "x": 356.449951,
+          "y": 0.350000024,
+          "z": -85.8800049
+        },
+        "size": {
+          "x": 6.0,
+          "y": 2.0,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "q14_8_1",
+      "Position": {
+        "x": 412.208984,
+        "y": 13.708,
+        "z": -608.531
+      },
+      "Bounds": {
+        "center": {
+          "x": 412.208984,
+          "y": 13.708,
+          "z": -608.531
+        },
+        "size": {
+          "x": 3.03765869,
+          "y": 4.0,
+          "z": 3.03771973
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "q14_8_2",
+      "Position": {
+        "x": -209.221985,
+        "y": 77.521,
+        "z": -279.781
+      },
+      "Bounds": {
+        "center": {
+          "x": -209.221985,
+          "y": 77.521,
+          "z": -279.781
+        },
+        "size": {
+          "x": 3.03768921,
+          "y": 4.0,
+          "z": 3.03765869
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "q_ny_kill_christmas_guys_wood",
+      "Position": {
+        "x": -21.8909912,
+        "y": -14.29,
+        "z": 162.971985
+      },
+      "Bounds": {
+        "center": {
+          "x": -21.8909912,
+          "y": -14.29,
+          "z": 162.971985
+        },
+        "size": {
+          "x": 47.2625427,
+          "y": 5.000002,
+          "z": 47.2625427
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.239522189,
+        "z": 0.0,
+        "w": 0.970890939
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -578.0,
+        "y": 13.6,
+        "z": -9.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -578.0,
+          "y": 13.5999985,
+          "z": -9.0
+        },
+        "size": {
+          "x": 200.800018,
+          "y": 100.0,
+          "z": 237.4
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "meh_45_radio_area_mark_3",
+      "Position": {
+        "x": -157.601013,
+        "y": 47.173,
+        "z": -233.202026
+      },
+      "Bounds": {
+        "center": {
+          "x": -157.601013,
+          "y": 47.173,
+          "z": -233.202026
+        },
+        "size": {
+          "x": 3.947876,
+          "y": 3.09981537,
+          "z": 4.51217651
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.984957159,
+        "z": 0.0,
+        "w": 0.172799021
+      }
+    },
+    {
+      "Id": "Bunker_enter",
+      "Position": {
+        "x": -282.789978,
+        "y": 12.88,
+        "z": -414.77002
+      },
+      "Bounds": {
+        "center": {
+          "x": -284.019958,
+          "y": 14.4759874,
+          "z": -414.268066
+        },
+        "size": {
+          "x": 6.866211,
+          "y": 4.404131,
+          "z": 10.2973633
+        }
+      },
+      "Rotation": {
+        "x": 0.00153300248,
+        "y": 0.170029342,
+        "z": 0.00331042358,
+        "w": 0.985432267
+      }
+    },
+    {
+      "Id": "bar_fuel3_3",
+      "Position": {
+        "x": -200.406982,
+        "y": 31.302,
+        "z": -210.924011
+      },
+      "Bounds": {
+        "center": {
+          "x": -200.406982,
+          "y": 31.302002,
+          "z": -210.924011
+        },
+        "size": {
+          "x": 8.047119,
+          "y": 2.000002,
+          "z": 8.047119
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.526163,
+        "z": 0.0,
+        "w": 0.8503838
+      }
+    },
+    {
+      "Id": "Zone_for_RPG_3",
+      "Position": {
+        "x": -92.52002,
+        "y": 26.96,
+        "z": -380.125
+      },
+      "Bounds": {
+        "center": {
+          "x": -93.53992,
+          "y": 27.388382,
+          "z": -380.0432
+        },
+        "size": {
+          "x": 4.126236,
+          "y": 2.00136566,
+          "z": 3.862671
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.3291037,
+        "z": 0.0,
+        "w": 0.9442938
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -262.900024,
+        "y": 13.6,
+        "z": -485.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -262.900024,
+          "y": 13.5999985,
+          "z": -485.0
+        },
+        "size": {
+          "x": 346.0,
+          "y": 100.0,
+          "z": 421.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Pack_of_cartridges_3",
+      "Position": {
+        "x": -268.294,
+        "y": 7.687,
+        "z": -416.212036
+      },
+      "Bounds": {
+        "center": {
+          "x": -269.169922,
+          "y": 8.115383,
+          "z": -416.000854
+        },
+        "size": {
+          "x": 1.85821533,
+          "y": 2.00136566,
+          "z": 3.138733
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0198249016,
+        "z": 0.0,
+        "w": 0.9998035
+      }
+    },
+    {
+      "Id": "place_skier_12_3",
+      "Position": {
+        "x": -6.21435547,
+        "y": -0.492474556,
+        "z": -75.55499
+      },
+      "Bounds": {
+        "center": {
+          "x": -6.21435547,
+          "y": -0.492474556,
+          "z": -75.55499
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 1.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_007_2_N2",
+      "Position": {
+        "x": 195.977051,
+        "y": 1.032,
+        "z": -7.24200439
+      },
+      "Bounds": {
+        "center": {
+          "x": 195.977051,
+          "y": 1.03200006,
+          "z": -7.24200439
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.0,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Reb_keeper",
+      "Position": {
+        "x": -55.0050049,
+        "y": 8.82,
+        "z": -498.353027
+      },
+      "Bounds": {
+        "center": {
+          "x": -56.3570557,
+          "y": 9.248383,
+          "z": -496.777954
+        },
+        "size": {
+          "x": 11.7056656,
+          "y": 2.00136566,
+          "z": 12.6783447
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.113769762,
+        "z": 0.0,
+        "w": 0.993507147
+      }
+    },
+    {
+      "Id": "pr_scout_col",
+      "Position": {
+        "x": 195.560059,
+        "y": 12.21,
+        "z": -595.819946
+      },
+      "Bounds": {
+        "center": {
+          "x": 195.560059,
+          "y": 12.21,
+          "z": -595.819946
+        },
+        "size": {
+          "x": 15.0,
+          "y": 4.0,
+          "z": 30.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "huntsman_005_1",
+      "Position": {
+        "x": -386.786,
+        "y": 4.224,
+        "z": 22.5930176
+      },
+      "Bounds": {
+        "center": {
+          "x": -386.786,
+          "y": 4.224,
+          "z": 22.5930176
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "pr_scout_base",
+      "Position": {
+        "x": 283.050049,
+        "y": 24.04,
+        "z": -439.39
+      },
+      "Bounds": {
+        "center": {
+          "x": 283.050049,
+          "y": 24.04,
+          "z": -439.39
+        },
+        "size": {
+          "x": 30.0,
+          "y": 4.0,
+          "z": 20.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "prapor_27_2",
+      "Position": {
+        "x": -189.099976,
+        "y": 0.3,
+        "z": 232.200012
+      },
+      "Bounds": {
+        "center": {
+          "x": -189.099976,
+          "y": 0.3000002,
+          "z": 232.200012
+        },
+        "size": {
+          "x": 103.785461,
+          "y": 15.0000057,
+          "z": 125.2007
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.211159,
+        "z": 0.0,
+        "w": 0.9774518
+      }
+    },
+    {
+      "Id": "em_quest4_1",
+      "Position": {
+        "x": -537.853,
+        "y": 15.838,
+        "z": -202.000977
+      },
+      "Bounds": {
+        "center": {
+          "x": -538.776733,
+          "y": 15.7166786,
+          "z": -202.709412
+        },
+        "size": {
+          "x": 3.38330078,
+          "y": 1.29498386,
+          "z": 2.16085815
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.16137518,
+        "z": 0.0,
+        "w": 0.9868931
+      }
+    },
+    {
+      "Id": "Zone_for_RPG_1",
+      "Position": {
+        "x": -13.52002,
+        "y": -3.12,
+        "z": 49.71997
+      },
+      "Bounds": {
+        "center": {
+          "x": -14.46344,
+          "y": -2.691617,
+          "z": 48.60913
+        },
+        "size": {
+          "x": 2.34806824,
+          "y": 2.00136614,
+          "z": 4.424362
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.661234,
+        "z": 0.0,
+        "w": 0.750179768
+      }
+    },
+    {
+      "Id": "quest_ak-50_03_skier_place_01",
+      "Position": {
+        "x": -542.37,
+        "y": 18.38,
+        "z": -203.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -542.37,
+          "y": 18.38,
+          "z": -203.87
+        },
+        "size": {
+          "x": 25.9034424,
+          "y": 15.0000048,
+          "z": 21.7997437
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.211159,
+        "z": 0.0,
+        "w": 0.9774518
+      }
+    },
+    {
+      "Id": "ter_015_area_1",
+      "Position": {
+        "x": -97.1500244,
+        "y": -13.19,
+        "z": 219.76001
+      },
+      "Bounds": {
+        "center": {
+          "x": -97.1500244,
+          "y": -13.1899986,
+          "z": 219.76001
+        },
+        "size": {
+          "x": 15.0,
+          "y": 5.999999,
+          "z": 12.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Pack_of_cartridges_1",
+      "Position": {
+        "x": -272.703,
+        "y": 7.687,
+        "z": -411.795044
+      },
+      "Bounds": {
+        "center": {
+          "x": -273.558228,
+          "y": 8.115383,
+          "z": -411.062622
+        },
+        "size": {
+          "x": 1.8168335,
+          "y": 2.00136566,
+          "z": 2.09625244
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0198249016,
+        "z": 0.0,
+        "w": 0.9998035
+      }
+    },
+    {
+      "Id": "NosQuests_11_wood_place",
+      "Position": {
+        "x": -219.747986,
+        "y": 62.621,
+        "z": -219.974976
+      },
+      "Bounds": {
+        "center": {
+          "x": -219.747986,
+          "y": 62.621,
+          "z": -219.974976
+        },
+        "size": {
+          "x": 2.48812866,
+          "y": 2.0,
+          "z": 2.48812866
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.144390032,
+        "z": 0.0,
+        "w": 0.9895209
+      }
+    },
+    {
+      "Id": "q_ny_hide_christmas_tree_wood",
+      "Position": {
+        "x": -22.0,
+        "y": -15.74,
+        "z": 163.049988
+      },
+      "Bounds": {
+        "center": {
+          "x": -22.0,
+          "y": -15.74,
+          "z": 163.049988
+        },
+        "size": {
+          "x": 3.91885376,
+          "y": 5.0,
+          "z": 3.91885376
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.194838509,
+        "z": 0.0,
+        "w": 0.9808354
+      }
+    },
+    {
+      "Id": "RSHG_event_04_jaeger_r_point",
+      "Position": {
+        "x": 174.800049,
+        "y": 23.6,
+        "z": -728.1
+      },
+      "Bounds": {
+        "center": {
+          "x": 174.800049,
+          "y": 23.6000023,
+          "z": -728.1
+        },
+        "size": {
+          "x": 217.955322,
+          "y": 50.0000076,
+          "z": 186.050049
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.200594217,
+        "z": 0.0,
+        "w": 0.979674459
+      }
+    },
+    {
+      "Id": "Zone_for_RPG_2",
+      "Position": {
+        "x": 238.969971,
+        "y": -1.475,
+        "z": -69.3800049
+      },
+      "Bounds": {
+        "center": {
+          "x": 237.788574,
+          "y": -1.04661727,
+          "z": -68.8913
+        },
+        "size": {
+          "x": 3.11734,
+          "y": 2.00136614,
+          "z": 2.511963
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.13972491,
+        "z": 0.0,
+        "w": 0.990190446
+      }
+    },
+    {
+      "Id": "Bear_in_car",
+      "Position": {
+        "x": -117.325073,
+        "y": 22.035,
+        "z": -463.949951
+      },
+      "Bounds": {
+        "center": {
+          "x": -116.863159,
+          "y": 22.4633827,
+          "z": -464.1217
+        },
+        "size": {
+          "x": 4.150467,
+          "y": 2.00136566,
+          "z": 4.109619
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.3732264,
+        "z": 0.0,
+        "w": 0.9277404
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -115.599976,
+        "y": 13.6,
+        "z": 178.099976
+      },
+      "Bounds": {
+        "center": {
+          "x": -115.599976,
+          "y": 13.5999985,
+          "z": 178.099976
+        },
+        "size": {
+          "x": 100.0,
+          "y": 100.0,
+          "z": 100.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Depo_Zone_3",
+      "Position": {
+        "x": -684.24,
+        "y": 8.094838,
+        "z": 105.580017
+      },
+      "Bounds": {
+        "center": {
+          "x": -687.4531,
+          "y": 9.700243,
+          "z": 105.031494
+        },
+        "size": {
+          "x": 24.0391846,
+          "y": 4.358917,
+          "z": 13.576767
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0932546258,
+        "z": 0.0,
+        "w": 0.9956423
+      }
+    },
+    {
+      "Id": "quest_zone_keeper5",
+      "Position": {
+        "x": -185.0,
+        "y": 45.7,
+        "z": -292.699951
+      },
+      "Bounds": {
+        "center": {
+          "x": -185.0,
+          "y": 45.6999969,
+          "z": -292.699951
+        },
+        "size": {
+          "x": 529.4478,
+          "y": 80.00003,
+          "z": 529.447754
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.211159,
+        "z": 0.0,
+        "w": 0.9774518
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -636.1,
+        "y": 13.6,
+        "z": 260.400024
+      },
+      "Bounds": {
+        "center": {
+          "x": -636.1,
+          "y": 13.5999985,
+          "z": 260.400024
+        },
+        "size": {
+          "x": 691.4,
+          "y": 100.0,
+          "z": 102.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "q_ny_find_christmas_tree_wood",
+      "Position": {
+        "x": -21.3900146,
+        "y": -15.74,
+        "z": 163.23999
+      },
+      "Bounds": {
+        "center": {
+          "x": -21.3900146,
+          "y": -15.74,
+          "z": 163.23999
+        },
+        "size": {
+          "x": 16.8220482,
+          "y": 5.0,
+          "z": 18.4476624
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.194838509,
+        "z": 0.0,
+        "w": 0.9808354
+      }
+    },
+    {
+      "Id": "quest_terminal_ zone_2",
+      "Position": {
+        "x": -202.265991,
+        "y": 30.326,
+        "z": -210.421021
+      },
+      "Bounds": {
+        "center": {
+          "x": -202.241943,
+          "y": 31.2749939,
+          "z": -210.772644
+        },
+        "size": {
+          "x": 1.73706055,
+          "y": 2.10201454,
+          "z": 2.317627
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "q14_8_4",
+      "Position": {
+        "x": 247.27002,
+        "y": -9.067,
+        "z": 291.49
+      },
+      "Bounds": {
+        "center": {
+          "x": 247.27002,
+          "y": -9.067,
+          "z": 291.49
+        },
+        "size": {
+          "x": 3.03768921,
+          "y": 4.00000143,
+          "z": 3.03765869
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.006320299,
+        "z": 0.0,
+        "w": 0.9999801
+      }
+    },
+    {
+      "Id": "huntsman_005_2",
+      "Position": {
+        "x": 447.979,
+        "y": -13.19,
+        "z": 71.3010254
+      },
+      "Bounds": {
+        "center": {
+          "x": 447.979,
+          "y": -13.19,
+          "z": 71.3010254
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -267.2,
+        "y": 13.6,
+        "z": -57.7000122
+      },
+      "Bounds": {
+        "center": {
+          "x": -267.2,
+          "y": 13.5999985,
+          "z": -57.70002
+        },
+        "size": {
+          "x": 431.0,
+          "y": 100.0,
+          "z": 423.900024
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_woods",
+      "Position": {
+        "x": -388.5,
+        "y": 13.6,
+        "z": 342.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -388.5,
+          "y": 13.5999985,
+          "z": 342.0
+        },
+        "size": {
+          "x": 691.4,
+          "y": 100.0,
+          "z": 102.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Woods_mine_quest",
+      "Position": {
+        "x": 341.599976,
+        "y": 22.907,
+        "z": -492.300049
+      },
+      "Bounds": {
+        "center": {
+          "x": 337.326416,
+          "y": 18.7013855,
+          "z": -490.932129
+        },
+        "size": {
+          "x": 51.6694946,
+          "y": 23.411232,
+          "z": 109.809906
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.02385904,
+        "z": 0.0,
+        "w": 0.9997154
+      }
+    },
+    {
+      "Id": "place_2A2_unlock_3_woods",
+      "Position": {
+        "x": 227.698975,
+        "y": 21.056,
+        "z": -706.560059
+      },
+      "Bounds": {
+        "center": {
+          "x": 227.698975,
+          "y": 21.056,
+          "z": -706.560059
+        },
+        "size": {
+          "x": 2.28521729,
+          "y": 2.0,
+          "z": 3.42675781
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6051971,
+        "z": 0.0,
+        "w": 0.796075761
+      }
+    },
+    {
+      "Id": "place_2A2_unlock_3_woods",
+      "Position": {
+        "x": 227.698975,
+        "y": 21.056,
+        "z": -706.560059
+      },
+      "Bounds": {
+        "center": {
+          "x": 227.698975,
+          "y": 21.056,
+          "z": -706.560059
+        },
+        "size": {
+          "x": 2.28521729,
+          "y": 2.0,
+          "z": 3.42675781
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6051971,
+        "z": 0.0,
+        "w": 0.796075761
+      }
+    },
+    {
+      "Id": "em_quest4_1",
+      "Position": {
+        "x": -545.608032,
+        "y": 18.845,
+        "z": -204.528015
+      },
+      "Bounds": {
+        "center": {
+          "x": -546.2637,
+          "y": 18.7236767,
+          "z": -203.5661
+        },
+        "size": {
+          "x": 2.77148438,
+          "y": 1.29498291,
+          "z": 3.63577271
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.8279518,
+        "z": 0.0,
+        "w": 0.5607993
+      }
+    },
+    {
+      "Id": "Case_rpg_keeper",
+      "Position": {
+        "x": 412.89,
+        "y": -13.04,
+        "z": 240.049988
+      },
+      "Bounds": {
+        "center": {
+          "x": 413.528442,
+          "y": -12.6116171,
+          "z": 240.481384
+        },
+        "size": {
+          "x": 10.0620117,
+          "y": 2.00136566,
+          "z": 7.76071167
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.113769762,
+        "z": 0.0,
+        "w": 0.993507147
+      }
+    },
+    {
+      "Id": "Mark_transits_woods",
+      "Position": {
+        "x": -132.359985,
+        "y": 0.62,
+        "z": 421.5
+      },
+      "Bounds": {
+        "center": {
+          "x": -131.476135,
+          "y": 0.221013069,
+          "z": 418.2567
+        },
+        "size": {
+          "x": 5.18911743,
+          "y": 2.75749516,
+          "z": 4.92242432
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.401823968,
+        "z": 0.0,
+        "w": 0.915716946
+      }
+    },
+    {
+      "Id": "Place_item_tools_woods",
+      "Position": {
+        "x": -119.044983,
+        "y": -0.93,
+        "z": 400.652
+      },
+      "Bounds": {
+        "center": {
+          "x": -119.167419,
+          "y": -0.7285117,
+          "z": 400.358673
+        },
+        "size": {
+          "x": 3.88604736,
+          "y": 1.59702325,
+          "z": 3.2956543
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.193788752,
+        "z": 0.0,
+        "w": 0.9810433
+      }
+    },
+    {
+      "Id": "nf2024_1",
+      "Position": {
+        "x": -510.893,
+        "y": 17.147,
+        "z": -178.234985
+      },
+      "Bounds": {
+        "center": {
+          "x": -510.893,
+          "y": 17.147,
+          "z": -178.234985
+        },
+        "size": {
+          "x": 2.68151855,
+          "y": 2.5,
+          "z": 2.68151855
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.228802949,
+        "z": 0.0,
+        "w": 0.9734728
+      }
+    },
+    {
+      "Id": "nf2024_1",
+      "Position": {
+        "x": -510.893,
+        "y": 17.147,
+        "z": -178.234985
+      },
+      "Bounds": {
+        "center": {
+          "x": -510.893,
+          "y": 17.147,
+          "z": -178.234985
+        },
+        "size": {
+          "x": 2.68151855,
+          "y": 2.5,
+          "z": 2.68151855
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.228802949,
+        "z": 0.0,
+        "w": 0.9734728
+      }
+    },
+    {
+      "Id": "Halloween_zone_for_antivirus(woods)",
+      "Position": {
+        "x": -268.0,
+        "y": 7.2,
+        "z": -664.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -234.807678,
+          "y": 6.80099249,
+          "z": -673.725
+        },
+        "size": {
+          "x": 695.028931,
+          "y": 2.757495,
+          "z": 507.120361
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.467715263,
+        "z": 0.0,
+        "w": 0.883879244
+      }
+    }
+  ]
 }

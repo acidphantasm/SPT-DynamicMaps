@@ -2,7 +2,6 @@ using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
-using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {

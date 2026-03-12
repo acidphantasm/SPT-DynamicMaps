@@ -1,5 +1,4 @@
 using BepInEx.Bootstrap;
-using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 
 namespace DynamicMaps.ExternalModSupport
 {

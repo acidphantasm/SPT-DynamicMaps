@@ -1,1120 +1,4826 @@
 {
-    "DisplayName": "Streets of Tarkov (TarkovData)",
-    "Author": "Shebuka",
-    "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
-    "MapInternalNames": [ "TarkovStreets" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -279, "y": -299},
-        "Max": {"x": 324, "y": 533}
+  "DisplayName": "Streets of Tarkov (TarkovData)",
+  "Author": "Shebuka",
+  "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
+  "MapInternalNames": [ "TarkovStreets" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -279,
+      "y": -299
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Underground": {
-            "Level": -1,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {   // Concordia underground
-                    "Min": {"x": 147, "y": 338, "z": -4},
-                    "Max": {"x": 277, "y": 416, "z": 0}
-                },
-                {   // Subway underground
-                    "Min": {"x": -15, "y": -25, "z": -5},
-                    "Max": {"x": 39, "y": 33, "z": -2}
-                }
-            ]
+    "Max": {
+      "x": 324,
+      "y": 533
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Underground": {
+      "Level": -1,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
         },
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -279, "y": -299, "z": -100},
-                    "Max": {"x": 324, "y": 533, "z": 100}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {   // concordia 2nd floor
-                    "Min": {"x": 128, "y": 339, "z": 6},
-                    "Max": {"x": 287, "y": 416, "z": 9}
-                },
-                {   // building south of concordia 2nd floor
-                    "Min": {"x": 128, "y": 335, "z": 6},
-                    "Max": {"x": 152, "y": 460, "z": 9}
-                },
-                {   // real estate agency office 2nd floor
-                    "Min": {"x": -68, "y": 449, "z": 6},
-                    "Max": {"x": -34, "y": 475, "z": 10}
-                },
-                {   // cinema 2nd floor
-                    "Min": {"x": -197, "y": 370, "z": 6},
-                    "Max": {"x": -120, "y": 432, "z": 12}
-                },
-                {   // courtyard building 2nd floor
-                    "Min": {"x": -175, "y": 477, "z": 6},
-                    "Max": {"x": -160, "y": 491, "z": 10}
-                },
-                {   // north of courtyard building 2nd floor
-                    "Min": {"x": -189, "y": 451, "z": 6},
-                    "Max": {"x": -171, "y": 473, "z": 10}
-                },
-                {   // construction 2nd floor
-                    "Min": {"x": 188, "y": 284, "z": 6},
-                    "Max": {"x": 218, "y": 314, "z": 10}
-                },
-                {   // Sparja grocery 2nd floor
-                    "Min": {"x": 107, "y": 283, "z": 6},
-                    "Max": {"x": 132, "y": 294, "z": 10}
-                },
-                {   // Lexos 2nd floor
-                    "Min": {"x": 46, "y": 257, "z": 5.5},
-                    "Max": {"x": 106, "y": 352, "z": 10}
-                },
-                {   // abandoned factory 2nd floor
-                    "Min": {"x": -156, "y": 265, "z": 3},
-                    "Max": {"x": -77, "y": 305, "z": 6}
-                },
-                {   // hotels 2nd floor
-                    "Min": {"x": -214, "y": 235, "z": 6},
-                    "Max": {"x": -163, "y": 307, "z": 10}
-                },
-                {   // financial office 2nd floor
-                    "Min": {"x": -190, "y": 217, "z": 5.5},
-                    "Max": {"x": -157, "y": 235, "z": 8}
-                },
-                {   // family market 2nd floor
-                    "Min": {"x": -234, "y": 271, "z": 4.5},
-                    "Max": {"x": -209, "y": 290, "z": 7}
-                },
-                {   // tarbank 2nd floor
-                    "Min": {"x": 31, "y": 198, "z": 6},
-                    "Max": {"x": 88, "y": 240, "z": 9}
-                },
-                {   // chekannaya apartments 2nd floor
-                    "Min": {"x": 91, "y": 205, "z": 6},
-                    "Max": {"x": 161, "y": 240, "z": 9}
-                },
-                {   // pharmacy 1 2nd floor
-                    "Min": {"x": 32, "y": 144, "z": 5},
-                    "Max": {"x": 57, "y": 173, "z": 8}
-                },
-                {   // post office 2nd floor
-                    "Min": {"x": 31, "y": 60, "z": 3},
-                    "Max": {"x": 59, "y": 140, "z": 6}
-                },
-                {   // archive building 2nd floor
-                    "Min": {"x": 74, "y": 122, "z": 3.5},
-                    "Max": {"x": 90, "y": 146, "z": 7}
-                },
-                {   // zmeisky apartment 2nd floor
-                    "Min": {"x": 99, "y": 118, "z": 3.5},
-                    "Max": {"x": 140, "y": 159, "z": 7}
-                },
-                {   // vet clinic 2nd floor
-                    "Min": {"x": 209, "y": 166, "z": 3},
-                    "Max": {"x": 235, "y": 183, "z": 6}
-                },
-                {   // x-ray building 2nd floor
-                    "Min": {"x": 180, "y": 91, "z": 1},
-                    "Max": {"x": 197, "y": 127, "z": 4}
-                },
-                {   // school 2nd floor
-                    "Min": {"x": 199, "y": 96, "z": 3},
-                    "Max": {"x": 224, "y": 160, "z": 6}
-                },
-                {   // rusted key door building 2nd floor
-                    "Min": {"x": 173, "y": 48, "z": -2},
-                    "Max": {"x": 199, "y": 85, "z": 1}
-                },
-                {   // CCCP building 2nd floor
-                    "Min": {"x": 241, "y": 45, "z": -2},
-                    "Max": {"x": 253, "y": 62, "z": 1}
-                },
-                {   // pinewood hotel complex 2nd floor
-                    "Min": {"x": -125, "y": 45, "z": 4},
-                    "Max": {"x": -13, "y": 173, "z": 6.5}
-                },
-                {   // kilov shopping mall + beluga 2nd floor
-                    "Min": {"x": -171, "y": -89, "z": 4},
-                    "Max": {"x": -14, "y": -7, "z": 6.5}
-                },
-                {   // cardinal bank building 2nd floor
-                    "Min": {"x": -97, "y": -73, "z": 2},
-                    "Max": {"x": 149, "y": -14, "z": 6}
-                },
-                {   // cardinal apartments northeast 2nd floor
-                    "Min": {"x": 39, "y": -160, "z": 8.5},
-                    "Max": {"x": 77, "y": -114, "z": 12}
-                },
-                {   // across primorsky ave from cardinal 2nd floor
-                    "Min": {"x": -73, "y": -160, "z": 5},
-                    "Max": {"x": -44, "y": -141, "z": 8}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {   // concordia 3rd floor
-                    "Min": {"x": 128, "y": 339, "z": 9},
-                    "Max": {"x": 287, "y": 416, "z": 12}
-                },
-                {   // cinema 3rd floor
-                    "Min": {"x": -179, "y": 377, "z": 12},
-                    "Max": {"x": -155, "y": 423, "z": 18}
-                },
-                {   // abandoned factory 3rd floor
-                    "Min": {"x": -156, "y": 265, "z": 6},
-                    "Max": {"x": -77, "y": 305, "z": 11}
-                },
-                {   // family market 3rd floor
-                    "Min": {"x": -234, "y": 271, "z": 7},
-                    "Max": {"x": -209, "y": 290, "z": 10}
-                },
-                {   // tarbank 3rd floor
-                    "Min": {"x": 31, "y": 198, "z": 9},
-                    "Max": {"x": 88, "y": 240, "z": 12}
-                },
-                {   // chekannaya apartments 3rd floor
-                    "Min": {"x": 91, "y": 205, "z": 9},
-                    "Max": {"x": 161, "y": 240, "z": 12}
-                },
-                {   // post office 3rd floor
-                    "Min": {"x": 31, "y": 60, "z": 6},
-                    "Max": {"x": 59, "y": 140, "z": 9}
-                },
-                {   // zmeisky apartment 3rd floor
-                    "Min": {"x": 99, "y": 118, "z": 7},
-                    "Max": {"x": 140, "y": 159, "z": 9}
-                },
-                {   // rusted key door building 3rd floor
-                    "Min": {"x": 173, "y": 48, "z": 1},
-                    "Max": {"x": 199, "y": 85, "z": 4}
-                },
-                {   // pinewood hotel complex 3rd floor
-                    "Min": {"x": -125, "y": 45, "z": 6.5 },
-                    "Max": {"x": -13, "y": 173, "z": 12}
-                },
-                {   // kilov shopping mall + beluga 3rd floor
-                    "Min": {"x": -171, "y": -79, "z": 6.5},
-                    "Max": {"x": -14, "y": -5, "z": 12}
-                },
-                {   // cardinal apartments northeast 3rd floor
-                    "Min": {"x": 39, "y": -160, "z": 12},
-                    "Max": {"x": 77, "y": -114, "z": 15}
-                },
-                {   // across primorsky ave from cardinal 3rd floor
-                    "Min": {"x": -73, "y": -160, "z": 8},
-                    "Max": {"x": -44, "y": -141, "z": 12}
-                }
-            ]
-        },
-        "4th Floor": {
-            "Level": 3,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_3.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {   // abandoned factory 4th floor
-                    "Min": {"x": -140, "y": 263, "z": 11},
-                    "Max": {"x": -123, "y": 278, "z": 15}
-                },
-                {   // family market 4th floor
-                    "Min": {"x": -234, "y": 271, "z": 10},
-                    "Max": {"x": -209, "y": 290, "z": 14}
-                },
-                {   // tarbank 4th floor
-                    "Min": {"x": 31, "y": 198, "z": 12},
-                    "Max": {"x": 88, "y": 240, "z": 15}
-                },
-                {   // post office 4th floor + apartments
-                    "Min": {"x": 31, "y": 60, "z": 9 },
-                    "Max": {"x": 59, "y": 164, "z": 14 }
-                },
-                {   // zmeisky apartment 4th floor
-                    "Min": {"x": 99, "y": 118, "z": 9},
-                    "Max": {"x": 140, "y": 159, "z": 12}
-                },
-                {   // rusted key door building 4th floor
-                    "Min": {"x": 173, "y": 48, "z": 4},
-                    "Max": {"x": 199, "y": 85, "z": 8}
-                }
-            ]
-        },
-        "5th Floor": {
-            "Level": 4,
-            "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_4.png",
-            "ImageBounds": {
-                "Min": {"x": -279, "y": -299},
-                "Max": {"x": 324, "y": 533}
-            },
-            "GameBounds": [
-                {   // zmeisky apartment 5th floor
-                    "Min": {"x": 99, "y": 118, "z": 12},
-                    "Max": {"x": 140, "y": 159, "z": 15}
-                },
-                {   // rusted key door building 5th floor
-                    "Min": {"x": 170, "y": 81, "z": 8},
-                    "Max": {"x": 181, "y": 89, "z": 12}
-                }
-            ]
+        "Max": {
+          "x": 324,
+          "y": 533
         }
+      },
+      "GameBounds": [
+        { // Concordia underground
+          "Min": {
+            "x": 147,
+            "y": 338,
+            "z": -4
+          },
+          "Max": {
+            "x": 277,
+            "y": 416,
+            "z": 0
+          }
+        },
+        { // Subway underground
+          "Min": {
+            "x": -15,
+            "y": -25,
+            "z": -5
+          },
+          "Max": {
+            "x": 39,
+            "y": 33,
+            "z": -2
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "Primorsky Ave.",
-            "Position": {"x": 9, "y": 308, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -90
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
         },
-        {
-            "Text": "Primorsky Ave.",
-            "Position": {"x": 9, "y": 104, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -90
-        },
-        {
-            "Text": "Primorsky Ave.",
-            "Position": {"x": 9, "y": -80, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -90
-        },
-        {
-            "Text": "Kilmov St.",
-            "Position": {"x": 125, "y": 10, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Kilmov St.",
-            "Position": {"x": -104, "y": 28, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 10
-        },
-        {
-            "Text": "Nikitskaya St.",
-            "Position": {"x": -125, "y": 210, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Verhnyaya St.",
-            "Position": {"x": -112, "y": 361, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Malevecha St.",
-            "Position": {"x": -200, "y": 290, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -64
-        },
-        {
-            "Text": "Chekannaya St.",
-            "Position": {"x": 111, "y": 251, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Nizhnyaya St.",
-            "Position": {"x": -101, "y": 441, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Razvedchikov St.",
-            "Position": {"x": 174, "y": 430, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -30
-        },
-        {
-            "Text": "Zmejskij Alley",
-            "Position": {"x": 140, "y": 150, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -68
-        },
-        {
-            "Text": "Kamchatskaya St.",
-            "Position": {"x": 232, "y": 100, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": -90
-        },
-        {
-            "Text": "Kilmov Shopping Mall",
-            "Position": {"x": -128, "y": -35, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Beluga",
-            "Position": {"x": -45, "y": -52, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cardinal Apartments",
-            "Position": {"x": 99, "y": -71, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Construction",
-            "Position": {"x": 230, "y": 295, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Lexos",
-            "Position": {"x": 66, "y": 305, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Sparja Grocery",
-            "Position": {"x": 140, "y": 300, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Cinema",
-            "Position": {"x": -175, "y": 400, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Shestyorochka",
-            "Position": {"x": -218, "y": 135, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Pinewood Hotel",
-            "Position": {"x": -35, "y": 64, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Teppakot / Koener",
-            "Position": {"x": 65, "y": 398, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Concordia",
-            "Position": {"x": 207, "y": 363, "z": 0},
-            "FontSize": 18
-        },
-        {
-            "Text": "Cardinal Bank",
-            "Position": {"x": 89, "y": -20, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "LERM Expo",
-            "Position": {"x": 239, "y": -60, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Sparja Express",
-            "Position": {"x": -64, "y": 166, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Burger Spot",
-            "Position": {"x": -30, "y": 138, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Post Office",
-            "Position": {"x": 42, "y": 97, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Pharmacy 1",
-            "Position": {"x": 42, "y": 160, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Office",
-            "Position": {"x": -173, "y": 226, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Corner Restaurant",
-            "Position": {"x": -197, "y": 340, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Pharmacy 2",
-            "Position": {"x": -43, "y": 335, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Pharmacy 3",
-            "Position": {"x": 90, "y": -227, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Tarbank",
-            "Position": {"x": 67, "y": 230, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "School",
-            "Position": {"x": 211, "y": 129, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Vet Clinic",
-            "Position": {"x": 222, "y": 173, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Hive",
-            "Position": {"x": -212, "y": 300, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Family Market",
-            "Position": {"x": -223, "y": 279, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Marked Hotel",
-            "Position": {"x": -200, "y": 248, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "South Hotel",
-            "Position": {"x": -175, "y": 297, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Abandoned Factory",
-            "Position": {"x": -119, "y": 287, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Diner",
-            "Position": {"x": -80, "y": 235, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Primorskij 49",
-            "Position": {"x": -13, "y": 244, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Prestigio Cage",
-            "Position": {"x": 39, "y": 230, "z": 0},
-            "FontSize": 10
-        },
-        {
-            "Text": "Bilbo Coffee",
-            "Position": {"x": -70, "y": 343, "z": 0},
-            "FontSize": 10
+        "Max": {
+          "x": 324,
+          "y": 533
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Entrance to Catacombs",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -249.008026, "y": 243.797, "z": 2.566 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Ventilation Shaft",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -124.127106, "y": 425.738983, "z": 3.114 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Sewer Manhole",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 276.113, "y": 345.389984, "z": 5.356 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Near Kamchatskaya Arch",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 259.57, "y": 48.72, "z": -3.929 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Cardinal Apartment Complex Parking",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 97.8999939, "y": -160.07, "z": 0.130000114 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Klimov Shopping Mall Exfil",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -162.652008, "y": -7.08499146, "z": 2.645 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Pinewood Basement (Co-Op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -113.71, "y": 65.633, "z": -2.935 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Courtyard",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -148.947, "y": 500.151978, "z": 1.78600025 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Primorsky Ave Taxi V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -2.191315, "y": 461.232971, "z": 3.2 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Stylobate Building Elevator",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -44.7435, "y": -72.6544, "z": 11.04 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Crash Site",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 312.74, "y": 405.96, "z": 6.8 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Sewer River",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -267.04, "y": 219.48, "z": -1.535 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Damaged House",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -248.971, "y": 344.275, "z": 7.195 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Collapsed Crane",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 216.3, "y": 272.3, "z": 3.44 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Scav Checkpoint",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 211.3356, "y": 82.307, "z": -8.1624 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Klimov Street (Flare)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -263.41, "y": 43.19, "z": 2.9 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Expo Checkpoint",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 213.12, "y": -104.96, "z": 0.09 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Ground Zero",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -260.05, "y": 103.645729, "z": 2.18500137 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Interchange",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 286.670776, "y": 505.539978, "z": 3.39350128 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to The Lab",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 206.955, "y": 82.194, "z": -8.382 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Smugglers' Basement",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 75.99, "y": 50.0100021, "z": -0.6029999 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "MVD Academy Entrance Hall Guard Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -250.476974, "y": 131.546, "z": 3.98400116 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "6582dc4b6ba9e979af6b79f4"
-        },
-        {
-            "Text": "Pinewood Hotel Room 215",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -67.00622, "y": 59.3249474, "z": 6.024556 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39f08cd6db0635c197600"
-        },
-        {
-            "Text": "Relaxation Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -208.164185, "y": 295.5338, "z": 4.28889942 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "6582dbf0b8d7830efc45016f"
-        },
-        {
-            "Text": "Abandoned Factory Marked Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -133.4689, "y": 272.9284, "z": 9.712829 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a3a93f8a56922e82001f5d"
-        },
-        {
-            "Text": "Financial Institution Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -168.1108, "y": 230.025009, "z": 7.11500072 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39667c9b3aa4b61683e98"
-        },
-        {
-            "Text": "Financial Institution Small Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -186.393311, "y": 229.271469, "z": 3.72240162 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a71ed21031ac76fe773c7f"
-        },
-        {
-            "Text": "Backup Hideout",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -130.730026, "y": 391.625732, "z": 3.37588024 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "6398fd8ad3de3849057f5128"
-        },
-        {
-            "Text": "Real Estate Agency Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -62.37935, "y": 460.344177, "z": 7.906067 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "6582dc5740562727a654ebb1"
-        },
-        {
-            "Text": "Iron Gate",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 131.168167, "y": 227.64386, "z": 10.5814857 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39f6e64283b5e9c56b289"
-        },
-        {
-            "Text": "Iron Gate",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 126.369164, "y": 227.644852, "z": 10.5938711 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39f6e64283b5e9c56b289"
-        },
-        {
-            "Text": "Iron Gate",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 132.49292, "y": 225.1011, "z": 10.5825262 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39f6e64283b5e9c56b289"
-        },
-        {
-            "Text": "Stair Landing",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 108.3958, "y": 224.57489, "z": 7.45609 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39fd1c9b3aa4b61683efb"
-        },
-        {
-            "Text": "Chekannaya Apartment 15",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 107.048935, "y": 227.6278, "z": 7.51593971 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39fc0af870e651d58e6ae"
-        },
-        {
-            "Text": "Primorsky 46-48 Skybridge",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 49.5526543, "y": 147.7725, "z": 12.7623 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39e1d234195315d4020bd"
-        },
-        {
-            "Text": "Primorsky 48 Apartment",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 45.3423576, "y": 151.024933, "z": 6.742015 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a71eb5b7f4570d3a29316b"
-        },
-        // {    // tarbank cash register
-        //     "Text": "door 17",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 66.95923, "y": 231.536, "z": 3.841999 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "64ccc2111779ad6ba200a139"
-        // },
-        // {   // tarbank cash register
-        //     "Text": "door 18",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 68.86824, "y": 231.536, "z": 3.841999 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "64ccc2111779ad6ba200a139"
-        // },
-        {
-            "Text": "Zmeisky 3 Apartment 8",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 104.26915, "y": 129.2099, "z": 4.99642372 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39dfe3901f439517cafba"
-        },
-        {
-            "Text": "Archive Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 80.078, "y": 138.528, "z": 4.941001 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39e49cd6db0635c1975fc"
-        },
-        {
-            "Text": "Zmeisky 5 Apartment 20",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 124.2521, "y": 143.391266, "z": 14.5957794 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39df18a56922e82001f25"
-        },
-        {
-            "Text": "Mysterious Marked Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 186.18, "y": 227.438, "z": 0.849899948 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc25f95763a1ae376e447"
-        },
-        {
-            "Text": "Rusted Key Door",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 177.724213, "y": 78.84773, "z": 6.821482 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64d4b23dc1b37504b41ac2b6"
-        },
-        {
-            "Text": "PE Teacher's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 207.952087, "y": 140.7129, "z": 1.39300013 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc268c41e91416064ebc7"
-        },
-        {
-            "Text": "X-Ray Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 184.997482, "y": 100.691429, "z": 2.82870531 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc246ff54fb38131acf29"
-        },
-        {
-            "Text": "\"Negotiation\" Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 165.190918, "y": 165.05, "z": 1.79457092 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "6582dbe43a2e5248357dbe9a"
-        },
-        // {    // usec cottage safe key bugged
-        //     "Text": "door 27",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 174.013977, "y": 163.48201, "z": 1.14044952 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
-        // },
-        {
-            "Text": "Construction Site Bunkhouse",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 181.878983, "y": 312.128, "z": 6.85800028 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39cb1c9b3aa4b61683ee2"
-        },
-        {
-            "Text": "Car Dealership Closed Section",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 63.478, "y": 301.057, "z": 7.8760004 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a397d3af870e651d58e65b"
-        },
-        {
-            "Text": "Car Dealership Director's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 66.86121, "y": 310.662476, "z": 7.935705 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a399193901f439517cafb6"
-        },
-        {
-            "Text": "Cargo Container Mesh Door",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 83.1959839, "y": 296.521, "z": 3.72701359 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39fdf1e21260da44a0256"
-        },
-        {
-            "Text": "Aspect Company Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 55.03196, "y": 332.649078, "z": 3.91900015 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ce572331dd890873175115"
-        },
-        {
-            "Text": "Supply Department Director's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 57.615963, "y": 334.707031, "z": 6.847 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39ce4cd6db0635c1975fa"
-        },
-        {
-            "Text": "Concordia Apartment 8 Home Cinema",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 217.9483, "y": 400.558655, "z": 10.3969755 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc1ec1779ad6ba200a137"
-        },
-        {
-            "Text": "Concordia Apartment 34",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 227.979279, "y": 406.048645, "z": 10.3969755 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc1d4a0f13c24561edf27"
-        },
-        {
-            "Text": "Concordia Apartment 8",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 224.331543, "y": 400.559357, "z": 10.4224167 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a71e781031ac76fe773c7d"
-        },
-        {
-            "Text": "Concordia Apartment 64 Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 274.591, "y": 383.685974, "z": 7.404751 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a71e86b7f4570d3a293169"
-        },
-        {
-            "Text": "Concordia Apartment 63",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 268.47, "y": 387.507, "z": 7.4047513 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc1f4ff54fb38131acf27"
-        },
-        {
-            "Text": "Concordia Apartment 64",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 272.6917, "y": 378.880249, "z": 7.46978951 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a71e922b25f7513905ca20"
-        },
-        {
-            "Text": "Concordia Security",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 211.010483, "y": 406.7196, "z": -0.205203056 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39c7964283b5e9c56b280"
-        },
-        {
-            "Text": "Store Manager's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 119.953995, "y": 290.827026, "z": 7.776001 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "63a39c69af870e651d58e6aa"
-        },
-        {
-            "Text": "TerraGroup Security Armory",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 60.7049751, "y": -79.95239, "z": 1.29402184 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc24de61ea448b507d34d"
-        },
-        {
-            "Text": "TerraGroup Meeting Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 46.6899338, "y": -59.4043961, "z": 1.31902039 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc206793ca11c8f450a38"
-        },
-        {
-            "Text": "Beluga Restaurant Director's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -19.6295967, "y": -64.19723, "z": 10.6449995 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc1fe088064307e14a6f7"
-        },
-        {
-            "Text": "Beluga Restaurant Director's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -27.806633, "y": -60.68901, "z": 10.6449995 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "64ccc1fe088064307e14a6f7"
+          "Min": {
+            "x": -279,
+            "y": -299,
+            "z": -100
+          },
+          "Max": {
+            "x": 324,
+            "y": 533,
+            "z": 100
+          }
         }
-        // {    // goshan cash register
-        //     "Text": "door 55",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -208.95, "y": 179.655991, "z": 4.057 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5ad7247386f7747487619dc3"
-        // },
-        // {    // goshan cash register
-        //     "Text": "door 56",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -208.95, "y": 182.011, "z": 4.059 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5ad7247386f7747487619dc3"
-        // },
-        // {    // bugged pinewood safe
-        //     "Text": "door 57",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -77.5323944, "y": 53.20392, "z": 5.3959837 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
-        // },
-        // {    // bugged pinewood safe
-        //     "Text": "door 58",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -67.94231, "y": 53.4928131, "z": 5.31730938 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
-        // },
-        // {    // bugged pinewood safe
-        //     "Text": "door 59",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -49.45166, "y": 64.02192, "z": 5.273139 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
-        // },
-        // {   // goshan cash register
-        //     "Text": "door 60",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": -30.653595, "y": 468.8241, "z": 3.66407585 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5ad7247386f7747487619dc3"
-        // },
-        // {    // unknown
-        //     "Text": "door 61",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 78.59352, "y": 124.437378, "z": 1.328997 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "63a39e6acd6db0635c1975fe"
-        // },
-        // {    // unknown
-        //     "Text": "door 62",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 76.57499, "y": 132.901367, "z": 4.36699724 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "63a39e5b234195315d4020bf"
-        // },
-        // {   // unknown
-        //     "Text": "door 63",
-        //     "ImagePath": "Markers/door_with_lock.png",
-        //     "Position": { "x": 58.10759, "y": 337.684021, "z": 6.26939726 },
-        //     "Category": "LockedDoor",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "63a39ddda3a2b32b5f6e007a"
-        // }
-    ]
+      ]
+    },
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
+        },
+        "Max": {
+          "x": 324,
+          "y": 533
+        }
+      },
+      "GameBounds": [
+        { // concordia 2nd floor
+          "Min": {
+            "x": 128,
+            "y": 339,
+            "z": 6
+          },
+          "Max": {
+            "x": 287,
+            "y": 416,
+            "z": 9
+          }
+        },
+        { // building south of concordia 2nd floor
+          "Min": {
+            "x": 128,
+            "y": 335,
+            "z": 6
+          },
+          "Max": {
+            "x": 152,
+            "y": 460,
+            "z": 9
+          }
+        },
+        { // real estate agency office 2nd floor
+          "Min": {
+            "x": -68,
+            "y": 449,
+            "z": 6
+          },
+          "Max": {
+            "x": -34,
+            "y": 475,
+            "z": 10
+          }
+        },
+        { // cinema 2nd floor
+          "Min": {
+            "x": -197,
+            "y": 370,
+            "z": 6
+          },
+          "Max": {
+            "x": -120,
+            "y": 432,
+            "z": 12
+          }
+        },
+        { // courtyard building 2nd floor
+          "Min": {
+            "x": -175,
+            "y": 477,
+            "z": 6
+          },
+          "Max": {
+            "x": -160,
+            "y": 491,
+            "z": 10
+          }
+        },
+        { // north of courtyard building 2nd floor
+          "Min": {
+            "x": -189,
+            "y": 451,
+            "z": 6
+          },
+          "Max": {
+            "x": -171,
+            "y": 473,
+            "z": 10
+          }
+        },
+        { // construction 2nd floor
+          "Min": {
+            "x": 188,
+            "y": 284,
+            "z": 6
+          },
+          "Max": {
+            "x": 218,
+            "y": 314,
+            "z": 10
+          }
+        },
+        { // Sparja grocery 2nd floor
+          "Min": {
+            "x": 107,
+            "y": 283,
+            "z": 6
+          },
+          "Max": {
+            "x": 132,
+            "y": 294,
+            "z": 10
+          }
+        },
+        { // Lexos 2nd floor
+          "Min": {
+            "x": 46,
+            "y": 257,
+            "z": 5.5
+          },
+          "Max": {
+            "x": 106,
+            "y": 352,
+            "z": 10
+          }
+        },
+        { // abandoned factory 2nd floor
+          "Min": {
+            "x": -156,
+            "y": 265,
+            "z": 3
+          },
+          "Max": {
+            "x": -77,
+            "y": 305,
+            "z": 6
+          }
+        },
+        { // hotels 2nd floor
+          "Min": {
+            "x": -214,
+            "y": 235,
+            "z": 6
+          },
+          "Max": {
+            "x": -163,
+            "y": 307,
+            "z": 10
+          }
+        },
+        { // financial office 2nd floor
+          "Min": {
+            "x": -190,
+            "y": 217,
+            "z": 5.5
+          },
+          "Max": {
+            "x": -157,
+            "y": 235,
+            "z": 8
+          }
+        },
+        { // family market 2nd floor
+          "Min": {
+            "x": -234,
+            "y": 271,
+            "z": 4.5
+          },
+          "Max": {
+            "x": -209,
+            "y": 290,
+            "z": 7
+          }
+        },
+        { // tarbank 2nd floor
+          "Min": {
+            "x": 31,
+            "y": 198,
+            "z": 6
+          },
+          "Max": {
+            "x": 88,
+            "y": 240,
+            "z": 9
+          }
+        },
+        { // chekannaya apartments 2nd floor
+          "Min": {
+            "x": 91,
+            "y": 205,
+            "z": 6
+          },
+          "Max": {
+            "x": 161,
+            "y": 240,
+            "z": 9
+          }
+        },
+        { // pharmacy 1 2nd floor
+          "Min": {
+            "x": 32,
+            "y": 144,
+            "z": 5
+          },
+          "Max": {
+            "x": 57,
+            "y": 173,
+            "z": 8
+          }
+        },
+        { // post office 2nd floor
+          "Min": {
+            "x": 31,
+            "y": 60,
+            "z": 3
+          },
+          "Max": {
+            "x": 59,
+            "y": 140,
+            "z": 6
+          }
+        },
+        { // archive building 2nd floor
+          "Min": {
+            "x": 74,
+            "y": 122,
+            "z": 3.5
+          },
+          "Max": {
+            "x": 90,
+            "y": 146,
+            "z": 7
+          }
+        },
+        { // zmeisky apartment 2nd floor
+          "Min": {
+            "x": 99,
+            "y": 118,
+            "z": 3.5
+          },
+          "Max": {
+            "x": 140,
+            "y": 159,
+            "z": 7
+          }
+        },
+        { // vet clinic 2nd floor
+          "Min": {
+            "x": 209,
+            "y": 166,
+            "z": 3
+          },
+          "Max": {
+            "x": 235,
+            "y": 183,
+            "z": 6
+          }
+        },
+        { // x-ray building 2nd floor
+          "Min": {
+            "x": 180,
+            "y": 91,
+            "z": 1
+          },
+          "Max": {
+            "x": 197,
+            "y": 127,
+            "z": 4
+          }
+        },
+        { // school 2nd floor
+          "Min": {
+            "x": 199,
+            "y": 96,
+            "z": 3
+          },
+          "Max": {
+            "x": 224,
+            "y": 160,
+            "z": 6
+          }
+        },
+        { // rusted key door building 2nd floor
+          "Min": {
+            "x": 173,
+            "y": 48,
+            "z": -2
+          },
+          "Max": {
+            "x": 199,
+            "y": 85,
+            "z": 1
+          }
+        },
+        { // CCCP building 2nd floor
+          "Min": {
+            "x": 241,
+            "y": 45,
+            "z": -2
+          },
+          "Max": {
+            "x": 253,
+            "y": 62,
+            "z": 1
+          }
+        },
+        { // pinewood hotel complex 2nd floor
+          "Min": {
+            "x": -125,
+            "y": 45,
+            "z": 4
+          },
+          "Max": {
+            "x": -13,
+            "y": 173,
+            "z": 6.5
+          }
+        },
+        { // kilov shopping mall + beluga 2nd floor
+          "Min": {
+            "x": -171,
+            "y": -89,
+            "z": 4
+          },
+          "Max": {
+            "x": -14,
+            "y": -7,
+            "z": 6.5
+          }
+        },
+        { // cardinal bank building 2nd floor
+          "Min": {
+            "x": -97,
+            "y": -73,
+            "z": 2
+          },
+          "Max": {
+            "x": 149,
+            "y": -14,
+            "z": 6
+          }
+        },
+        { // cardinal apartments northeast 2nd floor
+          "Min": {
+            "x": 39,
+            "y": -160,
+            "z": 8.5
+          },
+          "Max": {
+            "x": 77,
+            "y": -114,
+            "z": 12
+          }
+        },
+        { // across primorsky ave from cardinal 2nd floor
+          "Min": {
+            "x": -73,
+            "y": -160,
+            "z": 5
+          },
+          "Max": {
+            "x": -44,
+            "y": -141,
+            "z": 8
+          }
+        }
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_2.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
+        },
+        "Max": {
+          "x": 324,
+          "y": 533
+        }
+      },
+      "GameBounds": [
+        { // concordia 3rd floor
+          "Min": {
+            "x": 128,
+            "y": 339,
+            "z": 9
+          },
+          "Max": {
+            "x": 287,
+            "y": 416,
+            "z": 12
+          }
+        },
+        { // cinema 3rd floor
+          "Min": {
+            "x": -179,
+            "y": 377,
+            "z": 12
+          },
+          "Max": {
+            "x": -155,
+            "y": 423,
+            "z": 18
+          }
+        },
+        { // abandoned factory 3rd floor
+          "Min": {
+            "x": -156,
+            "y": 265,
+            "z": 6
+          },
+          "Max": {
+            "x": -77,
+            "y": 305,
+            "z": 11
+          }
+        },
+        { // family market 3rd floor
+          "Min": {
+            "x": -234,
+            "y": 271,
+            "z": 7
+          },
+          "Max": {
+            "x": -209,
+            "y": 290,
+            "z": 10
+          }
+        },
+        { // tarbank 3rd floor
+          "Min": {
+            "x": 31,
+            "y": 198,
+            "z": 9
+          },
+          "Max": {
+            "x": 88,
+            "y": 240,
+            "z": 12
+          }
+        },
+        { // chekannaya apartments 3rd floor
+          "Min": {
+            "x": 91,
+            "y": 205,
+            "z": 9
+          },
+          "Max": {
+            "x": 161,
+            "y": 240,
+            "z": 12
+          }
+        },
+        { // post office 3rd floor
+          "Min": {
+            "x": 31,
+            "y": 60,
+            "z": 6
+          },
+          "Max": {
+            "x": 59,
+            "y": 140,
+            "z": 9
+          }
+        },
+        { // zmeisky apartment 3rd floor
+          "Min": {
+            "x": 99,
+            "y": 118,
+            "z": 7
+          },
+          "Max": {
+            "x": 140,
+            "y": 159,
+            "z": 9
+          }
+        },
+        { // rusted key door building 3rd floor
+          "Min": {
+            "x": 173,
+            "y": 48,
+            "z": 1
+          },
+          "Max": {
+            "x": 199,
+            "y": 85,
+            "z": 4
+          }
+        },
+        { // pinewood hotel complex 3rd floor
+          "Min": {
+            "x": -125,
+            "y": 45,
+            "z": 6.5
+          },
+          "Max": {
+            "x": -13,
+            "y": 173,
+            "z": 12
+          }
+        },
+        { // kilov shopping mall + beluga 3rd floor
+          "Min": {
+            "x": -171,
+            "y": -79,
+            "z": 6.5
+          },
+          "Max": {
+            "x": -14,
+            "y": -5,
+            "z": 12
+          }
+        },
+        { // cardinal apartments northeast 3rd floor
+          "Min": {
+            "x": 39,
+            "y": -160,
+            "z": 12
+          },
+          "Max": {
+            "x": 77,
+            "y": -114,
+            "z": 15
+          }
+        },
+        { // across primorsky ave from cardinal 3rd floor
+          "Min": {
+            "x": -73,
+            "y": -160,
+            "z": 8
+          },
+          "Max": {
+            "x": -44,
+            "y": -141,
+            "z": 12
+          }
+        }
+      ]
+    },
+    "4th Floor": {
+      "Level": 3,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_3.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
+        },
+        "Max": {
+          "x": 324,
+          "y": 533
+        }
+      },
+      "GameBounds": [
+        { // abandoned factory 4th floor
+          "Min": {
+            "x": -140,
+            "y": 263,
+            "z": 11
+          },
+          "Max": {
+            "x": -123,
+            "y": 278,
+            "z": 15
+          }
+        },
+        { // family market 4th floor
+          "Min": {
+            "x": -234,
+            "y": 271,
+            "z": 10
+          },
+          "Max": {
+            "x": -209,
+            "y": 290,
+            "z": 14
+          }
+        },
+        { // tarbank 4th floor
+          "Min": {
+            "x": 31,
+            "y": 198,
+            "z": 12
+          },
+          "Max": {
+            "x": 88,
+            "y": 240,
+            "z": 15
+          }
+        },
+        { // post office 4th floor + apartments
+          "Min": {
+            "x": 31,
+            "y": 60,
+            "z": 9
+          },
+          "Max": {
+            "x": 59,
+            "y": 164,
+            "z": 14
+          }
+        },
+        { // zmeisky apartment 4th floor
+          "Min": {
+            "x": 99,
+            "y": 118,
+            "z": 9
+          },
+          "Max": {
+            "x": 140,
+            "y": 159,
+            "z": 12
+          }
+        },
+        { // rusted key door building 4th floor
+          "Min": {
+            "x": 173,
+            "y": 48,
+            "z": 4
+          },
+          "Max": {
+            "x": 199,
+            "y": 85,
+            "z": 8
+          }
+        }
+      ]
+    },
+    "5th Floor": {
+      "Level": 4,
+      "ImagePath": "Maps/Streets_TarkovData/Layers/streets_layer_4.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -279,
+          "y": -299
+        },
+        "Max": {
+          "x": 324,
+          "y": 533
+        }
+      },
+      "GameBounds": [
+        { // zmeisky apartment 5th floor
+          "Min": {
+            "x": 99,
+            "y": 118,
+            "z": 12
+          },
+          "Max": {
+            "x": 140,
+            "y": 159,
+            "z": 15
+          }
+        },
+        { // rusted key door building 5th floor
+          "Min": {
+            "x": 170,
+            "y": 81,
+            "z": 8
+          },
+          "Max": {
+            "x": 181,
+            "y": 89,
+            "z": 12
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Primorsky Ave.",
+      "Position": {
+        "x": 9,
+        "y": 308,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -90
+    },
+    {
+      "Text": "Primorsky Ave.",
+      "Position": {
+        "x": 9,
+        "y": 104,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -90
+    },
+    {
+      "Text": "Primorsky Ave.",
+      "Position": {
+        "x": 9,
+        "y": -80,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -90
+    },
+    {
+      "Text": "Kilmov St.",
+      "Position": {
+        "x": 125,
+        "y": 10,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Kilmov St.",
+      "Position": {
+        "x": -104,
+        "y": 28,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 10
+    },
+    {
+      "Text": "Nikitskaya St.",
+      "Position": {
+        "x": -125,
+        "y": 210,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Verhnyaya St.",
+      "Position": {
+        "x": -112,
+        "y": 361,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Malevecha St.",
+      "Position": {
+        "x": -200,
+        "y": 290,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -64
+    },
+    {
+      "Text": "Chekannaya St.",
+      "Position": {
+        "x": 111,
+        "y": 251,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Nizhnyaya St.",
+      "Position": {
+        "x": -101,
+        "y": 441,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Razvedchikov St.",
+      "Position": {
+        "x": 174,
+        "y": 430,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -30
+    },
+    {
+      "Text": "Zmejskij Alley",
+      "Position": {
+        "x": 140,
+        "y": 150,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -68
+    },
+    {
+      "Text": "Kamchatskaya St.",
+      "Position": {
+        "x": 232,
+        "y": 100,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": -90
+    },
+    {
+      "Text": "Kilmov Shopping Mall",
+      "Position": {
+        "x": -128,
+        "y": -35,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Beluga",
+      "Position": {
+        "x": -45,
+        "y": -52,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cardinal Apartments",
+      "Position": {
+        "x": 99,
+        "y": -71,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Construction",
+      "Position": {
+        "x": 230,
+        "y": 295,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Lexos",
+      "Position": {
+        "x": 66,
+        "y": 305,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Sparja Grocery",
+      "Position": {
+        "x": 140,
+        "y": 300,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Cinema",
+      "Position": {
+        "x": -175,
+        "y": 400,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Shestyorochka",
+      "Position": {
+        "x": -218,
+        "y": 135,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Pinewood Hotel",
+      "Position": {
+        "x": -35,
+        "y": 64,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Teppakot / Koener",
+      "Position": {
+        "x": 65,
+        "y": 398,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Concordia",
+      "Position": {
+        "x": 207,
+        "y": 363,
+        "z": 0
+      },
+      "FontSize": 18
+    },
+    {
+      "Text": "Cardinal Bank",
+      "Position": {
+        "x": 89,
+        "y": -20,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "LERM Expo",
+      "Position": {
+        "x": 239,
+        "y": -60,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Sparja Express",
+      "Position": {
+        "x": -64,
+        "y": 166,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Burger Spot",
+      "Position": {
+        "x": -30,
+        "y": 138,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Post Office",
+      "Position": {
+        "x": 42,
+        "y": 97,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Pharmacy 1",
+      "Position": {
+        "x": 42,
+        "y": 160,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Office",
+      "Position": {
+        "x": -173,
+        "y": 226,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Corner Restaurant",
+      "Position": {
+        "x": -197,
+        "y": 340,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Pharmacy 2",
+      "Position": {
+        "x": -43,
+        "y": 335,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Pharmacy 3",
+      "Position": {
+        "x": 90,
+        "y": -227,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Tarbank",
+      "Position": {
+        "x": 67,
+        "y": 230,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "School",
+      "Position": {
+        "x": 211,
+        "y": 129,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Vet Clinic",
+      "Position": {
+        "x": 222,
+        "y": 173,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Hive",
+      "Position": {
+        "x": -212,
+        "y": 300,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Family Market",
+      "Position": {
+        "x": -223,
+        "y": 279,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Marked Hotel",
+      "Position": {
+        "x": -200,
+        "y": 248,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "South Hotel",
+      "Position": {
+        "x": -175,
+        "y": 297,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Abandoned Factory",
+      "Position": {
+        "x": -119,
+        "y": 287,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Diner",
+      "Position": {
+        "x": -80,
+        "y": 235,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Primorskij 49",
+      "Position": {
+        "x": -13,
+        "y": 244,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Prestigio Cage",
+      "Position": {
+        "x": 39,
+        "y": 230,
+        "z": 0
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Bilbo Coffee",
+      "Position": {
+        "x": -70,
+        "y": 343,
+        "z": 0
+      },
+      "FontSize": 10
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Entrance to Catacombs",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -249.008026,
+        "y": 243.797,
+        "z": 2.566
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Ventilation Shaft",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -124.127106,
+        "y": 425.738983,
+        "z": 3.114
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Sewer Manhole",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 276.113,
+        "y": 345.389984,
+        "z": 5.356
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Near Kamchatskaya Arch",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 259.57,
+        "y": 48.72,
+        "z": -3.929
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Cardinal Apartment Complex Parking",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 97.8999939,
+        "y": -160.07,
+        "z": 0.130000114
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Klimov Shopping Mall Exfil",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -162.652008,
+        "y": -7.08499146,
+        "z": 2.645
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Pinewood Basement (Co-Op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -113.71,
+        "y": 65.633,
+        "z": -2.935
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Courtyard",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -148.947,
+        "y": 500.151978,
+        "z": 1.78600025
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Primorsky Ave Taxi V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -2.191315,
+        "y": 461.232971,
+        "z": 3.2
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Stylobate Building Elevator",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -44.7435,
+        "y": -72.6544,
+        "z": 11.04
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Crash Site",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 312.74,
+        "y": 405.96,
+        "z": 6.8
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Sewer River",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -267.04,
+        "y": 219.48,
+        "z": -1.535
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Damaged House",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -248.971,
+        "y": 344.275,
+        "z": 7.195
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Collapsed Crane",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 216.3,
+        "y": 272.3,
+        "z": 3.44
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Scav Checkpoint",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 211.3356,
+        "y": 82.307,
+        "z": -8.1624
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Klimov Street (Flare)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -263.41,
+        "y": 43.19,
+        "z": 2.9
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Expo Checkpoint",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 213.12,
+        "y": -104.96,
+        "z": 0.09
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Ground Zero",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -260.05,
+        "y": 103.645729,
+        "z": 2.18500137
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Interchange",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 286.670776,
+        "y": 505.539978,
+        "z": 3.39350128
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to The Lab",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 206.955,
+        "y": 82.194,
+        "z": -8.382
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Smugglers' Basement",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 75.99,
+        "y": 50.0100021,
+        "z": -0.6029999
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "MVD Academy Entrance Hall Guard Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -250.476974,
+        "y": 131.546,
+        "z": 3.98400116
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6582dc4b6ba9e979af6b79f4"
+    },
+    {
+      "Text": "Pinewood Hotel Room 215",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -67.00622,
+        "y": 59.3249474,
+        "z": 6.024556
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39f08cd6db0635c197600"
+    },
+    {
+      "Text": "Relaxation Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -208.164185,
+        "y": 295.5338,
+        "z": 4.28889942
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6582dbf0b8d7830efc45016f"
+    },
+    {
+      "Text": "Abandoned Factory Marked Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -133.4689,
+        "y": 272.9284,
+        "z": 9.712829
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a3a93f8a56922e82001f5d"
+    },
+    {
+      "Text": "Financial Institution Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -168.1108,
+        "y": 230.025009,
+        "z": 7.11500072
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39667c9b3aa4b61683e98"
+    },
+    {
+      "Text": "Financial Institution Small Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -186.393311,
+        "y": 229.271469,
+        "z": 3.72240162
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a71ed21031ac76fe773c7f"
+    },
+    {
+      "Text": "Backup Hideout",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -130.730026,
+        "y": 391.625732,
+        "z": 3.37588024
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6398fd8ad3de3849057f5128"
+    },
+    {
+      "Text": "Real Estate Agency Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -62.37935,
+        "y": 460.344177,
+        "z": 7.906067
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6582dc5740562727a654ebb1"
+    },
+    {
+      "Text": "Iron Gate",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 131.168167,
+        "y": 227.64386,
+        "z": 10.5814857
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39f6e64283b5e9c56b289"
+    },
+    {
+      "Text": "Iron Gate",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 126.369164,
+        "y": 227.644852,
+        "z": 10.5938711
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39f6e64283b5e9c56b289"
+    },
+    {
+      "Text": "Iron Gate",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 132.49292,
+        "y": 225.1011,
+        "z": 10.5825262
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39f6e64283b5e9c56b289"
+    },
+    {
+      "Text": "Stair Landing",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 108.3958,
+        "y": 224.57489,
+        "z": 7.45609
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39fd1c9b3aa4b61683efb"
+    },
+    {
+      "Text": "Chekannaya Apartment 15",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 107.048935,
+        "y": 227.6278,
+        "z": 7.51593971
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39fc0af870e651d58e6ae"
+    },
+    {
+      "Text": "Primorsky 46-48 Skybridge",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 49.5526543,
+        "y": 147.7725,
+        "z": 12.7623
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39e1d234195315d4020bd"
+    },
+    {
+      "Text": "Primorsky 48 Apartment",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 45.3423576,
+        "y": 151.024933,
+        "z": 6.742015
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a71eb5b7f4570d3a29316b"
+    },
+    // {    // tarbank cash register
+    //     "Text": "door 17",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 66.95923, "y": 231.536, "z": 3.841999 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "64ccc2111779ad6ba200a139"
+    // },
+    // {   // tarbank cash register
+    //     "Text": "door 18",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 68.86824, "y": 231.536, "z": 3.841999 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "64ccc2111779ad6ba200a139"
+    // },
+    {
+      "Text": "Zmeisky 3 Apartment 8",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 104.26915,
+        "y": 129.2099,
+        "z": 4.99642372
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39dfe3901f439517cafba"
+    },
+    {
+      "Text": "Archive Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 80.078,
+        "y": 138.528,
+        "z": 4.941001
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39e49cd6db0635c1975fc"
+    },
+    {
+      "Text": "Zmeisky 5 Apartment 20",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 124.2521,
+        "y": 143.391266,
+        "z": 14.5957794
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39df18a56922e82001f25"
+    },
+    {
+      "Text": "Mysterious Marked Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 186.18,
+        "y": 227.438,
+        "z": 0.849899948
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc25f95763a1ae376e447"
+    },
+    {
+      "Text": "Rusted Key Door",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 177.724213,
+        "y": 78.84773,
+        "z": 6.821482
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64d4b23dc1b37504b41ac2b6"
+    },
+    {
+      "Text": "PE Teacher's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 207.952087,
+        "y": 140.7129,
+        "z": 1.39300013
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc268c41e91416064ebc7"
+    },
+    {
+      "Text": "X-Ray Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 184.997482,
+        "y": 100.691429,
+        "z": 2.82870531
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc246ff54fb38131acf29"
+    },
+    {
+      "Text": "\"Negotiation\" Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 165.190918,
+        "y": 165.05,
+        "z": 1.79457092
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6582dbe43a2e5248357dbe9a"
+    },
+    // {    // usec cottage safe key bugged
+    //     "Text": "door 27",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 174.013977, "y": 163.48201, "z": 1.14044952 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
+    // },
+    {
+      "Text": "Construction Site Bunkhouse",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 181.878983,
+        "y": 312.128,
+        "z": 6.85800028
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39cb1c9b3aa4b61683ee2"
+    },
+    {
+      "Text": "Car Dealership Closed Section",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 63.478,
+        "y": 301.057,
+        "z": 7.8760004
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a397d3af870e651d58e65b"
+    },
+    {
+      "Text": "Car Dealership Director's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 66.86121,
+        "y": 310.662476,
+        "z": 7.935705
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a399193901f439517cafb6"
+    },
+    {
+      "Text": "Cargo Container Mesh Door",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 83.1959839,
+        "y": 296.521,
+        "z": 3.72701359
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39fdf1e21260da44a0256"
+    },
+    {
+      "Text": "Aspect Company Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 55.03196,
+        "y": 332.649078,
+        "z": 3.91900015
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ce572331dd890873175115"
+    },
+    {
+      "Text": "Supply Department Director's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 57.615963,
+        "y": 334.707031,
+        "z": 6.847
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39ce4cd6db0635c1975fa"
+    },
+    {
+      "Text": "Concordia Apartment 8 Home Cinema",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 217.9483,
+        "y": 400.558655,
+        "z": 10.3969755
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc1ec1779ad6ba200a137"
+    },
+    {
+      "Text": "Concordia Apartment 34",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 227.979279,
+        "y": 406.048645,
+        "z": 10.3969755
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc1d4a0f13c24561edf27"
+    },
+    {
+      "Text": "Concordia Apartment 8",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 224.331543,
+        "y": 400.559357,
+        "z": 10.4224167
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a71e781031ac76fe773c7d"
+    },
+    {
+      "Text": "Concordia Apartment 64 Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 274.591,
+        "y": 383.685974,
+        "z": 7.404751
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a71e86b7f4570d3a293169"
+    },
+    {
+      "Text": "Concordia Apartment 63",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 268.47,
+        "y": 387.507,
+        "z": 7.4047513
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc1f4ff54fb38131acf27"
+    },
+    {
+      "Text": "Concordia Apartment 64",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 272.6917,
+        "y": 378.880249,
+        "z": 7.46978951
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a71e922b25f7513905ca20"
+    },
+    {
+      "Text": "Concordia Security",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 211.010483,
+        "y": 406.7196,
+        "z": -0.205203056
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39c7964283b5e9c56b280"
+    },
+    {
+      "Text": "Store Manager's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 119.953995,
+        "y": 290.827026,
+        "z": 7.776001
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "63a39c69af870e651d58e6aa"
+    },
+    {
+      "Text": "TerraGroup Security Armory",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 60.7049751,
+        "y": -79.95239,
+        "z": 1.29402184
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc24de61ea448b507d34d"
+    },
+    {
+      "Text": "TerraGroup Meeting Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 46.6899338,
+        "y": -59.4043961,
+        "z": 1.31902039
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc206793ca11c8f450a38"
+    },
+    {
+      "Text": "Beluga Restaurant Director's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -19.6295967,
+        "y": -64.19723,
+        "z": 10.6449995
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc1fe088064307e14a6f7"
+    },
+    {
+      "Text": "Beluga Restaurant Director's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -27.806633,
+        "y": -60.68901,
+        "z": 10.6449995
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "64ccc1fe088064307e14a6f7"
+    }
+    // {    // goshan cash register
+    //     "Text": "door 55",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -208.95, "y": 179.655991, "z": 4.057 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5ad7247386f7747487619dc3"
+    // },
+    // {    // goshan cash register
+    //     "Text": "door 56",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -208.95, "y": 182.011, "z": 4.059 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5ad7247386f7747487619dc3"
+    // },
+    // {    // bugged pinewood safe
+    //     "Text": "door 57",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -77.5323944, "y": 53.20392, "z": 5.3959837 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
+    // },
+    // {    // bugged pinewood safe
+    //     "Text": "door 58",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -67.94231, "y": 53.4928131, "z": 5.31730938 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
+    // },
+    // {    // bugged pinewood safe
+    //     "Text": "door 59",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -49.45166, "y": 64.02192, "z": 5.273139 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "61aa5ba8018e9821b7368da9"
+    // },
+    // {   // goshan cash register
+    //     "Text": "door 60",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": -30.653595, "y": 468.8241, "z": 3.66407585 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5ad7247386f7747487619dc3"
+    // },
+    // {    // unknown
+    //     "Text": "door 61",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 78.59352, "y": 124.437378, "z": 1.328997 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "63a39e6acd6db0635c1975fe"
+    // },
+    // {    // unknown
+    //     "Text": "door 62",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 76.57499, "y": 132.901367, "z": 4.36699724 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "63a39e5b234195315d4020bf"
+    // },
+    // {   // unknown
+    //     "Text": "door 63",
+    //     "ImagePath": "Markers/door_with_lock.png",
+    //     "Position": { "x": 58.10759, "y": 337.684021, "z": 6.26939726 },
+    //     "Category": "LockedDoor",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "63a39ddda3a2b32b5f6e007a"
+    // }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "Bank_points_15",
+      "Position": {
+        "x": 8.286,
+        "y": -2.76,
+        "z": 5.15
+      },
+      "Bounds": {
+        "center": {
+          "x": 8.286,
+          "y": -2.76,
+          "z": 5.15
+        },
+        "size": {
+          "x": 1.03523588,
+          "y": 2.00000048,
+          "z": 1.0352354
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0179425739,
+        "z": 0.0,
+        "w": 0.999839067
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1",
+      "Position": {
+        "x": 219.391,
+        "y": 10.32,
+        "z": 397.479
+      },
+      "Bounds": {
+        "center": {
+          "x": 219.391,
+          "y": 10.32,
+          "z": 397.479
+        },
+        "size": {
+          "x": 3.53875732,
+          "y": 2.0,
+          "z": 4.38623047
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0713436,
+        "z": 0.0,
+        "w": 0.997451842
+      }
+    },
+    {
+      "Id": "Zone_silient_hill_ward",
+      "Position": {
+        "x": 182.722717,
+        "y": 2.1748,
+        "z": 111.745132
+      },
+      "Bounds": {
+        "center": {
+          "x": 182.812927,
+          "y": 2.48272419,
+          "z": 111.7393
+        },
+        "size": {
+          "x": 1.84243774,
+          "y": 1.38415146,
+          "z": 1.309433
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.008974801,
+        "z": 0.0,
+        "w": 0.999959767
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_04",
+      "Position": {
+        "x": 215.640015,
+        "y": 8.23,
+        "z": 360.7
+      },
+      "Bounds": {
+        "center": {
+          "x": 207.540009,
+          "y": 6.93,
+          "z": 360.169983
+        },
+        "size": {
+          "x": 75.6000061,
+          "y": 9.3,
+          "z": 38.1199951
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Mark_BTR_6",
+      "Position": {
+        "x": -136.84,
+        "y": 1.92,
+        "z": 399.3
+      },
+      "Bounds": {
+        "center": {
+          "x": -137.690536,
+          "y": 2.795106,
+          "z": 400.379883
+        },
+        "size": {
+          "x": 8.28183,
+          "y": 2.23169518,
+          "z": 6.70959473
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c11_gmed",
+      "Position": {
+        "x": 92.96399,
+        "y": 3.587,
+        "z": 320.384033
+      },
+      "Bounds": {
+        "center": {
+          "x": 92.96399,
+          "y": 3.587,
+          "z": 320.384033
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.0,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_flyer3",
+      "Position": {
+        "x": -169.84,
+        "y": 15.41,
+        "z": 407.59
+      },
+      "Bounds": {
+        "center": {
+          "x": -169.84,
+          "y": 15.41,
+          "z": 407.59
+        },
+        "size": {
+          "x": 9.077301,
+          "y": 2.63211918,
+          "z": 8.05249
+        }
+      },
+      "Rotation": {
+        "x": -0.000267912576,
+        "y": -0.00289961486,
+        "z": 0.0920036659,
+        "w": 0.9957545
+      }
+    },
+    {
+      "Id": "quest_zone_find_2st_mech",
+      "Position": {
+        "x": 188.391,
+        "y": 0.7589998,
+        "z": 226.506
+      },
+      "Bounds": {
+        "center": {
+          "x": 188.391,
+          "y": 0.7589998,
+          "z": 226.506
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.0,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Pharma_1",
+      "Position": {
+        "x": 39.054,
+        "y": 3.655,
+        "z": 162.4094
+      },
+      "Bounds": {
+        "center": {
+          "x": 39.054,
+          "y": 3.65499973,
+          "z": 162.4094
+        },
+        "size": {
+          "x": 7.0,
+          "y": 1.99999976,
+          "z": 18.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_2",
+      "Position": {
+        "x": 83.017,
+        "y": 1.222,
+        "z": -30.5000038
+      },
+      "Bounds": {
+        "center": {
+          "x": 83.017,
+          "y": 1.22200012,
+          "z": -30.5000038
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 1.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_kill_cinema",
+      "Position": {
+        "x": -180.399963,
+        "y": 16.5,
+        "z": 400.7
+      },
+      "Bounds": {
+        "center": {
+          "x": -180.399963,
+          "y": 16.5,
+          "z": 400.7
+        },
+        "size": {
+          "x": 101.8876,
+          "y": 30.0,
+          "z": 81.5002441
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0121183759,
+        "z": 0.0,
+        "w": 0.999926567
+      }
+    },
+    {
+      "Id": "Bank_points_14",
+      "Position": {
+        "x": 0.446,
+        "y": -2.73879981,
+        "z": -18.789
+      },
+      "Bounds": {
+        "center": {
+          "x": 0.44599998,
+          "y": -2.73879981,
+          "z": -18.789
+        },
+        "size": {
+          "x": 1.03523564,
+          "y": 2.00000048,
+          "z": 1.03523636
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0179425739,
+        "z": 0.0,
+        "w": 0.999839067
+      }
+    },
+    {
+      "Id": "Bank_points_4",
+      "Position": {
+        "x": -58.149,
+        "y": 3.654,
+        "z": 453.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -58.149,
+          "y": 3.65400028,
+          "z": 453.87
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.00000024,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c5_mar",
+      "Position": {
+        "x": 47.6250038,
+        "y": 12.658,
+        "z": 153.123
+      },
+      "Bounds": {
+        "center": {
+          "x": 47.6250038,
+          "y": 12.658,
+          "z": 153.123
+        },
+        "size": {
+          "x": 6.0,
+          "y": 2.0,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_12",
+      "Position": {
+        "x": -166.477,
+        "y": 1.625,
+        "z": -3.377
+      },
+      "Bounds": {
+        "center": {
+          "x": -166.477,
+          "y": 1.625,
+          "z": -3.377
+        },
+        "size": {
+          "x": 1.17730713,
+          "y": 2.0,
+          "z": 1.17732143
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.09893406,
+        "z": 0.0,
+        "w": 0.995094
+      }
+    },
+    {
+      "Id": "quest_zone_c8_dom2",
+      "Position": {
+        "x": 107.935,
+        "y": 7.569,
+        "z": 232.193
+      },
+      "Bounds": {
+        "center": {
+          "x": 107.935,
+          "y": 7.56900024,
+          "z": 232.193
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.00000048,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Office_quest",
+      "Position": {
+        "x": 164.247,
+        "y": 1.722,
+        "z": 167.288
+      },
+      "Bounds": {
+        "center": {
+          "x": 164.247,
+          "y": 1.72199988,
+          "z": 167.288
+        },
+        "size": {
+          "x": 2.67559814,
+          "y": 2.00000048,
+          "z": 2.67559814
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.225627109,
+        "z": 0.0,
+        "w": 0.9742138
+      }
+    },
+    {
+      "Id": "Bank_points_7",
+      "Position": {
+        "x": -80.367,
+        "y": 1.583,
+        "z": -64.723
+      },
+      "Bounds": {
+        "center": {
+          "x": -80.367,
+          "y": 1.583,
+          "z": -64.723
+        },
+        "size": {
+          "x": 1.3144989,
+          "y": 2.0,
+          "z": 2.13693237
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.08229005,
+        "z": 0.0,
+        "w": 0.996608436
+      }
+    },
+    {
+      "Id": "Mark_BTR_4",
+      "Position": {
+        "x": -13.1059952,
+        "y": 2.36,
+        "z": 217.207916
+      },
+      "Bounds": {
+        "center": {
+          "x": -13.1340618,
+          "y": 3.23510551,
+          "z": 218.328415
+        },
+        "size": {
+          "x": 8.524075,
+          "y": 2.231695,
+          "z": 3.6897583
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_produkt3",
+      "Position": {
+        "x": -77.17,
+        "y": 2.33,
+        "z": 158.91
+      },
+      "Bounds": {
+        "center": {
+          "x": -77.17,
+          "y": 2.33,
+          "z": 158.91
+        },
+        "size": {
+          "x": 15.9597168,
+          "y": 2.00000048,
+          "z": 15.9597168
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.07598289,
+        "z": 0.0,
+        "w": 0.9971092
+      }
+    },
+    {
+      "Id": "quest_zone_kill_stilo",
+      "Position": {
+        "x": -102.900009,
+        "y": 8.6,
+        "z": -25.59999
+      },
+      "Bounds": {
+        "center": {
+          "x": -102.900009,
+          "y": 8.6,
+          "z": -25.59999
+        },
+        "size": {
+          "x": 238.387726,
+          "y": 30.0000038,
+          "z": 139.072159
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.07973621,
+        "z": 0.0,
+        "w": 0.996816039
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_2",
+      "Position": {
+        "x": 36.983,
+        "y": 11.0750008,
+        "z": 88.167
+      },
+      "Bounds": {
+        "center": {
+          "x": 36.983,
+          "y": 11.0750008,
+          "z": 88.167
+        },
+        "size": {
+          "x": 4.04820251,
+          "y": 2.0,
+          "z": 4.04820251
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.006062489,
+        "z": 0.0,
+        "w": 0.999981642
+      }
+    },
+    {
+      "Id": "quest_zone_place_c22_harley_3",
+      "Position": {
+        "x": 99.46399,
+        "y": 3.204,
+        "z": 356.224
+      },
+      "Bounds": {
+        "center": {
+          "x": 99.46399,
+          "y": 3.204,
+          "z": 356.224
+        },
+        "size": {
+          "x": 2.39187622,
+          "y": 1.5,
+          "z": 3.08996582
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.264805824,
+        "z": 0.0,
+        "w": 0.964301765
+      }
+    },
+    {
+      "Id": "quest_zone_c7_mel",
+      "Position": {
+        "x": 42.982,
+        "y": 11.7533989,
+        "z": 151.462
+      },
+      "Bounds": {
+        "center": {
+          "x": 42.982,
+          "y": 11.7533989,
+          "z": 151.462
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1",
+      "Position": {
+        "x": 224.982,
+        "y": 10.339,
+        "z": 396.674
+      },
+      "Bounds": {
+        "center": {
+          "x": 224.982,
+          "y": 10.339,
+          "z": 396.674
+        },
+        "size": {
+          "x": 3.53875732,
+          "y": 2.0,
+          "z": 4.38623047
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0713436,
+        "z": 0.0,
+        "w": 0.997451842
+      }
+    },
+    {
+      "Id": "quest_zone_kill_c17_adm",
+      "Position": {
+        "x": -69.2,
+        "y": 12.9,
+        "z": 115.8
+      },
+      "Bounds": {
+        "center": {
+          "x": -69.2,
+          "y": 12.9,
+          "z": 115.8
+        },
+        "size": {
+          "x": 164.072937,
+          "y": 30.0,
+          "z": 173.827667
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0121183759,
+        "z": 0.0,
+        "w": 0.999926567
+      }
+    },
+    {
+      "Id": "quest_zone_place_c24_tigr2",
+      "Position": {
+        "x": 172.48,
+        "y": 4.79,
+        "z": 416.94
+      },
+      "Bounds": {
+        "center": {
+          "x": 172.48,
+          "y": 4.79,
+          "z": 416.94
+        },
+        "size": {
+          "x": 8.514374,
+          "y": 3.00000024,
+          "z": 6.134094
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.219239786,
+        "z": 0.0,
+        "w": 0.975671053
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1_hide3",
+      "Position": {
+        "x": 36.688,
+        "y": 10.583,
+        "z": 85.519
+      },
+      "Bounds": {
+        "center": {
+          "x": 36.688,
+          "y": 10.583,
+          "z": 85.519
+        },
+        "size": {
+          "x": 4.027725,
+          "y": 1.0,
+          "z": 1.11740112
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0147313811,
+        "z": 0.0,
+        "w": 0.9998915
+      }
+    },
+    {
+      "Id": "quest_zone_keeper00",
+      "Position": {
+        "x": -34.333004,
+        "y": 4.26,
+        "z": 239.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -34.333004,
+          "y": 4.26,
+          "z": 239.87
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 1.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Hookah_quest",
+      "Position": {
+        "x": -211.759,
+        "y": 4.199,
+        "z": 297.287
+      },
+      "Bounds": {
+        "center": {
+          "x": -211.759,
+          "y": 4.199,
+          "z": 297.287
+        },
+        "size": {
+          "x": 4.93334961,
+          "y": 2.0,
+          "z": 4.50817871
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.237718463,
+        "z": 0.0,
+        "w": 0.9713341
+      }
+    },
+    {
+      "Id": "quest_zone_keeper10_place",
+      "Position": {
+        "x": 10.4939995,
+        "y": 4.752,
+        "z": 217.564
+      },
+      "Bounds": {
+        "center": {
+          "x": 10.4939995,
+          "y": 4.752,
+          "z": 217.564
+        },
+        "size": {
+          "x": 2.485052,
+          "y": 2.112404,
+          "z": 2.53497314
+        }
+      },
+      "Rotation": {
+        "x": -0.0375460722,
+        "y": -0.9356647,
+        "z": 0.0155130951,
+        "w": 0.3505441
+      }
+    },
+    {
+      "Id": "Bank_points_13",
+      "Position": {
+        "x": -53.575,
+        "y": 1.579,
+        "z": -69.353
+      },
+      "Bounds": {
+        "center": {
+          "x": -53.575,
+          "y": 1.579,
+          "z": -69.353
+        },
+        "size": {
+          "x": 1.17732239,
+          "y": 2.0,
+          "z": 1.17732239
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.09893406,
+        "z": 0.0,
+        "w": 0.995094
+      }
+    },
+    {
+      "Id": "Bank_points_10",
+      "Position": {
+        "x": -35.198,
+        "y": 1.575,
+        "z": -69.976
+      },
+      "Bounds": {
+        "center": {
+          "x": -35.198,
+          "y": 1.575,
+          "z": -69.976
+        },
+        "size": {
+          "x": 1.161026,
+          "y": 2.00000048,
+          "z": 1.161026
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.767063856,
+        "z": 0.0,
+        "w": 0.6415708
+      }
+    },
+    {
+      "Id": "Zone_mutant",
+      "Position": {
+        "x": -262.818,
+        "y": -2.334,
+        "z": 206.337
+      },
+      "Bounds": {
+        "center": {
+          "x": -263.272583,
+          "y": -2.02607584,
+          "z": 206.435623
+        },
+        "size": {
+          "x": 7.58917236,
+          "y": 1.38415146,
+          "z": 6.45025635
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.173368081,
+        "z": 0.0,
+        "w": 0.984857142
+      }
+    },
+    {
+      "Id": "quest_zone_find_2st_med_invent1",
+      "Position": {
+        "x": 224.87,
+        "y": 4.818,
+        "z": 172.806
+      },
+      "Bounds": {
+        "center": {
+          "x": 224.87,
+          "y": 4.818,
+          "z": 172.806
+        },
+        "size": {
+          "x": 7.0,
+          "y": 2.0,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c27_sect",
+      "Position": {
+        "x": -130.801,
+        "y": 9.489,
+        "z": 269.741
+      },
+      "Bounds": {
+        "center": {
+          "x": -130.801,
+          "y": 9.489,
+          "z": 269.741
+        },
+        "size": {
+          "x": 4.0,
+          "y": 3.0,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c21_look",
+      "Position": {
+        "x": -67.752,
+        "y": 5.947,
+        "z": 65.883
+      },
+      "Bounds": {
+        "center": {
+          "x": -67.752,
+          "y": 5.947,
+          "z": 65.883
+        },
+        "size": {
+          "x": 4.52857971,
+          "y": 2.000001,
+          "z": 4.52857971
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0713436,
+        "z": 0.0,
+        "w": 0.997451842
+      }
+    },
+    {
+      "Id": "quest_zone_place_c14_revx_1",
+      "Position": {
+        "x": -139.43,
+        "y": 3.55700016,
+        "z": 438.81
+      },
+      "Bounds": {
+        "center": {
+          "x": -139.43,
+          "y": 3.55700016,
+          "z": 438.81
+        },
+        "size": {
+          "x": 9.43158,
+          "y": 3.0,
+          "z": 8.384399
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.264805824,
+        "z": 0.0,
+        "w": 0.964301765
+      }
+    },
+    {
+      "Id": "quest_city_trotil2",
+      "Position": {
+        "x": 68.257,
+        "y": 3.044,
+        "z": 309.979
+      },
+      "Bounds": {
+        "center": {
+          "x": 68.257,
+          "y": 3.044,
+          "z": 309.979
+        },
+        "size": {
+          "x": 1.14845276,
+          "y": 1.07672787,
+          "z": 3.79095459
+        }
+      },
+      "Rotation": {
+        "x": -0.0122788139,
+        "y": 0.999789655,
+        "z": 0.000130244429,
+        "w": 0.0164289419
+      }
+    },
+    {
+      "Id": "quest_produkt2",
+      "Position": {
+        "x": 153.686,
+        "y": 4.68,
+        "z": 299.044
+      },
+      "Bounds": {
+        "center": {
+          "x": 153.686,
+          "y": 4.68,
+          "z": 299.044
+        },
+        "size": {
+          "x": 15.0,
+          "y": 2.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_hide_2st_mech",
+      "Position": {
+        "x": 188.591,
+        "y": 0.3739996,
+        "z": 226.378983
+      },
+      "Bounds": {
+        "center": {
+          "x": 188.591,
+          "y": 0.3739996,
+          "z": 226.378983
+        },
+        "size": {
+          "x": 1.50869751,
+          "y": 1.0,
+          "z": 1.50869751
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00291196513,
+        "z": 0.0,
+        "w": 0.999995768
+      }
+    },
+    {
+      "Id": "quest_zone_find_2st_kpss2",
+      "Position": {
+        "x": 246.254,
+        "y": -0.328000069,
+        "z": 52.416
+      },
+      "Bounds": {
+        "center": {
+          "x": 246.254,
+          "y": -0.328000069,
+          "z": 52.416
+        },
+        "size": {
+          "x": 7.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_8",
+      "Position": {
+        "x": -160.188,
+        "y": 1.6,
+        "z": -47.807
+      },
+      "Bounds": {
+        "center": {
+          "x": -160.188,
+          "y": 1.6,
+          "z": -47.807
+        },
+        "size": {
+          "x": 2.14526367,
+          "y": 2.00000024,
+          "z": 1.33779907
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.767063856,
+        "z": 0.0,
+        "w": 0.6415708
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_2",
+      "Position": {
+        "x": 37.867,
+        "y": 12.664,
+        "z": 155.779
+      },
+      "Bounds": {
+        "center": {
+          "x": 37.867,
+          "y": 12.664,
+          "z": 155.779
+        },
+        "size": {
+          "x": 4.04820251,
+          "y": 2.0,
+          "z": 4.048218
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.006062489,
+        "z": 0.0,
+        "w": 0.999981642
+      }
+    },
+    {
+      "Id": "quest_zone_find_2st_med_invent2",
+      "Position": {
+        "x": 182.993,
+        "y": 2.749,
+        "z": 101.998
+      },
+      "Bounds": {
+        "center": {
+          "x": 182.993,
+          "y": 2.749,
+          "z": 101.998
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_weap_race",
+      "Position": {
+        "x": 62.4,
+        "y": 5.2,
+        "z": 289.9
+      },
+      "Bounds": {
+        "center": {
+          "x": 62.3999977,
+          "y": 5.2,
+          "z": 289.9
+        },
+        "size": {
+          "x": 300.0,
+          "y": 20.0,
+          "z": 300.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Mark_BTR_5",
+      "Position": {
+        "x": -232.094,
+        "y": 2.453,
+        "z": 236.69
+      },
+      "Bounds": {
+        "center": {
+          "x": -233.660187,
+          "y": 3.328106,
+          "z": 235.943436
+        },
+        "size": {
+          "x": 7.08203125,
+          "y": 2.23169518,
+          "z": 6.211487
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.223098055,
+        "z": 0.0,
+        "w": 0.974796
+      }
+    },
+    {
+      "Id": "quest_zone_hide_barber2",
+      "Position": {
+        "x": 214.295,
+        "y": 4.254,
+        "z": 409.255
+      },
+      "Bounds": {
+        "center": {
+          "x": 214.295,
+          "y": 4.254,
+          "z": 409.255
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1_hide1",
+      "Position": {
+        "x": 228.187,
+        "y": 9.876,
+        "z": 396.695
+      },
+      "Bounds": {
+        "center": {
+          "x": 228.187,
+          "y": 9.876,
+          "z": 396.695
+        },
+        "size": {
+          "x": 1.73193359,
+          "y": 1.0,
+          "z": 1.19396973
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0623883754,
+        "z": 0.0,
+        "w": 0.998051941
+      }
+    },
+    {
+      "Id": "quest_zone_c8_dom2_dead",
+      "Position": {
+        "x": 106.772,
+        "y": 4.653,
+        "z": 222.482
+      },
+      "Bounds": {
+        "center": {
+          "x": 106.772,
+          "y": 4.653,
+          "z": 222.482
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_9",
+      "Position": {
+        "x": -148.57,
+        "y": 6.081,
+        "z": -62.751
+      },
+      "Bounds": {
+        "center": {
+          "x": -148.57,
+          "y": 6.081,
+          "z": -62.751
+        },
+        "size": {
+          "x": 1.16101074,
+          "y": 2.0,
+          "z": 1.161026
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.767063856,
+        "z": 0.0,
+        "w": 0.6415708
+      }
+    },
+    {
+      "Id": "quest_zone_c6_kpss",
+      "Position": {
+        "x": 131.432,
+        "y": 7.587,
+        "z": 232.371
+      },
+      "Bounds": {
+        "center": {
+          "x": 131.432,
+          "y": 7.587,
+          "z": 232.371
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_hide_barber1",
+      "Position": {
+        "x": 206.613022,
+        "y": 4.33,
+        "z": 411.782
+      },
+      "Bounds": {
+        "center": {
+          "x": 206.613022,
+          "y": 4.33,
+          "z": 411.782
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 1.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c16_koll_2",
+      "Position": {
+        "x": 62.1799965,
+        "y": 7.11,
+        "z": 272.84
+      },
+      "Bounds": {
+        "center": {
+          "x": 62.1799965,
+          "y": 7.11,
+          "z": 272.84
+        },
+        "size": {
+          "x": 34.0612869,
+          "y": 12.0000029,
+          "z": 24.5046387
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.844572365,
+        "z": 0.0,
+        "w": 0.5354415
+      }
+    },
+    {
+      "Id": "quest_zone_place_c14_revx_3",
+      "Position": {
+        "x": 2.18999863,
+        "y": 0.8999996,
+        "z": 34.04
+      },
+      "Bounds": {
+        "center": {
+          "x": 2.18999863,
+          "y": 0.8999996,
+          "z": 34.04
+        },
+        "size": {
+          "x": 5.026766,
+          "y": 3.00000048,
+          "z": 8.016701
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.7059217,
+        "z": 0.0,
+        "w": 0.7082899
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1_hide1",
+      "Position": {
+        "x": 218.212,
+        "y": 9.899,
+        "z": 396.306
+      },
+      "Bounds": {
+        "center": {
+          "x": 218.212,
+          "y": 9.899,
+          "z": 396.306
+        },
+        "size": {
+          "x": 1.11676025,
+          "y": 1.0,
+          "z": 1.11676025
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0623883754,
+        "z": 0.0,
+        "w": 0.998051941
+      }
+    },
+    {
+      "Id": "Bank_points_6",
+      "Position": {
+        "x": 279.032,
+        "y": 4.334,
+        "z": 369.676
+      },
+      "Bounds": {
+        "center": {
+          "x": 279.032,
+          "y": 4.334,
+          "z": 369.676
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 1.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_produkt1",
+      "Position": {
+        "x": -204.310013,
+        "y": 4.3,
+        "z": 181.22
+      },
+      "Bounds": {
+        "center": {
+          "x": -204.310013,
+          "y": 4.3,
+          "z": 181.22
+        },
+        "size": {
+          "x": 8.0,
+          "y": 2.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_11",
+      "Position": {
+        "x": -113.874,
+        "y": 1.609,
+        "z": -12.51
+      },
+      "Bounds": {
+        "center": {
+          "x": -113.874,
+          "y": 1.609,
+          "z": -12.51
+        },
+        "size": {
+          "x": 1.161026,
+          "y": 2.00000048,
+          "z": 1.161026
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.767063856,
+        "z": 0.0,
+        "w": 0.6415708
+      }
+    },
+    {
+      "Id": "quest_zone_c8_dom1",
+      "Position": {
+        "x": 127.09,
+        "y": 10.636,
+        "z": 232.57
+      },
+      "Bounds": {
+        "center": {
+          "x": 127.09,
+          "y": 10.636,
+          "z": 232.57
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_5",
+      "Position": {
+        "x": 54.476,
+        "y": 3.799,
+        "z": 234.936
+      },
+      "Bounds": {
+        "center": {
+          "x": 54.476,
+          "y": 3.79899979,
+          "z": 234.936
+        },
+        "size": {
+          "x": 2.0,
+          "y": 1.99999976,
+          "z": 1.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_kill_kardinal",
+      "Position": {
+        "x": 134.0,
+        "y": 23.0,
+        "z": -101.099991
+      },
+      "Bounds": {
+        "center": {
+          "x": 134.0,
+          "y": 23.0,
+          "z": -101.099991
+        },
+        "size": {
+          "x": 235.52951,
+          "y": 60.0,
+          "z": 178.75708
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0121183759,
+        "z": 0.0,
+        "w": 0.999926567
+      }
+    },
+    {
+      "Id": "Bank_points_3",
+      "Position": {
+        "x": -50.893,
+        "y": 3.654,
+        "z": 453.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -50.893,
+          "y": 3.65400028,
+          "z": 453.87
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.00000024,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Mark_BTR_3",
+      "Position": {
+        "x": -131.704086,
+        "y": 0.630023,
+        "z": 64.95194
+      },
+      "Bounds": {
+        "center": {
+          "x": -133.04689,
+          "y": 1.505135,
+          "z": 63.87385
+        },
+        "size": {
+          "x": 8.20462,
+          "y": 2.23169613,
+          "z": 12.0400314
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.08111029,
+        "z": 0.0,
+        "w": 0.9967051
+      }
+    },
+    {
+      "Id": "quest_zone_c16_koll_1",
+      "Position": {
+        "x": 15.6499977,
+        "y": 3.39000034,
+        "z": 226.62
+      },
+      "Bounds": {
+        "center": {
+          "x": 15.6499968,
+          "y": 3.39000034,
+          "z": 226.62
+        },
+        "size": {
+          "x": 55.13752,
+          "y": 3.0,
+          "z": 57.9379272
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.3673839,
+        "z": 0.0,
+        "w": 0.9300694
+      }
+    },
+    {
+      "Id": "Office_enter",
+      "Position": {
+        "x": 164.36,
+        "y": 1.722,
+        "z": 148.11
+      },
+      "Bounds": {
+        "center": {
+          "x": 164.36,
+          "y": 1.72199988,
+          "z": 148.11
+        },
+        "size": {
+          "x": 12.7868347,
+          "y": 2.00000048,
+          "z": 23.3338623
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.225627109,
+        "z": 0.0,
+        "w": 0.9742138
+      }
+    },
+    {
+      "Id": "quest_city_trotil2",
+      "Position": {
+        "x": 68.769,
+        "y": 2.929,
+        "z": 303.724
+      },
+      "Bounds": {
+        "center": {
+          "x": 68.769,
+          "y": 2.929,
+          "z": 303.724
+        },
+        "size": {
+          "x": 1.07650757,
+          "y": 1.075274,
+          "z": 1.60217285
+        }
+      },
+      "Rotation": {
+        "x": -0.0122788139,
+        "y": 0.999789655,
+        "z": 0.000130244429,
+        "w": 0.0164289419
+      }
+    },
+    {
+      "Id": "Pharma_3",
+      "Position": {
+        "x": 89.26,
+        "y": 5.07,
+        "z": -275.352
+      },
+      "Bounds": {
+        "center": {
+          "x": 89.26,
+          "y": 5.07,
+          "z": -275.352
+        },
+        "size": {
+          "x": 12.0,
+          "y": 2.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1",
+      "Position": {
+        "x": 214.79,
+        "y": 10.32,
+        "z": 398.14
+      },
+      "Bounds": {
+        "center": {
+          "x": 214.79,
+          "y": 10.32,
+          "z": 398.14
+        },
+        "size": {
+          "x": 3.53875732,
+          "y": 2.0,
+          "z": 4.38623047
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0713436,
+        "z": 0.0,
+        "w": 0.997451842
+      }
+    },
+    {
+      "Id": "quest_zone_place_c14_revx_2",
+      "Position": {
+        "x": 146.31,
+        "y": 4.7,
+        "z": 408.405029
+      },
+      "Bounds": {
+        "center": {
+          "x": 146.31,
+          "y": 4.7,
+          "z": 408.405029
+        },
+        "size": {
+          "x": 8.13104248,
+          "y": 3.00000024,
+          "z": 5.21246338
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0133929923,
+        "z": 0.0,
+        "w": 0.999910355
+      }
+    },
+    {
+      "Id": "quest_zone_c29_debt",
+      "Position": {
+        "x": -80.26001,
+        "y": 5.98,
+        "z": 50.5
+      },
+      "Bounds": {
+        "center": {
+          "x": -80.26001,
+          "y": 5.98,
+          "z": 50.5
+        },
+        "size": {
+          "x": 4.52857971,
+          "y": 2.000001,
+          "z": 4.52857971
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0713436,
+        "z": 0.0,
+        "w": 0.997451842
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1_hide2",
+      "Position": {
+        "x": 37.979,
+        "y": 12.154,
+        "z": 156.245
+      },
+      "Bounds": {
+        "center": {
+          "x": 37.979,
+          "y": 12.154,
+          "z": 156.245
+        },
+        "size": {
+          "x": 2.058052,
+          "y": 1.0,
+          "z": 2.05804443
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0147313811,
+        "z": 0.0,
+        "w": 0.9998915
+      }
+    },
+    {
+      "Id": "quest_flyer3",
+      "Position": {
+        "x": -169.75,
+        "y": 15.41,
+        "z": 392.58
+      },
+      "Bounds": {
+        "center": {
+          "x": -169.75,
+          "y": 15.41,
+          "z": 392.58
+        },
+        "size": {
+          "x": 8.968048,
+          "y": 2.61196518,
+          "z": 7.86181641
+        }
+      },
+      "Rotation": {
+        "x": -0.000267912576,
+        "y": -0.00289961486,
+        "z": 0.0920036659,
+        "w": 0.9957545
+      }
+    },
+    {
+      "Id": "quest_zone_keeper8_1_hide1",
+      "Position": {
+        "x": 215.752,
+        "y": 9.794,
+        "z": 395.903
+      },
+      "Bounds": {
+        "center": {
+          "x": 215.752,
+          "y": 9.794,
+          "z": 395.903
+        },
+        "size": {
+          "x": 1.30627441,
+          "y": 1.0,
+          "z": 1.30627441
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.194838509,
+        "z": 0.0,
+        "w": 0.9808354
+      }
+    },
+    {
+      "Id": "quest_zone_c25_cinem2",
+      "Position": {
+        "x": -204.667,
+        "y": 3.264,
+        "z": 242.994
+      },
+      "Bounds": {
+        "center": {
+          "x": -204.667,
+          "y": 3.264,
+          "z": 242.994
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_c25_cinem",
+      "Position": {
+        "x": 157.362,
+        "y": 5.098,
+        "z": 314.252
+      },
+      "Bounds": {
+        "center": {
+          "x": 157.362,
+          "y": 5.098,
+          "z": 314.252
+        },
+        "size": {
+          "x": 4.0,
+          "y": 3.0,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Zone_death_strending",
+      "Position": {
+        "x": 181.2717,
+        "y": 0.8670001,
+        "z": 229.012131
+      },
+      "Bounds": {
+        "center": {
+          "x": 181.237823,
+          "y": 1.17492437,
+          "z": 228.684311
+        },
+        "size": {
+          "x": 1.636383,
+          "y": 1.38415146,
+          "z": 1.95870972
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0126260258,
+        "z": 0.0,
+        "w": 0.9999203
+      }
+    },
+    {
+      "Id": "quest_city_trotil2",
+      "Position": {
+        "x": 67.729,
+        "y": 3.03,
+        "z": 306.864
+      },
+      "Bounds": {
+        "center": {
+          "x": 67.729,
+          "y": 3.03,
+          "z": 306.864
+        },
+        "size": {
+          "x": 1.09063721,
+          "y": 1.07555914,
+          "z": 2.03192139
+        }
+      },
+      "Rotation": {
+        "x": -0.0122788139,
+        "y": 0.999789655,
+        "z": 0.000130244429,
+        "w": 0.0164289419
+      }
+    },
+    {
+      "Id": "quest_zone_keeper99",
+      "Position": {
+        "x": -130.397,
+        "y": 3.20100021,
+        "z": 396.473022
+      },
+      "Bounds": {
+        "center": {
+          "x": -130.397,
+          "y": 3.20100021,
+          "z": 396.473022
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_find_sillent",
+      "Position": {
+        "x": 184.423,
+        "y": 6.759,
+        "z": 55.58
+      },
+      "Bounds": {
+        "center": {
+          "x": 184.423,
+          "y": 6.759,
+          "z": 55.58
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "fond_quest",
+      "Position": {
+        "x": -58.32,
+        "y": 3.58,
+        "z": 457.86
+      },
+      "Bounds": {
+        "center": {
+          "x": -58.32,
+          "y": 3.58,
+          "z": 457.86
+        },
+        "size": {
+          "x": 17.0,
+          "y": 2.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_kill_shool",
+      "Position": {
+        "x": 208.0,
+        "y": 10.7,
+        "z": 135.4
+      },
+      "Bounds": {
+        "center": {
+          "x": 208.0,
+          "y": 10.6999989,
+          "z": 135.4
+        },
+        "size": {
+          "x": 68.9154053,
+          "y": 30.0000038,
+          "z": 100.647125
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.001072404,
+        "z": 0.0,
+        "w": 0.999999464
+      }
+    },
+    {
+      "Id": "Mark_BTR_2",
+      "Position": {
+        "x": 120.758,
+        "y": -2.436,
+        "z": 26.16
+      },
+      "Bounds": {
+        "center": {
+          "x": 115.580658,
+          "y": -1.56089425,
+          "z": 25.8409081
+        },
+        "size": {
+          "x": 11.3523865,
+          "y": 2.23169518,
+          "z": 7.482811
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Zone_silient_toilet",
+      "Position": {
+        "x": 209.6607,
+        "y": 0.815992355,
+        "z": 230.837128
+      },
+      "Bounds": {
+        "center": {
+          "x": 209.3964,
+          "y": 0.9614277,
+          "z": 231.005981
+        },
+        "size": {
+          "x": 1.13342285,
+          "y": 1.05917311,
+          "z": 0.934845
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.008974801,
+        "z": 0.0,
+        "w": 0.999959767
+      }
+    },
+    {
+      "Id": "Pharma_2",
+      "Position": {
+        "x": -44.62,
+        "y": 4.189,
+        "z": 336.07
+      },
+      "Bounds": {
+        "center": {
+          "x": -44.62,
+          "y": 4.189,
+          "z": 336.07
+        },
+        "size": {
+          "x": 8.0,
+          "y": 2.0,
+          "z": 11.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_hide_sillent2",
+      "Position": {
+        "x": 176.304,
+        "y": 6.293,
+        "z": 82.239
+      },
+      "Bounds": {
+        "center": {
+          "x": 176.304,
+          "y": 6.293,
+          "z": 82.239
+        },
+        "size": {
+          "x": 2.00869751,
+          "y": 1.0,
+          "z": 1.5116272
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00291196513,
+        "z": 0.0,
+        "w": 0.999995768
+      }
+    },
+    {
+      "Id": "Bank_points_16",
+      "Position": {
+        "x": 236.969,
+        "y": -1.127,
+        "z": -93.822
+      },
+      "Bounds": {
+        "center": {
+          "x": 236.969,
+          "y": -1.12700009,
+          "z": -93.822
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.00000048,
+          "z": 1.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.7071068,
+        "z": 0.0,
+        "w": 0.7071068
+      }
+    },
+    {
+      "Id": "Mark_BTR_1",
+      "Position": {
+        "x": 195.527344,
+        "y": 3.20990276,
+        "z": 256.3192
+      },
+      "Bounds": {
+        "center": {
+          "x": 195.167053,
+          "y": 4.08500862,
+          "z": 256.9611
+        },
+        "size": {
+          "x": 6.13659668,
+          "y": 2.23169518,
+          "z": 3.928772
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Bank_points_1",
+      "Position": {
+        "x": 97.422,
+        "y": 1.232,
+        "z": -22.249
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.422,
+          "y": 1.23199987,
+          "z": -22.249
+        },
+        "size": {
+          "x": 4.0,
+          "y": 1.99999988,
+          "z": 2.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_city_trotil1",
+      "Position": {
+        "x": -259.891,
+        "y": 2.97,
+        "z": 136.968
+      },
+      "Bounds": {
+        "center": {
+          "x": -259.891,
+          "y": 2.97,
+          "z": 136.968
+        },
+        "size": {
+          "x": 4.20599365,
+          "y": 2.10220385,
+          "z": 5.125885
+        }
+      },
+      "Rotation": {
+        "x": -0.008870518,
+        "y": 0.7182906,
+        "z": 0.008491177,
+        "w": 0.6956349
+      }
+    },
+    {
+      "Id": "quest_produkt4",
+      "Position": {
+        "x": 275.646973,
+        "y": 4.303,
+        "z": 380.834045
+      },
+      "Bounds": {
+        "center": {
+          "x": 275.646973,
+          "y": 4.303,
+          "z": 380.834045
+        },
+        "size": {
+          "x": 8.465149,
+          "y": 2.0,
+          "z": 16.58435
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0467945,
+        "z": 0.0,
+        "w": 0.9989046
+      }
+    },
+    {
+      "Id": "quest_zone_place_c24_tigr1",
+      "Position": {
+        "x": -69.39,
+        "y": 3.52,
+        "z": 358.460022
+      },
+      "Bounds": {
+        "center": {
+          "x": -69.39,
+          "y": 3.52,
+          "z": 358.460022
+        },
+        "size": {
+          "x": 8.12561,
+          "y": 3.0,
+          "z": 3.35314941
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.02226273,
+        "z": 0.0,
+        "w": 0.999752164
+      }
+    },
+    {
+      "Id": "quest_zone_hide_sillent",
+      "Position": {
+        "x": 183.929,
+        "y": 6.093,
+        "z": 53.346
+      },
+      "Bounds": {
+        "center": {
+          "x": 183.929,
+          "y": 6.093,
+          "z": 53.346
+        },
+        "size": {
+          "x": 1.00579834,
+          "y": 1.0,
+          "z": 1.005806
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00291196513,
+        "z": 0.0,
+        "w": 0.999995768
+      }
+    },
+    {
+      "Id": "quest_zone_keeper10_kill",
+      "Position": {
+        "x": 16.8,
+        "y": 5.2,
+        "z": 236.0
+      },
+      "Bounds": {
+        "center": {
+          "x": 16.8000031,
+          "y": 5.2,
+          "z": 236.0
+        },
+        "size": {
+          "x": 170.0,
+          "y": 10.0,
+          "z": 170.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "halloween_unlock_pc",
+      "Position": {
+        "x": 54.7299347,
+        "y": 1.104,
+        "z": -79.9200058
+      },
+      "Bounds": {
+        "center": {
+          "x": 54.1051826,
+          "y": 1.36359787,
+          "z": -78.8896255
+        },
+        "size": {
+          "x": 5.867119,
+          "y": 1.519196,
+          "z": 5.02455139
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0286532566,
+        "z": 0.0,
+        "w": 0.999589443
+      }
+    },
+    {
+      "Id": "halloween_unlock_pc",
+      "Position": {
+        "x": 54.7299347,
+        "y": 1.104,
+        "z": -79.9200058
+      },
+      "Bounds": {
+        "center": {
+          "x": 54.1051826,
+          "y": 1.36359787,
+          "z": -78.8896255
+        },
+        "size": {
+          "x": 5.867119,
+          "y": 1.519196,
+          "z": 5.02455139
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0286532566,
+        "z": 0.0,
+        "w": 0.999589443
+      }
+    }
+  ]
 }

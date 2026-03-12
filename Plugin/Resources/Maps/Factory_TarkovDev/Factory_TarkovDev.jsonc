@@ -1,304 +1,2801 @@
 {
-    "DisplayName": "Factory (TarkovDev)",
-    "Author": "Tarkov.dev",
-    "AuthorLink": "https://tarkov.dev",
-    "MapInternalNames": [ "factory4_day", "factory4_night" ],
-    "CoordinateRotation": 90,
-    "Bounds": {
-        "Min": {"x": -65, "y": -64.5},
-        "Max": {"x": 77.6, "y": 67.2}
+  "DisplayName": "Factory (TarkovDev)",
+  "Author": "Tarkov.dev",
+  "AuthorLink": "https://tarkov.dev",
+  "MapInternalNames": [ "factory4_day", "factory4_night" ],
+  "CoordinateRotation": 90,
+  "Bounds": {
+    "Min": {
+      "x": -65,
+      "y": -64.5
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Tunnels": {
-            "Level": -1,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": -100},
-                    "Max": {"x": 77.6, "y": 67.2, "z": -1}
-                }
-            ]
+    "Max": {
+      "x": 77.6,
+      "y": 67.2
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Tunnels": {
+      "Level": -1,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -65,
+          "y": -64.5
         },
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": -1},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 3}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": 3},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 6}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": 6},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 77.6,
+          "y": 67.2
         }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -65,
+            "y": -64.5,
+            "z": -100
+          },
+          "Max": {
+            "x": 77.6,
+            "y": 67.2,
+            "z": -1
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "Pit",
-            "Position": {"x": 0, "y": 17, "z": 0},
-            "FontSize": 14
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -65,
+          "y": -64.5
         },
-        {
-            "Text": "Underground Stash",
-            "Position": {"x": -2, "y": -22, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Boilers",
-            "Position": {"x": 56, "y": 6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Pumping Station",
-            "Position": {"x": 42, "y": -12, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Glass Hall",
-            "Position": {"x": 70, "y": -15, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Forklifts",
-            "Position": {"x": 66, "y": -41, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "East Halls",
-            "Position": {"x": 45, "y": -40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Heli Crash",
-            "Position": {"x": 33, "y": -6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Rafters",
-            "Position": {"x": 19, "y": 6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Silos",
-            "Position": {"x": 5, "y": 11, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Connector",
-            "Position": {"x": 30, "y": 18, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Sky Bridge",
-            "Position": {"x": 35, "y": 28, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "North Stairs",
-            "Position": {"x": 36.5, "y": 38, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Locked Office",
-            "Position": {"x": 30, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Breach Room",
-            "Position": {"x": 24, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Main Office",
-            "Position": {"x": 16, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "South Stairs",
-            "Position": {"x": 9, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Platform",
-            "Position": {"x": -2, "y": 36, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Blue Containers",
-            "Position": {"x": -17, "y": 50, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Wood Room",
-            "Position": {"x": -45, "y": 61, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Scav Bunker",
-            "Position": {"x": -20, "y": 23, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Med Tent",
-            "Position": {"x": -18, "y": -28, "z": 0},
-            "FontSize": 14
+        "Max": {
+          "x": 77.6,
+          "y": 67.2
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Camera Bunker Door",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -15.71578, "y": 40.1081123, "z": -1.64766669 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Office Window",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 17.8332214, "y": 39.8851128, "z": 8.730333 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Cellars",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 73.89422, "y": -29.0818882, "z": -3.2876668 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Gate 3",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 58.43222, "y": 63.29811, "z": 3.17233324 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Gate 0",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -63.66578, "y": 55.8781128, "z": 2.85233331 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Med Tent Gate",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -17.5257778, "y": -61.27189, "z": 1.99233329 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Courtyard Gate",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 23.7642212, "y": 68.93811, "z": 1.3623333 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Woods",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 23.7, "y": 61.61, "z": 0.84 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 18.51, "y": -48.33, "z": -0.423 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to The Lab",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -26.539, "y": -42.013, "z": -4.085 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Smugglers' Passage (Secret)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 48.026, "y": -28.8580017, "z": -1.61300015 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "Locked Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 29.1163082, "y": 36.51697, "z": 9.08 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Med Tent",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -19.077774, "y": -48.57139, "z": 1.44520187 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Cellars",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 66.8279953, "y": -29.3244076, "z": -1.60700011 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Terraroup Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -20.4309616, "y": 44.06125, "z": -1.51576364 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "66acd6702b17692df20144c0",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+          "Min": {
+            "x": -65,
+            "y": -64.5,
+            "z": -1
+          },
+          "Max": {
+            "x": 77.6,
+            "y": 67.2,
+            "z": 3
+          }
         }
-    ]
+      ]
+    },
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -65,
+          "y": -64.5
+        },
+        "Max": {
+          "x": 77.6,
+          "y": 67.2
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -65,
+            "y": -64.5,
+            "z": 3
+          },
+          "Max": {
+            "x": 77.6,
+            "y": 67.2,
+            "z": 6
+          }
+        }
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_2.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -65,
+          "y": -64.5
+        },
+        "Max": {
+          "x": 77.6,
+          "y": 67.2
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -65,
+            "y": -64.5,
+            "z": 6
+          },
+          "Max": {
+            "x": 77.6,
+            "y": 67.2,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Pit",
+      "Position": {
+        "x": 0,
+        "y": 17,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Underground Stash",
+      "Position": {
+        "x": -2,
+        "y": -22,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Boilers",
+      "Position": {
+        "x": 56,
+        "y": 6,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Pumping Station",
+      "Position": {
+        "x": 42,
+        "y": -12,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Glass Hall",
+      "Position": {
+        "x": 70,
+        "y": -15,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Forklifts",
+      "Position": {
+        "x": 66,
+        "y": -41,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "East Halls",
+      "Position": {
+        "x": 45,
+        "y": -40,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Heli Crash",
+      "Position": {
+        "x": 33,
+        "y": -6,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Rafters",
+      "Position": {
+        "x": 19,
+        "y": 6,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Silos",
+      "Position": {
+        "x": 5,
+        "y": 11,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Connector",
+      "Position": {
+        "x": 30,
+        "y": 18,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Sky Bridge",
+      "Position": {
+        "x": 35,
+        "y": 28,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "North Stairs",
+      "Position": {
+        "x": 36.5,
+        "y": 38,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Locked Office",
+      "Position": {
+        "x": 30,
+        "y": 40,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Breach Room",
+      "Position": {
+        "x": 24,
+        "y": 40,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Main Office",
+      "Position": {
+        "x": 16,
+        "y": 40,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "South Stairs",
+      "Position": {
+        "x": 9,
+        "y": 40,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Platform",
+      "Position": {
+        "x": -2,
+        "y": 36,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Blue Containers",
+      "Position": {
+        "x": -17,
+        "y": 50,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Wood Room",
+      "Position": {
+        "x": -45,
+        "y": 61,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Scav Bunker",
+      "Position": {
+        "x": -20,
+        "y": 23,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Med Tent",
+      "Position": {
+        "x": -18,
+        "y": -28,
+        "z": 0
+      },
+      "FontSize": 14
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Camera Bunker Door",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -15.71578,
+        "y": 40.1081123,
+        "z": -1.64766669
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Office Window",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 17.8332214,
+        "y": 39.8851128,
+        "z": 8.730333
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Cellars",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 73.89422,
+        "y": -29.0818882,
+        "z": -3.2876668
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Gate 3",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 58.43222,
+        "y": 63.29811,
+        "z": 3.17233324
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Gate 0",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -63.66578,
+        "y": 55.8781128,
+        "z": 2.85233331
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Med Tent Gate",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -17.5257778,
+        "y": -61.27189,
+        "z": 1.99233329
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Courtyard Gate",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 23.7642212,
+        "y": 68.93811,
+        "z": 1.3623333
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Woods",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 23.7,
+        "y": 61.61,
+        "z": 0.84
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Customs",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 18.51,
+        "y": -48.33,
+        "z": -0.423
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to The Lab",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -26.539,
+        "y": -42.013,
+        "z": -4.085
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Smugglers' Passage (Secret)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 48.026,
+        "y": -28.8580017,
+        "z": -1.61300015
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Locked Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 29.1163082,
+        "y": 36.51697,
+        "z": 9.08
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": {
+        "r": 1,
+        "g": 0.921569,
+        "b": 0.015686275,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Med Tent",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -19.077774,
+        "y": -48.57139,
+        "z": 1.44520187
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": {
+        "r": 1,
+        "g": 0.921569,
+        "b": 0.015686275,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Cellars",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 66.8279953,
+        "y": -29.3244076,
+        "z": -1.60700011
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": {
+        "r": 1,
+        "g": 0.921569,
+        "b": 0.015686275,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Terraroup Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -20.4309616,
+        "y": 44.06125,
+        "z": -1.51576364
+      },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "66acd6702b17692df20144c0",
+      "Color": {
+        "r": 1,
+        "g": 0.921569,
+        "b": 0.015686275,
+        "a": 1.0
+      }
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "catwalk01",
+      "Position": {
+        "x": 5.97281265,
+        "y": 8.088181,
+        "z": 60.9629
+      },
+      "Bounds": {
+        "center": {
+          "x": 5.97281265,
+          "y": 8.088181,
+          "z": 60.9629
+        },
+        "size": {
+          "x": 0.7231388,
+          "y": 1.0,
+          "z": 0.72883606
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "roof02",
+      "Position": {
+        "x": 45.152813,
+        "y": 5.801181,
+        "z": 29.3208981
+      },
+      "Bounds": {
+        "center": {
+          "x": 45.152813,
+          "y": 5.801181,
+          "z": 29.3208981
+        },
+        "size": {
+          "x": 1.22020721,
+          "y": 1.0,
+          "z": 0.452640533
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.739493847,
+        "z": 0.0,
+        "w": 0.6731633
+      }
+    },
+    {
+      "Id": "unitaz",
+      "Position": {
+        "x": 22.2888126,
+        "y": 4.777281,
+        "z": 48.172905
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.2888126,
+          "y": 4.777281,
+          "z": 48.172905
+        },
+        "size": {
+          "x": 0.241691589,
+          "y": 0.400733948,
+          "z": 0.17716217
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "catwalk03",
+      "Position": {
+        "x": 6.55981064,
+        "y": 7.756181,
+        "z": -0.7180996
+      },
+      "Bounds": {
+        "center": {
+          "x": 6.55981064,
+          "y": 7.756181,
+          "z": -0.7180996
+        },
+        "size": {
+          "x": 0.723139763,
+          "y": 1.0,
+          "z": 0.5202763
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "locked_office",
+      "Position": {
+        "x": 30.131813,
+        "y": 8.718182,
+        "z": 38.8869
+      },
+      "Bounds": {
+        "center": {
+          "x": 30.131813,
+          "y": 8.718182,
+          "z": 38.8869
+        },
+        "size": {
+          "x": 3.25602722,
+          "y": 1.0,
+          "z": 3.623413
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "dungeon05",
+      "Position": {
+        "x": -6.92118835,
+        "y": -2.109819,
+        "z": 23.6659
+      },
+      "Bounds": {
+        "center": {
+          "x": -6.92118835,
+          "y": -2.109819,
+          "z": 23.6659
+        },
+        "size": {
+          "x": 0.353660583,
+          "y": 1.00000012,
+          "z": 1.19658279
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.004756257,
+        "z": 0.0,
+        "w": 0.999988735
+      }
+    },
+    {
+      "Id": "roof02",
+      "Position": {
+        "x": 40.2138138,
+        "y": 3.665181,
+        "z": -7.589101
+      },
+      "Bounds": {
+        "center": {
+          "x": 40.2138138,
+          "y": 3.66518116,
+          "z": -7.589101
+        },
+        "size": {
+          "x": 1.19658661,
+          "y": 1.00000024,
+          "z": 0.35365963
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "caseextr",
+      "Position": {
+        "x": 41.7418137,
+        "y": 5.448181,
+        "z": 40.8179
+      },
+      "Bounds": {
+        "center": {
+          "x": 41.7418137,
+          "y": 5.448181,
+          "z": 40.8179
+        },
+        "size": {
+          "x": 6.55536652,
+          "y": 1.92019939,
+          "z": 2.642746
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "showers",
+      "Position": {
+        "x": 14.9238129,
+        "y": 5.213181,
+        "z": 40.4069
+      },
+      "Bounds": {
+        "center": {
+          "x": 14.9238129,
+          "y": 5.213181,
+          "z": 40.4069
+        },
+        "size": {
+          "x": 1.79292107,
+          "y": 1.0,
+          "z": 0.4534073
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "exit0zone",
+      "Position": {
+        "x": -55.9761848,
+        "y": 1.806181,
+        "z": 55.983902
+      },
+      "Bounds": {
+        "center": {
+          "x": -55.9761848,
+          "y": 1.806181,
+          "z": 55.983902
+        },
+        "size": {
+          "x": 3.53000641,
+          "y": 1.00000012,
+          "z": 5.330002
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "office01",
+      "Position": {
+        "x": 17.1938114,
+        "y": 8.718182,
+        "z": 38.6419
+      },
+      "Bounds": {
+        "center": {
+          "x": 17.1938114,
+          "y": 8.718182,
+          "z": 38.6419
+        },
+        "size": {
+          "x": 1.792923,
+          "y": 1.0,
+          "z": 0.4534073
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "dungeon03",
+      "Position": {
+        "x": 65.183815,
+        "y": -2.173819,
+        "z": -34.0851
+      },
+      "Bounds": {
+        "center": {
+          "x": 65.183815,
+          "y": -2.173819,
+          "z": -34.0851
+        },
+        "size": {
+          "x": 1.196579,
+          "y": 1.0,
+          "z": 0.353660583
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "catwalk06",
+      "Position": {
+        "x": 51.6868134,
+        "y": 7.8241806,
+        "z": 40.143898
+      },
+      "Bounds": {
+        "center": {
+          "x": 51.6868134,
+          "y": 7.8241806,
+          "z": 40.143898
+        },
+        "size": {
+          "x": 0.7231369,
+          "y": 1.0,
+          "z": 0.520278931
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "exit1zone",
+      "Position": {
+        "x": -38.5281868,
+        "y": 0.714180946,
+        "z": 7.2929
+      },
+      "Bounds": {
+        "center": {
+          "x": -38.5281868,
+          "y": 0.714180946,
+          "z": 7.2929
+        },
+        "size": {
+          "x": 3.53000641,
+          "y": 1.00000024,
+          "z": 5.33000374
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "roof01",
+      "Position": {
+        "x": 42.05781,
+        "y": 8.075181,
+        "z": 40.6789
+      },
+      "Bounds": {
+        "center": {
+          "x": 42.05781,
+          "y": 8.075181,
+          "z": 40.6789
+        },
+        "size": {
+          "x": 0.7231369,
+          "y": 1.0,
+          "z": 0.520278931
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "dungeon02",
+      "Position": {
+        "x": 38.9358139,
+        "y": -2.173819,
+        "z": -34.1231
+      },
+      "Bounds": {
+        "center": {
+          "x": 38.9358139,
+          "y": -2.173819,
+          "z": -34.1231
+        },
+        "size": {
+          "x": 1.19658661,
+          "y": 1.0,
+          "z": 0.353660583
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "catwalk04",
+      "Position": {
+        "x": 37.5078125,
+        "y": 7.804181,
+        "z": 0.307899475
+      },
+      "Bounds": {
+        "center": {
+          "x": 37.5078125,
+          "y": 7.804181,
+          "z": 0.307899475
+        },
+        "size": {
+          "x": 0.7231369,
+          "y": 1.0,
+          "z": 0.5202763
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "catwalk05",
+      "Position": {
+        "x": 51.6868134,
+        "y": 7.804181,
+        "z": 0.307899475
+      },
+      "Bounds": {
+        "center": {
+          "x": 51.6868134,
+          "y": 7.804181,
+          "z": 0.307899475
+        },
+        "size": {
+          "x": 0.7231369,
+          "y": 1.0,
+          "z": 0.520276546
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "dungeon07",
+      "Position": {
+        "x": -31.4711876,
+        "y": -2.109819,
+        "z": 27.5838985
+      },
+      "Bounds": {
+        "center": {
+          "x": -31.4711876,
+          "y": -2.109819,
+          "z": 27.5838985
+        },
+        "size": {
+          "x": 0.591377258,
+          "y": 1.0,
+          "z": 0.7731209
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.7104616,
+        "z": 0.0,
+        "w": 0.703735948
+      }
+    },
+    {
+      "Id": "secretpassage",
+      "Position": {
+        "x": 66.59781,
+        "y": -2.13281918,
+        "z": -28.462101
+      },
+      "Bounds": {
+        "center": {
+          "x": 66.59781,
+          "y": -2.13281918,
+          "z": -28.462101
+        },
+        "size": {
+          "x": 1.196579,
+          "y": 1.0,
+          "z": 0.353660583
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "pumproom",
+      "Position": {
+        "x": 40.40681,
+        "y": 0.633180857,
+        "z": -11.2001
+      },
+      "Bounds": {
+        "center": {
+          "x": 40.40681,
+          "y": 0.633180857,
+          "z": -11.2001
+        },
+        "size": {
+          "x": 3.83509827,
+          "y": 0.7775736,
+          "z": 7.616249
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.6987615,
+        "z": 0.0,
+        "w": 0.7153547
+      }
+    },
+    {
+      "Id": "dungeon06",
+      "Position": {
+        "x": -17.0001869,
+        "y": -2.109819,
+        "z": 39.0409
+      },
+      "Bounds": {
+        "center": {
+          "x": -17.0001869,
+          "y": -2.109819,
+          "z": 39.0409
+        },
+        "size": {
+          "x": 2.30456638,
+          "y": 1.0,
+          "z": 0.7894211
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.7104616,
+        "z": 0.0,
+        "w": 0.703735948
+      }
+    },
+    {
+      "Id": "catwalk03",
+      "Position": {
+        "x": 5.997814,
+        "y": 7.756181,
+        "z": 16.8719
+      },
+      "Bounds": {
+        "center": {
+          "x": 5.997814,
+          "y": 7.756181,
+          "z": 16.8719
+        },
+        "size": {
+          "x": 0.7231388,
+          "y": 1.0,
+          "z": 0.5202751
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "dungeon04",
+      "Position": {
+        "x": 21.001812,
+        "y": -2.109819,
+        "z": -1.16209984
+      },
+      "Bounds": {
+        "center": {
+          "x": 21.001812,
+          "y": -2.109819,
+          "z": -1.16209984
+        },
+        "size": {
+          "x": 1.19658279,
+          "y": 1.0,
+          "z": 0.35365963
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "exit3zone",
+      "Position": {
+        "x": 58.8668137,
+        "y": 0.714180946,
+        "z": 57.384903
+      },
+      "Bounds": {
+        "center": {
+          "x": 58.8668137,
+          "y": 0.714180946,
+          "z": 57.384903
+        },
+        "size": {
+          "x": 5.330002,
+          "y": 1.0,
+          "z": 3.52999878
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "dungeon01",
+      "Position": {
+        "x": 17.5108128,
+        "y": -2.109819,
+        "z": -21.3031
+      },
+      "Bounds": {
+        "center": {
+          "x": 17.5108128,
+          "y": -2.109819,
+          "z": -21.3031
+        },
+        "size": {
+          "x": 1.19658279,
+          "y": 1.0,
+          "z": 0.353660583
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703735769,
+        "z": 0.0,
+        "w": 0.7104618
+      }
+    },
+    {
+      "Id": "exit2zone",
+      "Position": {
+        "x": 44.93281,
+        "y": 0.714180946,
+        "z": -45.0941
+      },
+      "Bounds": {
+        "center": {
+          "x": 44.93281,
+          "y": 0.714180946,
+          "z": -45.0941
+        },
+        "size": {
+          "x": 5.330002,
+          "y": 1.0,
+          "z": 3.52999878
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "catwalk02",
+      "Position": {
+        "x": -22.4201851,
+        "y": 8.088181,
+        "z": 1.63290024
+      },
+      "Bounds": {
+        "center": {
+          "x": -22.4201851,
+          "y": 8.088181,
+          "z": 1.63290024
+        },
+        "size": {
+          "x": 0.7231407,
+          "y": 1.0,
+          "z": 0.7288377
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "case_extraction",
+      "Position": {
+        "x": 41.7418137,
+        "y": 5.448181,
+        "z": 40.8179
+      },
+      "Bounds": {
+        "center": {
+          "x": 41.7418137,
+          "y": 5.448181,
+          "z": 40.8179
+        },
+        "size": {
+          "x": 6.55536652,
+          "y": 1.92020035,
+          "z": 2.642746
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.70710665,
+        "z": 0.0,
+        "w": 0.707107
+      }
+    },
+    {
+      "Id": "nf2024_10_3",
+      "Position": {
+        "x": -4.36,
+        "y": 4.747,
+        "z": 6.08
+      },
+      "Bounds": {
+        "center": {
+          "x": -4.36,
+          "y": 4.747,
+          "z": 6.08
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.5,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill1",
+      "Position": {
+        "x": 22.34,
+        "y": 9.58,
+        "z": 39.22
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 9.58,
+          "z": 39.22
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.39999962,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Place_accurate_tools",
+      "Position": {
+        "x": 27.89,
+        "y": 1.15,
+        "z": -32.8899155
+      },
+      "Bounds": {
+        "center": {
+          "x": 28.1344662,
+          "y": 1.1500001,
+          "z": -34.36747
+        },
+        "size": {
+          "x": 5.21031952,
+          "y": 2.5,
+          "z": 3.532425
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_1",
+      "Position": {
+        "x": 62.68,
+        "y": 1.043,
+        "z": 23.4
+      },
+      "Bounds": {
+        "center": {
+          "x": 62.68,
+          "y": 1.043,
+          "z": 23.4
+        },
+        "size": {
+          "x": 8.056324,
+          "y": 2.00000048,
+          "z": 6.78385162
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.238083288,
+        "z": 0.0,
+        "w": 0.9712448
+      }
+    },
+    {
+      "Id": "nf2024_3_exit",
+      "Position": {
+        "x": 23.53,
+        "y": 2.259,
+        "z": 63.2
+      },
+      "Bounds": {
+        "center": {
+          "x": 23.53,
+          "y": 2.259,
+          "z": 63.1999969
+        },
+        "size": {
+          "x": 10.1141052,
+          "y": 3.00000048,
+          "z": 10.1141014
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703037739,
+        "z": 0.0,
+        "w": 0.7111526
+      }
+    },
+    {
+      "Id": "zone_451",
+      "Position": {
+        "x": 17.42,
+        "y": 1.832,
+        "z": 43.016
+      },
+      "Bounds": {
+        "center": {
+          "x": 16.3842678,
+          "y": 1.79528666,
+          "z": 42.7752457
+        },
+        "size": {
+          "x": 2.90129471,
+          "y": 2.04182577,
+          "z": 2.64520264
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill1",
+      "Position": {
+        "x": 22.34,
+        "y": 6.1,
+        "z": 41.73
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 6.1,
+          "z": 41.73
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.40000057,
+          "z": 15.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "achiv_office",
+      "Position": {
+        "x": 16.509,
+        "y": 9.106,
+        "z": 39.299
+      },
+      "Bounds": {
+        "center": {
+          "x": 16.509,
+          "y": 9.106,
+          "z": 39.299
+        },
+        "size": {
+          "x": 10.5299988,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_6_beacon_1",
+      "Position": {
+        "x": -16.994,
+        "y": -1.596,
+        "z": 34.808
+      },
+      "Bounds": {
+        "center": {
+          "x": -16.994,
+          "y": -1.596,
+          "z": 34.808
+        },
+        "size": {
+          "x": 6.68999958,
+          "y": 2.0,
+          "z": 1.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_4_zone_kill1",
+      "Position": {
+        "x": 19.81,
+        "y": -2.56,
+        "z": 46.84
+      },
+      "Bounds": {
+        "center": {
+          "x": 19.8099976,
+          "y": -2.56,
+          "z": 46.8399963
+        },
+        "size": {
+          "x": 150.0,
+          "y": 5.0,
+          "z": 49.9999962
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_pacemaker_SCOUT_02",
+      "Position": {
+        "x": -53.107,
+        "y": 2.292,
+        "z": 58.188
+      },
+      "Bounds": {
+        "center": {
+          "x": -53.107,
+          "y": 2.292,
+          "z": 58.188
+        },
+        "size": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_7_2",
+      "Position": {
+        "x": -5.474,
+        "y": 5.776,
+        "z": -32.477
+      },
+      "Bounds": {
+        "center": {
+          "x": -5.474,
+          "y": 5.776,
+          "z": -32.477
+        },
+        "size": {
+          "x": 1.50991631,
+          "y": 2.5,
+          "z": 2.50593567
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.00198560953,
+        "z": 0.0,
+        "w": 0.999998033
+      }
+    },
+    {
+      "Id": "zone_sapper",
+      "Position": {
+        "x": 30.7356358,
+        "y": 4.287,
+        "z": -31.146
+      },
+      "Bounds": {
+        "center": {
+          "x": 30.3941879,
+          "y": 4.45707226,
+          "z": -30.9990559
+        },
+        "size": {
+          "x": 0.9933853,
+          "y": 1.40429711,
+          "z": 1.35372162
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_4",
+      "Position": {
+        "x": -31.57,
+        "y": 2.33,
+        "z": 57.84
+      },
+      "Bounds": {
+        "center": {
+          "x": -31.57,
+          "y": 2.33,
+          "z": 57.84
+        },
+        "size": {
+          "x": 7.83604431,
+          "y": 2.0,
+          "z": 5.788254
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1403844,
+        "z": 0.0,
+        "w": 0.9900971
+      }
+    },
+    {
+      "Id": "ter_017_area_1",
+      "Position": {
+        "x": 24.609,
+        "y": 9.17,
+        "z": 39.078
+      },
+      "Bounds": {
+        "center": {
+          "x": 24.609,
+          "y": 9.17,
+          "z": 39.078
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "ter_017_area_1",
+      "Position": {
+        "x": 24.609,
+        "y": 9.17,
+        "z": 39.078
+      },
+      "Bounds": {
+        "center": {
+          "x": 24.609,
+          "y": 9.17,
+          "z": 39.078
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_11",
+      "Position": {
+        "x": 18.3,
+        "y": 1.49,
+        "z": -15.19
+      },
+      "Bounds": {
+        "center": {
+          "x": 18.3,
+          "y": 1.49,
+          "z": -15.19
+        },
+        "size": {
+          "x": 7.104576,
+          "y": 3.0,
+          "z": 8.055765
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.87480706,
+        "z": 0.0,
+        "w": 0.48447147
+      }
+    },
+    {
+      "Id": "nf2024_10_1",
+      "Position": {
+        "x": 17.81,
+        "y": 4.747,
+        "z": 6.08
+      },
+      "Bounds": {
+        "center": {
+          "x": 17.81,
+          "y": 4.747,
+          "z": 6.08
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.5,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_6_beacon_2",
+      "Position": {
+        "x": 34.428,
+        "y": -1.476,
+        "z": -4.445
+      },
+      "Bounds": {
+        "center": {
+          "x": 34.428,
+          "y": -1.47599983,
+          "z": -4.445
+        },
+        "size": {
+          "x": 1.5,
+          "y": 1.99999988,
+          "z": 6.68999958
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.707106769,
+        "z": 0.0,
+        "w": 0.7071068
+      }
+    },
+    {
+      "Id": "place_pacemaker_SCOUT_03",
+      "Position": {
+        "x": 59.698,
+        "y": 1.163,
+        "z": 56.98
+      },
+      "Bounds": {
+        "center": {
+          "x": 59.698,
+          "y": 1.16300011,
+          "z": 56.98
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill1",
+      "Position": {
+        "x": 28.768,
+        "y": 2.7,
+        "z": 44.906
+      },
+      "Bounds": {
+        "center": {
+          "x": 28.768,
+          "y": 2.7,
+          "z": 44.906
+        },
+        "size": {
+          "x": 5.0,
+          "y": 3.4,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_9",
+      "Position": {
+        "x": 13.63,
+        "y": 1.163,
+        "z": -30.07
+      },
+      "Bounds": {
+        "center": {
+          "x": 13.63,
+          "y": 1.16300011,
+          "z": -30.07
+        },
+        "size": {
+          "x": 4.11142731,
+          "y": 3.0,
+          "z": 7.063072
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.7014302,
+        "z": 0.0,
+        "w": 0.712738156
+      }
+    },
+    {
+      "Id": "place_pacemaker_SCOUT_01",
+      "Position": {
+        "x": 66.665,
+        "y": -1.676,
+        "z": -28.878
+      },
+      "Bounds": {
+        "center": {
+          "x": 66.665,
+          "y": -1.67600012,
+          "z": -28.878
+        },
+        "size": {
+          "x": 2.08789063,
+          "y": 2.0,
+          "z": 1.19002914
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.671791852,
+        "z": 0.0,
+        "w": 0.74074
+      }
+    },
+    {
+      "Id": "place_SADOVOD_01_2",
+      "Position": {
+        "x": 60.076,
+        "y": 1.093,
+        "z": -48.389
+      },
+      "Bounds": {
+        "center": {
+          "x": 60.076,
+          "y": 1.09299994,
+          "z": -48.389
+        },
+        "size": {
+          "x": 1.0,
+          "y": 1.99999988,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_SADOVOD_01_2",
+      "Position": {
+        "x": 60.076,
+        "y": 1.093,
+        "z": -48.389
+      },
+      "Bounds": {
+        "center": {
+          "x": 60.076,
+          "y": 1.09299994,
+          "z": -48.389
+        },
+        "size": {
+          "x": 1.0,
+          "y": 1.99999988,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_3",
+      "Position": {
+        "x": 64.97,
+        "y": 1.163,
+        "z": -47.28
+      },
+      "Bounds": {
+        "center": {
+          "x": 64.97,
+          "y": 1.163,
+          "z": -47.28
+        },
+        "size": {
+          "x": 4.345272,
+          "y": 2.00000024,
+          "z": 7.191391
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.689188063,
+        "z": 0.0,
+        "w": 0.724582553
+      }
+    },
+    {
+      "Id": "huntsman_013",
+      "Position": {
+        "x": 22.34,
+        "y": 9.58,
+        "z": 39.22
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 9.58,
+          "z": 39.22
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.39999962,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_half-life",
+      "Position": {
+        "x": 21.4003162,
+        "y": -1.87831354,
+        "z": 11.708993
+      },
+      "Bounds": {
+        "center": {
+          "x": 21.0047264,
+          "y": -1.60933447,
+          "z": 12.0585136
+        },
+        "size": {
+          "x": 1.96769714,
+          "y": 1.20648384,
+          "z": 1.165657
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_2",
+      "Position": {
+        "x": 71.02,
+        "y": 1.163,
+        "z": -40.93
+      },
+      "Bounds": {
+        "center": {
+          "x": 71.02,
+          "y": 1.163,
+          "z": -40.93
+        },
+        "size": {
+          "x": 5.76435852,
+          "y": 2.00000024,
+          "z": 7.827919
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6025345,
+        "z": 0.0,
+        "w": 0.7980929
+      }
+    },
+    {
+      "Id": "nf2024_2_12",
+      "Position": {
+        "x": 58.323,
+        "y": 1.73,
+        "z": 58.976
+      },
+      "Bounds": {
+        "center": {
+          "x": 58.323,
+          "y": 1.73,
+          "z": 58.976
+        },
+        "size": {
+          "x": 6.18508148,
+          "y": 3.0,
+          "z": 7.95423126
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.5710354,
+        "z": 0.0,
+        "w": 0.8209255
+      }
+    },
+    {
+      "Id": "zone_stairway",
+      "Position": {
+        "x": 59.563,
+        "y": 0.7,
+        "z": 50.49
+      },
+      "Bounds": {
+        "center": {
+          "x": 59.7879829,
+          "y": 1.21819425,
+          "z": 50.28505
+        },
+        "size": {
+          "x": 1.5820694,
+          "y": 1.35707879,
+          "z": 0.734619141
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "huntsman_013",
+      "Position": {
+        "x": 28.768,
+        "y": 2.7,
+        "z": 44.906
+      },
+      "Bounds": {
+        "center": {
+          "x": 28.768,
+          "y": 2.7,
+          "z": 44.906
+        },
+        "size": {
+          "x": 5.0,
+          "y": 3.4,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Mark_transits_factory",
+      "Position": {
+        "x": 24.202,
+        "y": 1.91,
+        "z": 66.63533
+      },
+      "Bounds": {
+        "center": {
+          "x": 23.7040024,
+          "y": 2.38619685,
+          "z": 66.63533
+        },
+        "size": {
+          "x": 6.35658264,
+          "y": 1.54760611,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_4_zone_kill1",
+      "Position": {
+        "x": -51.08,
+        "y": -2.99,
+        "z": 13.58
+      },
+      "Bounds": {
+        "center": {
+          "x": -51.08,
+          "y": -2.98999977,
+          "z": 13.5800009
+        },
+        "size": {
+          "x": 80.0,
+          "y": 5.0,
+          "z": 80.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill1",
+      "Position": {
+        "x": 22.34,
+        "y": 2.7,
+        "z": 39.32
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 2.7,
+          "z": 39.32
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.4,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_terminator",
+      "Position": {
+        "x": -49.607,
+        "y": 2.34749985,
+        "z": 60.4110031
+      },
+      "Bounds": {
+        "center": {
+          "x": -49.37661,
+          "y": 2.68999076,
+          "z": 60.4127579
+        },
+        "size": {
+          "x": 0.626571655,
+          "y": 1.05946016,
+          "z": 0.91708374
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_5",
+      "Position": {
+        "x": 22.58,
+        "y": 1.163,
+        "z": -23.83
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.58,
+          "y": 1.163,
+          "z": -23.83
+        },
+        "size": {
+          "x": 4.08846664,
+          "y": 1.99999976,
+          "z": 7.050171
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.702608,
+        "z": 0.0,
+        "w": 0.7115771
+      }
+    },
+    {
+      "Id": "zone_Always_sunny",
+      "Position": {
+        "x": 27.3690071,
+        "y": 9.233061,
+        "z": 38.4242668
+      },
+      "Bounds": {
+        "center": {
+          "x": 27.5957661,
+          "y": 9.458721,
+          "z": 38.6288261
+        },
+        "size": {
+          "x": 0.722995758,
+          "y": 1.67167664,
+          "z": 3.89385986
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_harry_potter",
+      "Position": {
+        "x": 52.4067078,
+        "y": 1.8644464,
+        "z": -17.4860764
+      },
+      "Bounds": {
+        "center": {
+          "x": 52.72409,
+          "y": 1.44762278,
+          "z": -17.25497
+        },
+        "size": {
+          "x": 1.42840576,
+          "y": 1.55697489,
+          "z": 1.35256958
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_4_zone_kill1",
+      "Position": {
+        "x": 19.81,
+        "y": -2.99,
+        "z": -28.64
+      },
+      "Bounds": {
+        "center": {
+          "x": 19.8099976,
+          "y": -2.98999977,
+          "z": -28.64
+        },
+        "size": {
+          "x": 150.0,
+          "y": 5.0,
+          "z": 80.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Check_mine_zone_factory",
+      "Position": {
+        "x": 25.35,
+        "y": 8.76,
+        "z": 39.25
+      },
+      "Bounds": {
+        "center": {
+          "x": 24.4652786,
+          "y": 9.344072,
+          "z": 38.74421
+        },
+        "size": {
+          "x": 3.53113174,
+          "y": 1.83185577,
+          "z": 3.93837738
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.703037739,
+        "z": 0.0,
+        "w": 0.7111526
+      }
+    },
+    {
+      "Id": "nf2024_2_7",
+      "Position": {
+        "x": 12.37,
+        "y": 1.163,
+        "z": 30.42
+      },
+      "Bounds": {
+        "center": {
+          "x": 12.3699989,
+          "y": 1.163,
+          "z": 30.42
+        },
+        "size": {
+          "x": 7.900588,
+          "y": 2.00000072,
+          "z": 7.6222496
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.352155536,
+        "z": 0.0,
+        "w": 0.935941458
+      }
+    },
+    {
+      "Id": "nf2024_10_2",
+      "Position": {
+        "x": 6.756,
+        "y": 4.747,
+        "z": 6.08
+      },
+      "Bounds": {
+        "center": {
+          "x": 6.75600052,
+          "y": 4.747,
+          "z": 6.08
+        },
+        "size": {
+          "x": 3.00000048,
+          "y": 2.5,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_pacemaker_SCOUT_04",
+      "Position": {
+        "x": -18.4,
+        "y": 1.16133332,
+        "z": -49.022
+      },
+      "Bounds": {
+        "center": {
+          "x": -18.4,
+          "y": 1.16133332,
+          "z": -49.022
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "huntsman_013",
+      "Position": {
+        "x": 22.34,
+        "y": 2.7,
+        "z": 39.32
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 2.7,
+          "z": 39.32
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.4,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_4_zone_kill1",
+      "Position": {
+        "x": 64.99,
+        "y": -2.99,
+        "z": 13.58
+      },
+      "Bounds": {
+        "center": {
+          "x": 64.99,
+          "y": -2.98999977,
+          "z": 13.5800009
+        },
+        "size": {
+          "x": 80.0,
+          "y": 5.0,
+          "z": 80.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_SADOVOD_01_1",
+      "Position": {
+        "x": 68.193,
+        "y": 1.059,
+        "z": -7.383
+      },
+      "Bounds": {
+        "center": {
+          "x": 68.193,
+          "y": 1.059,
+          "z": -7.38299942
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 1.99999952
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_SADOVOD_01_1",
+      "Position": {
+        "x": 68.193,
+        "y": 1.059,
+        "z": -7.383
+      },
+      "Bounds": {
+        "center": {
+          "x": 68.193,
+          "y": 1.059,
+          "z": -7.38299942
+        },
+        "size": {
+          "x": 1.0,
+          "y": 2.0,
+          "z": 1.99999952
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_8",
+      "Position": {
+        "x": -15.77,
+        "y": 2.259,
+        "z": 32.58
+      },
+      "Bounds": {
+        "center": {
+          "x": -15.77,
+          "y": 2.259,
+          "z": 32.58
+        },
+        "size": {
+          "x": 4.49123,
+          "y": 3.00000048,
+          "z": 7.268591
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.6813062,
+        "z": 0.0,
+        "w": 0.7319986
+      }
+    },
+    {
+      "Id": "nf2024_7_3",
+      "Position": {
+        "x": -24.441,
+        "y": 6.197,
+        "z": 60.426
+      },
+      "Bounds": {
+        "center": {
+          "x": -24.441,
+          "y": 6.197,
+          "z": 60.426
+        },
+        "size": {
+          "x": 1.5099144,
+          "y": 2.5,
+          "z": 2.50593567
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.00198560953,
+        "z": 0.0,
+        "w": 0.999998033
+      }
+    },
+    {
+      "Id": "nf2024_7_1",
+      "Position": {
+        "x": 63.612,
+        "y": 6.44,
+        "z": 35.114
+      },
+      "Bounds": {
+        "center": {
+          "x": 63.612,
+          "y": 6.44,
+          "z": 35.114
+        },
+        "size": {
+          "x": 2.50593567,
+          "y": 2.5,
+          "z": 1.50991821
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.7057016,
+        "z": 0.0,
+        "w": 0.7085092
+      }
+    },
+    {
+      "Id": "huntsman_013",
+      "Position": {
+        "x": 22.34,
+        "y": 6.1,
+        "z": 41.73
+      },
+      "Bounds": {
+        "center": {
+          "x": 22.34,
+          "y": 6.1,
+          "z": 41.73
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.40000057,
+          "z": 15.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nf2024_2_6",
+      "Position": {
+        "x": 21.868,
+        "y": 1.163,
+        "z": -30.777
+      },
+      "Bounds": {
+        "center": {
+          "x": 21.868,
+          "y": 1.16300011,
+          "z": -30.777
+        },
+        "size": {
+          "x": 4.722019,
+          "y": 2.0,
+          "z": 7.385826
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.668435156,
+        "z": 0.0,
+        "w": 0.7437704
+      }
+    },
+    {
+      "Id": "nf2024_2_10",
+      "Position": {
+        "x": 53.37,
+        "y": 1.48,
+        "z": -22.46
+      },
+      "Bounds": {
+        "center": {
+          "x": 53.37,
+          "y": 1.48,
+          "z": -22.46
+        },
+        "size": {
+          "x": 7.840706,
+          "y": 3.000001,
+          "z": 5.80209351
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.141606271,
+        "z": 0.0,
+        "w": 0.9899231
+      }
+    },
+    {
+      "Id": "nf2024_6_beacon_3",
+      "Position": {
+        "x": 45.615,
+        "y": -1.596,
+        "z": -36.126
+      },
+      "Bounds": {
+        "center": {
+          "x": 45.615,
+          "y": -1.596,
+          "z": -36.126
+        },
+        "size": {
+          "x": 7.5,
+          "y": 2.0,
+          "z": 1.5
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Halloween_zone_for_antivirus(factory)",
+      "Position": {
+        "x": -27.176,
+        "y": -4.632,
+        "z": -24.2343521
+      },
+      "Bounds": {
+        "center": {
+          "x": -26.9315338,
+          "y": -4.632,
+          "z": -27.9453354
+        },
+        "size": {
+          "x": 5.21031952,
+          "y": 2.5,
+          "z": 59.7518768
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    }
+  ]
 }

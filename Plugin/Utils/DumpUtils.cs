@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Comfort.Common;
 using DynamicMaps.Data;
-using DynamicMaps.Patches;
 using EFT;
 using EFT.Interactive;
-using EFT.Interactive.SecretExfiltrations;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -21,7 +20,7 @@ namespace DynamicMaps.Utils
 
         private const string TransitCategory = "Transit";
         private const string TransitImagePath = "Makers/transit.png";
-        
+
         private static readonly Color ExtractScavColor = Color.Lerp(Color.yellow, Color.red, 0.5f);
         private static readonly Color TransitColor = Color.Lerp(Color.yellow, Color.red, 0.6f);
         private static readonly Color SecretColor = new Color(0.1f, 0.6f, 0.6f);
@@ -33,6 +32,29 @@ namespace DynamicMaps.Utils
         private const string LockedDoorCategory = "Locked Door";
         private const string LockedDoorImagePath = "Markers/door_with_lock.png";
         private static readonly Color LockedDoorColor = Color.yellow;
+
+        public static void DumpTriggers()
+        {
+            var gameWorld = Singleton<GameWorld>.Instance;
+            var mapName = GameUtils.GetCurrentMapInternalName();
+
+            var triggers = GameObject.FindObjectsOfType<TriggerWithId>().ToList();
+            var triggerWithId = triggers.Select(k =>
+            {
+                return new TriggerWithIdAbstraction()
+                {
+                    Id = k.Id,
+                    Position = k.transform.position,
+                    Bounds = k.GetComponent<BoxCollider>().bounds,
+                    Rotation = k.GetComponent<BoxCollider>().transform.rotation,
+                };
+            }).ToList();
+            var dumpString = JsonConvert.SerializeObject(triggerWithId);
+
+            File.WriteAllText(Path.Combine(Plugin.Path, $"{mapName}-triggers.json"), dumpString);
+
+            Plugin.Log.LogInfo("Dumped triggers");
+        }
 
         public static void DumpExtracts()
         {
@@ -88,7 +110,7 @@ namespace DynamicMaps.Utils
                     Position = MathUtils.ConvertToMapPosition(transit.transform),
                     Color = TransitColor
                 };
-                
+
                 dump.Add(dumped);
             }
 

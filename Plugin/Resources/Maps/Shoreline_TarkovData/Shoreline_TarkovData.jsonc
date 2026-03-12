@@ -1,586 +1,3787 @@
 {
-    "DisplayName": "Shoreline (TarkovData)",
-    "Author": "Shebuka",
-    "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
-    "MapInternalNames": [ "Shoreline" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -1060, "y": -415},
-        "Max": {"x": 508, "y": 622}
+  "DisplayName": "Shoreline (TarkovData)",
+  "Author": "Shebuka",
+  "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
+  "MapInternalNames": [ "Shoreline" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -1060,
+      "y": -415
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Underground": {
-            "Level": -1,
-            "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -1060, "y": -415},
-                "Max": {"x": 508, "y": 622}
-            },
-            "GameBounds": [
-                {   // west wing
-                    "Min": {"x": -237, "y": -104, "z": -100},
-                    "Max": {"x": -137, "y": -68, "z": -5}
-                },
-                {   // admin
-                    "Min": {"x": -268, "y": -163, "z": -100},
-                    "Max": {"x": -234, "y": -134, "z": -5}
-                }
-            ]
+    "Max": {
+      "x": 508,
+      "y": 622
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Underground": {
+      "Level": -1,
+      "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -1060,
+          "y": -415
         },
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -1060, "y": -415},
-                "Max": {"x": 508, "y": 622}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -1060, "y": -415, "z": -100},
-                    "Max": {"x": 508, "y": 622, "z": 100}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -1060, "y": -415},
-                "Max": {"x": 508, "y": 622}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -375, "y": -178, "z": -1},
-                    "Max": {"x": -128, "y": -55, "z": 2}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -1060, "y": -415},
-                "Max": {"x": 508, "y": 622}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -375, "y": -178, "z": 2},
-                    "Max": {"x": -128, "y": -55, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 508,
+          "y": 622
         }
+      },
+      "GameBounds": [
+        { // west wing
+          "Min": {
+            "x": -237,
+            "y": -104,
+            "z": -100
+          },
+          "Max": {
+            "x": -137,
+            "y": -68,
+            "z": -5
+          }
+        },
+        { // admin
+          "Min": {
+            "x": -268,
+            "y": -163,
+            "z": -100
+          },
+          "Max": {
+            "x": -234,
+            "y": -134,
+            "z": -5
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "Resort",
-            "Position": {"x": -252, "y": -71.2, "z": -3},
-            "FontSize": 16
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -1060,
+          "y": -415
         },
-        {
-            "Text": "Power Station",
-            "Position": {"x": -215.8, "y": 178.4, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Gas Station",
-            "Position": {"x": -189.3, "y": 420, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Weather Station",
-            "Position": {"x": -496, "y": 257, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Radio Tower",
-            "Position": {"x": -708.9, "y": 93.9, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Swamp",
-            "Position": {"x": 326, "y": -118.5, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Village",
-            "Position": {"x": 418.4, "y": 118, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cabins",
-            "Position": {"x": 288, "y": 144, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cottages",
-            "Position": {"x": 128, "y": 93, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Tank Bridge",
-            "Position": {"x": -355, "y": 188, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Pier",
-            "Position": {"x": -338.6, "y": 525, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Scav Island",
-            "Position": {"x": 216, "y": 424, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Bus Stop",
-            "Position": {"x": -96, "y": -6, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Construction",
-            "Position": {"x": 52, "y": 134, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Bunker",
-            "Position": {"x": -153, "y": -290, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Crane",
-            "Position": {"x": -625, "y": 484, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Scav Farm",
-            "Position": {"x": -622, "y": -202, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "West Wing",
-            "Position": {"x": -171, "y": -83, "z": -3},
-            "FontSize": 16
-        },
-        {
-            "Text": "East Wing",
-            "Position": {"x": -329, "y": -83, "z": -3},
-            "FontSize": 16
-        },
-        {
-            "Text": "Admin",
-            "Position": {"x": -252, "y": -146, "z": -3},
-            "FontSize": 16
+        "Max": {
+          "x": 508,
+          "y": 622
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Lighthouse",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -458.1507, "y": 567.2876, "z": -54.289978 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Ruined Road",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 366.62, "y": 332.51, "z": -61.12998 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "East Wing Gym Entrance",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -296.9457, "y": -100.892, "z": -6.629977 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Admin Basement",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -256.87, "y": -149.782379, "z": -7.70797729 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Smuggler's Path (Co-op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -729.4, "y": -255.1, "z": -26.0 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Road to North V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -543.264038, "y": -379.651367, "z": -16.8420162 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Road to Customs",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -859.05, "y": 0.49, "z": -42.07 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Railway Bridge",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -1029.29, "y": 307.59, "z": -60.79 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Tunnel",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 376.36, "y": 319.25, "z": -55.9399757 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Path to Lighthouse",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 448.9, "y": -254.6, "z": -44.7 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Pier Boat",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -332.5907, "y": 561.2576, "z": -66.11997 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Climber's Trail",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -214.3, "y": -361.8, "z": -1.0 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Lighthouse",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 417.2, "y": -217.5, "z": -56.1 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Mountain Bunker",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -390.956024,"y": -385.721, "z": -2.55000019 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "HEP Station Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -220.38063, "y": 185.880585, "z": -33.858 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e15b686f774445103b190"
-        },
-        {
-            "Text": "HEP Station Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -220.703171, "y": 193.687332, "z": -33.8470345 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e15b686f774445103b190"
-        },
-        {
-            "Text": "SMW Car",
-            "ImagePath": "Markers/car_door.png",
-            "Position": { "x": 157.352051, "y": 133.891, "z": -47.3859329 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eb38b86f774153b320eb0"
-        },
-        {
-            "Text": "Cottage Back Door",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 102.532318, "y": 102.731339, "z": -47.2590027 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eb6ac86f7743124037a28"
-        },
-        {
-            "Text": "West Wing Room 203",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -229.608261, "y": -92.90662, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a144dfd86f77445cb5a0982"
-        },
-        {
-            "Text": "West Wing Room 216",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -179.379257, "y": -80.91263, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ee30786f774023b6ee08f"
-        },
-        {
-            "Text": "West Wing Room 306",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -216.905258, "y": -92.90662, "z": 3.03088379 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13f46386f7741dd7384b04"
-        },
-        {
-            "Text": "West Wing Room 220",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -166.686264, "y": -80.91263, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ee34586f774023b6ee092"
-        },
-        {
-            "Text": "East Wing Room 206",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -285.857239, "y": -92.88861, "z": 0.134880066 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ee4b586f7743698200d22"
-        },
-        {
-            "Text": "East Wing Room 205",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -281.692261, "y": -92.88861, "z": 0.134880066 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a144bdb86f7741d374bbde0"
-        },
-        {
-            "Text": "East Wing Room 313",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -313.835754, "y": -84.47537, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eecf686f7740350630097"
-        },
-        {
-            "Text": "Utility Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -142.583267, "y": -79.9176, "z": 3.05788422 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
-        },
-        {
-            "Text": "West Wing Room 218",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -173.983749, "y": -84.50137, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13eebd86f7746fd639aa93"
-        },
-        {
-            "Text": "East Wing Room 328",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -357.303284, "y": -79.9165955, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eee1486f77402aa773226"
-        },
-        {
-            "Text": "East Wing Room 226",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -351.9118, "y": -84.47537, "z": 0.134880066 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13f35286f77413ef1436b0"
-        },
-        {
-            "Text": "East Wing Office 107",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -333.767029, "y": -79.95798, "z": -2.70200348 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ea64786f7741707720468"
-        },
-        {
-            "Text": "West Wing Room 205",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -221.073288, "y": -92.90662, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ec6d286f7742c0b518fb5"
-        },
-        {
-            "Text": "East Wing Room 222",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -343.3838, "y": -84.47537, "z": 0.134880066 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13f24186f77410e57c5626"
-        },
-        {
-            "Text": "West Wing Room 112",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -189.173019, "y": -85.4490051, "z": -2.69580078 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0dc95c86f77452440fc675"
-        },
-        {
-            "Text": "West Wing Room 104",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -157.433029, "y": -85.4490051, "z": -2.69580078 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0dc45586f7742f6b0b73e3"
-        },
-        {
-            "Text": "West Wing Room 219",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -170.853256, "y": -80.91263, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13ef0686f7746e5a411744"
-        },
-        {
-            "Text": "East Wing Room 308",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -294.3863, "y": -92.88861, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a145d7b86f7744cbb6f4a13"
-        },
-        {
-            "Text": "East Wing Room 310",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -303.411255, "y": -81.46161, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eec9686f77402ac5c39f2"
-        },
-        {
-            "Text": "West Wing Room 301",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -229.202621, "y": -100.151733, "z": 3.03088379 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a13ef7e86f7741290491063"
-        },
-        {
-            "Text": "West Wing Room 222",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -161.293747, "y": -84.50137, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a1452ee86f7746f33111763"
-        },
-        {
-            "Text": "Utility Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -142.583267, "y": -79.9176, "z": 0.164085388 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
-        },
-        {
-            "Text": "East Wing Room 306",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -285.857239, "y": -92.88861, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a145d4786f7744cbb6f4a12"
-        },
-        {
-            "Text": "Utility Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -360.193237, "y": -79.8936157, "z": 3.04288483 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
-        },
-        {
-            "Text": "East Wing Room 316",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -323.389282, "y": -80.8936157, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a145ebb86f77458f1796f05"
-        },
-        {
-            "Text": "East Wing Room 314",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -317.992737, "y": -84.47537, "z": 3.02988434 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0eed4386f77405112912aa"
-        },
-        {
-            "Text": "East Wing Sanitar's Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -323.547, "y": -79.961, "z": -2.70200348 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5eff09cd30a7dc22fd1ddfed"
-        },
-        {
-            "Text": "West Wing Room 223",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -165.451767, "y": -84.50137, "z": 0.137084961 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5a0ee37f86f774023657a86f"
-        },
-        {
-            "Text": "Voron's hideout",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -240.23, "y": 197.64, "z": -40.66 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "664d3ddfdda2e85aca370d75"
+          "Min": {
+            "x": -1060,
+            "y": -415,
+            "z": -100
+          },
+          "Max": {
+            "x": 508,
+            "y": 622,
+            "z": 100
+          }
         }
-        // {
-        //     "Text": "safe 1",
-        //     "ImagePath": "Markers/locked_safe.png",
-        //     "Position": { "x": -266.10675, "y": -147.65097, "z": -0.3202896 },
-        //     "Category": "Locked",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5a0f08bc86f77478f33b84c2"
-        // },
-        // {
-        //     "Text": "West Wing Room 321 Safe",
-        //     "ImagePath": "Markers/locked_safe.png",
-        //     "Position": { "x": -165.664047, "y": -89.05765, "z": 2.53099823 },
-        //     "Category": "Locked",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5a0eff2986f7741fd654e684"
-        // },
-        // {
-        //     "Text": "Cottage Safe",
-        //     "ImagePath": "Markers/locked_safe.png",
-        //     "Position": { "x": 93.71925, "y": 111.979019, "z": -45.01355 },
-        //     "Category": "Locked",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5a0f068686f7745b0d4ea242"
-        // },
-        // {
-        //     "Text": "safe 4",
-        //     "ImagePath": "Markers/locked_safe.png",
-        //     "Position": { "x": -242.451981, "y": -153.367249, "z": -0.3202896 },
-        //     "Category": "Locked",
-        //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-        //     "AssociatedItemId": "5a0f0f5886f7741c4e32a472"
-        // }
-    ]
+      ]
+    },
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -1060,
+          "y": -415
+        },
+        "Max": {
+          "x": 508,
+          "y": 622
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -375,
+            "y": -178,
+            "z": -1
+          },
+          "Max": {
+            "x": -128,
+            "y": -55,
+            "z": 2
+          }
+        }
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/Shoreline_TarkovData/Layers/shoreline_layer_2.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -1060,
+          "y": -415
+        },
+        "Max": {
+          "x": 508,
+          "y": 622
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -375,
+            "y": -178,
+            "z": 2
+          },
+          "Max": {
+            "x": -128,
+            "y": -55,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Resort",
+      "Position": {
+        "x": -252,
+        "y": -71.2,
+        "z": -3
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Power Station",
+      "Position": {
+        "x": -215.8,
+        "y": 178.4,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Gas Station",
+      "Position": {
+        "x": -189.3,
+        "y": 420,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Weather Station",
+      "Position": {
+        "x": -496,
+        "y": 257,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Radio Tower",
+      "Position": {
+        "x": -708.9,
+        "y": 93.9,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Swamp",
+      "Position": {
+        "x": 326,
+        "y": -118.5,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Village",
+      "Position": {
+        "x": 418.4,
+        "y": 118,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cabins",
+      "Position": {
+        "x": 288,
+        "y": 144,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cottages",
+      "Position": {
+        "x": 128,
+        "y": 93,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Tank Bridge",
+      "Position": {
+        "x": -355,
+        "y": 188,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Pier",
+      "Position": {
+        "x": -338.6,
+        "y": 525,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Scav Island",
+      "Position": {
+        "x": 216,
+        "y": 424,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Bus Stop",
+      "Position": {
+        "x": -96,
+        "y": -6,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Construction",
+      "Position": {
+        "x": 52,
+        "y": 134,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Bunker",
+      "Position": {
+        "x": -153,
+        "y": -290,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Crane",
+      "Position": {
+        "x": -625,
+        "y": 484,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Scav Farm",
+      "Position": {
+        "x": -622,
+        "y": -202,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "West Wing",
+      "Position": {
+        "x": -171,
+        "y": -83,
+        "z": -3
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "East Wing",
+      "Position": {
+        "x": -329,
+        "y": -83,
+        "z": -3
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Admin",
+      "Position": {
+        "x": -252,
+        "y": -146,
+        "z": -3
+      },
+      "FontSize": 16
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Lighthouse",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -458.1507,
+        "y": 567.2876,
+        "z": -54.289978
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Ruined Road",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 366.62,
+        "y": 332.51,
+        "z": -61.12998
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "East Wing Gym Entrance",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -296.9457,
+        "y": -100.892,
+        "z": -6.629977
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Admin Basement",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -256.87,
+        "y": -149.782379,
+        "z": -7.70797729
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Smuggler's Path (Co-op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -729.4,
+        "y": -255.1,
+        "z": -26.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Road to North V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -543.264038,
+        "y": -379.651367,
+        "z": -16.8420162
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Road to Customs",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -859.05,
+        "y": 0.49,
+        "z": -42.07
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Railway Bridge",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -1029.29,
+        "y": 307.59,
+        "z": -60.79
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Tunnel",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 376.36,
+        "y": 319.25,
+        "z": -55.9399757
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Path to Lighthouse",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 448.9,
+        "y": -254.6,
+        "z": -44.7
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Pier Boat",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -332.5907,
+        "y": 561.2576,
+        "z": -66.11997
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Climber's Trail",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -214.3,
+        "y": -361.8,
+        "z": -1.0
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Lighthouse",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 417.2,
+        "y": -217.5,
+        "z": -56.1
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Mountain Bunker",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -390.956024,
+        "y": -385.721,
+        "z": -2.55000019
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "HEP Station Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -220.38063,
+        "y": 185.880585,
+        "z": -33.858
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e15b686f774445103b190"
+    },
+    {
+      "Text": "HEP Station Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -220.703171,
+        "y": 193.687332,
+        "z": -33.8470345
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e15b686f774445103b190"
+    },
+    {
+      "Text": "SMW Car",
+      "ImagePath": "Markers/car_door.png",
+      "Position": {
+        "x": 157.352051,
+        "y": 133.891,
+        "z": -47.3859329
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eb38b86f774153b320eb0"
+    },
+    {
+      "Text": "Cottage Back Door",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 102.532318,
+        "y": 102.731339,
+        "z": -47.2590027
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eb6ac86f7743124037a28"
+    },
+    {
+      "Text": "West Wing Room 203",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -229.608261,
+        "y": -92.90662,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a144dfd86f77445cb5a0982"
+    },
+    {
+      "Text": "West Wing Room 216",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -179.379257,
+        "y": -80.91263,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ee30786f774023b6ee08f"
+    },
+    {
+      "Text": "West Wing Room 306",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -216.905258,
+        "y": -92.90662,
+        "z": 3.03088379
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13f46386f7741dd7384b04"
+    },
+    {
+      "Text": "West Wing Room 220",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -166.686264,
+        "y": -80.91263,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ee34586f774023b6ee092"
+    },
+    {
+      "Text": "East Wing Room 206",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -285.857239,
+        "y": -92.88861,
+        "z": 0.134880066
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ee4b586f7743698200d22"
+    },
+    {
+      "Text": "East Wing Room 205",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -281.692261,
+        "y": -92.88861,
+        "z": 0.134880066
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a144bdb86f7741d374bbde0"
+    },
+    {
+      "Text": "East Wing Room 313",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -313.835754,
+        "y": -84.47537,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eecf686f7740350630097"
+    },
+    {
+      "Text": "Utility Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -142.583267,
+        "y": -79.9176,
+        "z": 3.05788422
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
+    },
+    {
+      "Text": "West Wing Room 218",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -173.983749,
+        "y": -84.50137,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13eebd86f7746fd639aa93"
+    },
+    {
+      "Text": "East Wing Room 328",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -357.303284,
+        "y": -79.9165955,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eee1486f77402aa773226"
+    },
+    {
+      "Text": "East Wing Room 226",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -351.9118,
+        "y": -84.47537,
+        "z": 0.134880066
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13f35286f77413ef1436b0"
+    },
+    {
+      "Text": "East Wing Office 107",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -333.767029,
+        "y": -79.95798,
+        "z": -2.70200348
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ea64786f7741707720468"
+    },
+    {
+      "Text": "West Wing Room 205",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -221.073288,
+        "y": -92.90662,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ec6d286f7742c0b518fb5"
+    },
+    {
+      "Text": "East Wing Room 222",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -343.3838,
+        "y": -84.47537,
+        "z": 0.134880066
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13f24186f77410e57c5626"
+    },
+    {
+      "Text": "West Wing Room 112",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -189.173019,
+        "y": -85.4490051,
+        "z": -2.69580078
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0dc95c86f77452440fc675"
+    },
+    {
+      "Text": "West Wing Room 104",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -157.433029,
+        "y": -85.4490051,
+        "z": -2.69580078
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0dc45586f7742f6b0b73e3"
+    },
+    {
+      "Text": "West Wing Room 219",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -170.853256,
+        "y": -80.91263,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13ef0686f7746e5a411744"
+    },
+    {
+      "Text": "East Wing Room 308",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -294.3863,
+        "y": -92.88861,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a145d7b86f7744cbb6f4a13"
+    },
+    {
+      "Text": "East Wing Room 310",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -303.411255,
+        "y": -81.46161,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eec9686f77402ac5c39f2"
+    },
+    {
+      "Text": "West Wing Room 301",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -229.202621,
+        "y": -100.151733,
+        "z": 3.03088379
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a13ef7e86f7741290491063"
+    },
+    {
+      "Text": "West Wing Room 222",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -161.293747,
+        "y": -84.50137,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a1452ee86f7746f33111763"
+    },
+    {
+      "Text": "Utility Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -142.583267,
+        "y": -79.9176,
+        "z": 0.164085388
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
+    },
+    {
+      "Text": "East Wing Room 306",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -285.857239,
+        "y": -92.88861,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a145d4786f7744cbb6f4a12"
+    },
+    {
+      "Text": "Utility Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -360.193237,
+        "y": -79.8936157,
+        "z": 3.04288483
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ea79b86f7741d4a35298e"
+    },
+    {
+      "Text": "East Wing Room 316",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -323.389282,
+        "y": -80.8936157,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a145ebb86f77458f1796f05"
+    },
+    {
+      "Text": "East Wing Room 314",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -317.992737,
+        "y": -84.47537,
+        "z": 3.02988434
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0eed4386f77405112912aa"
+    },
+    {
+      "Text": "East Wing Sanitar's Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -323.547,
+        "y": -79.961,
+        "z": -2.70200348
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5eff09cd30a7dc22fd1ddfed"
+    },
+    {
+      "Text": "West Wing Room 223",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -165.451767,
+        "y": -84.50137,
+        "z": 0.137084961
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5a0ee37f86f774023657a86f"
+    },
+    {
+      "Text": "Voron's hideout",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -240.23,
+        "y": 197.64,
+        "z": -40.66
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "664d3ddfdda2e85aca370d75"
+    }
+    // {
+    //     "Text": "safe 1",
+    //     "ImagePath": "Markers/locked_safe.png",
+    //     "Position": { "x": -266.10675, "y": -147.65097, "z": -0.3202896 },
+    //     "Category": "Locked",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5a0f08bc86f77478f33b84c2"
+    // },
+    // {
+    //     "Text": "West Wing Room 321 Safe",
+    //     "ImagePath": "Markers/locked_safe.png",
+    //     "Position": { "x": -165.664047, "y": -89.05765, "z": 2.53099823 },
+    //     "Category": "Locked",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5a0eff2986f7741fd654e684"
+    // },
+    // {
+    //     "Text": "Cottage Safe",
+    //     "ImagePath": "Markers/locked_safe.png",
+    //     "Position": { "x": 93.71925, "y": 111.979019, "z": -45.01355 },
+    //     "Category": "Locked",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5a0f068686f7745b0d4ea242"
+    // },
+    // {
+    //     "Text": "safe 4",
+    //     "ImagePath": "Markers/locked_safe.png",
+    //     "Position": { "x": -242.451981, "y": -153.367249, "z": -0.3202896 },
+    //     "Category": "Locked",
+    //     "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
+    //     "AssociatedItemId": "5a0f0f5886f7741c4e32a472"
+    // }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "place_peacemaker_003_N3",
+      "Position": {
+        "x": -349.680054,
+        "y": -39.864,
+        "z": 185.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -349.680054,
+          "y": -39.864,
+          "z": 185.87
+        },
+        "size": {
+          "x": 9.691101,
+          "y": 7.0,
+          "z": 8.61288452
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.195874378,
+        "z": 0.0,
+        "w": 0.980629
+      }
+    },
+    {
+      "Id": "place_peacemaker_003_N3",
+      "Position": {
+        "x": -349.680054,
+        "y": -39.864,
+        "z": 185.87
+      },
+      "Bounds": {
+        "center": {
+          "x": -349.680054,
+          "y": -39.864,
+          "z": 185.87
+        },
+        "size": {
+          "x": 9.691101,
+          "y": 7.0,
+          "z": 8.61288452
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.195874378,
+        "z": 0.0,
+        "w": 0.980629
+      }
+    },
+    {
+      "Id": "place_peacemaker_004_N1",
+      "Position": {
+        "x": -553.0862,
+        "y": -29.35,
+        "z": -127.678192
+      },
+      "Bounds": {
+        "center": {
+          "x": -553.0862,
+          "y": -29.3499985,
+          "z": -127.678192
+        },
+        "size": {
+          "x": 25.4000244,
+          "y": 6.999998,
+          "z": 25.7000046
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_03_mech_place_01",
+      "Position": {
+        "x": -196.5,
+        "y": -6.0,
+        "z": -81.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -196.5,
+          "y": -6.0,
+          "z": -81.0
+        },
+        "size": {
+          "x": 2.28265381,
+          "y": 2.55000019,
+          "z": 1.53398132
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "event_labyrinth_03_mech_place_02",
+      "Position": {
+        "x": -196.0,
+        "y": -6.5,
+        "z": -77.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -196.0,
+          "y": -6.5,
+          "z": -77.0
+        },
+        "size": {
+          "x": 3.04534912,
+          "y": 2.55000019,
+          "z": 3.06530762
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "marafon_kill_village_shoreline",
+      "Position": {
+        "x": 377.300049,
+        "y": -54.42,
+        "z": 136.299988
+      },
+      "Bounds": {
+        "center": {
+          "x": 376.919678,
+          "y": -43.85641,
+          "z": 122.264191
+        },
+        "size": {
+          "x": 304.436035,
+          "y": 28.8728256,
+          "z": 174.675568
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0136548337,
+        "z": 0.0,
+        "w": 0.9999068
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_05",
+      "Position": {
+        "x": -625.819946,
+        "y": -54.72,
+        "z": 482.169983
+      },
+      "Bounds": {
+        "center": {
+          "x": -625.819946,
+          "y": -54.72,
+          "z": 482.169983
+        },
+        "size": {
+          "x": 209.037842,
+          "y": 12.75,
+          "z": 22.2285156
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "skier_022_area_2",
+      "Position": {
+        "x": 98.10303,
+        "y": -47.19,
+        "z": 96.9790344
+      },
+      "Bounds": {
+        "center": {
+          "x": 98.10339,
+          "y": -47.1900024,
+          "z": 96.9761353
+        },
+        "size": {
+          "x": 1.37684631,
+          "y": 3.001358,
+          "z": 1.63917542
+        }
+      },
+      "Rotation": {
+        "x": -0.000326137466,
+        "y": 0.6619124,
+        "z": -0.0001886298,
+        "w": 0.7495811
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 306.199951,
+        "y": -21.5,
+        "z": -285.4
+      },
+      "Bounds": {
+        "center": {
+          "x": 306.202881,
+          "y": -21.5,
+          "z": -285.4
+        },
+        "size": {
+          "x": 200.348816,
+          "y": 80.00001,
+          "z": 200.348816
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_peacemaker_009_3_N1",
+      "Position": {
+        "x": -149.874023,
+        "y": -6.08,
+        "z": -77.004
+      },
+      "Bounds": {
+        "center": {
+          "x": -149.8711,
+          "y": -6.08,
+          "z": -77.004
+        },
+        "size": {
+          "x": 10.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_010_3",
+      "Position": {
+        "x": 72.9100342,
+        "y": -59.6730728,
+        "z": 348.72998
+      },
+      "Bounds": {
+        "center": {
+          "x": 72.9129639,
+          "y": -59.6730728,
+          "z": 348.72998
+        },
+        "size": {
+          "x": 8.0,
+          "y": 2.0,
+          "z": 6.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "huntsman_024_2",
+      "Position": {
+        "x": 382.939941,
+        "y": -51.93,
+        "z": -125.899994
+      },
+      "Bounds": {
+        "center": {
+          "x": 382.942627,
+          "y": -51.93,
+          "z": -125.900818
+        },
+        "size": {
+          "x": 14.8813477,
+          "y": 4.0,
+          "z": 14.8813553
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.141503945,
+        "z": 0.0,
+        "w": 0.9899377
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 523.8999,
+        "y": -21.5,
+        "z": -143.7
+      },
+      "Bounds": {
+        "center": {
+          "x": 523.902832,
+          "y": -21.5,
+          "z": -143.7
+        },
+        "size": {
+          "x": 243.4331,
+          "y": 80.00001,
+          "z": 363.323273
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "huntsman_026",
+      "Position": {
+        "x": -229.060059,
+        "y": 3.285,
+        "z": -88.8569946
+      },
+      "Bounds": {
+        "center": {
+          "x": -229.057129,
+          "y": 3.28499985,
+          "z": -88.8569946
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.49999976,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "NosQuests_11_shoreline_place",
+      "Position": {
+        "x": -459.720947,
+        "y": -47.769,
+        "z": 564.833
+      },
+      "Bounds": {
+        "center": {
+          "x": -459.719238,
+          "y": -47.769,
+          "z": 564.8306
+        },
+        "size": {
+          "x": 1.39569092,
+          "y": 2.0,
+          "z": 1.39562988
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.45624426,
+        "z": 0.0,
+        "w": 0.88985455
+      }
+    },
+    {
+      "Id": "q_ny_hide_christmas_tree_shorl",
+      "Position": {
+        "x": -251.910034,
+        "y": -3.97,
+        "z": -112.460007
+      },
+      "Bounds": {
+        "center": {
+          "x": -251.910034,
+          "y": -3.97,
+          "z": -112.460007
+        },
+        "size": {
+          "x": 4.018219,
+          "y": 5.00000048,
+          "z": 4.018219
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.002282701,
+        "z": 0.0,
+        "w": 0.999997437
+      }
+    },
+    {
+      "Id": "prapor_022_area_2",
+      "Position": {
+        "x": 96.72998,
+        "y": -47.19,
+        "z": 97.10004
+      },
+      "Bounds": {
+        "center": {
+          "x": 96.7302246,
+          "y": -47.1900024,
+          "z": 97.09714
+        },
+        "size": {
+          "x": 3.25254822,
+          "y": 3.00280762,
+          "z": 3.25431824
+        }
+      },
+      "Rotation": {
+        "x": -0.000322685373,
+        "y": 0.6753126,
+        "z": -0.000194476248,
+        "w": 0.737531543
+      }
+    },
+    {
+      "Id": "q14_10_point_area",
+      "Position": {
+        "x": -645.0,
+        "y": -20.3,
+        "z": -200.7
+      },
+      "Bounds": {
+        "center": {
+          "x": -644.9972,
+          "y": -20.3,
+          "z": -200.700958
+        },
+        "size": {
+          "x": 127.370972,
+          "y": 50.0000229,
+          "z": 127.370911
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.167142138,
+        "z": 0.0,
+        "w": 0.9859329
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 322.6001,
+        "y": -21.5,
+        "z": 28.5
+      },
+      "Bounds": {
+        "center": {
+          "x": 322.603027,
+          "y": -21.5,
+          "z": 28.5
+        },
+        "size": {
+          "x": 70.12207,
+          "y": 80.00001,
+          "z": 70.1220856
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "skier_022_area_1",
+      "Position": {
+        "x": -263.594,
+        "y": -3.95800018,
+        "z": -85.71597
+      },
+      "Bounds": {
+        "center": {
+          "x": -263.594,
+          "y": -3.95800018,
+          "z": -85.71597
+        },
+        "size": {
+          "x": 2.10455322,
+          "y": 3.000001,
+          "z": 2.104538
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.440036744,
+        "z": 0.0,
+        "w": 0.897979856
+      }
+    },
+    {
+      "Id": "q14_11_jeep",
+      "Position": {
+        "x": 227.163086,
+        "y": -54.911,
+        "z": -159.882
+      },
+      "Bounds": {
+        "center": {
+          "x": 227.165771,
+          "y": -54.91134,
+          "z": -159.883011
+        },
+        "size": {
+          "x": 7.05557251,
+          "y": 4.1129,
+          "z": 5.19854736
+        }
+      },
+      "Rotation": {
+        "x": 0.06757858,
+        "y": 0.171850383,
+        "z": -0.07134469,
+        "w": 0.98020947
+      }
+    },
+    {
+      "Id": "q14_11_jeep",
+      "Position": {
+        "x": 227.163086,
+        "y": -54.911,
+        "z": -159.882
+      },
+      "Bounds": {
+        "center": {
+          "x": 227.165771,
+          "y": -54.91134,
+          "z": -159.883011
+        },
+        "size": {
+          "x": 7.05557251,
+          "y": 4.1129,
+          "z": 5.19854736
+        }
+      },
+      "Rotation": {
+        "x": 0.06757858,
+        "y": 0.171850383,
+        "z": -0.07134469,
+        "w": 0.98020947
+      }
+    },
+    {
+      "Id": " em_quest4_3",
+      "Position": {
+        "x": -512.087036,
+        "y": -13.16,
+        "z": 264.141
+      },
+      "Bounds": {
+        "center": {
+          "x": -512.087158,
+          "y": -13.16,
+          "z": 264.138062
+        },
+        "size": {
+          "x": 1.14883423,
+          "y": 0.7800007,
+          "z": 2.49542236
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.7155248,
+        "z": 0.0,
+        "w": 0.698587358
+      }
+    },
+    {
+      "Id": "place_meh_sanitar_room",
+      "Position": {
+        "x": -322.833,
+        "y": -2.75299835,
+        "z": -77.53696
+      },
+      "Bounds": {
+        "center": {
+          "x": -322.833,
+          "y": -2.75299835,
+          "z": -77.53696
+        },
+        "size": {
+          "x": 2.669983,
+          "y": 2.00000048,
+          "z": 3.140091
+        }
+      },
+      "Rotation": {
+        "x": -0.4852672,
+        "y": -0.514310956,
+        "z": -0.5143109,
+        "w": 0.485267282
+      }
+    },
+    {
+      "Id": "place_SIGNAL_03_3",
+      "Position": {
+        "x": -708.72,
+        "y": -26.21,
+        "z": 90.59
+      },
+      "Bounds": {
+        "center": {
+          "x": -708.717041,
+          "y": -26.21,
+          "z": 90.59
+        },
+        "size": {
+          "x": 8.0,
+          "y": 3.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_003_N1",
+      "Position": {
+        "x": -153.079956,
+        "y": -17.05,
+        "z": -280.18
+      },
+      "Bounds": {
+        "center": {
+          "x": -153.079956,
+          "y": -17.05,
+          "z": -280.18
+        },
+        "size": {
+          "x": 10.6907654,
+          "y": 7.0,
+          "z": 10.6907959
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.224087074,
+        "z": 0.0,
+        "w": 0.974569142
+      }
+    },
+    {
+      "Id": "place_peacemaker_003_N1",
+      "Position": {
+        "x": -153.079956,
+        "y": -17.05,
+        "z": -280.18
+      },
+      "Bounds": {
+        "center": {
+          "x": -153.079956,
+          "y": -17.05,
+          "z": -280.18
+        },
+        "size": {
+          "x": 10.6907654,
+          "y": 7.0,
+          "z": 10.6907959
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.224087074,
+        "z": 0.0,
+        "w": 0.974569142
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -327.800049,
+        "y": -21.5,
+        "z": -283.5
+      },
+      "Bounds": {
+        "center": {
+          "x": -327.797119,
+          "y": -21.5,
+          "z": -283.5
+        },
+        "size": {
+          "x": 400.26123,
+          "y": 80.00001,
+          "z": 150.698
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_SIGNAL_03_2",
+      "Position": {
+        "x": -230.550049,
+        "y": 8.32,
+        "z": -92.39
+      },
+      "Bounds": {
+        "center": {
+          "x": -230.547119,
+          "y": 8.32,
+          "z": -92.39
+        },
+        "size": {
+          "x": 8.0,
+          "y": 3.0,
+          "z": 14.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "prapor_022_area_1",
+      "Position": {
+        "x": -263.983032,
+        "y": -3.95800018,
+        "z": -85.25296
+      },
+      "Bounds": {
+        "center": {
+          "x": -263.9812,
+          "y": -3.95800018,
+          "z": -85.2552643
+        },
+        "size": {
+          "x": 5.61212158,
+          "y": 3.000001,
+          "z": 5.612091
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.440036744,
+        "z": 0.0,
+        "w": 0.897979856
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_2_N1",
+      "Position": {
+        "x": -250.5,
+        "y": -5.14096546,
+        "z": -48.28
+      },
+      "Bounds": {
+        "center": {
+          "x": -250.49707,
+          "y": -5.14096546,
+          "z": -48.28
+        },
+        "size": {
+          "x": 15.0,
+          "y": 7.0,
+          "z": 15.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_2_N1",
+      "Position": {
+        "x": -250.5,
+        "y": -5.14096546,
+        "z": -48.28
+      },
+      "Bounds": {
+        "center": {
+          "x": -250.49707,
+          "y": -5.14096546,
+          "z": -48.28
+        },
+        "size": {
+          "x": 15.0,
+          "y": 7.0,
+          "z": 15.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "2A2_unlock_4_discover",
+      "Position": {
+        "x": -200.310059,
+        "y": -6.15,
+        "z": -76.36099
+      },
+      "Bounds": {
+        "center": {
+          "x": -200.307129,
+          "y": -6.15,
+          "z": -76.36099
+        },
+        "size": {
+          "x": 2.23999023,
+          "y": 3.15000057,
+          "z": 5.55999756
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_007_1_N1",
+      "Position": {
+        "x": 287.0691,
+        "y": -49.353,
+        "z": -42.3269958
+      },
+      "Bounds": {
+        "center": {
+          "x": 287.07373,
+          "y": -49.353,
+          "z": -42.3267822
+        },
+        "size": {
+          "x": 4.96783447,
+          "y": 2.59200287,
+          "z": 5.60005951
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.022701785,
+        "z": 0.0,
+        "w": 0.9997423
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -430.199951,
+        "y": -21.5,
+        "z": 84.20001
+      },
+      "Bounds": {
+        "center": {
+          "x": -430.197021,
+          "y": -21.5,
+          "z": 84.20001
+        },
+        "size": {
+          "x": 423.661163,
+          "y": 80.00001,
+          "z": 150.738831
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "RSHG_event_04_jaeger_r_point",
+      "Position": {
+        "x": -645.0,
+        "y": -20.3,
+        "z": -200.7
+      },
+      "Bounds": {
+        "center": {
+          "x": -644.9972,
+          "y": -20.3,
+          "z": -200.700958
+        },
+        "size": {
+          "x": 236.61731,
+          "y": 50.0000229,
+          "z": 250.321716
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.167142138,
+        "z": 0.0,
+        "w": 0.9859329
+      }
+    },
+    {
+      "Id": "place_peacemaker_005_N2",
+      "Position": {
+        "x": -596.26,
+        "y": -58.53,
+        "z": 475.530029
+      },
+      "Bounds": {
+        "center": {
+          "x": -596.258545,
+          "y": -58.53,
+          "z": 475.527527
+        },
+        "size": {
+          "x": 10.94397,
+          "y": 3.0,
+          "z": 10.9440308
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.497635841,
+        "z": 0.0,
+        "w": 0.8673861
+      }
+    },
+    {
+      "Id": "place_peacemaker_005_N2",
+      "Position": {
+        "x": -596.26,
+        "y": -58.53,
+        "z": 475.530029
+      },
+      "Bounds": {
+        "center": {
+          "x": -596.258545,
+          "y": -58.53,
+          "z": 475.527527
+        },
+        "size": {
+          "x": 10.94397,
+          "y": 3.0,
+          "z": 10.9440308
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.497635841,
+        "z": 0.0,
+        "w": 0.8673861
+      }
+    },
+    {
+      "Id": "prapor_27_3",
+      "Position": {
+        "x": -253.400024,
+        "y": -5.7,
+        "z": -99.6000061
+      },
+      "Bounds": {
+        "center": {
+          "x": -253.3999,
+          "y": -5.699999,
+          "z": -99.59708
+        },
+        "size": {
+          "x": 293.860779,
+          "y": 50.00001,
+          "z": 208.0581
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6964095,
+        "z": 0.0,
+        "w": 0.7176447
+      }
+    },
+    {
+      "Id": "place_peacemaker_004_N2",
+      "Position": {
+        "x": 81.4337158,
+        "y": -31.8154,
+        "z": -166.845
+      },
+      "Bounds": {
+        "center": {
+          "x": 81.4337158,
+          "y": -31.8154,
+          "z": -166.845
+        },
+        "size": {
+          "x": 20.0,
+          "y": 9.0,
+          "z": 20.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -267.400024,
+        "y": -21.5,
+        "z": 293.400024
+      },
+      "Bounds": {
+        "center": {
+          "x": -267.3971,
+          "y": -21.5,
+          "z": 293.400024
+        },
+        "size": {
+          "x": 100.261673,
+          "y": 80.00001,
+          "z": 150.174316
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "huntsman_024_1",
+      "Position": {
+        "x": 405.939941,
+        "y": -51.93,
+        "z": -44.5
+      },
+      "Bounds": {
+        "center": {
+          "x": 405.942871,
+          "y": -51.93,
+          "z": -44.49971
+        },
+        "size": {
+          "x": 6.75445557,
+          "y": 4.0,
+          "z": 8.549011
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.04901269,
+        "z": 0.0,
+        "w": 0.9987982
+      }
+    },
+    {
+      "Id": "ter_023_area_1_1",
+      "Position": {
+        "x": -253.170044,
+        "y": -4.06999969,
+        "z": -56.8599548
+      },
+      "Bounds": {
+        "center": {
+          "x": -253.167114,
+          "y": -4.06999969,
+          "z": -56.8599548
+        },
+        "size": {
+          "x": 5.0,
+          "y": 2.5,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -635.9,
+        "y": -21.5,
+        "z": 373.900024
+      },
+      "Bounds": {
+        "center": {
+          "x": -635.8971,
+          "y": -21.5,
+          "z": 373.900024
+        },
+        "size": {
+          "x": 700.1736,
+          "y": 80.00001,
+          "z": 101.221741
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "q_ny_kill_christmas_guys_shorl",
+      "Position": {
+        "x": -251.87,
+        "y": -3.97,
+        "z": -112.320007
+      },
+      "Bounds": {
+        "center": {
+          "x": -251.87,
+          "y": -3.97000027,
+          "z": -112.320007
+        },
+        "size": {
+          "x": 30.3625488,
+          "y": 5.0,
+          "z": 30.3625488
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.00607963558,
+        "z": 0.0,
+        "w": 0.9999815
+      }
+    },
+    {
+      "Id": "place_SIGNAL_01_2",
+      "Position": {
+        "x": -483.310059,
+        "y": -25.762,
+        "z": 253.659973
+      },
+      "Bounds": {
+        "center": {
+          "x": -483.307129,
+          "y": -25.762,
+          "z": 253.659973
+        },
+        "size": {
+          "x": 20.0,
+          "y": 3.0,
+          "z": 20.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_003_N2",
+      "Position": {
+        "x": 378.74,
+        "y": -54.375,
+        "z": 166.859985
+      },
+      "Bounds": {
+        "center": {
+          "x": 378.74,
+          "y": -54.375,
+          "z": 166.859985
+        },
+        "size": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_003_N2",
+      "Position": {
+        "x": 378.74,
+        "y": -54.375,
+        "z": 166.859985
+      },
+      "Bounds": {
+        "center": {
+          "x": 378.74,
+          "y": -54.375,
+          "z": 166.859985
+        },
+        "size": {
+          "x": 8.0,
+          "y": 7.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "BTR_FUEL_2",
+      "Position": {
+        "x": -627.011,
+        "y": -25.449,
+        "z": -228.452972
+      },
+      "Bounds": {
+        "center": {
+          "x": -625.3976,
+          "y": -25.4421253,
+          "z": -228.25885
+        },
+        "size": {
+          "x": 6.6048584,
+          "y": 3.026619,
+          "z": 5.375305
+        }
+      },
+      "Rotation": {
+        "x": 0.000169573163,
+        "y": 0.133314952,
+        "z": 0.00222884654,
+        "w": 0.9910712
+      }
+    },
+    {
+      "Id": "ter_013_area_4",
+      "Position": {
+        "x": 97.6600342,
+        "y": -47.25,
+        "z": 70.79999
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.66101,
+          "y": -47.25,
+          "z": 70.79721
+        },
+        "size": {
+          "x": 4.72802734,
+          "y": 3.0,
+          "z": 6.63768
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.586024165,
+        "z": 0.0,
+        "w": 0.8102936
+      }
+    },
+    {
+      "Id": "ter_013_area_4",
+      "Position": {
+        "x": 97.6600342,
+        "y": -47.25,
+        "z": 70.79999
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.66101,
+          "y": -47.25,
+          "z": 70.79721
+        },
+        "size": {
+          "x": 4.72802734,
+          "y": 3.0,
+          "z": 6.63768
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.586024165,
+        "z": 0.0,
+        "w": 0.8102936
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -477.900024,
+        "y": -21.5,
+        "z": -159.2
+      },
+      "Bounds": {
+        "center": {
+          "x": -477.8971,
+          "y": -21.5,
+          "z": -159.2
+        },
+        "size": {
+          "x": 100.174438,
+          "y": 80.00001,
+          "z": 100.174408
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "ter_013_area_1",
+      "Position": {
+        "x": 312.699951,
+        "y": -59.18,
+        "z": 314.5
+      },
+      "Bounds": {
+        "center": {
+          "x": 312.7024,
+          "y": -59.1805725,
+          "z": 314.5016
+        },
+        "size": {
+          "x": 7.051758,
+          "y": 4.11558533,
+          "z": 6.07336426
+        }
+      },
+      "Rotation": {
+        "x": 0.02832349,
+        "y": -0.286827028,
+        "z": -0.09409945,
+        "w": 0.952928841
+      }
+    },
+    {
+      "Id": "ter_013_area_1",
+      "Position": {
+        "x": 312.699951,
+        "y": -59.18,
+        "z": 314.5
+      },
+      "Bounds": {
+        "center": {
+          "x": 312.7024,
+          "y": -59.1805725,
+          "z": 314.5016
+        },
+        "size": {
+          "x": 7.051758,
+          "y": 4.11558533,
+          "z": 6.07336426
+        }
+      },
+      "Rotation": {
+        "x": 0.02832349,
+        "y": -0.286827028,
+        "z": -0.09409945,
+        "w": 0.952928841
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -371.5,
+        "y": -21.5,
+        "z": 256.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -371.49707,
+          "y": -21.5,
+          "z": 256.0
+        },
+        "size": {
+          "x": 125.3053,
+          "y": 80.00001,
+          "z": 175.217957
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_peacemaker_007_2_N3",
+      "Position": {
+        "x": -336.644043,
+        "y": 3.545,
+        "z": -88.728
+      },
+      "Bounds": {
+        "center": {
+          "x": -336.6411,
+          "y": 3.545,
+          "z": -88.728
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_007_2_N3",
+      "Position": {
+        "x": -336.644043,
+        "y": 3.545,
+        "z": -88.728
+      },
+      "Bounds": {
+        "center": {
+          "x": -336.6411,
+          "y": 3.545,
+          "z": -88.728
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 212.099976,
+        "y": -21.5,
+        "z": 246.299988
+      },
+      "Bounds": {
+        "center": {
+          "x": 212.1029,
+          "y": -21.5,
+          "z": 246.299988
+        },
+        "size": {
+          "x": 500.173828,
+          "y": 80.00001,
+          "z": 100.87262
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_SIGNAL_03_1",
+      "Position": {
+        "x": -483.810059,
+        "y": -24.47,
+        "z": 248.830017
+      },
+      "Bounds": {
+        "center": {
+          "x": -483.810181,
+          "y": -24.47,
+          "z": 248.827087
+        },
+        "size": {
+          "x": 18.2984,
+          "y": 3.0,
+          "z": 12.4523926
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.7160124,
+        "z": 0.0,
+        "w": 0.6980876
+      }
+    },
+    {
+      "Id": "new_year_2024_market_shoreline",
+      "Position": {
+        "x": -161.579956,
+        "y": -2.9,
+        "z": -64.57001
+      },
+      "Bounds": {
+        "center": {
+          "x": -161.557739,
+          "y": -2.89999986,
+          "z": -64.57005
+        },
+        "size": {
+          "x": 45.6213074,
+          "y": 10.2000008,
+          "z": 12.31958
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_peacemaker_005_N1",
+      "Position": {
+        "x": -234.48999,
+        "y": -3.47,
+        "z": -164.42
+      },
+      "Bounds": {
+        "center": {
+          "x": -234.489014,
+          "y": -3.47,
+          "z": -164.422745
+        },
+        "size": {
+          "x": 10.2868652,
+          "y": 2.99999952,
+          "z": 10.2868652
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.570710063,
+        "z": 0.0,
+        "w": 0.8211516
+      }
+    },
+    {
+      "Id": "place_peacemaker_005_N1",
+      "Position": {
+        "x": -234.48999,
+        "y": -3.47,
+        "z": -164.42
+      },
+      "Bounds": {
+        "center": {
+          "x": -234.489014,
+          "y": -3.47,
+          "z": -164.422745
+        },
+        "size": {
+          "x": 10.2868652,
+          "y": 2.99999952,
+          "z": 10.2868652
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.570710063,
+        "z": 0.0,
+        "w": 0.8211516
+      }
+    },
+    {
+      "Id": "skier_022_area_3",
+      "Position": {
+        "x": -305.384033,
+        "y": -60.86,
+        "z": 492.20105
+      },
+      "Bounds": {
+        "center": {
+          "x": -305.381836,
+          "y": -60.85999,
+          "z": 492.1991
+        },
+        "size": {
+          "x": 1.902832,
+          "y": 3.00571442,
+          "z": 1.92694092
+        }
+      },
+      "Rotation": {
+        "x": 0.000668592867,
+        "y": 0.3537111,
+        "z": 0.00213295361,
+        "w": 0.9353521
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -88.5999756,
+        "y": -21.5,
+        "z": 189.799988
+      },
+      "Bounds": {
+        "center": {
+          "x": -88.5970459,
+          "y": -21.5,
+          "z": 189.799988
+        },
+        "size": {
+          "x": 211.715332,
+          "y": 80.00001,
+          "z": 353.068
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_peacemaker_001",
+      "Position": {
+        "x": -182.040039,
+        "y": -63.725,
+        "z": 459.849976
+      },
+      "Bounds": {
+        "center": {
+          "x": -182.040039,
+          "y": -63.725,
+          "z": 459.849976
+        },
+        "size": {
+          "x": 2.170807,
+          "y": 3.0,
+          "z": 3.111084
+        }
+      },
+      "Rotation": {
+        "x": -0.4852672,
+        "y": -0.514310956,
+        "z": -0.5143109,
+        "w": 0.485267282
+      }
+    },
+    {
+      "Id": "place_peacemaker_001",
+      "Position": {
+        "x": -182.040039,
+        "y": -63.725,
+        "z": 459.849976
+      },
+      "Bounds": {
+        "center": {
+          "x": -182.040039,
+          "y": -63.725,
+          "z": 459.849976
+        },
+        "size": {
+          "x": 2.170807,
+          "y": 3.0,
+          "z": 3.111084
+        }
+      },
+      "Rotation": {
+        "x": -0.4852672,
+        "y": -0.514310956,
+        "z": -0.5143109,
+        "w": 0.485267282
+      }
+    },
+    {
+      "Id": "ter_013_area_3",
+      "Position": {
+        "x": -258.074951,
+        "y": -3.958,
+        "z": -85.66
+      },
+      "Bounds": {
+        "center": {
+          "x": -258.072144,
+          "y": -3.95800018,
+          "z": -85.660965
+        },
+        "size": {
+          "x": 6.65132141,
+          "y": 3.00000024,
+          "z": 4.7980957
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.165902451,
+        "z": 0.0,
+        "w": 0.986142159
+      }
+    },
+    {
+      "Id": "ter_013_area_3",
+      "Position": {
+        "x": -258.074951,
+        "y": -3.958,
+        "z": -85.66
+      },
+      "Bounds": {
+        "center": {
+          "x": -258.072144,
+          "y": -3.95800018,
+          "z": -85.660965
+        },
+        "size": {
+          "x": 6.65132141,
+          "y": 3.00000024,
+          "z": 4.7980957
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.165902451,
+        "z": 0.0,
+        "w": 0.986142159
+      }
+    },
+    {
+      "Id": "Zone_two_toilets",
+      "Position": {
+        "x": -321.5857,
+        "y": -61.078,
+        "z": 488.20343
+      },
+      "Bounds": {
+        "center": {
+          "x": -322.4458,
+          "y": -60.6751671,
+          "z": 488.1266
+        },
+        "size": {
+          "x": 2.07904053,
+          "y": 2.19724274,
+          "z": 2.13494873
+        }
+      },
+      "Rotation": {
+        "x": -0.00104474276,
+        "y": -0.415554047,
+        "z": 0.001976115,
+        "w": 0.9095658
+      }
+    },
+    {
+      "Id": "Terminal_quest_final",
+      "Position": {
+        "x": -312.9746,
+        "y": 6.920006,
+        "z": -82.2438049
+      },
+      "Bounds": {
+        "center": {
+          "x": -321.797852,
+          "y": 10.4572153,
+          "z": -89.0097656
+        },
+        "size": {
+          "x": 62.6806641,
+          "y": 8.20529,
+          "z": 33.93976
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Terminal_quest_final",
+      "Position": {
+        "x": -312.9746,
+        "y": 6.920006,
+        "z": -82.2438049
+      },
+      "Bounds": {
+        "center": {
+          "x": -321.797852,
+          "y": 10.4572153,
+          "z": -89.0097656
+        },
+        "size": {
+          "x": 62.6806641,
+          "y": 8.20529,
+          "z": 33.93976
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_04_therap_place_01",
+      "Position": {
+        "x": 97.5,
+        "y": -47.21,
+        "z": 71.0
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.5002441,
+          "y": -47.2100029,
+          "z": 70.9971
+        },
+        "size": {
+          "x": 5.50852966,
+          "y": 3.00540161,
+          "z": 6.418518
+        }
+      },
+      "Rotation": {
+        "x": -0.000322685373,
+        "y": 0.6753126,
+        "z": -0.000194476248,
+        "w": 0.737531543
+      }
+    },
+    {
+      "Id": "place_SIGNAL_01_1",
+      "Position": {
+        "x": -230.400024,
+        "y": 8.35,
+        "z": -93.6199951
+      },
+      "Bounds": {
+        "center": {
+          "x": -230.3971,
+          "y": 8.35,
+          "z": -93.6199951
+        },
+        "size": {
+          "x": 8.0,
+          "y": 3.0,
+          "z": 16.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_4_N2",
+      "Position": {
+        "x": -171.162964,
+        "y": 0.14,
+        "z": -75.51401
+      },
+      "Bounds": {
+        "center": {
+          "x": -171.162964,
+          "y": 0.139999986,
+          "z": -75.51401
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.0,
+          "z": 5.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": " em_quest4_4",
+      "Position": {
+        "x": 407.875977,
+        "y": -52.836,
+        "z": -49.1060028
+      },
+      "Bounds": {
+        "center": {
+          "x": 407.873047,
+          "y": -52.836,
+          "z": -49.1062
+        },
+        "size": {
+          "x": 4.165283,
+          "y": 1.25,
+          "z": 1.36962128
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.999406934,
+        "z": 0.0,
+        "w": 0.03443569
+      }
+    },
+    {
+      "Id": "prapor_022_area_3",
+      "Position": {
+        "x": -306.199951,
+        "y": -60.86,
+        "z": 494.099976
+      },
+      "Bounds": {
+        "center": {
+          "x": -306.197876,
+          "y": -60.86,
+          "z": 494.0979
+        },
+        "size": {
+          "x": 5.317322,
+          "y": 3.0,
+          "z": 5.28894043
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.378978461,
+        "z": 0.0,
+        "w": 0.925405562
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_2_N2",
+      "Position": {
+        "x": -280.550049,
+        "y": -4.78,
+        "z": -41.3099976
+      },
+      "Bounds": {
+        "center": {
+          "x": -280.547119,
+          "y": -4.78,
+          "z": -41.3099976
+        },
+        "size": {
+          "x": 18.0,
+          "y": 3.0,
+          "z": 18.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_2_N2",
+      "Position": {
+        "x": -280.550049,
+        "y": -4.78,
+        "z": -41.3099976
+      },
+      "Bounds": {
+        "center": {
+          "x": -280.547119,
+          "y": -4.78,
+          "z": -41.3099976
+        },
+        "size": {
+          "x": 18.0,
+          "y": 3.0,
+          "z": 18.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": " em_quest4_4",
+      "Position": {
+        "x": 407.0569,
+        "y": -52.9101868,
+        "z": -39.8329926
+      },
+      "Bounds": {
+        "center": {
+          "x": 407.053955,
+          "y": -52.9101868,
+          "z": -39.83319
+        },
+        "size": {
+          "x": 4.165283,
+          "y": 1.25,
+          "z": 1.36962128
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.999406934,
+        "z": 0.0,
+        "w": 0.03443569
+      }
+    },
+    {
+      "Id": "place_peacemaker_009_2",
+      "Position": {
+        "x": -336.974976,
+        "y": -2.729,
+        "z": -88.08501
+      },
+      "Bounds": {
+        "center": {
+          "x": -336.972046,
+          "y": -2.729,
+          "z": -88.08501
+        },
+        "size": {
+          "x": 10.0,
+          "y": 2.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 62.9000244,
+        "y": -21.5,
+        "z": -176.1
+      },
+      "Bounds": {
+        "center": {
+          "x": 62.9029541,
+          "y": -21.5,
+          "z": -176.1
+        },
+        "size": {
+          "x": 385.471466,
+          "y": 80.00001,
+          "z": 385.671082
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -569.699951,
+        "y": -21.5,
+        "z": -60.6000061
+      },
+      "Bounds": {
+        "center": {
+          "x": -569.697,
+          "y": -21.5,
+          "z": -60.6000023
+        },
+        "size": {
+          "x": 423.661163,
+          "y": 80.00001,
+          "z": 150.738831
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "ter_013_area_2",
+      "Position": {
+        "x": 354.919922,
+        "y": -58.63,
+        "z": 306.12
+      },
+      "Bounds": {
+        "center": {
+          "x": 354.922852,
+          "y": -58.63,
+          "z": 306.119263
+        },
+        "size": {
+          "x": 6.57025146,
+          "y": 3.0,
+          "z": 4.444092
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.129875779,
+        "z": 0.0,
+        "w": 0.9915303
+      }
+    },
+    {
+      "Id": "ter_013_area_2",
+      "Position": {
+        "x": 354.919922,
+        "y": -58.63,
+        "z": 306.12
+      },
+      "Bounds": {
+        "center": {
+          "x": 354.922852,
+          "y": -58.63,
+          "z": 306.119263
+        },
+        "size": {
+          "x": 6.57025146,
+          "y": 3.0,
+          "z": 4.444092
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.129875779,
+        "z": 0.0,
+        "w": 0.9915303
+      }
+    },
+    {
+      "Id": "q14_10_kill",
+      "Position": {
+        "x": -591.800049,
+        "y": -20.3,
+        "z": -117.7
+      },
+      "Bounds": {
+        "center": {
+          "x": -591.7971,
+          "y": -20.3,
+          "z": -117.700081
+        },
+        "size": {
+          "x": 313.541718,
+          "y": 50.0,
+          "z": 508.005737
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0136548337,
+        "z": 0.0,
+        "w": 0.9999068
+      }
+    },
+    {
+      "Id": "q_ny_find_christmas_tree_shorl",
+      "Position": {
+        "x": -251.910034,
+        "y": -3.97,
+        "z": -112.460007
+      },
+      "Bounds": {
+        "center": {
+          "x": -251.910034,
+          "y": -3.97,
+          "z": -112.460007
+        },
+        "size": {
+          "x": 10.0455475,
+          "y": 5.00000048,
+          "z": 10.0455475
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.002282701,
+        "z": 0.0,
+        "w": 0.999997437
+      }
+    },
+    {
+      "Id": "place_peacemaker_008_4_N1",
+      "Position": {
+        "x": -336.545044,
+        "y": 0.145,
+        "z": -76.42799
+      },
+      "Bounds": {
+        "center": {
+          "x": -336.545044,
+          "y": 0.144999981,
+          "z": -76.42799
+        },
+        "size": {
+          "x": 3.0,
+          "y": 2.0,
+          "z": 3.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "huntsman_024_3",
+      "Position": {
+        "x": 287.1399,
+        "y": -49.2,
+        "z": -46.3200073
+      },
+      "Bounds": {
+        "center": {
+          "x": 287.142822,
+          "y": -49.2,
+          "z": -46.31978
+        },
+        "size": {
+          "x": 8.59289551,
+          "y": 2.5,
+          "z": 8.592911
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0385733657,
+        "z": 0.0,
+        "w": 0.999255836
+      }
+    },
+    {
+      "Id": "unkown_mark_2",
+      "Position": {
+        "x": 251.987061,
+        "y": -52.69,
+        "z": -105.118652
+      },
+      "Bounds": {
+        "center": {
+          "x": 251.98877,
+          "y": -52.69,
+          "z": -105.118576
+        },
+        "size": {
+          "x": 1.95358276,
+          "y": 2.59200287,
+          "z": 3.1708374
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.022701785,
+        "z": 0.0,
+        "w": 0.9997423
+      }
+    },
+    {
+      "Id": "unkown_mark_2",
+      "Position": {
+        "x": 251.987061,
+        "y": -52.69,
+        "z": -105.118652
+      },
+      "Bounds": {
+        "center": {
+          "x": 251.98877,
+          "y": -52.69,
+          "z": -105.118576
+        },
+        "size": {
+          "x": 1.95358276,
+          "y": 2.59200287,
+          "z": 3.1708374
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.022701785,
+        "z": 0.0,
+        "w": 0.9997423
+      }
+    },
+    {
+      "Id": "ter_023_area_3_1",
+      "Position": {
+        "x": -311.900024,
+        "y": -60.9,
+        "z": 489.700073
+      },
+      "Bounds": {
+        "center": {
+          "x": -311.900024,
+          "y": -60.9,
+          "z": 489.700073
+        },
+        "size": {
+          "x": 19.737854,
+          "y": 2.5,
+          "z": 18.385437
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.356535077,
+        "z": 0.0,
+        "w": 0.934281945
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": 265.8999,
+        "y": -21.5,
+        "z": -27.6000061
+      },
+      "Bounds": {
+        "center": {
+          "x": 265.902832,
+          "y": -21.5,
+          "z": -27.6000061
+        },
+        "size": {
+          "x": 70.12207,
+          "y": 80.00001,
+          "z": 70.1220856
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "BTR_FUEL_1",
+      "Position": {
+        "x": -609.325439,
+        "y": -28.66,
+        "z": -176.86499
+      },
+      "Bounds": {
+        "center": {
+          "x": -610.4723,
+          "y": -28.66549,
+          "z": -176.120728
+        },
+        "size": {
+          "x": 8.793335,
+          "y": 3.037716,
+          "z": 5.200409
+        }
+      },
+      "Rotation": {
+        "x": 6.960575E-05,
+        "y": 0.0888057351,
+        "z": 0.00223420514,
+        "w": 0.9960465
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_06",
+      "Position": {
+        "x": -351.329956,
+        "y": -1.17,
+        "z": -134.0
+      },
+      "Bounds": {
+        "center": {
+          "x": -351.329956,
+          "y": -1.17000008,
+          "z": -134.0
+        },
+        "size": {
+          "x": 30.4346924,
+          "y": 10.812,
+          "z": 19.9430313
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "Zone_cursed",
+      "Position": {
+        "x": 326.22998,
+        "y": -54.202,
+        "z": 131.473389
+      },
+      "Bounds": {
+        "center": {
+          "x": 326.859863,
+          "y": -54.1998024,
+          "z": 129.383545
+        },
+        "size": {
+          "x": 2.30145264,
+          "y": 3.0107193,
+          "z": 2.43621826
+        }
+      },
+      "Rotation": {
+        "x": -0.000138011688,
+        "y": -0.004002948,
+        "z": 0.00223102421,
+        "w": 0.999989569
+      }
+    },
+    {
+      "Id": "ter_023_area_2_1",
+      "Position": {
+        "x": 94.20996,
+        "y": -47.5,
+        "z": 61.97003
+      },
+      "Bounds": {
+        "center": {
+          "x": 94.21289,
+          "y": -47.5,
+          "z": 61.97003
+        },
+        "size": {
+          "x": 4.0,
+          "y": 2.5,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_shoreline",
+      "Position": {
+        "x": -807.6,
+        "y": -21.5,
+        "z": 225.700012
+      },
+      "Bounds": {
+        "center": {
+          "x": -807.597046,
+          "y": -21.5,
+          "z": 225.700012
+        },
+        "size": {
+          "x": 424.097656,
+          "y": 80.00001,
+          "z": 400.738464
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0008727885,
+        "z": 0.0,
+        "w": 0.999999642
+      }
+    },
+    {
+      "Id": "place_peacemaker_010_2",
+      "Position": {
+        "x": 235.560059,
+        "y": -64.464,
+        "z": 442.02002
+      },
+      "Bounds": {
+        "center": {
+          "x": 235.562988,
+          "y": -64.464,
+          "z": 442.02002
+        },
+        "size": {
+          "x": 27.0,
+          "y": 2.0,
+          "z": 20.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_peacemaker_010_2",
+      "Position": {
+        "x": 235.560059,
+        "y": -64.464,
+        "z": 442.02002
+      },
+      "Bounds": {
+        "center": {
+          "x": 235.562988,
+          "y": -64.464,
+          "z": 442.02002
+        },
+        "size": {
+          "x": 27.0,
+          "y": 2.0,
+          "z": 20.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "NosQuests_8_shoreline_place",
+      "Position": {
+        "x": -459.339966,
+        "y": -47.6,
+        "z": 566.965
+      },
+      "Bounds": {
+        "center": {
+          "x": -459.338257,
+          "y": -47.6,
+          "z": 566.962646
+        },
+        "size": {
+          "x": 1.39569092,
+          "y": 2.0,
+          "z": 1.39562988
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.45624426,
+        "z": 0.0,
+        "w": 0.88985455
+      }
+    },
+    {
+      "Id": "Halloween_zone_for_antivirus(shoreline)",
+      "Position": {
+        "x": -173.716553,
+        "y": -15.86,
+        "z": -335.151947
+      },
+      "Bounds": {
+        "center": {
+          "x": -175.0304,
+          "y": -16.481823,
+          "z": -336.830322
+        },
+        "size": {
+          "x": 14.3010864,
+          "y": 3.24364853,
+          "z": 28.04358
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    }
+  ]
 }

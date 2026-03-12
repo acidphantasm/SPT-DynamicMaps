@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Comfort.Common;
+using DynamicMaps.Common;
 using DynamicMaps.Data;
 using EFT;
 using EFT.Interactive;
@@ -17,20 +16,6 @@ namespace DynamicMaps.Utils
     // under MIT license (https://github.com/dvize/GTFO/blob/master/LICENSE.txt)
     public static class QuestUtils
     {
-        // reflection
-        /*private static FieldInfo _playerQuestControllerField = AccessTools.Field(typeof(Player), "_questController");
-        private static PropertyInfo _questControllerQuestsProperty = AccessTools.Property(typeof(AbstractQuestControllerClass), "Quests");
-        private static FieldInfo _questsListField = AccessTools.Field(_questControllerQuestsProperty.PropertyType, "List_1");
-
-        private static MethodInfo _questsGetConditionalMethod = AccessTools.Method(_questControllerQuestsProperty.PropertyType, "GetConditional", new Type[] { typeof(string) });
-
-        private static Type _questType = _questControllerQuestsProperty.PropertyType.BaseType.GetGenericArguments()[0];
-        private static MethodInfo _questIsConditionDone = AccessTools.Method(_questType, "IsConditionDone");
-
-        private static FieldInfo _conditionCounterTemplateField = AccessTools.Field(typeof(ConditionCounterCreator), "TemplateConditions");
-        private static FieldInfo _templateConditionsConditionsField = AccessTools.Field(_conditionCounterTemplateField.FieldType, "Conditions");
-        private static FieldInfo _conditionListField = AccessTools.Field(_templateConditionsConditionsField.FieldType, "List_0");*/
-        //
 
         // TODO: move to config
         private const string _questCategory = "Quest";
@@ -39,26 +24,56 @@ namespace DynamicMaps.Utils
         private static Color _questColor = Color.green;
         //
 
-        public static List<TriggerWithId> TriggersWithIds;
-        public static List<LootItem> QuestItems;
+        private static List<TriggerWithIdAbstraction> TriggersWithIds;
+        private static List<LootItemAbstraction> QuestItems;
 
-        internal static void TryCaptureQuestData()
+        internal class LootItemAbstraction
+        {
+            public string ItemId { get; set; }
+            public Vector3 Position { get; set; }
+        }
+
+        internal static void TryCaptureQuestData(MapDef def)
         {
             var gameWorld = Singleton<GameWorld>.Instance;
 
             if (TriggersWithIds == null)
             {
-                TriggersWithIds = GameObject.FindObjectsOfType<TriggerWithId>().ToList();
+                if (def.TriggersWithId.Any())
+                {
+                    TriggersWithIds = [.. def.TriggersWithId];
+                }
+                else
+                {
+                    TriggersWithIds = [.. GameObject.FindObjectsOfType<TriggerWithId>().Select(k => new TriggerWithIdAbstraction()
+                    {
+                        Id = k.Id,
+                        Position = k.transform.position,
+                        Bounds = k.GetComponent<BoxCollider>().bounds
+                    })];
+                }
             }
 
-            if (QuestItems == null)
-            {
-                QuestItems = Traverse.Create(gameWorld)
+            QuestItems ??= [.. Traverse.Create(gameWorld)
                     .Field("LootItems")
                     .Field("List_0")
                     .GetValue<List<LootItem>>()
-                    .Where(i => i.Item.QuestItem).ToList();
-            }
+                    .Where(i => i.Item.QuestItem).Select(k => new LootItemAbstraction()
+                    {
+                        ItemId = k.TemplateId,
+                        Position = k.transform.position
+                    })];
+        }
+
+        internal static void FillQuestDataOutOfRaid(List<ConditionData> data, MapDef def)
+        {
+            QuestItems ??= [.. data.Select(d => new LootItemAbstraction()
+                {
+                    ItemId = d.ItemId,
+                    Position = new Vector3(d.SpawnPoint[0], d.SpawnPoint[1], d.SpawnPoint[2])
+                })];
+
+            TriggersWithIds ??= [.. def.TriggersWithId];
         }
 
         internal static void DiscardQuestData()
@@ -76,30 +91,30 @@ namespace DynamicMaps.Utils
             }
         }
 
-        internal static IEnumerable<MapMarkerDef> GetMarkerDefsForPlayer(Player player)
+        internal static IEnumerable<MapMarkerDef> GetMarkerDefsForPlayer(AbstractQuestControllerClass questController)
         {
-            if (TriggersWithIds == null || QuestItems == null)
+            if (TriggersWithIds == null || QuestItems == null || questController == null)
             {
-                Plugin.Log.LogWarning($"TriggersWithIds null: {TriggersWithIds == null} or QuestItems null: {QuestItems == null}");
+                Plugin.Log.LogWarning($"TriggersWithIds null: {TriggersWithIds == null} or QuestItems null: {QuestItems == null} or Player null: {questController == null}");
                 return null;
             }
 
             var markers = new List<MapMarkerDef>();
 
-            var quests = GetIncompleteQuests(player);
+            var quests = GetIncompleteQuests(questController);
             foreach (var quest in quests)
             {
-                markers.AddRange(GetMarkerDefsForQuest(player, quest));
+                markers.AddRange(GetMarkerDefsForQuest(questController, quest));
             }
 
             return markers;
         }
 
-        internal static IEnumerable<MapMarkerDef> GetMarkerDefsForQuest(Player player, QuestDataClass quest)
+        internal static IEnumerable<MapMarkerDef> GetMarkerDefsForQuest(AbstractQuestControllerClass questController, QuestDataClass quest)
         {
             var markers = new List<MapMarkerDef>();
 
-            var conditions = GetIncompleteQuestConditions(player, quest);
+            var conditions = GetIncompleteQuestConditions(questController, quest);
             foreach (var condition in conditions)
             {
                 var questName = quest.Template.NameLocaleKey.BSGLocalized();
@@ -140,73 +155,81 @@ namespace DynamicMaps.Utils
             switch (condition)
             {
                 case ConditionZone zoneCondition:
-                {
-                    foreach (var position in GetPositionsForZoneId(zoneCondition.zoneId, questName, conditionDescription))
                     {
-                        yield return position;
-                    }
-                    break;
-                }
-                case ConditionLaunchFlare flareCondition:
-                {
-                    foreach (var position in GetPositionsForZoneId(flareCondition.zoneID, questName, conditionDescription))
-                    {
-                        yield return position;
-                    }
-                    break;
-                }
-                case ConditionVisitPlace place:
-                {
-                    foreach (var position in GetPositionsForZoneId(place.target, questName, conditionDescription))
-                    {
-                        yield return position;
-                    }
-                    break;
-                }
-                case ConditionInZone zone:
-                {
-                    foreach (var zoneId in zone.zoneIds)
-                    {
-                        foreach (var position in GetPositionsForZoneId(zoneId, questName, conditionDescription))
+                        foreach (var position in GetPositionsForZoneId(zoneCondition.zoneId, questName, conditionDescription))
                         {
                             yield return position;
                         }
+                        break;
                     }
-                    break;
-                }
+                case ConditionLaunchFlare flareCondition:
+                    {
+                        foreach (var position in GetPositionsForZoneId(flareCondition.zoneID, questName, conditionDescription))
+                        {
+                            yield return position;
+                        }
+                        break;
+                    }
+                case ConditionVisitPlace place:
+                    {
+                        foreach (var position in GetPositionsForZoneId(place.target, questName, conditionDescription))
+                        {
+                            yield return position;
+                        }
+                        break;
+                    }
+                case ConditionInZone zone:
+                    {
+                        foreach (var zoneId in zone.zoneIds)
+                        {
+                            foreach (var position in GetPositionsForZoneId(zoneId, questName, conditionDescription))
+                            {
+                                yield return position;
+                            }
+                        }
+                        break;
+                    }
                 case ConditionFindItem findItemCondition:
-                {
-                    foreach (var position in GetPositionsForQuestItems(findItemCondition.target, questName, conditionDescription))
                     {
-                        yield return position;
+                        foreach (var position in GetPositionsForQuestItems(findItemCondition.target, questName, conditionDescription))
+                        {
+                            yield return position;
+                        }
+                        break;
                     }
-                    break;
-                }
                 case ConditionExitName exitCondition:
-                {
-                    var exfils = Singleton<GameWorld>.Instance.ExfiltrationController.ExfiltrationPoints;
-                    var specifiedExit = exfils.FirstOrDefault(e => e.Settings.Name == exitCondition.exitName);
-
-                    if (specifiedExit != null)
                     {
-                        yield return MathUtils.ConvertToMapPosition(specifiedExit.transform);
-                    }
+                        var gameWorld = Singleton<GameWorld>.Instance;
+                        if (gameWorld == null || gameWorld?.ExfiltrationController == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            var exfils = gameWorld.ExfiltrationController?.ExfiltrationPoints ?? [];
+                            var specifiedExit = exfils.FirstOrDefault(e => e.Settings.Name == exitCondition.exitName);
 
-                    break;
-                }
+                            if (specifiedExit != null)
+                            {
+                                yield return MathUtils.ConvertToMapPosition(specifiedExit.transform);
+                            }
+
+                            break;
+                        }
+                    }
                 case ConditionCounterCreator conditionCreator:
-                {
-                    // this will recurse back into this method
-                    foreach (var position in GetPositionsForConditionCreator(conditionCreator, questName, conditionDescription))
                     {
-                        yield return position;
+                        // this will recurse back into this method
+                        foreach (var position in GetPositionsForConditionCreator(conditionCreator, questName, conditionDescription))
+                        {
+                            yield return position;
+                        }
+                        break;
                     }
-                    break;
-                }
                 default:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
             }
         }
 
@@ -229,7 +252,7 @@ namespace DynamicMaps.Utils
             var zones = TriggersWithIds?.GetZoneTriggers(zoneId);
             foreach (var zone in zones)
             {
-                yield return MathUtils.ConvertToMapPosition(zone.transform.position);
+                yield return MathUtils.ConvertToMapPosition(zone.Position);
             }
         }
 
@@ -238,15 +261,15 @@ namespace DynamicMaps.Utils
         {
             foreach (var questItemId in questItemIds)
             {
-                var questItems = QuestItems?.Where(i => i.TemplateId == questItemId);
+                var questItems = QuestItems?.Where(i => i.ItemId == questItemId);
                 foreach (var item in questItems)
                 {
-                    yield return MathUtils.ConvertToMapPosition(item.transform.position);
+                    yield return MathUtils.ConvertToMapPosition(item.Position);
                 }
             }
         }
 
-        private static IEnumerable<Condition> GetIncompleteQuestConditions(Player player, QuestDataClass quest)
+        private static IEnumerable<Condition> GetIncompleteQuestConditions(AbstractQuestControllerClass player, QuestDataClass quest)
         {
             // TODO: Template.Conditions is a GClass reference
             if (quest?.Template?.Conditions == null)
@@ -280,26 +303,19 @@ namespace DynamicMaps.Utils
             }
         }
 
-        private static IEnumerable<QuestDataClass> GetIncompleteQuests(Player player)
+        private static IEnumerable<QuestDataClass> GetIncompleteQuests(AbstractQuestControllerClass questController)
         {
-            var questController = player.AbstractQuestControllerClass;
-            if (questController == null)
-            {
-                Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questController is null");
-                yield break;
-            }
-
             var quests = questController.Quests;
             if (quests == null)
             {
-                Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, quests is null");
+                Plugin.Log.LogError($"Not able to get quests for player, quests is null");
                 yield break;
             }
 
             var questsList = quests.List_1;
             if (questsList == null)
             {
-                Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questsList is null");
+                Plugin.Log.LogError($"Not able to get quests for player, questsList is null");
                 yield break;
             }
 
@@ -319,17 +335,11 @@ namespace DynamicMaps.Utils
             }
         }
 
-        private static bool IsConditionCompleted(Player player, QuestDataClass questData, Condition condition)
+        private static bool IsConditionCompleted(AbstractQuestControllerClass questController, QuestDataClass questData, Condition condition)
         {
             // CompletedConditions is inaccurate (it doesn't reset when some quests do on death)
             // and also does not contain optional objectives, need to recheck if something is in there
             if (condition.IsNecessary && !questData.CompletedConditions.Contains(condition.id))
-            {
-                return false;
-            }
-
-            var questController = player.AbstractQuestControllerClass;
-            if (questController == null)
             {
                 return false;
             }
@@ -349,7 +359,7 @@ namespace DynamicMaps.Utils
             return quest.IsConditionDone(condition);
         }
 
-        private static IEnumerable<TriggerWithId> GetZoneTriggers(this IEnumerable<TriggerWithId> triggerWithIds, string zoneId)
+        private static IEnumerable<TriggerWithIdAbstraction> GetZoneTriggers(this IEnumerable<TriggerWithIdAbstraction> triggerWithIds, string zoneId)
         {
             return triggerWithIds.Where(t => t.Id == zoneId);
         }

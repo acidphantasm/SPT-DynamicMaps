@@ -1,603 +1,3028 @@
 {
-    "DisplayName": "Reserve (TarkovData)",
-    "Author": "Shebuka",
-    "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
-    "MapInternalNames": [ "RezervBase" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -303.5, "y": -275},
-        "Max": {"x": 292, "y": 271.5}
+  "DisplayName": "Reserve (TarkovData)",
+  "Author": "Shebuka",
+  "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
+  "MapInternalNames": [ "RezervBase" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -303.5,
+      "y": -275
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Bunkers": {
-            "Level": -1,
-            "ImagePath": "Maps/Reserve_TarkovData/Layers/reserve_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -303.5, "y": -275},
-                "Max": {"x": 292, "y": 271.5}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -303.5, "y": -275, "z": -100},
-                    "Max": {"x": 292, "y": 271.5, "z": -8}
-                }
-            ]
+    "Max": {
+      "x": 292,
+      "y": 271.5
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Bunkers": {
+      "Level": -1,
+      "ImagePath": "Maps/Reserve_TarkovData/Layers/reserve_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -303.5,
+          "y": -275
         },
-        "Ground Level": {
-            "Level": 0,
-            "ImagePath": "Maps/Reserve_TarkovData/Layers/reserve_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -303.5, "y": -275},
-                "Max": {"x": 292, "y": 271.5}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -303.5, "y": -275, "z": -8},
-                    "Max": {"x": 292, "y": 271.5, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 292,
+          "y": 271.5
         }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -303.5,
+            "y": -275,
+            "z": -100
+          },
+          "Max": {
+            "x": 292,
+            "y": 271.5,
+            "z": -8
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "K Buildings",
-            "Position": {"x": 31, "y": -104, "z": 0},
-            "FontSize": 16,
-            "DegreesRotation": 14.5
+    "Ground Level": {
+      "Level": 0,
+      "ImagePath": "Maps/Reserve_TarkovData/Layers/reserve_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -303.5,
+          "y": -275
         },
-        {
-            "Text": "White Queen",
-            "Position": {"x": -25, "y": 180, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "White Pawn",
-            "Position": {"x": -104, "y": 93, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Black Bishop",
-            "Position": {"x": -140, "y": -14.5, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "White Bishop",
-            "Position": {"x": -67, "y": -30, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "White King",
-            "Position": {"x": -49.5, "y": 15.5, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Black Knight",
-            "Position": {"x": 14.5, "y": -10.8, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "White Knight",
-            "Position": {"x": 82.2, "y": -30.2, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "White Rook",
-            "Position": {"x": 149, "y": -124, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Train Station",
-            "Position": {"x": 161, "y": -149, "z": 0},
-            "FontSize": 16,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Black Pawn",
-            "Position": {"x": -165, "y": 57, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Barracks",
-            "Position": {"x": 165, "y": -215, "z": 0},
-            "FontSize": 16,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "E1 Bunkers",
-            "Position": {"x": -220, "y": -13, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "E2 Bunkers",
-            "Position": {"x": 173, "y": -3, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "д - Warehouse Bunkers",
-            "Position": {"x": 82, "y": -170, "z": 0},
-            "FontSize": 16,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Garage",
-            "Position": {"x": 98.5, "y": 29.5, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Mechanic",
-            "Position": {"x": 55.5, "y": 60.6, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Gas Station",
-            "Position": {"x": 29.7, "y": 29.5, "z": 0},
-            "FontSize": 14,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Shipping Yard",
-            "Position": {"x": -31, "y": -150, "z": 0},
-            "FontSize": 16,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K1",
-            "Position": {"x": 8, "y": -76, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K2",
-            "Position": {"x": 65.5, "y": -92, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K3",
-            "Position": {"x": 2, "y": -96.5, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K4",
-            "Position": {"x": 60, "y": -112, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K5",
-            "Position": {"x": -4, "y": -118, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "K6",
-            "Position": {"x": 54, "y": -133, "z": 0},
-            "FontSize": 12,
-            "DegreesRotation": 14.5
-        },
-        {
-            "Text": "Dome",
-            "Position": {"x": -8.5, "y": 175, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Tarmac",
-            "Position": {"x": -120, "y": 37, "z": 0},
-            "FontSize": 16
+        "Max": {
+          "x": 292,
+          "y": 271.5
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Scav Lands (Co-Op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -124.67, "y": -144.92, "z": -3.28 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Hole in the Wall by the Mountains",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -261.41, "y": 47.95, "z": -6.033997 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Heating Pipe",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -37.08, "y": -184.0, "z": -5.15 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Depot Hermetic Door",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 120.78, "y": -120.352, "z": -10.27 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Checkpoint Fence",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 61.97, "y": 134.31, "z": -4.43 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "D-2",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -121.479065, "y": 172.24913, "z": -17.0010071 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Bunker Hermetic Door",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 61.9206619, "y": -190.541931, "z": -5.257 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Cliff Descent",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -12.8, "y": 206.78, "z": 20.93 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Sewer Manhole",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 40.18, "y": 76.45, "z": -5.12 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Armored Train",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 144.986, "y": -147.352, "z": -3.92 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -196.729477, "y": -117.808853, "z": -4.544204 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Woods",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 216.860535, "y": -201.048859, "z": -6.344204 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Lighthouse",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 238.800537, "y": -128.048859, "z": -6.25420427 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Exit to Woods",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 36.53, "y": -221.56, "z": -5.97000027 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "Bunker Hermetic Door Power",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -60.7597275, "y": 78.22821, "z": -5.55217171 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "D-2 Power Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -117.184174, "y": 22.6676826, "z": -12.954 },
-            "Category": "Switch"
-        },
-        // {    // near bunker hermetic door
-        //     "Text": "Reset",
-        //     "ImagePath": "Markers/lever.png",
-        //     "Position": { "x": 65.71171, "y": -190.604248, "z": -6.683 },
-        //     "Category": "Switch"
-        // },
-        {
-            "Text": "D-2 Open Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -117.449867, "y": 168.546936, "z": -16.9842987 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "RB-AO",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 194.756973, "y": -203.553268, "z": -5.801999 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c66d86f774405611c7d6"
-        },
-        {
-            "Text": "RB-VO Marked Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 189.6508, "y": -224.790009, "z": -5.8030014 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c62a86f7744036212b3f"
-        },
-        {
-            "Text": "RB-KPRL",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -40.4498749, "y": 173.891434, "z": 19.66215 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e0e0e86f774321140eb56"
-        },
-        {
-            "Text": "RB-KPRL",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -44.2896843, "y": 171.655853, "z": 19.6481476 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e0e0e86f774321140eb56"
-        },
-        {
-            "Text": "RB-ST",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 100.7764, "y": 43.67282, "z": -6.714003 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d9f1fa686f774726974a992"
-        },
-        {
-            "Text": "RB-SMP",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -78.7131653, "y": -29.4600983, "z": -3.78035355 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d947d3886f774447b415893"
-        },
-        {
-            "Text": "RB-KSM",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -60.01116, "y": -34.5081, "z": -3.78035355 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d947d4e86f774447b415895"
-        },
-        {
-            "Text": "RB-PSP1",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 71.1095, "y": -146.997528, "z": -11.128006 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cb3886f77440556dbf09"
-        },
-        {
-            "Text": "RB-PSP2",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 83.5344238, "y": -100.622009, "z": -11.1000061 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d95d6fa86f77424484aa5e9"
-        },
-        {
-            "Text": "RB-PSV2",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 42.9962158, "y": -114.069916, "z": -11.1259995 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d95d6be86f77424444eb3a7"
-        },
-        {
-            "Text": "RB-PSV1",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 50.81842, "y": -91.86203, "z": -11.1000061 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cb5686f77440545d1286"
-        },
-        {
-            "Text": "RB-PSP1",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 80.91522, "y": -124.236908, "z": -11.128006 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cb3886f77440556dbf09"
-        },
-        {
-            "Text": "RB-PSV2",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 38.3938, "y": -138.232147, "z": -11.128006 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d95d6be86f77424444eb3a7"
-        },
-        {
-            "Text": "RB-AK",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -134.622513, "y": -12.8279257, "z": -2.13919544 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c78786f774403a401e3e"
-        },
-        {
-            "Text": "RB-AM",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -133.289352, "y": -16.0929947, "z": -5.13899755 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c88d86f77440556dbf07"
-        },
-        {
-            "Text": "RB-TB",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -162.7683, "y": 65.7317047, "z": -8.171001 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c6fc86f774403a401e3c"
-        },
-        {
-            "Text": "RB-ORB2",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -123.018578, "y": 98.53613, "z": -2.36699772 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80ccdd86f77474f7575e02"
-        },
-        {
-            "Text": "RB-OB",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -167.807968, "y": 34.4820557, "z": 0.525999069 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c6c586f77440351beef1"
-        },
-        {
-            "Text": "RB-ORB3",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -170.236115, "y": 33.9814758, "z": -2.36400938 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cd1a86f77402aa362f42"
-        },
-        {
-            "Text": "RB-ORB1",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -122.855316, "y": 97.5226746, "z": 3.43500519 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80ccac86f77470841ff452"
-        },
-        {
-            "Text": "RB-BK Marked Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -157.878387, "y": 72.86379, "z": -8.188297 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c60f86f77440373c4ece"
-        },
-        {
-            "Text": "RB-RH",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -51.4290428, "y": 19.6974564, "z": 0.3399992 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5da5cdcd86f774529238fb9b"
-        },
-        {
-            "Text": "RB-OP",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -68.47772, "y": 22.4145622, "z": -9.729001 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c8f586f77440373c4ed0"
-        },
-        {
-            "Text": "RB-GN",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -62.8870544, "y": 31.4578876, "z": -9.723853 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e3ecc86f774414c78d05e"
-        },
-        {
-            "Text": "RB-KORL",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -2.507956, "y": 174.912, "z": 23.420002 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d8e0db586f7744450412a42"
-        },
-        {
-            "Text": "RB-RS",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -0.7069602, "y": 182.247, "z": 23.42 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5da46e3886f774653b7a83fe"
-        },
-        {
-            "Text": "RB-RLSA",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -10.9659786, "y": 180.645, "z": 23.420002 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ede7b0c6d23e5473e6e8c66"
-        },
-        {   // seems to be straight on MP22 but the floor below
-            "Text": "RB-MP13",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 87.58351, "y": -37.0245056, "z": -5.82550049 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cbd886f77470855c26c2"
-        },
-        {
-            "Text": "RB-MP21",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 10.9685087, "y": -7.38929558, "z": -2.99313354 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80ca9086f774403a401e40"
-        },
-        {
-            "Text": "RB-MP11",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 8.245274, "y": -17.522274, "z": -5.851448 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c95986f77440351beef3"
-        },
-        {
-            "Text": "RB-MP12",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 8.266094, "y": -17.478508, "z": -3.00213623 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80c93086f7744036212b41"
-        },
-        {
-            "Text": "RB-MP22",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 87.5893555, "y": -37.00447, "z": -2.98300171 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5d80cab086f77440535be201"
-        },
-        {
-            "Text": "RB-PKPM Marked Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -120.251823, "y": 27.7044983, "z": -13.483 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ede7a8229445733cb4c18e2"
+          "Min": {
+            "x": -303.5,
+            "y": -275,
+            "z": -8
+          },
+          "Max": {
+            "x": 292,
+            "y": 271.5,
+            "z": 100
+          }
         }
-    ]
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "K Buildings",
+      "Position": {
+        "x": 31,
+        "y": -104,
+        "z": 0
+      },
+      "FontSize": 16,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "White Queen",
+      "Position": {
+        "x": -25,
+        "y": 180,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "White Pawn",
+      "Position": {
+        "x": -104,
+        "y": 93,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Black Bishop",
+      "Position": {
+        "x": -140,
+        "y": -14.5,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "White Bishop",
+      "Position": {
+        "x": -67,
+        "y": -30,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "White King",
+      "Position": {
+        "x": -49.5,
+        "y": 15.5,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Black Knight",
+      "Position": {
+        "x": 14.5,
+        "y": -10.8,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "White Knight",
+      "Position": {
+        "x": 82.2,
+        "y": -30.2,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "White Rook",
+      "Position": {
+        "x": 149,
+        "y": -124,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Train Station",
+      "Position": {
+        "x": 161,
+        "y": -149,
+        "z": 0
+      },
+      "FontSize": 16,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Black Pawn",
+      "Position": {
+        "x": -165,
+        "y": 57,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Barracks",
+      "Position": {
+        "x": 165,
+        "y": -215,
+        "z": 0
+      },
+      "FontSize": 16,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "E1 Bunkers",
+      "Position": {
+        "x": -220,
+        "y": -13,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "E2 Bunkers",
+      "Position": {
+        "x": 173,
+        "y": -3,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "д - Warehouse Bunkers",
+      "Position": {
+        "x": 82,
+        "y": -170,
+        "z": 0
+      },
+      "FontSize": 16,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Garage",
+      "Position": {
+        "x": 98.5,
+        "y": 29.5,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Mechanic",
+      "Position": {
+        "x": 55.5,
+        "y": 60.6,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Gas Station",
+      "Position": {
+        "x": 29.7,
+        "y": 29.5,
+        "z": 0
+      },
+      "FontSize": 14,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Shipping Yard",
+      "Position": {
+        "x": -31,
+        "y": -150,
+        "z": 0
+      },
+      "FontSize": 16,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K1",
+      "Position": {
+        "x": 8,
+        "y": -76,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K2",
+      "Position": {
+        "x": 65.5,
+        "y": -92,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K3",
+      "Position": {
+        "x": 2,
+        "y": -96.5,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K4",
+      "Position": {
+        "x": 60,
+        "y": -112,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K5",
+      "Position": {
+        "x": -4,
+        "y": -118,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "K6",
+      "Position": {
+        "x": 54,
+        "y": -133,
+        "z": 0
+      },
+      "FontSize": 12,
+      "DegreesRotation": 14.5
+    },
+    {
+      "Text": "Dome",
+      "Position": {
+        "x": -8.5,
+        "y": 175,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Tarmac",
+      "Position": {
+        "x": -120,
+        "y": 37,
+        "z": 0
+      },
+      "FontSize": 16
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Scav Lands (Co-Op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -124.67,
+        "y": -144.92,
+        "z": -3.28
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Hole in the Wall by the Mountains",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -261.41,
+        "y": 47.95,
+        "z": -6.033997
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Heating Pipe",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -37.08,
+        "y": -184.0,
+        "z": -5.15
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Depot Hermetic Door",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 120.78,
+        "y": -120.352,
+        "z": -10.27
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Checkpoint Fence",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 61.97,
+        "y": 134.31,
+        "z": -4.43
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "D-2",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -121.479065,
+        "y": 172.24913,
+        "z": -17.0010071
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Bunker Hermetic Door",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 61.9206619,
+        "y": -190.541931,
+        "z": -5.257
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Cliff Descent",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -12.8,
+        "y": 206.78,
+        "z": 20.93
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Sewer Manhole",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 40.18,
+        "y": 76.45,
+        "z": -5.12
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Armored Train",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 144.986,
+        "y": -147.352,
+        "z": -3.92
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Customs",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -196.729477,
+        "y": -117.808853,
+        "z": -4.544204
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Woods",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 216.860535,
+        "y": -201.048859,
+        "z": -6.344204
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Lighthouse",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 238.800537,
+        "y": -128.048859,
+        "z": -6.25420427
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Exit to Woods",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 36.53,
+        "y": -221.56,
+        "z": -5.97000027
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Bunker Hermetic Door Power",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -60.7597275,
+        "y": 78.22821,
+        "z": -5.55217171
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "D-2 Power Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -117.184174,
+        "y": 22.6676826,
+        "z": -12.954
+      },
+      "Category": "Switch"
+    },
+    // {    // near bunker hermetic door
+    //     "Text": "Reset",
+    //     "ImagePath": "Markers/lever.png",
+    //     "Position": { "x": 65.71171, "y": -190.604248, "z": -6.683 },
+    //     "Category": "Switch"
+    // },
+    {
+      "Text": "D-2 Open Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -117.449867,
+        "y": 168.546936,
+        "z": -16.9842987
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "RB-AO",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 194.756973,
+        "y": -203.553268,
+        "z": -5.801999
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c66d86f774405611c7d6"
+    },
+    {
+      "Text": "RB-VO Marked Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 189.6508,
+        "y": -224.790009,
+        "z": -5.8030014
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c62a86f7744036212b3f"
+    },
+    {
+      "Text": "RB-KPRL",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -40.4498749,
+        "y": 173.891434,
+        "z": 19.66215
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e0e0e86f774321140eb56"
+    },
+    {
+      "Text": "RB-KPRL",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -44.2896843,
+        "y": 171.655853,
+        "z": 19.6481476
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e0e0e86f774321140eb56"
+    },
+    {
+      "Text": "RB-ST",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 100.7764,
+        "y": 43.67282,
+        "z": -6.714003
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d9f1fa686f774726974a992"
+    },
+    {
+      "Text": "RB-SMP",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -78.7131653,
+        "y": -29.4600983,
+        "z": -3.78035355
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d947d3886f774447b415893"
+    },
+    {
+      "Text": "RB-KSM",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -60.01116,
+        "y": -34.5081,
+        "z": -3.78035355
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d947d4e86f774447b415895"
+    },
+    {
+      "Text": "RB-PSP1",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 71.1095,
+        "y": -146.997528,
+        "z": -11.128006
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cb3886f77440556dbf09"
+    },
+    {
+      "Text": "RB-PSP2",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 83.5344238,
+        "y": -100.622009,
+        "z": -11.1000061
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d95d6fa86f77424484aa5e9"
+    },
+    {
+      "Text": "RB-PSV2",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 42.9962158,
+        "y": -114.069916,
+        "z": -11.1259995
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d95d6be86f77424444eb3a7"
+    },
+    {
+      "Text": "RB-PSV1",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 50.81842,
+        "y": -91.86203,
+        "z": -11.1000061
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cb5686f77440545d1286"
+    },
+    {
+      "Text": "RB-PSP1",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 80.91522,
+        "y": -124.236908,
+        "z": -11.128006
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cb3886f77440556dbf09"
+    },
+    {
+      "Text": "RB-PSV2",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 38.3938,
+        "y": -138.232147,
+        "z": -11.128006
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d95d6be86f77424444eb3a7"
+    },
+    {
+      "Text": "RB-AK",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -134.622513,
+        "y": -12.8279257,
+        "z": -2.13919544
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c78786f774403a401e3e"
+    },
+    {
+      "Text": "RB-AM",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -133.289352,
+        "y": -16.0929947,
+        "z": -5.13899755
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c88d86f77440556dbf07"
+    },
+    {
+      "Text": "RB-TB",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -162.7683,
+        "y": 65.7317047,
+        "z": -8.171001
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c6fc86f774403a401e3c"
+    },
+    {
+      "Text": "RB-ORB2",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -123.018578,
+        "y": 98.53613,
+        "z": -2.36699772
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80ccdd86f77474f7575e02"
+    },
+    {
+      "Text": "RB-OB",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -167.807968,
+        "y": 34.4820557,
+        "z": 0.525999069
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c6c586f77440351beef1"
+    },
+    {
+      "Text": "RB-ORB3",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -170.236115,
+        "y": 33.9814758,
+        "z": -2.36400938
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cd1a86f77402aa362f42"
+    },
+    {
+      "Text": "RB-ORB1",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -122.855316,
+        "y": 97.5226746,
+        "z": 3.43500519
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80ccac86f77470841ff452"
+    },
+    {
+      "Text": "RB-BK Marked Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -157.878387,
+        "y": 72.86379,
+        "z": -8.188297
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c60f86f77440373c4ece"
+    },
+    {
+      "Text": "RB-RH",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -51.4290428,
+        "y": 19.6974564,
+        "z": 0.3399992
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5da5cdcd86f774529238fb9b"
+    },
+    {
+      "Text": "RB-OP",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -68.47772,
+        "y": 22.4145622,
+        "z": -9.729001
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c8f586f77440373c4ed0"
+    },
+    {
+      "Text": "RB-GN",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -62.8870544,
+        "y": 31.4578876,
+        "z": -9.723853
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e3ecc86f774414c78d05e"
+    },
+    {
+      "Text": "RB-KORL",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -2.507956,
+        "y": 174.912,
+        "z": 23.420002
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d8e0db586f7744450412a42"
+    },
+    {
+      "Text": "RB-RS",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -0.7069602,
+        "y": 182.247,
+        "z": 23.42
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5da46e3886f774653b7a83fe"
+    },
+    {
+      "Text": "RB-RLSA",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -10.9659786,
+        "y": 180.645,
+        "z": 23.420002
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ede7b0c6d23e5473e6e8c66"
+    },
+    { // seems to be straight on MP22 but the floor below
+      "Text": "RB-MP13",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 87.58351,
+        "y": -37.0245056,
+        "z": -5.82550049
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cbd886f77470855c26c2"
+    },
+    {
+      "Text": "RB-MP21",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 10.9685087,
+        "y": -7.38929558,
+        "z": -2.99313354
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80ca9086f774403a401e40"
+    },
+    {
+      "Text": "RB-MP11",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 8.245274,
+        "y": -17.522274,
+        "z": -5.851448
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c95986f77440351beef3"
+    },
+    {
+      "Text": "RB-MP12",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 8.266094,
+        "y": -17.478508,
+        "z": -3.00213623
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80c93086f7744036212b41"
+    },
+    {
+      "Text": "RB-MP22",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 87.5893555,
+        "y": -37.00447,
+        "z": -2.98300171
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5d80cab086f77440535be201"
+    },
+    {
+      "Text": "RB-PKPM Marked Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -120.251823,
+        "y": 27.7044983,
+        "z": -13.483
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ede7a8229445733cb4c18e2"
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "new_year_2024_market_reservee",
+      "Position": {
+        "x": -103.740112,
+        "y": -5.589226,
+        "z": 16.361908
+      },
+      "Bounds": {
+        "center": {
+          "x": -103.740112,
+          "y": -5.589226,
+          "z": 16.361908
+        },
+        "size": {
+          "x": 26.4888611,
+          "y": 10.1500015,
+          "z": 47.4585876
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.109474085,
+        "z": 0.0,
+        "w": 0.9939897
+      }
+    },
+    {
+      "Id": "tadeush_stryker_area_check_4",
+      "Position": {
+        "x": -107.222275,
+        "y": -5.6922226,
+        "z": -67.3433
+      },
+      "Bounds": {
+        "center": {
+          "x": -107.222275,
+          "y": -5.6922226,
+          "z": -67.3433
+        },
+        "size": {
+          "x": 14.6923676,
+          "y": 4.39515972,
+          "z": 15.9710884
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.9991336,
+        "z": 0.0,
+        "w": 0.0416178
+      }
+    },
+    {
+      "Id": "quest_ak-50_01_mech_place_01",
+      "Position": {
+        "x": 45.46988,
+        "y": -2.78922272,
+        "z": -117.468094
+      },
+      "Bounds": {
+        "center": {
+          "x": 45.46988,
+          "y": 2.14077759,
+          "z": -117.468094
+        },
+        "size": {
+          "x": 41.6473961,
+          "y": 20.2000027,
+          "z": 40.08731
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "baraholshik_arsenal_area_5",
+      "Position": {
+        "x": -125.518112,
+        "y": -7.0462265,
+        "z": 95.67992
+      },
+      "Bounds": {
+        "center": {
+          "x": -125.518112,
+          "y": -2.1162262,
+          "z": 95.67992
+        },
+        "size": {
+          "x": 3.74194336,
+          "y": 2.55000019,
+          "z": 7.27908325
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "fuel4",
+      "Position": {
+        "x": -334.933167,
+        "y": -101.455826,
+        "z": -163.460114
+      },
+      "Bounds": {
+        "center": {
+          "x": -334.933167,
+          "y": -101.455826,
+          "z": -163.460114
+        },
+        "size": {
+          "x": 8.778503,
+          "y": 3.84371948,
+          "z": 11.3269958
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.2802447,
+        "z": 0.0,
+        "w": 0.959928632
+      }
+    },
+    {
+      "Id": "baraholshik_arsenal_area_1",
+      "Position": {
+        "x": -167.376114,
+        "y": -1.28522491,
+        "z": 31.3559113
+      },
+      "Bounds": {
+        "center": {
+          "x": -167.376114,
+          "y": 3.64477539,
+          "z": 31.3559113
+        },
+        "size": {
+          "x": 7.2789,
+          "y": 2.55000019,
+          "z": 3.73324776
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_9",
+      "Position": {
+        "x": -264.637115,
+        "y": -8.649223,
+        "z": -71.41809
+      },
+      "Bounds": {
+        "center": {
+          "x": -264.637115,
+          "y": -8.649223,
+          "z": -71.41809
+        },
+        "size": {
+          "x": 23.8921356,
+          "y": 5.00819,
+          "z": 23.394928
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.886322141,
+        "z": 0.0,
+        "w": -0.4630692
+      }
+    },
+    {
+      "Id": "mechanik_exit_area_1",
+      "Position": {
+        "x": -119.750107,
+        "y": -29.3112259,
+        "z": 171.7919
+      },
+      "Bounds": {
+        "center": {
+          "x": -119.750107,
+          "y": -16.6516113,
+          "z": 171.7919
+        },
+        "size": {
+          "x": 22.1665039,
+          "y": 6.54807663,
+          "z": 17.7077942
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.268422782,
+        "z": 0.0,
+        "w": 0.963301241
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_mark_12",
+      "Position": {
+        "x": 101.727905,
+        "y": -5.592224,
+        "z": 64.4449158
+      },
+      "Bounds": {
+        "center": {
+          "x": 101.727905,
+          "y": -5.592224,
+          "z": 64.4449158
+        },
+        "size": {
+          "x": 7.57893372,
+          "y": 1.99591064,
+          "z": 5.320797
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.5809749,
+        "z": 0.0,
+        "w": 0.8139215
+      }
+    },
+    {
+      "Id": "tadeush_stryker_area_mark_3",
+      "Position": {
+        "x": 42.12439,
+        "y": 0.8737793,
+        "z": -195.23909
+      },
+      "Bounds": {
+        "center": {
+          "x": 42.12439,
+          "y": 0.873779237,
+          "z": -195.23909
+        },
+        "size": {
+          "x": 4.9066925,
+          "y": 2.51882076,
+          "z": 7.877014
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.992761731,
+        "z": 0.0,
+        "w": 0.120100647
+      }
+    },
+    {
+      "Id": "prapor_024_area_2",
+      "Position": {
+        "x": -115.030106,
+        "y": -11.8592224,
+        "z": 33.8819122
+      },
+      "Bounds": {
+        "center": {
+          "x": -115.030106,
+          "y": -11.8592224,
+          "z": 33.8819122
+        },
+        "size": {
+          "x": 86.03244,
+          "y": 7.0,
+          "z": 70.12254
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_mark_13",
+      "Position": {
+        "x": 53.6199036,
+        "y": -3.997223,
+        "z": 122.661896
+      },
+      "Bounds": {
+        "center": {
+          "x": 53.6199036,
+          "y": -3.997223,
+          "z": 122.661896
+        },
+        "size": {
+          "x": 6.58795929,
+          "y": 1.99591064,
+          "z": 3.94621277
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6657915,
+        "z": 0.0,
+        "w": 0.746137857
+      }
+    },
+    {
+      "Id": "prapor_025_area_1",
+      "Position": {
+        "x": -90.30911,
+        "y": -13.41922,
+        "z": -5.14808655
+      },
+      "Bounds": {
+        "center": {
+          "x": -90.30911,
+          "y": -13.41922,
+          "z": -5.14808655
+        },
+        "size": {
+          "x": 5.07136536,
+          "y": 2.5,
+          "z": 3.86927819
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "baraholshik_arsenal_area_4",
+      "Position": {
+        "x": -125.5401,
+        "y": -1.28522491,
+        "z": 95.6819153
+      },
+      "Bounds": {
+        "center": {
+          "x": -125.5401,
+          "y": 3.64477539,
+          "z": 95.6819153
+        },
+        "size": {
+          "x": 3.74194336,
+          "y": 2.55000019,
+          "z": 7.27908325
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "tar_event_1_1_exp2",
+      "Position": {
+        "x": -9.470093,
+        "y": 23.5707779,
+        "z": 175.52298
+      },
+      "Bounds": {
+        "center": {
+          "x": -6.534149,
+          "y": 23.5614319,
+          "z": 174.06546
+        },
+        "size": {
+          "x": 7.55812454,
+          "y": 2.46588516,
+          "z": 3.43322754
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142339384,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "baraholshik_fuel_area_2",
+      "Position": {
+        "x": 11.94989,
+        "y": -9.889221,
+        "z": 73.80191
+      },
+      "Bounds": {
+        "center": {
+          "x": 11.94989,
+          "y": -4.959221,
+          "z": 73.80191
+        },
+        "size": {
+          "x": 13.8388586,
+          "y": 3.60000014,
+          "z": 19.8732338
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_mark_2",
+      "Position": {
+        "x": -100.580109,
+        "y": -3.719223,
+        "z": -155.878082
+      },
+      "Bounds": {
+        "center": {
+          "x": -100.6176,
+          "y": -3.719223,
+          "z": -155.9708
+        },
+        "size": {
+          "x": 5.570587,
+          "y": 1.77999973,
+          "z": 7.618744
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.191001877,
+        "z": 0.0,
+        "w": 0.9815897
+      }
+    },
+    {
+      "Id": "place_flaers2",
+      "Position": {
+        "x": 118.98291,
+        "y": -4.386223,
+        "z": -144.5591
+      },
+      "Bounds": {
+        "center": {
+          "x": 118.98291,
+          "y": -4.386223,
+          "z": -144.5591
+        },
+        "size": {
+          "x": 2.449112,
+          "y": 1.0,
+          "z": 2.4491272
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_5",
+      "Position": {
+        "x": 210.996033,
+        "y": -4.9422226,
+        "z": -86.3095551
+      },
+      "Bounds": {
+        "center": {
+          "x": 210.996033,
+          "y": -4.9422226,
+          "z": -86.3095551
+        },
+        "size": {
+          "x": 22.3547058,
+          "y": 7.10170174,
+          "z": 13.5670013
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.708168566,
+        "z": 0.0,
+        "w": 0.7060435
+      }
+    },
+    {
+      "Id": "tar_event_1_1_exp3",
+      "Position": {
+        "x": -52.4861145,
+        "y": -6.41400146,
+        "z": -29.1219788
+      },
+      "Bounds": {
+        "center": {
+          "x": -51.32309,
+          "y": -5.4807663,
+          "z": -31.1837616
+        },
+        "size": {
+          "x": 4.52359772,
+          "y": 2.14996052,
+          "z": 4.83506
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.14631094,
+        "z": 0.0,
+        "w": 0.9892387
+      }
+    },
+    {
+      "Id": "lijnik_storage_area_1",
+      "Position": {
+        "x": 65.38989,
+        "y": -24.4292221,
+        "z": -104.648087
+      },
+      "Bounds": {
+        "center": {
+          "x": 65.38989,
+          "y": -19.4992218,
+          "z": -104.648087
+        },
+        "size": {
+          "x": 103.37915,
+          "y": 25.0000038,
+          "z": 194.793427
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "baraholshik_dejurniy_area_2",
+      "Position": {
+        "x": -164.964111,
+        "y": -4.221222,
+        "z": 34.52591
+      },
+      "Bounds": {
+        "center": {
+          "x": -164.964111,
+          "y": 0.7087784,
+          "z": 34.52591
+        },
+        "size": {
+          "x": 3.41351318,
+          "y": 2.55000019,
+          "z": 2.70436859
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_10",
+      "Position": {
+        "x": -249.5701,
+        "y": -3.64922333,
+        "z": -3.36808777
+      },
+      "Bounds": {
+        "center": {
+          "x": -249.5701,
+          "y": -3.64922333,
+          "z": -3.36808777
+        },
+        "size": {
+          "x": 8.867096,
+          "y": 2.566144,
+          "z": 6.601042
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.827261269,
+        "z": 0.0,
+        "w": -0.561817467
+      }
+    },
+    {
+      "Id": "baraholshik_arsenal_area_3",
+      "Position": {
+        "x": -167.376114,
+        "y": -7.0462265,
+        "z": 31.3559113
+      },
+      "Bounds": {
+        "center": {
+          "x": -167.376114,
+          "y": -2.1162262,
+          "z": 31.3559113
+        },
+        "size": {
+          "x": 7.2789,
+          "y": 2.55000019,
+          "z": 3.73324776
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "q_ny_hide_christmas_tree_rez",
+      "Position": {
+        "x": 166.900024,
+        "y": -7.040001,
+        "z": 0.8500061
+      },
+      "Bounds": {
+        "center": {
+          "x": 166.900024,
+          "y": -7.040001,
+          "z": 0.8500061
+        },
+        "size": {
+          "x": 5.32724,
+          "y": 5.0,
+          "z": 5.32725239
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.03389342,
+        "z": 0.0,
+        "w": 0.9994255
+      }
+    },
+    {
+      "Id": "prapor_025_area_3",
+      "Position": {
+        "x": -149.41011,
+        "y": -9.329224,
+        "z": 50.0019073
+      },
+      "Bounds": {
+        "center": {
+          "x": -149.41011,
+          "y": -9.329224,
+          "z": 50.0019073
+        },
+        "size": {
+          "x": 12.6034851,
+          "y": 2.5,
+          "z": 36.9986839
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "EXFIL_D2_Basement_Bunker",
+      "Position": {
+        "x": -121.479065,
+        "y": -17.0010071,
+        "z": 172.24913
+      },
+      "Bounds": {
+        "center": {
+          "x": -121.479065,
+          "y": -17.0010071,
+          "z": 172.24913
+        },
+        "size": {
+          "x": 4.91259766,
+          "y": 2.641201,
+          "z": 5.098877
+        }
+      },
+      "Rotation": {
+        "x": -0.6830128,
+        "y": 0.183012679,
+        "z": 0.183012679,
+        "w": 0.683012664
+      }
+    },
+    {
+      "Id": "prapor_hq_area_check_1",
+      "Position": {
+        "x": -109.6501,
+        "y": -12.8292236,
+        "z": 37.5119171
+      },
+      "Bounds": {
+        "center": {
+          "x": -109.6501,
+          "y": -12.8292236,
+          "z": 37.5119171
+        },
+        "size": {
+          "x": 86.7341,
+          "y": 11.0,
+          "z": 84.11781
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "quest_zone_keeper3_hide",
+      "Position": {
+        "x": -114.6591,
+        "y": -13.6142273,
+        "z": 23.7119141
+      },
+      "Bounds": {
+        "center": {
+          "x": -114.6591,
+          "y": -13.6142273,
+          "z": 23.7119141
+        },
+        "size": {
+          "x": 1.09584045,
+          "y": 2.0,
+          "z": 0.743652344
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.131634861,
+        "z": 0.0,
+        "w": 0.9912983
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_8",
+      "Position": {
+        "x": 144.171875,
+        "y": -8.649223,
+        "z": 34.8709259
+      },
+      "Bounds": {
+        "center": {
+          "x": 144.171875,
+          "y": -8.649223,
+          "z": 34.8709259
+        },
+        "size": {
+          "x": 20.6616821,
+          "y": 5.00819,
+          "z": 20.1534748
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.991687,
+        "z": 0.0,
+        "w": -0.128673777
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_6",
+      "Position": {
+        "x": 228.909912,
+        "y": -2.929222,
+        "z": -55.48809
+      },
+      "Bounds": {
+        "center": {
+          "x": 228.909912,
+          "y": -2.929222,
+          "z": -55.48809
+        },
+        "size": {
+          "x": 7.96630859,
+          "y": 3.896303,
+          "z": 4.394394
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.693036735,
+        "z": 0.0,
+        "w": 0.7209023
+      }
+    },
+    {
+      "Id": "Train_tw_event",
+      "Position": {
+        "x": 144.986,
+        "y": -3.92,
+        "z": -147.352
+      },
+      "Bounds": {
+        "center": {
+          "x": 140.830353,
+          "y": -3.92,
+          "z": -146.247147
+        },
+        "size": {
+          "x": 43.7768173,
+          "y": 2.0,
+          "z": 14.333252
+        }
+      },
+      "Rotation": {
+        "x": -1.508319E-11,
+        "y": 0.9915711,
+        "z": -1.15434072E-10,
+        "w": -0.129563615
+      }
+    },
+    {
+      "Id": "prapor_024_area_1",
+      "Position": {
+        "x": -116.753113,
+        "y": -13.1592255,
+        "z": 31.6869049
+      },
+      "Bounds": {
+        "center": {
+          "x": -116.753113,
+          "y": -13.1592255,
+          "z": 31.6869049
+        },
+        "size": {
+          "x": 16.8964081,
+          "y": 2.79999924,
+          "z": 17.8863525
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "prapor_025_area_5",
+      "Position": {
+        "x": -73.0011139,
+        "y": -9.653221,
+        "z": 29.9939117
+      },
+      "Bounds": {
+        "center": {
+          "x": -73.0011139,
+          "y": -9.653221,
+          "z": 29.9939117
+        },
+        "size": {
+          "x": 2.96713257,
+          "y": 2.5,
+          "z": 4.38134
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "prapor_025_area_2",
+      "Position": {
+        "x": -144.2501,
+        "y": -9.983223,
+        "z": 6.19191
+      },
+      "Bounds": {
+        "center": {
+          "x": -144.2501,
+          "y": -9.983223,
+          "z": 6.19191
+        },
+        "size": {
+          "x": 34.0061646,
+          "y": 3.5,
+          "z": 13.1465149
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "q_ny_kill_christmas_guys_rez",
+      "Position": {
+        "x": 166.900024,
+        "y": -5.589226,
+        "z": 0.8500061
+      },
+      "Bounds": {
+        "center": {
+          "x": 166.900024,
+          "y": -5.589226,
+          "z": 0.8500061
+        },
+        "size": {
+          "x": 39.6523438,
+          "y": 5.0,
+          "z": 39.6523438
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.07180307,
+        "z": 0.0,
+        "w": 0.9974188
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_10",
+      "Position": {
+        "x": -246.9801,
+        "y": -3.15922546,
+        "z": -2.97808838
+      },
+      "Bounds": {
+        "center": {
+          "x": -246.9801,
+          "y": -3.15922546,
+          "z": -2.97808838
+        },
+        "size": {
+          "x": 31.7624054,
+          "y": 5.008191,
+          "z": 27.2116432
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.827261269,
+        "z": 0.0,
+        "w": -0.561817467
+      }
+    },
+    {
+      "Id": "baraholshik_fuel_area_1",
+      "Position": {
+        "x": -9.370117,
+        "y": -9.459221,
+        "z": 83.25191
+      },
+      "Bounds": {
+        "center": {
+          "x": -9.370117,
+          "y": -4.52922058,
+          "z": 83.25191
+        },
+        "size": {
+          "x": 16.2715263,
+          "y": 3.60000014,
+          "z": 14.2199707
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "zone_grass_green",
+      "Position": {
+        "x": -82.75,
+        "y": -6.37999725,
+        "z": 62.4400024
+      },
+      "Bounds": {
+        "center": {
+          "x": -84.41324,
+          "y": -6.552719,
+          "z": 60.6864929
+        },
+        "size": {
+          "x": 4.53062439,
+          "y": 2.08987713,
+          "z": 8.709873
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.133531734,
+        "z": 0.0,
+        "w": 0.9910445
+      }
+    },
+    {
+      "Id": "Mark_transits_rezerve",
+      "Position": {
+        "x": 240.234619,
+        "y": -6.356224,
+        "z": -124.415436
+      },
+      "Bounds": {
+        "center": {
+          "x": 240.199219,
+          "y": -6.03533936,
+          "z": -125.291214
+        },
+        "size": {
+          "x": 2.70098877,
+          "y": 1.5180378,
+          "z": 5.76017
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.143375337,
+        "z": 0.0,
+        "w": 0.9896684
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_5",
+      "Position": {
+        "x": 211.1499,
+        "y": -4.34922028,
+        "z": -86.21809
+      },
+      "Bounds": {
+        "center": {
+          "x": 211.1499,
+          "y": -4.34922028,
+          "z": -86.21809
+        },
+        "size": {
+          "x": 8.186066,
+          "y": 4.565502,
+          "z": 3.96348572
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.708168566,
+        "z": 0.0,
+        "w": 0.7060435
+      }
+    },
+    {
+      "Id": "zone_tanchiki",
+      "Position": {
+        "x": -77.323,
+        "y": -6.251999,
+        "z": -20.2539978
+      },
+      "Bounds": {
+        "center": {
+          "x": -77.11957,
+          "y": -6.28350067,
+          "z": -20.0177
+        },
+        "size": {
+          "x": 2.02601624,
+          "y": 1.73842144,
+          "z": 1.81061172
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.149365544,
+        "z": 0.0,
+        "w": 0.988782048
+      }
+    },
+    {
+      "Id": "baraholshik_fuel_area_4",
+      "Position": {
+        "x": 178.6799,
+        "y": -3.16922,
+        "z": -123.648087
+      },
+      "Bounds": {
+        "center": {
+          "x": 178.6799,
+          "y": -3.16922,
+          "z": -123.648087
+        },
+        "size": {
+          "x": 45.5656738,
+          "y": 5.2,
+          "z": 16.1153564
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_check_12",
+      "Position": {
+        "x": 103.3819,
+        "y": -4.62922668,
+        "z": 63.8699036
+      },
+      "Bounds": {
+        "center": {
+          "x": 103.3819,
+          "y": -4.62922668,
+          "z": 63.8699036
+        },
+        "size": {
+          "x": 13.7316589,
+          "y": 4.39516068,
+          "z": 15.8183784
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6051044,
+        "z": 0.0,
+        "w": 0.7961461
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_check_11",
+      "Position": {
+        "x": 79.00989,
+        "y": -4.62922668,
+        "z": -31.5480881
+      },
+      "Bounds": {
+        "center": {
+          "x": 79.00989,
+          "y": -4.62922668,
+          "z": -31.5480881
+        },
+        "size": {
+          "x": 14.76593,
+          "y": 4.395159,
+          "z": 15.9741745
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.61511004,
+        "z": 0.0,
+        "w": 0.788441241
+      }
+    },
+    {
+      "Id": "Zone_leeter_final",
+      "Position": {
+        "x": -127.21611,
+        "y": 0.6957779,
+        "z": -20.3590851
+      },
+      "Bounds": {
+        "center": {
+          "x": -127.392715,
+          "y": 0.6957779,
+          "z": -20.9558258
+        },
+        "size": {
+          "x": 3.43231964,
+          "y": 1.79793072,
+          "z": 5.32891464
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.143375337,
+        "z": 0.0,
+        "w": 0.9896684
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_check_2",
+      "Position": {
+        "x": -100.4001,
+        "y": -4.3192215,
+        "z": -155.6881
+      },
+      "Bounds": {
+        "center": {
+          "x": -100.4001,
+          "y": -4.3192215,
+          "z": -155.6881
+        },
+        "size": {
+          "x": 18.0533142,
+          "y": 4.5,
+          "z": 18.754425
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.191001892,
+        "z": 0.0,
+        "w": 0.9815897
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_8",
+      "Position": {
+        "x": 144.148254,
+        "y": -8.6712265,
+        "z": 34.93051
+      },
+      "Bounds": {
+        "center": {
+          "x": 144.148254,
+          "y": -8.6712265,
+          "z": 34.93051
+        },
+        "size": {
+          "x": 6.18170166,
+          "y": 3.89630127,
+          "z": 9.482239
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.991687,
+        "z": 0.0,
+        "w": -0.128673777
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_7",
+      "Position": {
+        "x": 183.750092,
+        "y": -2.929222,
+        "z": 22.0386658
+      },
+      "Bounds": {
+        "center": {
+          "x": 183.750092,
+          "y": -2.929222,
+          "z": 22.0386658
+        },
+        "size": {
+          "x": 8.426636,
+          "y": 3.89630151,
+          "z": 8.403824
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.384683758,
+        "z": 0.0,
+        "w": 0.923048437
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_7",
+      "Position": {
+        "x": 184.629883,
+        "y": -3.66222382,
+        "z": 21.2219086
+      },
+      "Bounds": {
+        "center": {
+          "x": 184.629883,
+          "y": -3.66222382,
+          "z": 21.2219086
+        },
+        "size": {
+          "x": 33.6283569,
+          "y": 7.1017,
+          "z": 33.5963745
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.384683758,
+        "z": 0.0,
+        "w": 0.923048437
+      }
+    },
+    {
+      "Id": "eger_barracks_area_1",
+      "Position": {
+        "x": -102.8701,
+        "y": -4.139221,
+        "z": 92.47191
+      },
+      "Bounds": {
+        "center": {
+          "x": -102.8701,
+          "y": 0.7907791,
+          "z": 92.47191
+        },
+        "size": {
+          "x": 76.96304,
+          "y": 20.2000027,
+          "z": 52.0015869
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_check_13",
+      "Position": {
+        "x": 53.829895,
+        "y": -4.139221,
+        "z": 122.031921
+      },
+      "Bounds": {
+        "center": {
+          "x": 53.829895,
+          "y": -4.139221,
+          "z": 122.031921
+        },
+        "size": {
+          "x": 13.5294647,
+          "y": 4.39516068,
+          "z": 10.5388947
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00140550977,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "huntsman_029",
+      "Position": {
+        "x": 78.77,
+        "y": -12.2860031,
+        "z": -117.1
+      },
+      "Bounds": {
+        "center": {
+          "x": 78.77,
+          "y": -12.2860031,
+          "z": -117.099991
+        },
+        "size": {
+          "x": 32.6223,
+          "y": 6.0,
+          "z": 80.70614
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.126238912,
+        "z": 0.0,
+        "w": 0.991999865
+      }
+    },
+    {
+      "Id": "tadeush_stryker_area_check_3",
+      "Position": {
+        "x": 42.0299072,
+        "y": 0.280776978,
+        "z": -195.2381
+      },
+      "Bounds": {
+        "center": {
+          "x": 42.0299072,
+          "y": 0.280776978,
+          "z": -195.2381
+        },
+        "size": {
+          "x": 16.6636429,
+          "y": 4.39515972,
+          "z": 17.6893921
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.992761731,
+        "z": 0.0,
+        "w": 0.120100647
+      }
+    },
+    {
+      "Id": "baraholshik_fuel_area_3",
+      "Position": {
+        "x": 170.0299,
+        "y": -9.309227,
+        "z": -97.85809
+      },
+      "Bounds": {
+        "center": {
+          "x": 170.0299,
+          "y": -4.37922668,
+          "z": -97.85809
+        },
+        "size": {
+          "x": 34.823822,
+          "y": 4.5,
+          "z": 21.6160889
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "tar_event_1_1_exp4",
+      "Position": {
+        "x": -63.7225952,
+        "y": -0.3592224,
+        "z": 6.237625
+      },
+      "Bounds": {
+        "center": {
+          "x": -67.08664,
+          "y": 0.741874635,
+          "z": 6.84461975
+        },
+        "size": {
+          "x": 15.2093849,
+          "y": 2.79780865,
+          "z": 9.584572
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.139708087,
+        "z": 0.0,
+        "w": 0.9901928
+      }
+    },
+    {
+      "Id": "zone_two_chairs",
+      "Position": {
+        "x": 125.10199,
+        "y": -6.481941,
+        "z": -89.345
+      },
+      "Bounds": {
+        "center": {
+          "x": 125.412231,
+          "y": -6.21295929,
+          "z": -88.93278
+        },
+        "size": {
+          "x": 1.28242493,
+          "y": 1.20648384,
+          "z": 1.78007507
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.153507218,
+        "z": 0.0,
+        "w": 0.9881475
+      }
+    },
+    {
+      "Id": "event_labyrinth_04_ragman_place_02",
+      "Position": {
+        "x": 15.8999023,
+        "y": 1.280777,
+        "z": -7.388092
+      },
+      "Bounds": {
+        "center": {
+          "x": 15.8999023,
+          "y": 1.280777,
+          "z": -7.38809156
+        },
+        "size": {
+          "x": 23.2599411,
+          "y": 5.00000048,
+          "z": 24.9225388
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1266586,
+        "z": 0.0,
+        "w": 0.9919464
+      }
+    },
+    {
+      "Id": "q_ny_find_christmas_tree_rez",
+      "Position": {
+        "x": 166.900024,
+        "y": -7.040001,
+        "z": 0.8500061
+      },
+      "Bounds": {
+        "center": {
+          "x": 166.900024,
+          "y": -7.040001,
+          "z": 0.850006342
+        },
+        "size": {
+          "x": 15.9817505,
+          "y": 5.0,
+          "z": 15.9817581
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.03389342,
+        "z": 0.0,
+        "w": 0.9994255
+      }
+    },
+    {
+      "Id": "tar_event_1_1_exp1",
+      "Position": {
+        "x": -104.465683,
+        "y": -13.6944427,
+        "z": 28.2581787
+      },
+      "Bounds": {
+        "center": {
+          "x": -107.350693,
+          "y": -13.0276184,
+          "z": 21.4730835
+        },
+        "size": {
+          "x": 10.565979,
+          "y": 3.66635513,
+          "z": 9.845329
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.135082558,
+        "z": 0.0,
+        "w": 0.9908344
+      }
+    },
+    {
+      "Id": "tadeush_t90_area_check_1",
+      "Position": {
+        "x": -160.6201,
+        "y": -4.3192215,
+        "z": -117.588089
+      },
+      "Bounds": {
+        "center": {
+          "x": -160.6201,
+          "y": -4.3192215,
+          "z": -117.588089
+        },
+        "size": {
+          "x": 16.8963928,
+          "y": 4.39516068,
+          "z": 17.8863525
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "tadeush_stryker_area_mark_4",
+      "Position": {
+        "x": -107.129105,
+        "y": -5.09922028,
+        "z": -67.35909
+      },
+      "Bounds": {
+        "center": {
+          "x": -107.129105,
+          "y": -5.09922028,
+          "z": -67.35909
+        },
+        "size": {
+          "x": 3.85395813,
+          "y": 2.51882076,
+          "z": 7.5567627
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.9991336,
+        "z": 0.0,
+        "w": 0.0416178
+      }
+    },
+    {
+      "Id": "tadeush_bmp2_area_mark_11",
+      "Position": {
+        "x": 79.02789,
+        "y": -5.43922424,
+        "z": -31.7870865
+      },
+      "Bounds": {
+        "center": {
+          "x": 79.02789,
+          "y": -5.43922424,
+          "z": -31.7870865
+        },
+        "size": {
+          "x": 7.47995,
+          "y": 1.99591064,
+          "z": 4.83668327
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.61511004,
+        "z": 0.0,
+        "w": 0.788441241
+      }
+    },
+    {
+      "Id": "Btr_wheels",
+      "Position": {
+        "x": 100.468048,
+        "y": -6.62599945,
+        "z": 28.3770142
+      },
+      "Bounds": {
+        "center": {
+          "x": 100.4032,
+          "y": -6.30512238,
+          "z": 27.71222
+        },
+        "size": {
+          "x": 2.76806641,
+          "y": 1.5180378,
+          "z": 3.69871521
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.143375337,
+        "z": 0.0,
+        "w": 0.9896684
+      }
+    },
+    {
+      "Id": "prapor_025_area_4",
+      "Position": {
+        "x": -107.0101,
+        "y": -9.388222,
+        "z": 77.49191
+      },
+      "Bounds": {
+        "center": {
+          "x": -107.0101,
+          "y": -9.388222,
+          "z": 77.49191
+        },
+        "size": {
+          "x": 36.9986877,
+          "y": 2.5,
+          "z": 12.6034851
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1305262,
+        "z": 0.0,
+        "w": 0.9914449
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_check_6",
+      "Position": {
+        "x": 228.9599,
+        "y": -3.66222382,
+        "z": -55.44809
+      },
+      "Bounds": {
+        "center": {
+          "x": 228.9599,
+          "y": -3.66222382,
+          "z": -55.44809
+        },
+        "size": {
+          "x": 27.0292053,
+          "y": 7.10170174,
+          "z": 18.0819435
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.693036735,
+        "z": 0.0,
+        "w": 0.7209023
+      }
+    },
+    {
+      "Id": "Event_terminal_zone",
+      "Position": {
+        "x": -14.1311035,
+        "y": 33.8817749,
+        "z": 176.7269
+      },
+      "Bounds": {
+        "center": {
+          "x": -14.1311035,
+          "y": 33.8817749,
+          "z": 176.7269
+        },
+        "size": {
+          "x": 1.82741547,
+          "y": 2.15979767,
+          "z": 1.178833
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.022430094,
+        "z": 0.0,
+        "w": 0.999748468
+      }
+    },
+    {
+      "Id": "place_flaers2",
+      "Position": {
+        "x": 111.079895,
+        "y": -4.542221,
+        "z": -143.2981
+      },
+      "Bounds": {
+        "center": {
+          "x": 111.079895,
+          "y": -4.542221,
+          "z": -143.2981
+        },
+        "size": {
+          "x": 2.449112,
+          "y": 1.0,
+          "z": 2.4491272
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.793273032,
+        "z": 0.0,
+        "w": 0.6088661
+      }
+    },
+    {
+      "Id": "eger_barracks_area_2",
+      "Position": {
+        "x": -164.0601,
+        "y": -4.139221,
+        "z": 54.1319122
+      },
+      "Bounds": {
+        "center": {
+          "x": -164.0601,
+          "y": 0.7907791,
+          "z": 54.1319122
+        },
+        "size": {
+          "x": 52.0015869,
+          "y": 20.2000027,
+          "z": 76.96304
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.1297059,
+        "z": 0.0,
+        "w": 0.991552532
+      }
+    },
+    {
+      "Id": "Place_item_tools_rezerve",
+      "Position": {
+        "x": 50.98111,
+        "y": -0.624961853,
+        "z": -181.916656
+      },
+      "Bounds": {
+        "center": {
+          "x": 51.7508545,
+          "y": -0.0571746826,
+          "z": -181.553284
+        },
+        "size": {
+          "x": 6.3554,
+          "y": 1.44487584,
+          "z": 6.621155
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0224300623,
+        "z": 0.0,
+        "w": 0.9997485
+      }
+    },
+    {
+      "Id": "tadeush_tunguska_area_mark_9",
+      "Position": {
+        "x": -267.7341,
+        "y": -9.147224,
+        "z": -69.50109
+      },
+      "Bounds": {
+        "center": {
+          "x": -267.7341,
+          "y": -9.147224,
+          "z": -69.50109
+        },
+        "size": {
+          "x": 8.796936,
+          "y": 2.566143,
+          "z": 7.787918
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.886322141,
+        "z": 0.0,
+        "w": -0.4630692
+      }
+    }
+  ]
 }

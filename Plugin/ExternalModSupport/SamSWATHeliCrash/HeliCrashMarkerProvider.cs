@@ -6,7 +6,6 @@ using DynamicMaps.DynamicMarkers;
 using UnityEngine;
 using Comfort.Common;
 using EFT;
-using DynamicMaps.Config;
 
 namespace DynamicMaps.ExternalModSupport.SamSWATHeliCrash
 {

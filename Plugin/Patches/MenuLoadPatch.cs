@@ -1,19 +1,12 @@
-﻿using DynamicMaps.UI;
-using DynamicMaps.Utils;
-using EFT.UI;
-using EFT.UI.Map;
-using HarmonyLib;
+﻿using DynamicMaps.Common;
+using DynamicMaps.UI;
 using Newtonsoft.Json;
 using SPT.Common.Http;
 using SPT.Reflection.Patching;
 using SPT.Reflection.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using static DynamicMaps.UI.ModdedMapScreen;
 
 namespace DynamicMaps.Patches
 {
@@ -50,12 +43,12 @@ namespace DynamicMaps.Patches
             }
         }
 
-        private static async Task<DMServerConfig> LoadFromServer()
+        private static async Task<ModConfig> LoadFromServer()
         {
             try
             {
-                string payload = await RequestHandler.GetJsonAsync("/dynamicmaps/load");
-                return JsonConvert.DeserializeObject<DMServerConfig>(payload);
+                string payload = await RequestHandler.GetJsonAsync(Routes.LoadConfigRoute);
+                return JsonConvert.DeserializeObject<ModConfig>(payload);
 
             }
             catch (Exception ex)
@@ -64,42 +57,6 @@ namespace DynamicMaps.Patches
                 NotificationManagerClass.DisplayWarningNotification("Failed to load Dynamic Maps server config - check the server");
                 return null;
             }
-        }
-
-        internal class DMServerConfig
-        {
-            public bool AllowShowPlayerMarker { get; set; } = true;
-            public bool AllowShowFriendlyPlayerMarkersInRaid { get; set; } = true;
-            public bool AllowShowEnemyPlayerMarkersInRaid { get; set; } = true;
-            public bool AllowShowScavMarkersInRaid { get; set; } = true;
-            public bool AllowShowBossMarkersInRaid { get; set; } = true;
-            public bool AllowShowLockedDoorStatus { get; set; } = true;
-            public bool AllowShowQuestsInRaid { get; set; } = true;
-            public bool AllowShowExtractsInRaid { get; set; } = true;
-            public bool AllowShowExtractStatusInRaid { get; set; } = true;
-            public bool AllowShowTransitPointsInRaid { get; set; } = true;
-            public bool AllowShowSecretExtractsInRaid { get; set; } = true;
-            public bool AllowShowDroppedBackpackInRaid { get; set; } = true;
-            public bool AllowShowWishlistedItemsInRaid { get; set; } = true;
-            public bool AllowShowBTRInRaid { get; set; } = true;
-            public bool AllowShowAirdropsInRaid { get; set; } = true;
-            public bool AllowShowHiddenStashesInRaid { get; set; } = true;
-            public bool AllowShowFriendlyCorpses { get; set; } = true;
-            public bool AllowShowKilledCorpses { get; set; } = true;
-            public bool AllowShowFriendlyKilledCorpses { get; set; } = true;
-            public bool AllowShowBossCorpses { get; set; } = true;
-            public bool AllowShowOtherCorpses { get; set; } = true;
-            public bool AllowShowHeliCrashSiteInRaid { get; set; } = true;
-            public bool AllowMiniMap { get; set; } = true;
-            public bool RequireMapInInventory { get; set; } = false;
-            public int ShowScavIntelLevel { get; set; } = 0;
-            public int ShowPmcIntelLevel { get; set; } = 0;
-            public int ShowBossIntelLevel { get; set; } = 0;
-            public int ShowFriendlyIntelLevel { get; set; } = 0;
-            public int ShowAirdropIntelLevel { get; set; } = 0;
-            public int ShowCorpseIntelLevel { get; set; } = 0;
-            public int ShowWishListIntelLevel { get; set; } = 0;
-            public int ShowHiddenStashIntelLevel { get; set; } = 0;
         }
     }
 }

@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
 using System.Reflection;
-using Comfort.Common;
-using DynamicMaps.Config;
 using DynamicMaps.Utils;
 using SPT.Reflection.Patching;
 using EFT;

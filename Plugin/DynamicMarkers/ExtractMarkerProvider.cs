@@ -7,7 +7,6 @@ using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
 using EFT.Interactive;
-using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {

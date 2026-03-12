@@ -1,657 +1,2121 @@
 {
-    "DisplayName": "Interchange (TarkovDev)",
-    "Author": "Tarkov.dev",
-    "AuthorLink": "https://tarkov.dev",
-    "MapInternalNames": [ "Interchange" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -364, "y": -443},
-        "Max": {"x": 534, "y": 452}
+  "DisplayName": "Interchange (TarkovDev)",
+  "Author": "Tarkov.dev",
+  "AuthorLink": "https://tarkov.dev",
+  "MapInternalNames": [ "Interchange" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -364,
+      "y": -443
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -364, "y": -443},
-                "Max": {"x": 534, "y": 452}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -364, "y": -443, "z": -100},
-                    "Max": {"x": 534, "y": 452, "z": 100}
-                }
-            ]
+    "Max": {
+      "x": 534,
+      "y": 452
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -364,
+          "y": -443
         },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -364, "y": -443},
-                "Max": {"x": 534, "y": 452}
-            },
-            "GameBounds": [
-                {   // mall
-                    "Min": {"x": -222, "y": -327, "z": 25},
-                    "Max": {"x": 120, "y": 218, "z": 34}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -364, "y": -443},
-                "Max": {"x": 534, "y": 452}
-            },
-            "GameBounds": [
-                {   // mall
-                    "Min": {"x": -222, "y": -443, "z": 34},
-                    "Max": {"x": 120, "y": 218, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 534,
+          "y": 452
         }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -364,
+            "y": -443,
+            "z": -100
+          },
+          "Max": {
+            "x": 534,
+            "y": 452,
+            "z": 100
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "Power Station",
-            "Position": {"x": -186.4, "y": -318.7, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Go Kart",
-            "Position": {"x": 155, "y": -253, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Four Camp",
-            "Position": {"x": 158, "y": -78.5, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Cargo Containers",
-            "Position": {"x": 68.2, "y": 312.9, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Wall Break",
-            "Position": {"x": -260.2, "y": 123.8, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Ramps",
-            "Position": {"x": -175.5, "y": 145.1, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "OLI Tower",
-            "Position": {"x": 202.3, "y": 219.4, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "IDEA Tower",
-            "Position": {"x": 46.5, "y": -358.5, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Scav Camp",
-            "Position": {"x": 263.2, "y": -11.1, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Highway Construction",
-            "Position": {"x": 373.5, "y": -391.2, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Garage A",
-            "Position": {"x": 33, "y": -222, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Garage B",
-            "Position": {"x": 47, "y": -112, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Garage C",
-            "Position": {"x": 0, "y": 47, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Garage D",
-            "Position": {"x": 28, "y": 138, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "IDEA",
-            "Position": {"x": -34, "y": -235, "z": 26},
-            "FontSize": 14
-        },
-        {
-            "Text": "Goshan",
-            "Position": {"x": -115, "y": -45, "z": 26},
-            "FontSize": 14
-        },
-        {
-            "Text": "OLI",
-            "Position": {"x": -28, "y": 140, "z": 26},
-            "FontSize": 14
-        },
-        {
-            "Text": "Nortex",
-            "Position": {"x": 87, "y": -165, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "TRend",
-            "Position": {"x": 60, "y": -152, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Mode7",
-            "Position": {"x": 69.5, "y": -134, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "TTS",
-            "Position": {"x": 19, "y": -129, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Book Store",
-            "Position": {"x": -38, "y": -129, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Dino Clothes",
-            "Position": {"x": 91, "y": -119, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "EMERCOM",
-            "Position": {"x": 18, "y": -103, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Kostin",
-            "Position": {"x": -28, "y": -103, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Bizarro",
-            "Position": {"x": -65, "y": -103, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Spiel",
-            "Position": {"x": 92, "y": -87, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Voyage",
-            "Position": {"x": -18, "y": -87, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Viking",
-            "Position": {"x": 57, "y": -66, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Mantis",
-            "Position": {"x": 13, "y": -66, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "German",
-            "Position": {"x": -18, "y": -72, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "The National",
-            "Position": {"x": 57, "y": -32, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Brutal",
-            "Position": {"x": 13, "y": -32, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Kiba",
-            "Position": {"x": -18, "y": -25, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Pretty Lights",
-            "Position": {"x": -34, "y": -20, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Telespot",
-            "Position": {"x": 92, "y": -18, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Revis",
-            "Position": {"x": 62, "y": -12, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "ADIK",
-            "Position": {"x": 19, "y": -6, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Generic",
-            "Position": {"x": -28, "y": 0.5, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Top Brand",
-            "Position": {"x": 92, "y": 15, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Sports",
-            "Position": {"x": 61, "y": 15, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Yushka",
-            "Position": {"x": 70, "y": 32, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Rasmussen",
-            "Position": {"x": 19.5, "y": 26, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Avokado",
-            "Position": {"x": -37, "y": 26, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Boots 4 Life",
-            "Position": {"x": 91, "y": 55, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Texho",
-            "Position": {"x": 61, "y": 50, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Dom",
-            "Position": {"x": 6, "y": 49, "z": 26},
-            "FontSize": 10
-        },
-        {
-            "Text": "Father & Sons",
-            "Position": {"x": 38, "y": -170, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Tarkovstar",
-            "Position": {"x": 69, "y": -150, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Eastland",
-            "Position": {"x": 26, "y": -149, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Arena",
-            "Position": {"x": 71, "y": -130, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "ТАРЗДРАВ",
-            "Position": {"x": 54, "y": -128, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "МЕБЕЛЬ МК",
-            "Position": {"x": 20, "y": -128, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Intourist",
-            "Position": {"x": 69, "y": -116, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Burger Spot",
-            "Position": {"x": -27, "y": -103, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "FCK",
-            "Position": {"x": 70, "y": -94, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "McDaniels",
-            "Position": {"x": 70, "y": -87, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Tarducks",
-            "Position": {"x": 64, "y": -69, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Coffee Joy",
-            "Position": {"x": 43, "y": -69, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Jacob & Jacob",
-            "Position": {"x": 15, "y": -74, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "ПУШКИН",
-            "Position": {"x": -34, "y": -79, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Sushi Huyushi",
-            "Position": {"x": 64, "y": -34, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Underway",
-            "Position": {"x": -17, "y": -32, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Burger House",
-            "Position": {"x": 67, "y": -23.5, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Philly Cute",
-            "Position": {"x": -34, "y": -24, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Shiccos",
-            "Position": {"x": 67, "y": -16, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "УЗЕЙ ИСТОРИИ",
-            "Position": {"x": 17, "y": 0, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Papillon",
-            "Position": {"x": 92, "y": 17, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "ЗАКРЫТО НА РЕМОНТ",
-            "Position": {"x": 58, "y": 13, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "НА-СВЯЗИ",
-            "Position": {"x": 70, "y": 27, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "СКОРО ОТКРЫТИЕ",
-            "Position": {"x": 54, "y": 24, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Figaro",
-            "Position": {"x": 19, "y": 26, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "АПТЕКА",
-            "Position": {"x": 71, "y": 47, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "SARA",
-            "Position": {"x": 53, "y": 47, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Urban Clothes",
-            "Position": {"x": 26, "y": 46, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "TECHLIGHT",
-            "Position": {"x": 91, "y": 54, "z": 35},
-            "FontSize": 10
-        },
-        {
-            "Text": "Fashion Store",
-            "Position": {"x": 39, "y": 67, "z": 35},
-            "FontSize": 10
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -364,
+          "y": -443
+        },
+        "Max": {
+          "x": 534,
+          "y": 452
         }
-    ],
-    "StaticMarkers": [
-        {
-            "Text": "Main Power Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -201.108, "y": -357.8291, "z": 23.1857 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "Saferoom Urinal Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -51.547, "y": -125.440712, "z": 36.86 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "2nd Floor Alarm Console",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -46.555, "y": -55.202, "z": 37.347 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "1st Floor Alarm Console",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -67.1342545, "y": 53.7422676, "z": 27.9506 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "Inside Saferoom Exfil Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -50.6210022, "y": 45.617, "z": 22.632 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "Object 14 Container Switch",
-            "ImagePath": "Markers/lever.png",
-            "Position": { "x": -47.698, "y": 42.6198, "z": 22.891 },
-            "Category": "Switch"
-        },
-        {
-            "Text": "Emercom Checkpoint",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -321.56, "y": 266.74, "z": 21.94955 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Railway Exfil",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 472.32, "y": -429.74, "z": 20.92 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Power Station V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -251.92, "y": -367.13, "z": 21.72 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Scav Camp (Co-Op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 278.69, "y": -30.97, "z": 21.94955 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Hole in the Fence",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -219.92, "y": -37.02, "z": 22.79 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Saferoom Exfil",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -47.73, "y": 44.055, "z": 22.97 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 274.3, "y": 395.93, "z": 23.2799988 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Streets of Tarkov",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 263.1, "y": -444.4, "z": 24.1 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Power Substation Utility Cabin",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -223.115845, "y": -271.3501, "z": 22.55412 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5d49886f77455f9731921"
-        },
-        {
-            "Text": "ULTRA Medical Storage",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 67.55801, "y": 40.891, "z": 37.60174 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5e42c71586f7747f245e1343"
-        },
-        {
-            "Text": "Kiba Arms Inner Grate",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -9.887001, "y": -33.76517, "z": 28.241 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5addaffe86f77470b455f900"
-        },
-        {
-            "Text": "Kiba Arms Outer Door",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -9.444001, "y": -33.709, "z": 28.241 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5d7d286f77450166e0a89"
-        },
-        {
-            "Text": "Object #11SR Saferoom",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -51.9328041, "y": 45.8337746, "z": 22.35359 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5e42c81886f7742a01529f57"
-        },
-        {
-            "Text": "Object #21WS",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 140.195663, "y": 263.315277, "z": 25.2079964 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5e42c83786f7742a021fdf3c"
-        },
-        {
-            "Text": "NecrusPharm Pharmacy",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 68.53804, "y": -255.424225, "z": 22.4947357 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5d64486f774079b080af8"
-        },
-        {
-            "Text": "Emercom Medical Unit",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 24.136982, "y": -112.8551, "z": 28.4790325 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5db3786f7743568421cce"
-        },
-        {
-            "Text": "Emercom Medical Unit",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 34.14116, "y": -108.287651, "z": 28.4790325 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5db3786f7743568421cce"
-        },
-        {
-            "Text": "Emercom Medical Unit",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 6.732233, "y": -107.304314, "z": 28.4790344 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5db3786f7743568421cce"
-        },
-        {
-            "Text": "OLI Logistics Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 83.1990051, "y": 115.673004, "z": 28.1199989 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5cfbd86f7742c825d6104"
-        },
-        {
-            "Text": "OLI Outlet Utility Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -102.823967, "y": 80.48102, "z": 28.12 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5d20586f77449be26d877"
-        },
-        {
-            "Text": "OLI Admin Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 85.18402, "y": 104.638214, "z": 28.1199989 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "5ad5ccd186f774446d5706e9"
-        },
-        {
-            "Text": "Grumpy's hideout",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -199.4, "y": -348.68, "z": 21 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "664d3dd590294949fe2d81b7"
+      },
+      "GameBounds": [
+        { // mall
+          "Min": {
+            "x": -222,
+            "y": -327,
+            "z": 25
+          },
+          "Max": {
+            "x": 120,
+            "y": 218,
+            "z": 34
+          }
         }
-    ]
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/Interchange_TarkovDev/Layers/interchange_layer_2.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -364,
+          "y": -443
+        },
+        "Max": {
+          "x": 534,
+          "y": 452
+        }
+      },
+      "GameBounds": [
+        { // mall
+          "Min": {
+            "x": -222,
+            "y": -443,
+            "z": 34
+          },
+          "Max": {
+            "x": 120,
+            "y": 218,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Power Station",
+      "Position": {
+        "x": -186.4,
+        "y": -318.7,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Go Kart",
+      "Position": {
+        "x": 155,
+        "y": -253,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Four Camp",
+      "Position": {
+        "x": 158,
+        "y": -78.5,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Cargo Containers",
+      "Position": {
+        "x": 68.2,
+        "y": 312.9,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Wall Break",
+      "Position": {
+        "x": -260.2,
+        "y": 123.8,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Ramps",
+      "Position": {
+        "x": -175.5,
+        "y": 145.1,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "OLI Tower",
+      "Position": {
+        "x": 202.3,
+        "y": 219.4,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "IDEA Tower",
+      "Position": {
+        "x": 46.5,
+        "y": -358.5,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Scav Camp",
+      "Position": {
+        "x": 263.2,
+        "y": -11.1,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Highway Construction",
+      "Position": {
+        "x": 373.5,
+        "y": -391.2,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Garage A",
+      "Position": {
+        "x": 33,
+        "y": -222,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Garage B",
+      "Position": {
+        "x": 47,
+        "y": -112,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Garage C",
+      "Position": {
+        "x": 0,
+        "y": 47,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Garage D",
+      "Position": {
+        "x": 28,
+        "y": 138,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "IDEA",
+      "Position": {
+        "x": -34,
+        "y": -235,
+        "z": 26
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Goshan",
+      "Position": {
+        "x": -115,
+        "y": -45,
+        "z": 26
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "OLI",
+      "Position": {
+        "x": -28,
+        "y": 140,
+        "z": 26
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Nortex",
+      "Position": {
+        "x": 87,
+        "y": -165,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "TRend",
+      "Position": {
+        "x": 60,
+        "y": -152,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Mode7",
+      "Position": {
+        "x": 69.5,
+        "y": -134,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "TTS",
+      "Position": {
+        "x": 19,
+        "y": -129,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Book Store",
+      "Position": {
+        "x": -38,
+        "y": -129,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Dino Clothes",
+      "Position": {
+        "x": 91,
+        "y": -119,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "EMERCOM",
+      "Position": {
+        "x": 18,
+        "y": -103,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Kostin",
+      "Position": {
+        "x": -28,
+        "y": -103,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Bizarro",
+      "Position": {
+        "x": -65,
+        "y": -103,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Spiel",
+      "Position": {
+        "x": 92,
+        "y": -87,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Voyage",
+      "Position": {
+        "x": -18,
+        "y": -87,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Viking",
+      "Position": {
+        "x": 57,
+        "y": -66,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Mantis",
+      "Position": {
+        "x": 13,
+        "y": -66,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "German",
+      "Position": {
+        "x": -18,
+        "y": -72,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "The National",
+      "Position": {
+        "x": 57,
+        "y": -32,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Brutal",
+      "Position": {
+        "x": 13,
+        "y": -32,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Kiba",
+      "Position": {
+        "x": -18,
+        "y": -25,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Pretty Lights",
+      "Position": {
+        "x": -34,
+        "y": -20,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Telespot",
+      "Position": {
+        "x": 92,
+        "y": -18,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Revis",
+      "Position": {
+        "x": 62,
+        "y": -12,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "ADIK",
+      "Position": {
+        "x": 19,
+        "y": -6,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Generic",
+      "Position": {
+        "x": -28,
+        "y": 0.5,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Top Brand",
+      "Position": {
+        "x": 92,
+        "y": 15,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Sports",
+      "Position": {
+        "x": 61,
+        "y": 15,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Yushka",
+      "Position": {
+        "x": 70,
+        "y": 32,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Rasmussen",
+      "Position": {
+        "x": 19.5,
+        "y": 26,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Avokado",
+      "Position": {
+        "x": -37,
+        "y": 26,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Boots 4 Life",
+      "Position": {
+        "x": 91,
+        "y": 55,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Texho",
+      "Position": {
+        "x": 61,
+        "y": 50,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Dom",
+      "Position": {
+        "x": 6,
+        "y": 49,
+        "z": 26
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Father & Sons",
+      "Position": {
+        "x": 38,
+        "y": -170,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Tarkovstar",
+      "Position": {
+        "x": 69,
+        "y": -150,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Eastland",
+      "Position": {
+        "x": 26,
+        "y": -149,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Arena",
+      "Position": {
+        "x": 71,
+        "y": -130,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "ТАРЗДРАВ",
+      "Position": {
+        "x": 54,
+        "y": -128,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "МЕБЕЛЬ МК",
+      "Position": {
+        "x": 20,
+        "y": -128,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Intourist",
+      "Position": {
+        "x": 69,
+        "y": -116,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Burger Spot",
+      "Position": {
+        "x": -27,
+        "y": -103,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "FCK",
+      "Position": {
+        "x": 70,
+        "y": -94,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "McDaniels",
+      "Position": {
+        "x": 70,
+        "y": -87,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Tarducks",
+      "Position": {
+        "x": 64,
+        "y": -69,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Coffee Joy",
+      "Position": {
+        "x": 43,
+        "y": -69,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Jacob & Jacob",
+      "Position": {
+        "x": 15,
+        "y": -74,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "ПУШКИН",
+      "Position": {
+        "x": -34,
+        "y": -79,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Sushi Huyushi",
+      "Position": {
+        "x": 64,
+        "y": -34,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Underway",
+      "Position": {
+        "x": -17,
+        "y": -32,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Burger House",
+      "Position": {
+        "x": 67,
+        "y": -23.5,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Philly Cute",
+      "Position": {
+        "x": -34,
+        "y": -24,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Shiccos",
+      "Position": {
+        "x": 67,
+        "y": -16,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "УЗЕЙ ИСТОРИИ",
+      "Position": {
+        "x": 17,
+        "y": 0,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Papillon",
+      "Position": {
+        "x": 92,
+        "y": 17,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "ЗАКРЫТО НА РЕМОНТ",
+      "Position": {
+        "x": 58,
+        "y": 13,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "НА-СВЯЗИ",
+      "Position": {
+        "x": 70,
+        "y": 27,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "СКОРО ОТКРЫТИЕ",
+      "Position": {
+        "x": 54,
+        "y": 24,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Figaro",
+      "Position": {
+        "x": 19,
+        "y": 26,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "АПТЕКА",
+      "Position": {
+        "x": 71,
+        "y": 47,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "SARA",
+      "Position": {
+        "x": 53,
+        "y": 47,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Urban Clothes",
+      "Position": {
+        "x": 26,
+        "y": 46,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "TECHLIGHT",
+      "Position": {
+        "x": 91,
+        "y": 54,
+        "z": 35
+      },
+      "FontSize": 10
+    },
+    {
+      "Text": "Fashion Store",
+      "Position": {
+        "x": 39,
+        "y": 67,
+        "z": 35
+      },
+      "FontSize": 10
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Main Power Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -201.108,
+        "y": -357.8291,
+        "z": 23.1857
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Saferoom Urinal Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -51.547,
+        "y": -125.440712,
+        "z": 36.86
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "2nd Floor Alarm Console",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -46.555,
+        "y": -55.202,
+        "z": 37.347
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "1st Floor Alarm Console",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -67.1342545,
+        "y": 53.7422676,
+        "z": 27.9506
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Inside Saferoom Exfil Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -50.6210022,
+        "y": 45.617,
+        "z": 22.632
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Object 14 Container Switch",
+      "ImagePath": "Markers/lever.png",
+      "Position": {
+        "x": -47.698,
+        "y": 42.6198,
+        "z": 22.891
+      },
+      "Category": "Switch"
+    },
+    {
+      "Text": "Emercom Checkpoint",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -321.56,
+        "y": 266.74,
+        "z": 21.94955
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Railway Exfil",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 472.32,
+        "y": -429.74,
+        "z": 20.92
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Power Station V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -251.92,
+        "y": -367.13,
+        "z": 21.72
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Scav Camp (Co-Op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 278.69,
+        "y": -30.97,
+        "z": 21.94955
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Hole in the Fence",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -219.92,
+        "y": -37.02,
+        "z": 22.79
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Saferoom Exfil",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -47.73,
+        "y": 44.055,
+        "z": 22.97
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Customs",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 274.3,
+        "y": 395.93,
+        "z": 23.2799988
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Streets of Tarkov",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 263.1,
+        "y": -444.4,
+        "z": 24.1
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Power Substation Utility Cabin",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -223.115845,
+        "y": -271.3501,
+        "z": 22.55412
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5d49886f77455f9731921"
+    },
+    {
+      "Text": "ULTRA Medical Storage",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 67.55801,
+        "y": 40.891,
+        "z": 37.60174
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5e42c71586f7747f245e1343"
+    },
+    {
+      "Text": "Kiba Arms Inner Grate",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -9.887001,
+        "y": -33.76517,
+        "z": 28.241
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5addaffe86f77470b455f900"
+    },
+    {
+      "Text": "Kiba Arms Outer Door",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -9.444001,
+        "y": -33.709,
+        "z": 28.241
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5d7d286f77450166e0a89"
+    },
+    {
+      "Text": "Object #11SR Saferoom",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -51.9328041,
+        "y": 45.8337746,
+        "z": 22.35359
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5e42c81886f7742a01529f57"
+    },
+    {
+      "Text": "Object #21WS",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 140.195663,
+        "y": 263.315277,
+        "z": 25.2079964
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5e42c83786f7742a021fdf3c"
+    },
+    {
+      "Text": "NecrusPharm Pharmacy",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 68.53804,
+        "y": -255.424225,
+        "z": 22.4947357
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5d64486f774079b080af8"
+    },
+    {
+      "Text": "Emercom Medical Unit",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 24.136982,
+        "y": -112.8551,
+        "z": 28.4790325
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5db3786f7743568421cce"
+    },
+    {
+      "Text": "Emercom Medical Unit",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 34.14116,
+        "y": -108.287651,
+        "z": 28.4790325
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5db3786f7743568421cce"
+    },
+    {
+      "Text": "Emercom Medical Unit",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 6.732233,
+        "y": -107.304314,
+        "z": 28.4790344
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5db3786f7743568421cce"
+    },
+    {
+      "Text": "OLI Logistics Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 83.1990051,
+        "y": 115.673004,
+        "z": 28.1199989
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5cfbd86f7742c825d6104"
+    },
+    {
+      "Text": "OLI Outlet Utility Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -102.823967,
+        "y": 80.48102,
+        "z": 28.12
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5d20586f77449be26d877"
+    },
+    {
+      "Text": "OLI Admin Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 85.18402,
+        "y": 104.638214,
+        "z": 28.1199989
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "5ad5ccd186f774446d5706e9"
+    },
+    {
+      "Text": "Grumpy's hideout",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -199.4,
+        "y": -348.68,
+        "z": 21
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "664d3dd590294949fe2d81b7"
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "place_SALE_03_KOSTIN",
+      "Position": {
+        "x": -24.67,
+        "y": 28.62,
+        "z": -103.52
+      },
+      "Bounds": {
+        "center": {
+          "x": -24.6699982,
+          "y": 28.62,
+          "z": -103.52
+        },
+        "size": {
+          "x": 26.9999981,
+          "y": 3.0,
+          "z": 9.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_WARBLOOD_04_2",
+      "Position": {
+        "x": 274.29,
+        "y": 22.85,
+        "z": 14.53
+      },
+      "Bounds": {
+        "center": {
+          "x": 274.29,
+          "y": 22.85,
+          "z": 14.53
+        },
+        "size": {
+          "x": 11.8552246,
+          "y": 3.0,
+          "z": 10.6416378
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.3325085,
+        "z": 0.0,
+        "w": 0.9431003
+      }
+    },
+    {
+      "Id": "place_merch_022_5",
+      "Position": {
+        "x": 109.16,
+        "y": 33.14955,
+        "z": -54.5599976
+      },
+      "Bounds": {
+        "center": {
+          "x": 109.16,
+          "y": 33.14955,
+          "z": -54.5599976
+        },
+        "size": {
+          "x": 4.695587,
+          "y": 43.1999969,
+          "z": 21.9537811
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_03",
+      "Position": {
+        "x": 42.5,
+        "y": 29.9,
+        "z": -216.4
+      },
+      "Bounds": {
+        "center": {
+          "x": 42.5,
+          "y": 29.9000015,
+          "z": -216.4
+        },
+        "size": {
+          "x": 14.3007126,
+          "y": 5.000002,
+          "z": 16.2624512
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "place_merch_022_6",
+      "Position": {
+        "x": -189.299988,
+        "y": 33.14955,
+        "z": -54.5599976
+      },
+      "Bounds": {
+        "center": {
+          "x": -189.299988,
+          "y": 33.14955,
+          "z": -54.5599976
+        },
+        "size": {
+          "x": 16.2528381,
+          "y": 43.1999969,
+          "z": 47.8175354
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_SALE_03_DINO",
+      "Position": {
+        "x": 94.39,
+        "y": 28.16,
+        "z": -120.64
+      },
+      "Bounds": {
+        "center": {
+          "x": 94.39,
+          "y": 28.16,
+          "z": -120.64
+        },
+        "size": {
+          "x": 8.876648,
+          "y": 2.0,
+          "z": 35.18991
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.715932667,
+        "z": 0.0,
+        "w": 0.698169351
+      }
+    },
+    {
+      "Id": "place_WARBLOOD_04_1",
+      "Position": {
+        "x": -208.36,
+        "y": 22.84,
+        "z": -74.42
+      },
+      "Bounds": {
+        "center": {
+          "x": -208.36,
+          "y": 22.84,
+          "z": -74.42
+        },
+        "size": {
+          "x": 11.4501343,
+          "y": 3.0,
+          "z": 9.215576
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.275255173,
+        "z": 0.0,
+        "w": 0.9613712
+      }
+    },
+    {
+      "Id": "new_year_2024_market_interchange",
+      "Position": {
+        "x": 173.420013,
+        "y": 21.3660011,
+        "z": -24.76001
+      },
+      "Bounds": {
+        "center": {
+          "x": 173.420013,
+          "y": 21.3660011,
+          "z": -24.76001
+        },
+        "size": {
+          "x": 35.6570129,
+          "y": 5.0,
+          "z": 35.65702
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "place_merch_022_3",
+      "Position": {
+        "x": -40.70999,
+        "y": 33.14955,
+        "z": -54.5599976
+      },
+      "Bounds": {
+        "center": {
+          "x": -40.70999,
+          "y": 33.14955,
+          "z": -54.5599937
+        },
+        "size": {
+          "x": 281.5,
+          "y": 43.1999969,
+          "z": 249.799988
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_skier_11_3",
+      "Position": {
+        "x": 8.095032,
+        "y": 27.553,
+        "z": -36.7020264
+      },
+      "Bounds": {
+        "center": {
+          "x": 8.095032,
+          "y": 27.553,
+          "z": -36.7020264
+        },
+        "size": {
+          "x": 2.06240129,
+          "y": 2.0,
+          "z": 2.06240082
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_merch_022_1",
+      "Position": {
+        "x": -19.3599854,
+        "y": 33.14955,
+        "z": -239.897888
+      },
+      "Bounds": {
+        "center": {
+          "x": -19.3599815,
+          "y": 33.14955,
+          "z": -239.897888
+        },
+        "size": {
+          "x": 224.299988,
+          "y": 43.1999969,
+          "z": 128.900009
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_merch_21_1",
+      "Position": {
+        "x": 109.867981,
+        "y": 22.33,
+        "z": 288.768
+      },
+      "Bounds": {
+        "center": {
+          "x": 109.867981,
+          "y": 22.33,
+          "z": 288.768
+        },
+        "size": {
+          "x": 5.65026855,
+          "y": 3.0,
+          "z": 4.40057373
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.2125504,
+        "z": 0.0,
+        "w": 0.9771501
+      }
+    },
+    {
+      "Id": "q_ny_kill_christmas_guys_int",
+      "Position": {
+        "x": 255.230011,
+        "y": 21.3660011,
+        "z": -58.97
+      },
+      "Bounds": {
+        "center": {
+          "x": 255.230011,
+          "y": 21.3660011,
+          "z": -58.97
+        },
+        "size": {
+          "x": 36.6310425,
+          "y": 5.0,
+          "z": 36.6310577
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0238777231,
+        "z": 0.0,
+        "w": 0.9997149
+      }
+    },
+    {
+      "Id": "place_merch_022_4",
+      "Position": {
+        "x": 103.490021,
+        "y": 33.14955,
+        "z": -54.5599976
+      },
+      "Bounds": {
+        "center": {
+          "x": 103.490021,
+          "y": 33.14955,
+          "z": -54.5599976
+        },
+        "size": {
+          "x": 6.66778564,
+          "y": 43.1999969,
+          "z": 29.5681763
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "new_year_2024_market_interchange",
+      "Position": {
+        "x": 173.420013,
+        "y": 21.3660011,
+        "z": -24.76001
+      },
+      "Bounds": {
+        "center": {
+          "x": 173.420013,
+          "y": 21.3660011,
+          "z": -24.76001
+        },
+        "size": {
+          "x": 35.6570129,
+          "y": 5.0,
+          "z": 35.65702
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "place_merch_21_2",
+      "Position": {
+        "x": 17.5570374,
+        "y": 22.834,
+        "z": -25.4960022
+      },
+      "Bounds": {
+        "center": {
+          "x": 17.5570374,
+          "y": 22.834,
+          "z": -25.4960022
+        },
+        "size": {
+          "x": 6.306904,
+          "y": 3.0,
+          "z": 6.079773
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.3600018,
+        "z": 0.0,
+        "w": 0.9329516
+      }
+    },
+    {
+      "Id": "place_SALE_03_TOPBRAND",
+      "Position": {
+        "x": 94.2,
+        "y": 28.2,
+        "z": 10.22
+      },
+      "Bounds": {
+        "center": {
+          "x": 94.2,
+          "y": 28.2,
+          "z": 10.2199993
+        },
+        "size": {
+          "x": 8.034134,
+          "y": 2.0,
+          "z": 35.0078
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.706761956,
+        "z": 0.0,
+        "w": 0.7074515
+      }
+    },
+    {
+      "Id": "place_merch_022_2",
+      "Position": {
+        "x": -19.3599854,
+        "y": 33.14955,
+        "z": 129.34
+      },
+      "Bounds": {
+        "center": {
+          "x": -19.3599815,
+          "y": 33.14955,
+          "z": 129.34
+        },
+        "size": {
+          "x": 224.299988,
+          "y": 43.1999969,
+          "z": 140.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_02",
+      "Position": {
+        "x": 159.9,
+        "y": 23.4,
+        "z": -246.7
+      },
+      "Bounds": {
+        "center": {
+          "x": 159.9,
+          "y": 23.4,
+          "z": -246.700012
+        },
+        "size": {
+          "x": 60.7159424,
+          "y": 12.1000023,
+          "z": 71.1131744
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "place_SALE_03_AVOKADO",
+      "Position": {
+        "x": -33.16,
+        "y": 28.631,
+        "z": 25.81
+      },
+      "Bounds": {
+        "center": {
+          "x": -33.16,
+          "y": 28.631,
+          "z": 25.81
+        },
+        "size": {
+          "x": 30.0,
+          "y": 3.0,
+          "z": 12.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "q_ny_hide_christmas_tree_int",
+      "Position": {
+        "x": 255.85,
+        "y": 21.3660011,
+        "z": -59.01001
+      },
+      "Bounds": {
+        "center": {
+          "x": 255.85,
+          "y": 21.3660011,
+          "z": -59.01001
+        },
+        "size": {
+          "x": 5.093872,
+          "y": 5.0,
+          "z": 5.093857
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "quest_zone_keeper6_safe_hide",
+      "Position": {
+        "x": -49.3209839,
+        "y": 21.80355,
+        "z": 45.028
+      },
+      "Bounds": {
+        "center": {
+          "x": -49.3209839,
+          "y": 21.80355,
+          "z": 45.028
+        },
+        "size": {
+          "x": 2.26416016,
+          "y": 1.0,
+          "z": 1.17919922
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0140645988,
+        "z": 0.0,
+        "w": 0.9999012
+      }
+    },
+    {
+      "Id": "place_merch_020_1",
+      "Position": {
+        "x": -50.388,
+        "y": 27.695,
+        "z": 25.076004
+      },
+      "Bounds": {
+        "center": {
+          "x": -50.388,
+          "y": 27.695,
+          "z": 25.076004
+        },
+        "size": {
+          "x": 2.06240082,
+          "y": 2.0,
+          "z": 3.09360123
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_merch_020_2",
+      "Position": {
+        "x": 179.855621,
+        "y": 22.3142071,
+        "z": -40.89569
+      },
+      "Bounds": {
+        "center": {
+          "x": 179.855621,
+          "y": 22.3142071,
+          "z": -40.89569
+        },
+        "size": {
+          "x": 4.666504,
+          "y": 2.0,
+          "z": 4.59210968
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.3937883,
+        "z": 0.0,
+        "w": 0.9192012
+      }
+    },
+    {
+      "Id": "quest_zone_keeper6_kiba_kill",
+      "Position": {
+        "x": -9.443756,
+        "y": 28.241,
+        "z": -33.70941
+      },
+      "Bounds": {
+        "center": {
+          "x": -9.443756,
+          "y": 28.2409973,
+          "z": -33.70941
+        },
+        "size": {
+          "x": 100.0,
+          "y": 19.9999981,
+          "z": 100.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_SALE_03_TREND",
+      "Position": {
+        "x": 64.17,
+        "y": 28.07,
+        "z": -155.4
+      },
+      "Bounds": {
+        "center": {
+          "x": 64.17,
+          "y": 28.07,
+          "z": -155.4
+        },
+        "size": {
+          "x": 25.0,
+          "y": 2.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_WARBLOOD_04_3",
+      "Position": {
+        "x": -172.62,
+        "y": 22.807,
+        "z": -359.48
+      },
+      "Bounds": {
+        "center": {
+          "x": -172.62,
+          "y": 22.807,
+          "z": -359.48
+        },
+        "size": {
+          "x": 12.3374023,
+          "y": 3.0,
+          "z": 9.635071
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.268758982,
+        "z": 0.0,
+        "w": 0.9632075
+      }
+    },
+    {
+      "Id": "q_ny_find_christmas_tree_int",
+      "Position": {
+        "x": 255.85,
+        "y": 21.3660011,
+        "z": -59.01001
+      },
+      "Bounds": {
+        "center": {
+          "x": 255.85,
+          "y": 21.3660011,
+          "z": -59.01001
+        },
+        "size": {
+          "x": 15.28157,
+          "y": 5.0,
+          "z": 15.2815819
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.009476203,
+        "z": 0.0,
+        "w": 0.9999551
+      }
+    },
+    {
+      "Id": "place_skier_12_1",
+      "Position": {
+        "x": -27.234375,
+        "y": 28.105,
+        "z": 2.3956604
+      },
+      "Bounds": {
+        "center": {
+          "x": -27.234375,
+          "y": 28.105,
+          "z": 2.3956604
+        },
+        "size": {
+          "x": 2.06240082,
+          "y": 2.0,
+          "z": 1.03120089
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "place_merch_21_3",
+      "Position": {
+        "x": -49.76779,
+        "y": 22.854,
+        "z": 59.03575
+      },
+      "Bounds": {
+        "center": {
+          "x": -49.76779,
+          "y": 22.854,
+          "z": 59.03575
+        },
+        "size": {
+          "x": 7.159981,
+          "y": 3.0,
+          "z": 5.92668152
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.276549459,
+        "z": 0.0,
+        "w": 0.9609998
+      }
+    },
+    {
+      "Id": "place_merch_022_7",
+      "Position": {
+        "x": 92.27002,
+        "y": 33.14955,
+        "z": -265.76
+      },
+      "Bounds": {
+        "center": {
+          "x": 92.27002,
+          "y": 33.14955,
+          "z": -265.76
+        },
+        "size": {
+          "x": 6.66778564,
+          "y": 43.1999969,
+          "z": 21.9702148
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_keeper6_kiba_hide",
+      "Position": {
+        "x": -19.50299,
+        "y": 27.57155,
+        "z": -22.401001
+      },
+      "Bounds": {
+        "center": {
+          "x": -19.50299,
+          "y": 27.57155,
+          "z": -22.401001
+        },
+        "size": {
+          "x": 2.29557037,
+          "y": 1.0,
+          "z": 2.29557037
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0140645988,
+        "z": 0.0,
+        "w": 0.9999012
+      }
+    },
+    {
+      "Id": "quest_zone_keeper6_cont_hide",
+      "Position": {
+        "x": 138.847015,
+        "y": 25.06355,
+        "z": 274.358
+      },
+      "Bounds": {
+        "center": {
+          "x": 138.847015,
+          "y": 25.06355,
+          "z": 274.358
+        },
+        "size": {
+          "x": 2.26416016,
+          "y": 2.0,
+          "z": 1.17919922
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0140645988,
+        "z": 0.0,
+        "w": 0.9999012
+      }
+    },
+    {
+      "Id": "Mark_transits_interchange",
+      "Position": {
+        "x": 261.52,
+        "y": 23.2883472,
+        "z": 402.45
+      },
+      "Bounds": {
+        "center": {
+          "x": 261.337677,
+          "y": 23.2883472,
+          "z": 401.018768
+        },
+        "size": {
+          "x": 9.231323,
+          "y": 2.39329147,
+          "z": 12.5140991
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.06330378,
+        "z": 0.0,
+        "w": 0.997994363
+      }
+    }
+  ]
 }

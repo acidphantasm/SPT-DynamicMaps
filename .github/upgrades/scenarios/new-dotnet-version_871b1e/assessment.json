@@ -1,0 +1,135 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net9.0",
+    "targetDisplayName": ".NETCoreApp,Version=v9.0"
+  },
+  "analysisStartTime": "2026-03-12T10:33:42.552615Z",
+  "analysisEndTime": "2026-03-12T10:33:43.0475711Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 2,
+      "issues": 1,
+      "incidents": 1,
+      "effort": 1
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 1,
+        "Optional": 0,
+        "Potential": 0,
+        "Information": 0
+      },
+      "category": {
+        "Project": 1
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "DynamicMaps.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "DynamicMaps",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net471"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 51,
+        "numberOfCodeFiles": 51,
+        "linesTotal": 8207,
+        "linesOfCode": 8207,
+        "totalApiScanned": 7774,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b635e0a0-e433-4a71-931d-37bdb261a3f8",
+          "ruleId": "Project.0002",
+          "projectPath": "DynamicMaps.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net471\nRecommended target framework: net9.0",
+              "protected": "Current target framework: net471\nRecommended target framework: net9.0"
+            },
+            "kind": "File",
+            "path": "DynamicMaps.csproj",
+            "snippet": "Current target framework: net471\nRecommended target framework: net9.0",
+            "protectedSnippet": "Current target framework: net471\nRecommended target framework: net9.0",
+            "properties": {
+              "CurrentTargetFramework": "net471",
+              "RecommendedTargetFramework": "net9.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "B:\\source\\SPT-DynamicMaps\\Server\\mpstark-dynamicmaps.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "properties": {
+        "appName": "mpstark-dynamicmaps",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 2,
+        "linesTotal": 417,
+        "linesOfCode": 384,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [],
+      "features": []
+    }
+  ],
+  "rules": {
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>DynamicMaps</AssemblyName>
     <Description>Dynamic in-game maps for SPT</Description>
     <LangVersion>latest</LangVersion>
@@ -9,12 +9,16 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDir>
-    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDebugDir>
+    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\Tarkov-SPT\</TarkovDir>
+    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\Tarkov-SPT\</TarkovDebugDir>
     <TarkovPluginsSPTDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovPluginsSPTDir>
     <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
     <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DynamicMaps.Common\DynamicMaps.Common.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

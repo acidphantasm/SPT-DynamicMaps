@@ -73,6 +73,7 @@ namespace DynamicMaps
 
         public void OnShowOutOfRaid(MapView map)
         {
+            var possibleInternalNames = map.CurrentMapDef.MapInternalNames;
             // do nothing
         }
 

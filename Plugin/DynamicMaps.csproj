@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDir>
-    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDebugDir>
+    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\Tarkov-SPT\</TarkovDir>
+    <TarkovDebugDir Condition=" '$(TarkovDebugDir)' == '' ">D:\Tarkov-SPT\</TarkovDebugDir>
     <TarkovPluginsSPTDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovPluginsSPTDir>
     <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
     <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>

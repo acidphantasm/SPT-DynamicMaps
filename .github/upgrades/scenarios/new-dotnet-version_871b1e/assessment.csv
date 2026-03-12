@@ -1,0 +1,2 @@
+Issue ID,Description,State,Severity,Story Points,Project Path,Location Kind,Path,Line,Column,Incident ID,Help Link,Assembly Name,Assembly Version,Assembly Public Key,Snippet
+Project.0002,Project's target framework(s) needs to be changed,Active,Mandatory,1,DynamicMaps.csproj,File,DynamicMaps.csproj,,,,,,,,Current target framework: net471 Recommended target framework: net9.0

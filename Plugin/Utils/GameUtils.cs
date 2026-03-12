@@ -2,14 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using SPT.Reflection.Utils;
 using Comfort.Common;
-using DynamicMaps.Config;
 using EFT;
 using EFT.Vehicle;
 using HarmonyLib;
-using UnityEngine.Profiling;
 using DynamicMaps.UI;
 
 namespace DynamicMaps.Utils

@@ -1,392 +1,3207 @@
 {
-    "DisplayName": "Lighthouse (TarkovData)",
-    "Author": "Shebuka",
-    "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
-    "MapInternalNames": [ "Lighthouse" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -545, "y": -998},
-        "Max": {"x": 512, "y": 721}
+  "DisplayName": "Lighthouse (TarkovData)",
+  "Author": "Shebuka",
+  "AuthorLink": "https://github.com/TarkovTracker/tarkovdata/",
+  "MapInternalNames": [ "Lighthouse" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -545,
+      "y": -998
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Lighthouse_TarkovData/Layers/lighthouse_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -545, "y": -998},
-                "Max": {"x": 512, "y": 721}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -545, "y": -998, "z": -100},
-                    "Max": {"x": 512, "y": 721, "z": 100}
-                }
-            ]
+    "Max": {
+      "x": 512,
+      "y": 721
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Lighthouse_TarkovData/Layers/lighthouse_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -545,
+          "y": -998
+        },
+        "Max": {
+          "x": 512,
+          "y": 721
         }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -545,
+            "y": -998,
+            "z": -100
+          },
+          "Max": {
+            "x": 512,
+            "y": 721,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Train Yard",
+      "Position": {
+        "x": -30,
+        "y": -882,
+        "z": 0
+      },
+      "FontSize": 16
     },
-    "Labels": [
-        {
-            "Text": "Train Yard",
-            "Position": {"x": -30, "y": -882, "z": 0},
-            "FontSize": 16
+    {
+      "Text": "Drug Lab",
+      "Position": {
+        "x": -120,
+        "y": -841,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Water Treatment",
+      "Position": {
+        "x": -65,
+        "y": -600,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Plant 1",
+      "Position": {
+        "x": 40,
+        "y": -618,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Plant 2",
+      "Position": {
+        "x": -98,
+        "y": -742,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Plant 3",
+      "Position": {
+        "x": -189,
+        "y": -665,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "Pipes",
+      "Position": {
+        "x": -182,
+        "y": -552,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Gunner Nest",
+      "Position": {
+        "x": 18,
+        "y": -453,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Island",
+      "Position": {
+        "x": -177,
+        "y": -356,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cabins",
+      "Position": {
+        "x": -278,
+        "y": -323,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Cottages",
+      "Position": {
+        "x": -162,
+        "y": -225,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Convenience",
+      "Position": {
+        "x": -55,
+        "y": -288,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Red Brick",
+      "Position": {
+        "x": -75,
+        "y": -284,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Hillside",
+      "Position": {
+        "x": -147,
+        "y": -247,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Boathouses",
+      "Position": {
+        "x": 125,
+        "y": -153,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Dead Tree",
+      "Position": {
+        "x": 62,
+        "y": -60,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Construction",
+      "Position": {
+        "x": 0,
+        "y": -188,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Pikes Peak Resort",
+      "Position": {
+        "x": -107,
+        "y": -53,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Grand Chalet",
+      "Position": {
+        "x": -133,
+        "y": 100,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Tennis Court",
+      "Position": {
+        "x": -70,
+        "y": 129,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Lightkeeper Island",
+      "Position": {
+        "x": 382,
+        "y": 496,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Crash Site",
+      "Position": {
+        "x": -125,
+        "y": 296,
+        "z": 0
+      },
+      "FontSize": 16
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Side Tunnel (Co-Op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -68.3,
+        "y": 318.11,
+        "z": 6.83
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Southern Road Landslide",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -281.3,
+        "y": 420.8,
+        "z": 11.86
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Hideout Under the Landing Stage",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 133.068,
+        "y": 286.842,
+        "z": -0.467
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Scav Hideout at the Grotto",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 180.66,
+        "y": -485.94,
+        "z": 1.18
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Industrial Zone Gates",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -152.56,
+        "y": -794.1,
+        "z": 12.25
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Road to Military Base V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -328.951263,
+        "y": -784.3581,
+        "z": 16.73
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Mountain Pass",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -172.35,
+        "y": -6.39,
+        "z": 41.89
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Path to Shoreline",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -364.4,
+        "y": -121.4,
+        "z": 28.758
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Northern Checkpoint",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 111.943,
+        "y": -991.981,
+        "z": 11.86
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Southern Road",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -295.8,
+        "y": 420.6,
+        "z": 11.86
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Armored Train",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 6.27001953,
+        "y": -873.78,
+        "z": 14.1133
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Shoreline",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -338.6,
+        "y": -168.9,
+        "z": 17.5
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Reserve",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": -294.6,
+        "y": -780.1,
+        "z": 15.2591143
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Woods",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 106.3,
+        "y": -958.1,
+        "z": 6.74
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Passage by the Lake (Secret)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -360.0,
+        "y": -564.87,
+        "z": 27.19
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    // {
+    //     "Text": "OuterSwitcher",
+    //     "ImagePath": "Markers/lever.png",
+    //     "Position": { "x": 445.3035, "y": 457.5599, "z": 33.391 },
+    //     "Category": "Switch"
+    // },
+    // {
+    //     "Text": "InnerSwitcher",
+    //     "ImagePath": "Markers/lever.png",
+    //     "Position": { "x": 444.6317, "y": 457.6145, "z": 33.391 },
+    //     "Category": "Switch"
+    // },
+    // {
+    //     "Text": "railing_door 1",
+    //     "ImagePath": "Markers/lever.png",
+    //     "Position": { "x": 445.426117, "y": 458.187561, "z": 32.1270027 },
+    //     "Category": "Switch"
+    // },
+    {
+      "Text": "Convenience Store Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -58.5892944,
+        "y": -292.9962,
+        "z": 6.55390024
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61a64428a8c6aa1b795f0ba1"
+    },
+    {
+      "Text": "Shared Bedroom",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 328.6411,
+        "y": 487.244019,
+        "z": 6.041643
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62987dfc402c7f69bf010923"
+    },
+    {
+      "Text": "Conference Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 333.8,
+        "y": 519.1168,
+        "z": 6.0705
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62987cb98081af308d7558c8"
+    },
+    {
+      "Text": "Merin Trunk",
+      "ImagePath": "Markers/car_door.png",
+      "Position": {
+        "x": 91.1099854,
+        "y": -130.918991,
+        "z": 8.382999
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61aa5b518f5e7a39b41416e2"
+    },
+    {
+      "Text": "Radar Station Commandant Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 355.204,
+        "y": 549.386963,
+        "z": 16.545002
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62987c658081af308d7558c6"
+    },
+    {
+      "Text": "Hillside House",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -147.043427,
+        "y": -243.326172,
+        "z": 12.66918
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61a6444b8c141d68246e2d2f"
+    },
+    {
+      "Text": "Operating Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 32.899,
+        "y": -636.186,
+        "z": 5.93999767
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62987da96188c076bc0d8c51"
+    },
+    {
+      "Text": "Water Treatment Plant Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -120.901962,
+        "y": -736.4641,
+        "z": 5.938982
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62987e26a77ec735f90a2995"
+    },
+    {
+      "Text": "Rogue USEC Barrack",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -176.519043,
+        "y": -654.164063,
+        "z": 5.939995
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "62a9cb937377a65d7b070cef"
+    },
+    {
+      "Text": "Police Car",
+      "ImagePath": "Markers/car_door.png",
+      "Position": {
+        "x": 83.79875,
+        "y": -553.2562,
+        "z": 6.61099958
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61aa5aed32a4743c3453d319"
+    },
+    {
+      "Text": "Rogue USEC Workshop",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -168.6745,
+        "y": -497.287079,
+        "z": 5.798998
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61aa81fcb225ac1ead7957c3"
+    },
+    {
+      "Text": "Rogue USEC Stash",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 47.3759,
+        "y": -553.3956,
+        "z": 5.67344
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "61a64492ba05ef10d62adcc1"
+    },
+    {
+      "Text": "Leon's hideout",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -74.92,
+        "y": -291.20,
+        "z": 9.05
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "664d3de85f2355673b09aed5"
+    },
+    {
+      "Text": "USEC cottage room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -110.72,
+        "y": -14.23,
+        "z": 20.9
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "66265d7be65f224b2e17c6aa"
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "qlight_extension_mechanik1_hide1",
+      "Position": {
+        "x": 32.5486145,
+        "y": 6.414898,
+        "z": -640.290344
+      },
+      "Bounds": {
+        "center": {
+          "x": 32.5486145,
+          "y": 6.414898,
+          "z": -640.290344
         },
-        {
-            "Text": "Drug Lab",
-            "Position": {"x": -120, "y": -841, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Water Treatment",
-            "Position": {"x": -65, "y": -600, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Plant 1",
-            "Position": {"x": 40, "y": -618, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Plant 2",
-            "Position": {"x": -98, "y": -742, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Plant 3",
-            "Position": {"x": -189, "y": -665, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Pipes",
-            "Position": {"x": -182, "y": -552, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Gunner Nest",
-            "Position": {"x": 18, "y": -453, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Island",
-            "Position": {"x": -177, "y": -356, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cabins",
-            "Position": {"x": -278, "y": -323, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Cottages",
-            "Position": {"x": -162, "y": -225, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Convenience",
-            "Position": {"x": -55, "y": -288, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Red Brick",
-            "Position": {"x": -75, "y": -284, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Hillside",
-            "Position": {"x": -147, "y": -247, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Boathouses",
-            "Position": {"x": 125, "y": -153, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Dead Tree",
-            "Position": {"x": 62, "y": -60, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Construction",
-            "Position": {"x": 0, "y": -188, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Pikes Peak Resort",
-            "Position": {"x": -107, "y": -53, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Grand Chalet",
-            "Position": {"x": -133, "y": 100, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Tennis Court",
-            "Position": {"x": -70, "y": 129, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Lightkeeper Island",
-            "Position": {"x": 382, "y": 496, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Crash Site",
-            "Position": {"x": -125, "y": 296, "z": 0},
-            "FontSize": 16
+        "size": {
+          "x": 5.695099,
+          "y": 3.04020023,
+          "z": 6.157593
         }
-    ],
-    "StaticMarkers": [
-        {
-            "Text": "Side Tunnel (Co-Op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -68.3, "y": 318.11, "z": 6.83 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "meh_42_radio_area_mark_2",
+      "Position": {
+        "x": -116.486389,
+        "y": 40.3649,
+        "z": 88.86865
+      },
+      "Bounds": {
+        "center": {
+          "x": -116.486389,
+          "y": 40.3649,
+          "z": 88.86865
         },
-        {
-            "Text": "Southern Road Landslide",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -281.3, "y": 420.8, "z": 11.86 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Hideout Under the Landing Stage",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 133.068, "y": 286.842, "z": -0.467 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Scav Hideout at the Grotto",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 180.66, "y": -485.94, "z": 1.18 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Industrial Zone Gates",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -152.56, "y": -794.1, "z": 12.25 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Road to Military Base V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -328.951263, "y": -784.3581, "z": 16.73 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Mountain Pass",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -172.35, "y": -6.39, "z": 41.89 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Path to Shoreline",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -364.4, "y": -121.4, "z": 28.758 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Northern Checkpoint",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 111.943, "y": -991.981, "z": 11.86 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Southern Road",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -295.8, "y": 420.6, "z": 11.86 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Armored Train",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 6.27001953, "y": -873.78, "z": 14.1133 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Shoreline",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -338.6, "y": -168.9, "z": 17.5 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Reserve",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -294.6, "y": -780.1, "z": 15.2591143 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Woods",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 106.3, "y": -958.1, "z": 6.74 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Passage by the Lake (Secret)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -360.0, "y": -564.87, "z": 27.19 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        // {
-        //     "Text": "OuterSwitcher",
-        //     "ImagePath": "Markers/lever.png",
-        //     "Position": { "x": 445.3035, "y": 457.5599, "z": 33.391 },
-        //     "Category": "Switch"
-        // },
-        // {
-        //     "Text": "InnerSwitcher",
-        //     "ImagePath": "Markers/lever.png",
-        //     "Position": { "x": 444.6317, "y": 457.6145, "z": 33.391 },
-        //     "Category": "Switch"
-        // },
-        // {
-        //     "Text": "railing_door 1",
-        //     "ImagePath": "Markers/lever.png",
-        //     "Position": { "x": 445.426117, "y": 458.187561, "z": 32.1270027 },
-        //     "Category": "Switch"
-        // },
-        {
-            "Text": "Convenience Store Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -58.5892944, "y": -292.9962, "z": 6.55390024 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61a64428a8c6aa1b795f0ba1"
-        },
-        {
-            "Text": "Shared Bedroom",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 328.6411, "y": 487.244019, "z": 6.041643 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62987dfc402c7f69bf010923"
-        },
-        {
-            "Text": "Conference Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 333.8, "y": 519.1168, "z": 6.0705 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62987cb98081af308d7558c8"
-        },
-        {
-            "Text": "Merin Trunk",
-            "ImagePath": "Markers/car_door.png",
-            "Position": { "x": 91.1099854, "y": -130.918991, "z": 8.382999 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61aa5b518f5e7a39b41416e2"
-        },
-        {
-            "Text": "Radar Station Commandant Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 355.204, "y": 549.386963, "z": 16.545002 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62987c658081af308d7558c6"
-        },
-        {
-            "Text": "Hillside House",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -147.043427, "y": -243.326172, "z": 12.66918 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61a6444b8c141d68246e2d2f"
-        },
-        {
-            "Text": "Operating Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 32.899, "y": -636.186, "z": 5.93999767 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62987da96188c076bc0d8c51"
-        },
-        {
-            "Text": "Water Treatment Plant Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -120.901962, "y": -736.4641, "z": 5.938982 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62987e26a77ec735f90a2995"
-        },
-        {
-            "Text": "Rogue USEC Barrack",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -176.519043, "y": -654.164063, "z": 5.939995 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "62a9cb937377a65d7b070cef"
-        },
-        {
-            "Text": "Police Car",
-            "ImagePath": "Markers/car_door.png",
-            "Position": { "x": 83.79875, "y": -553.2562, "z": 6.61099958 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61aa5aed32a4743c3453d319"
-        },
-        {
-            "Text": "Rogue USEC Workshop",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -168.6745, "y": -497.287079, "z": 5.798998 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61aa81fcb225ac1ead7957c3"
-        },
-        {
-            "Text": "Rogue USEC Stash",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 47.3759, "y": -553.3956, "z": 5.67344 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "61a64492ba05ef10d62adcc1"
-        },
-        {
-            "Text": "Leon's hideout",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -74.92, "y": -291.20, "z": 9.05 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "664d3de85f2355673b09aed5"
-        },
-        {
-            "Text": "USEC cottage room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -110.72, "y": -14.23, "z": 20.9 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0 },
-            "AssociatedItemId": "66265d7be65f224b2e17c6aa"
+        "size": {
+          "x": 4.08659363,
+          "y": 1.0,
+          "z": 2.59519958
         }
-    ]
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration5",
+      "Position": {
+        "x": -7.937393,
+        "y": 8.604898,
+        "z": -449.96933
+      },
+      "Bounds": {
+        "center": {
+          "x": -7.937393,
+          "y": 8.604898,
+          "z": -449.96933
+        },
+        "size": {
+          "x": 3.70000029,
+          "y": 2.79999971,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_find_light_merchant",
+      "Position": {
+        "x": 423.332581,
+        "y": 22.6448975,
+        "z": 476.890625
+      },
+      "Bounds": {
+        "center": {
+          "x": 423.332581,
+          "y": 22.6448975,
+          "z": 476.890625
+        },
+        "size": {
+          "x": 79.76221,
+          "y": 37.4,
+          "z": 81.70529
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.235333636,
+        "z": 0.0,
+        "w": 0.971914649
+      }
+    },
+    {
+      "Id": "qlight_pc1_ucot_kill",
+      "Position": {
+        "x": -108.867393,
+        "y": 22.2448978,
+        "z": -2.30932617
+      },
+      "Bounds": {
+        "center": {
+          "x": -108.867386,
+          "y": 22.2449,
+          "z": -2.30932617
+        },
+        "size": {
+          "x": 170.05368,
+          "y": 50.0000076,
+          "z": 362.995453
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.10491854,
+        "z": 0.0,
+        "w": 0.994480848
+      }
+    },
+    {
+      "Id": "zone_rick_and_morty",
+      "Position": {
+        "x": 97.11299,
+        "y": 24.225,
+        "z": 115.724731
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.01283,
+          "y": 24.3855228,
+          "z": 115.74054
+        },
+        "size": {
+          "x": 1.29550171,
+          "y": 1.23656082,
+          "z": 1.1693573
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.172548249,
+        "z": 0.0,
+        "w": 0.985001147
+      }
+    },
+    {
+      "Id": "w_race_cam2",
+      "Position": {
+        "x": -144.7034,
+        "y": 5.00189972,
+        "z": -757.6273
+      },
+      "Bounds": {
+        "center": {
+          "x": -144.7034,
+          "y": 5.00189972,
+          "z": -757.6273
+        },
+        "size": {
+          "x": 2.10372925,
+          "y": 2.00232315,
+          "z": 2.98120117
+        }
+      },
+      "Rotation": {
+        "x": 0.00214280444,
+        "y": -0.057138674,
+        "z": 0.03741414,
+        "w": 0.9976627
+      }
+    },
+    {
+      "Id": "q_ny_find_christmas_tree_light",
+      "Position": {
+        "x": 114.322617,
+        "y": 2.81489944,
+        "z": 268.110718
+      },
+      "Bounds": {
+        "center": {
+          "x": 114.322617,
+          "y": 2.81489944,
+          "z": 268.110718
+        },
+        "size": {
+          "x": 15.9817505,
+          "y": 5.0,
+          "z": 15.9817505
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.03389342,
+        "z": 0.0,
+        "w": 0.9994255
+      }
+    },
+    {
+      "Id": "zone_bonfire",
+      "Position": {
+        "x": 97.62605,
+        "y": 3.65999985,
+        "z": -165.789978
+      },
+      "Bounds": {
+        "center": {
+          "x": 97.58156,
+          "y": 3.928978,
+          "z": -165.644043
+        },
+        "size": {
+          "x": 1.94134521,
+          "y": 1.20648384,
+          "z": 2.12121582
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -180.4074,
+        "y": 5.1948967,
+        "z": -630.7793
+      },
+      "Bounds": {
+        "center": {
+          "x": -180.4074,
+          "y": 5.1948967,
+          "z": -630.7793
+        },
+        "size": {
+          "x": 3.584198,
+          "y": 2.11351871,
+          "z": 1.92932129
+        }
+      },
+      "Rotation": {
+        "x": 0.00397647964,
+        "y": -0.106034227,
+        "z": 0.03726389,
+        "w": 0.9936561
+      }
+    },
+    {
+      "Id": "place_flyers4",
+      "Position": {
+        "x": -94.50939,
+        "y": 0.6609001,
+        "z": -555.3173
+      },
+      "Bounds": {
+        "center": {
+          "x": -94.50939,
+          "y": 0.6609001,
+          "z": -555.3173
+        },
+        "size": {
+          "x": 3.55967712,
+          "y": 2.11167669,
+          "z": 2.81005859
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0374754481,
+        "w": 0.999297559
+      }
+    },
+    {
+      "Id": "kill_in_forest_lighthouse",
+      "Position": {
+        "x": -197.8674,
+        "y": 8.064898,
+        "z": -366.809326
+      },
+      "Bounds": {
+        "center": {
+          "x": -197.8674,
+          "y": 8.064898,
+          "z": -366.809326
+        },
+        "size": {
+          "x": 237.342712,
+          "y": 50.00001,
+          "z": 136.553345
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.01745245,
+        "z": 0.0,
+        "w": 0.99984777
+      }
+    },
+    {
+      "Id": "qlight_find_scav_group1",
+      "Position": {
+        "x": -70.35739,
+        "y": 26.779995,
+        "z": 132.230652
+      },
+      "Bounds": {
+        "center": {
+          "x": -70.35739,
+          "y": 26.779995,
+          "z": 132.230652
+        },
+        "size": {
+          "x": 17.2450447,
+          "y": 6.0,
+          "z": 8.849113
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "place_flyers4",
+      "Position": {
+        "x": -85.47239,
+        "y": 0.585899353,
+        "z": -562.1013
+      },
+      "Bounds": {
+        "center": {
+          "x": -85.47239,
+          "y": 0.585899353,
+          "z": -562.1013
+        },
+        "size": {
+          "x": 4.20628357,
+          "y": 2.16024232,
+          "z": 4.34106445
+        }
+      },
+      "Rotation": {
+        "x": 0.0194217265,
+        "y": -0.51788795,
+        "z": 0.0320500545,
+        "w": 0.8546272
+      }
+    },
+    {
+      "Id": "meh_53_wificamera_area_mark_4",
+      "Position": {
+        "x": -77.32939,
+        "y": 12.0148983,
+        "z": -790.0833
+      },
+      "Bounds": {
+        "center": {
+          "x": -77.32939,
+          "y": 12.0148983,
+          "z": -790.0833
+        },
+        "size": {
+          "x": 3.66635132,
+          "y": 2.53000069,
+          "z": 2.40869141
+        }
+      },
+      "Rotation": {
+        "x": 6.40316055E-12,
+        "y": 0.999923348,
+        "z": -2.83907464E-11,
+        "w": -0.0123855248
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -177.8454,
+        "y": 5.221897,
+        "z": -704.3413
+      },
+      "Bounds": {
+        "center": {
+          "x": -177.8454,
+          "y": 5.221897,
+          "z": -704.3413
+        },
+        "size": {
+          "x": 1.93765259,
+          "y": 1.98984718,
+          "z": 1.35839844
+        }
+      },
+      "Rotation": {
+        "x": -0.0009702188,
+        "y": 0.0258714017,
+        "z": 0.0374628939,
+        "w": 0.9989626
+      }
+    },
+    {
+      "Id": "meh_42_radio_area_mark_3",
+      "Position": {
+        "x": 71.11261,
+        "y": 10.1648979,
+        "z": 392.52063
+      },
+      "Bounds": {
+        "center": {
+          "x": 71.11261,
+          "y": 10.1648979,
+          "z": 392.52063
+        },
+        "size": {
+          "x": 19.7588348,
+          "y": 3.54969025,
+          "z": 19.6311646
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.232239321,
+        "z": 0.0,
+        "w": 0.9726587
+      }
+    },
+    {
+      "Id": "Path_mountains_2",
+      "Position": {
+        "x": -167.8174,
+        "y": 30.8948975,
+        "z": -52.0292969
+      },
+      "Bounds": {
+        "center": {
+          "x": -170.983826,
+          "y": 31.1504478,
+          "z": -54.7337646
+        },
+        "size": {
+          "x": 20.4506226,
+          "y": 8.702263,
+          "z": 21.2864685
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_zone_place_c22_harley_2",
+      "Position": {
+        "x": -116.554321,
+        "y": 18.5808983,
+        "z": -19.4499512
+      },
+      "Bounds": {
+        "center": {
+          "x": -116.554321,
+          "y": 18.5808983,
+          "z": -19.4499512
+        },
+        "size": {
+          "x": 2.05332947,
+          "y": 1.5,
+          "z": 3.15596771
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.191282749,
+        "z": 0.0,
+        "w": 0.981535
+      }
+    },
+    {
+      "Id": "meh_42_radio_area_mark_4",
+      "Position": {
+        "x": 127.572617,
+        "y": 6.994898,
+        "z": 293.000732
+      },
+      "Bounds": {
+        "center": {
+          "x": 127.572617,
+          "y": 6.994898,
+          "z": 293.000732
+        },
+        "size": {
+          "x": 4.21443939,
+          "y": 2.16085434,
+          "z": 2.80999756
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0374754481,
+        "w": 0.999297559
+      }
+    },
+    {
+      "Id": "w_race_cam2",
+      "Position": {
+        "x": -136.7974,
+        "y": 5.22489929,
+        "z": -757.7793
+      },
+      "Bounds": {
+        "center": {
+          "x": -136.7974,
+          "y": 5.22489929,
+          "z": -757.7793
+        },
+        "size": {
+          "x": 3.361786,
+          "y": 2.0968132,
+          "z": 3.05078125
+        }
+      },
+      "Rotation": {
+        "x": 0.0162456371,
+        "y": -0.4331962,
+        "z": 0.0337711275,
+        "w": 0.9005202
+      }
+    },
+    {
+      "Id": "Path_mountains_4",
+      "Position": {
+        "x": -185.20697,
+        "y": 23.3648987,
+        "z": -177.929321
+      },
+      "Bounds": {
+        "center": {
+          "x": -182.5892,
+          "y": 23.8053246,
+          "z": -177.429016
+        },
+        "size": {
+          "x": 6.031189,
+          "y": 3.01335526,
+          "z": 5.46118164
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_fuel_blood_bezovoz3",
+      "Position": {
+        "x": 29.0826111,
+        "y": 5.99489975,
+        "z": -423.3593
+      },
+      "Bounds": {
+        "center": {
+          "x": 29.0826111,
+          "y": 5.99489975,
+          "z": -423.3593
+        },
+        "size": {
+          "x": 13.3662434,
+          "y": 3.000002,
+          "z": 9.696594
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.491678745,
+        "z": 0.0,
+        "w": 0.870776653
+      }
+    },
+    {
+      "Id": "Path_mountains_1",
+      "Position": {
+        "x": -143.55304,
+        "y": 29.8679886,
+        "z": -6.61932373
+      },
+      "Bounds": {
+        "center": {
+          "x": -143.365448,
+          "y": 30.1140938,
+          "z": -8.320801
+        },
+        "size": {
+          "x": 5.149109,
+          "y": 4.829384,
+          "z": 12.8094521
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "w_race_cam1",
+      "Position": {
+        "x": 35.2566071,
+        "y": 5.263897,
+        "z": -558.832336
+      },
+      "Bounds": {
+        "center": {
+          "x": 35.2566071,
+          "y": 5.263897,
+          "z": -558.832336
+        },
+        "size": {
+          "x": 3.24120331,
+          "y": 2.087757,
+          "z": 2.24768066
+        }
+      },
+      "Rotation": {
+        "x": 0.02931946,
+        "y": -0.781814933,
+        "z": 0.0233404916,
+        "w": 0.6223834
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 138.0736,
+        "y": 3.61389923,
+        "z": -195.50531
+      },
+      "Bounds": {
+        "center": {
+          "x": 138.0736,
+          "y": 3.61389923,
+          "z": -195.50531
+        },
+        "size": {
+          "x": 2.79650879,
+          "y": 1.01838112,
+          "z": 1.41000366
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.008728533,
+        "w": 0.9999619
+      }
+    },
+    {
+      "Id": "w_race_cam1",
+      "Position": {
+        "x": 34.1446075,
+        "y": 4.58789825,
+        "z": -582.212341
+      },
+      "Bounds": {
+        "center": {
+          "x": 34.1446075,
+          "y": 4.58789825,
+          "z": -582.212341
+        },
+        "size": {
+          "x": 1.79464722,
+          "y": 1.9791069,
+          "z": 2.81005859
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0374754481,
+        "w": 0.999297559
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -181.4654,
+        "y": 5.10989761,
+        "z": -617.019348
+      },
+      "Bounds": {
+        "center": {
+          "x": -181.4654,
+          "y": 5.10989761,
+          "z": -617.019348
+        },
+        "size": {
+          "x": 1.94662476,
+          "y": 1.99052238,
+          "z": 1.5748291
+        }
+      },
+      "Rotation": {
+        "x": 0.00397647964,
+        "y": -0.106034227,
+        "z": 0.03726389,
+        "w": 0.9936561
+      }
+    },
+    {
+      "Id": "meh_53_wificamera_area_mark_3",
+      "Position": {
+        "x": 83.14261,
+        "y": 6.1548996,
+        "z": -557.7993
+      },
+      "Bounds": {
+        "center": {
+          "x": 83.14261,
+          "y": 6.1548996,
+          "z": -557.7993
+        },
+        "size": {
+          "x": 5.82846069,
+          "y": 2.53000069,
+          "z": 5.93652344
+        }
+      },
+      "Rotation": {
+        "x": -5.51388449E-12,
+        "y": 0.9210428,
+        "z": -2.85767764E-11,
+        "w": 0.389461577
+      }
+    },
+    {
+      "Id": "Marafon_kill_village_lighthouse",
+      "Position": {
+        "x": -72.8853149,
+        "y": 5.777012,
+        "z": -286.249237
+      },
+      "Bounds": {
+        "center": {
+          "x": -169.740082,
+          "y": 11.143177,
+          "z": -281.348816
+        },
+        "size": {
+          "x": 370.267456,
+          "y": 30.8699951,
+          "z": 269.1499
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "meh_50_visit_area_check_1",
+      "Position": {
+        "x": 442.2326,
+        "y": 24.1148987,
+        "z": 460.690674
+      },
+      "Bounds": {
+        "center": {
+          "x": 442.2326,
+          "y": 24.1148987,
+          "z": 460.690674
+        },
+        "size": {
+          "x": 24.85498,
+          "y": 11.711998,
+          "z": 25.61499
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "meh_53_wificamera_area_mark_1",
+      "Position": {
+        "x": -12.217392,
+        "y": 7.324898,
+        "z": -306.1393
+      },
+      "Bounds": {
+        "center": {
+          "x": -12.217392,
+          "y": 7.324898,
+          "z": -306.1393
+        },
+        "size": {
+          "x": 9.61794949,
+          "y": 2.53000021,
+          "z": 8.701172
+        }
+      },
+      "Rotation": {
+        "x": -9.571256E-12,
+        "y": 0.944376647,
+        "z": -2.74849778E-11,
+        "w": -0.328865856
+      }
+    },
+    {
+      "Id": "qlight_extension_mechanik1_exploration1",
+      "Position": {
+        "x": 32.5486145,
+        "y": 6.414898,
+        "z": -640.290344
+      },
+      "Bounds": {
+        "center": {
+          "x": 32.5486145,
+          "y": 6.414898,
+          "z": -640.290344
+        },
+        "size": {
+          "x": 5.695099,
+          "y": 3.04020023,
+          "z": 6.157593
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration8",
+      "Position": {
+        "x": -130.3274,
+        "y": 15.3378983,
+        "z": -730.509338
+      },
+      "Bounds": {
+        "center": {
+          "x": -130.3274,
+          "y": 15.3378983,
+          "z": -730.509338
+        },
+        "size": {
+          "x": 3.70001221,
+          "y": 2.79999924,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_pr1_heli1_mark",
+      "Position": {
+        "x": -96.48739,
+        "y": 2.374897,
+        "z": -552.589355
+      },
+      "Bounds": {
+        "center": {
+          "x": -96.48739,
+          "y": 2.374897,
+          "z": -552.589355
+        },
+        "size": {
+          "x": 12.1298065,
+          "y": 4.63999939,
+          "z": 15.8181152
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.490064919,
+        "z": 0.0,
+        "w": 0.8716859
+      }
+    },
+    {
+      "Id": "em_quest5_2",
+      "Position": {
+        "x": 93.43562,
+        "y": 1.4408989,
+        "z": 460.737671
+      },
+      "Bounds": {
+        "center": {
+          "x": 93.43562,
+          "y": 1.4408989,
+          "z": 460.737671
+        },
+        "size": {
+          "x": 2.41651917,
+          "y": 1.11407638,
+          "z": 2.14849854
+        }
+      },
+      "Rotation": {
+        "x": 0.005623187,
+        "y": 0.14994444,
+        "z": 0.0370511822,
+        "w": 0.987984
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_exploration2",
+      "Position": {
+        "x": -97.73739,
+        "y": 15.3948975,
+        "z": -753.8093
+      },
+      "Bounds": {
+        "center": {
+          "x": -97.73739,
+          "y": 15.3948975,
+          "z": -753.8093
+        },
+        "size": {
+          "x": 69.70003,
+          "y": 4.200001,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.7071068,
+        "z": 0.0,
+        "w": 0.7071068
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration6",
+      "Position": {
+        "x": 29.7626038,
+        "y": 15.2848988,
+        "z": -591.3493
+      },
+      "Bounds": {
+        "center": {
+          "x": 29.7626038,
+          "y": 15.2848988,
+          "z": -591.3493
+        },
+        "size": {
+          "x": 3.70000076,
+          "y": 2.79999924,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Path_mountains_3",
+      "Position": {
+        "x": -181.27739,
+        "y": 34.9349,
+        "z": -119.039307
+      },
+      "Bounds": {
+        "center": {
+          "x": -181.104568,
+          "y": 36.6082344,
+          "z": -115.67511
+        },
+        "size": {
+          "x": 5.255829,
+          "y": 4.01519775,
+          "z": 7.571686
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_mark_vech4",
+      "Position": {
+        "x": -41.467392,
+        "y": 10.1948986,
+        "z": 16.4906616
+      },
+      "Bounds": {
+        "center": {
+          "x": -41.467392,
+          "y": 10.1948986,
+          "z": 16.4906616
+        },
+        "size": {
+          "x": 5.47845459,
+          "y": 3.0,
+          "z": 7.72287
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.113733806,
+        "z": 0.0,
+        "w": 0.99351126
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 133.032608,
+        "y": 3.32189941,
+        "z": -187.18335
+      },
+      "Bounds": {
+        "center": {
+          "x": 133.032608,
+          "y": 3.32189941,
+          "z": -187.18335
+        },
+        "size": {
+          "x": 3.21417236,
+          "y": 1.19130707,
+          "z": 3.01425171
+        }
+      },
+      "Rotation": {
+        "x": -0.00309225987,
+        "y": 0.07646727,
+        "z": -0.04028748,
+        "w": 0.9962531
+      }
+    },
+    {
+      "Id": "quest_zone_place_c22_harley_1",
+      "Position": {
+        "x": -140.796387,
+        "y": 40.3058968,
+        "z": 107.966675
+      },
+      "Bounds": {
+        "center": {
+          "x": -140.796387,
+          "y": 40.3058968,
+          "z": 107.966675
+        },
+        "size": {
+          "x": 2.6651,
+          "y": 1.5,
+          "z": 2.96075439
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.33380717,
+        "z": 0.0,
+        "w": 0.9426414
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration10",
+      "Position": {
+        "x": -186.747391,
+        "y": 15.3378983,
+        "z": -643.4723
+      },
+      "Bounds": {
+        "center": {
+          "x": -186.747391,
+          "y": 15.3378983,
+          "z": -643.4723
+        },
+        "size": {
+          "x": 4.0,
+          "y": 3.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration9",
+      "Position": {
+        "x": 37.6526031,
+        "y": 15.2848988,
+        "z": -652.7653
+      },
+      "Bounds": {
+        "center": {
+          "x": 37.6526031,
+          "y": 15.2848988,
+          "z": -652.7653
+        },
+        "size": {
+          "x": 3.699997,
+          "y": 2.79999924,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_medic1_hide1",
+      "Position": {
+        "x": -119.217392,
+        "y": 13.0148983,
+        "z": -841.129333
+      },
+      "Bounds": {
+        "center": {
+          "x": -119.217392,
+          "y": 13.0148983,
+          "z": -841.129333
+        },
+        "size": {
+          "x": 12.5,
+          "y": 6.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "new_year_2024_market_lighthouse",
+      "Position": {
+        "x": -43.24739,
+        "y": 8.064898,
+        "z": -268.059326
+      },
+      "Bounds": {
+        "center": {
+          "x": -43.24739,
+          "y": 8.064898,
+          "z": -268.059326
+        },
+        "size": {
+          "x": 24.65937,
+          "y": 5.0,
+          "z": 41.39856
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.03389342,
+        "z": 0.0,
+        "w": 0.9994255
+      }
+    },
+    {
+      "Id": "place_flyers4",
+      "Position": {
+        "x": -114.647392,
+        "y": 0.5548973,
+        "z": -549.1693
+      },
+      "Bounds": {
+        "center": {
+          "x": -114.647392,
+          "y": 0.5548973,
+          "z": -549.1693
+        },
+        "size": {
+          "x": 4.20628357,
+          "y": 2.16024232,
+          "z": 4.34106445
+        }
+      },
+      "Rotation": {
+        "x": 0.0194217265,
+        "y": -0.51788795,
+        "z": 0.0320500545,
+        "w": 0.8546272
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_exploration3",
+      "Position": {
+        "x": -196.6474,
+        "y": 15.3948975,
+        "z": -666.8093
+      },
+      "Bounds": {
+        "center": {
+          "x": -196.6474,
+          "y": 15.3948975,
+          "z": -666.8093
+        },
+        "size": {
+          "x": 7.0,
+          "y": 4.200001,
+          "z": 69.69995
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_ags_exploration7",
+      "Position": {
+        "x": -64.88739,
+        "y": 15.0748978,
+        "z": -729.6093
+      },
+      "Bounds": {
+        "center": {
+          "x": -64.88739,
+          "y": 15.0748978,
+          "z": -729.6093
+        },
+        "size": {
+          "x": 3.699997,
+          "y": 2.79999924,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Mark_transits_lighthouse",
+      "Position": {
+        "x": -338.6,
+        "y": 17.5,
+        "z": -168.900024
+      },
+      "Bounds": {
+        "center": {
+          "x": -338.34668,
+          "y": 17.53969,
+          "z": -165.530884
+        },
+        "size": {
+          "x": 121.928833,
+          "y": 27.5,
+          "z": 81.46744
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.2563803,
+        "z": 0.0,
+        "w": 0.966576
+      }
+    },
+    {
+      "Id": "qlight_mark_vech1",
+      "Position": {
+        "x": 13.1366119,
+        "y": 2.78689957,
+        "z": -503.2343
+      },
+      "Bounds": {
+        "center": {
+          "x": 13.1366119,
+          "y": 2.78689957,
+          "z": -503.2343
+        },
+        "size": {
+          "x": 3.71116829,
+          "y": 3.0,
+          "z": 6.32183838
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0612550639,
+        "z": 0.0,
+        "w": 0.998122156
+      }
+    },
+    {
+      "Id": "meh_53_wificamera_area_mark_2",
+      "Position": {
+        "x": -195.2824,
+        "y": 6.1548996,
+        "z": -431.1913
+      },
+      "Bounds": {
+        "center": {
+          "x": -195.2824,
+          "y": 6.1548996,
+          "z": -431.1913
+        },
+        "size": {
+          "x": 4.530365,
+          "y": 2.52999973,
+          "z": 2.41992188
+        }
+      },
+      "Rotation": {
+        "x": 3.042182E-12,
+        "y": 0.9945219,
+        "z": -2.89444319E-11,
+        "w": 0.10452842
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 148.0836,
+        "y": 3.71089935,
+        "z": -133.3443
+      },
+      "Bounds": {
+        "center": {
+          "x": 148.0836,
+          "y": 3.71089935,
+          "z": -133.3443
+        },
+        "size": {
+          "x": 1.2767334,
+          "y": 0.9918473,
+          "z": 1.41000366
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.008728533,
+        "w": 0.9999619
+      }
+    },
+    {
+      "Id": "kill_in_forest_lighthouse",
+      "Position": {
+        "x": -100.167389,
+        "y": 8.064898,
+        "z": 339.0907
+      },
+      "Bounds": {
+        "center": {
+          "x": -100.167389,
+          "y": 8.064896,
+          "z": 339.0907
+        },
+        "size": {
+          "x": 166.313019,
+          "y": 154.300034,
+          "z": 360.658081
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.01745245,
+        "z": 0.0,
+        "w": 0.99984777
+      }
+    },
+    {
+      "Id": "qlight_hunt_fr_find",
+      "Position": {
+        "x": -246.5874,
+        "y": 0.9148979,
+        "z": -328.259338
+      },
+      "Bounds": {
+        "center": {
+          "x": -246.5874,
+          "y": 0.9148979,
+          "z": -328.259338
+        },
+        "size": {
+          "x": 5.008545,
+          "y": 2.00000048,
+          "z": 3.01428223
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "qlight_pr1_heli1_find",
+      "Position": {
+        "x": -95.9473953,
+        "y": 2.4048996,
+        "z": -553.3493
+      },
+      "Bounds": {
+        "center": {
+          "x": -95.9473953,
+          "y": 2.4048996,
+          "z": -553.3493
+        },
+        "size": {
+          "x": 34.2094574,
+          "y": 6.000002,
+          "z": 38.4971924
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "qlight_fuel_blood_bezovoz2",
+      "Position": {
+        "x": -158.4574,
+        "y": 6.044899,
+        "z": -608.019348
+      },
+      "Bounds": {
+        "center": {
+          "x": -158.4574,
+          "y": 6.044899,
+          "z": -608.019348
+        },
+        "size": {
+          "x": 3.01950073,
+          "y": 3.0,
+          "z": 13.8041992
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.0007069479,
+        "z": 0.0,
+        "w": 0.999999762
+      }
+    },
+    {
+      "Id": "q_ny_kill_christmas_guys_light",
+      "Position": {
+        "x": 114.759995,
+        "y": 5.1548996,
+        "z": 267.61
+      },
+      "Bounds": {
+        "center": {
+          "x": 114.759995,
+          "y": 5.1548996,
+          "z": 267.61
+        },
+        "size": {
+          "x": 39.6523438,
+          "y": 10.0,
+          "z": 39.6523438
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.07180307,
+        "z": 0.0,
+        "w": 0.9974188
+      }
+    },
+    {
+      "Id": "qlight_mark_vech2",
+      "Position": {
+        "x": -65.23739,
+        "y": 3.35789871,
+        "z": -691.4793
+      },
+      "Bounds": {
+        "center": {
+          "x": -65.23739,
+          "y": 3.35789871,
+          "z": -691.4793
+        },
+        "size": {
+          "x": 6.264206,
+          "y": 3.000001,
+          "z": 3.57141113
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.6717069,
+        "z": 0.0,
+        "w": 0.74081707
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_exploration1",
+      "Position": {
+        "x": 53.232605,
+        "y": 15.3948975,
+        "z": -623.5593
+      },
+      "Bounds": {
+        "center": {
+          "x": 53.232605,
+          "y": 15.3948975,
+          "z": -623.5593
+        },
+        "size": {
+          "x": 6.90000153,
+          "y": 4.200001,
+          "z": 69.69995
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "kill_in_forest_lighthouse",
+      "Position": {
+        "x": -331.567383,
+        "y": 8.064898,
+        "z": -588.1093
+      },
+      "Bounds": {
+        "center": {
+          "x": -331.567383,
+          "y": 8.064896,
+          "z": -588.1093
+        },
+        "size": {
+          "x": 262.146,
+          "y": 150.000031,
+          "z": 360.9003
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.01745245,
+        "z": 0.0,
+        "w": 0.99984777
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -176.639389,
+        "y": 5.412899,
+        "z": -717.5913
+      },
+      "Bounds": {
+        "center": {
+          "x": -176.639389,
+          "y": 5.412899,
+          "z": -717.5913
+        },
+        "size": {
+          "x": 2.272522,
+          "y": 2.01499844,
+          "z": 1.960083
+        }
+      },
+      "Rotation": {
+        "x": -0.00949907,
+        "y": 0.253296524,
+        "z": 0.0362515859,
+        "w": 0.9666625
+      }
+    },
+    {
+      "Id": "w_race_cam2",
+      "Position": {
+        "x": -135.010391,
+        "y": 5.419899,
+        "z": -737.0763
+      },
+      "Bounds": {
+        "center": {
+          "x": -135.010391,
+          "y": 5.419899,
+          "z": -737.0763
+        },
+        "size": {
+          "x": 2.28250122,
+          "y": 2.015749,
+          "z": 2.07348633
+        }
+      },
+      "Rotation": {
+        "x": -0.0009702188,
+        "y": 0.0258714017,
+        "z": 0.0374628939,
+        "w": 0.9989626
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_utes_exploration11",
+      "Position": {
+        "x": -68.9773941,
+        "y": 15.4248981,
+        "z": -752.939331
+      },
+      "Bounds": {
+        "center": {
+          "x": -68.9773941,
+          "y": 15.4248981,
+          "z": -752.939331
+        },
+        "size": {
+          "x": 4.0,
+          "y": 3.0,
+          "z": 4.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "meh_44_eastLight_kill",
+      "Position": {
+        "x": -29.5673981,
+        "y": 23.3448982,
+        "z": 112.690674
+      },
+      "Bounds": {
+        "center": {
+          "x": -29.5673981,
+          "y": 23.3448982,
+          "z": 112.690674
+        },
+        "size": {
+          "x": 402.852234,
+          "y": 52.82699,
+          "z": 1001.1377
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "qlight_mark_vech3",
+      "Position": {
+        "x": 66.08261,
+        "y": 2.76489639,
+        "z": 516.5807
+      },
+      "Bounds": {
+        "center": {
+          "x": 66.08261,
+          "y": 2.76489639,
+          "z": 516.5807
+        },
+        "size": {
+          "x": 7.896488,
+          "y": 3.00000024,
+          "z": 5.977417
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.5870353,
+        "z": 0.0,
+        "w": 0.8095614
+      }
+    },
+    {
+      "Id": "w_race_cam2",
+      "Position": {
+        "x": -46.55539,
+        "y": 5.43689728,
+        "z": -747.722351
+      },
+      "Bounds": {
+        "center": {
+          "x": -46.55539,
+          "y": 5.43689728,
+          "z": -747.722351
+        },
+        "size": {
+          "x": 3.11207581,
+          "y": 2.07805824,
+          "z": 3.2520752
+        }
+      },
+      "Rotation": {
+        "x": -0.0113970349,
+        "y": 0.303906441,
+        "z": 0.0357003771,
+        "w": 0.951964557
+      }
+    },
+    {
+      "Id": "em_quest5_2",
+      "Position": {
+        "x": 86.14061,
+        "y": 1.48589706,
+        "z": 459.6847
+      },
+      "Bounds": {
+        "center": {
+          "x": 86.14061,
+          "y": 1.48589706,
+          "z": 459.6847
+        },
+        "size": {
+          "x": 1.92274475,
+          "y": 1.03767979,
+          "z": 3.76782227
+        }
+      },
+      "Rotation": {
+        "x": 0.00493528042,
+        "y": 0.1316012,
+        "z": 0.037149068,
+        "w": 0.990594149
+      }
+    },
+    {
+      "Id": "kill_in_forest_lighthouse",
+      "Position": {
+        "x": 133.73262,
+        "y": 8.064898,
+        "z": -681.1093
+      },
+      "Bounds": {
+        "center": {
+          "x": 133.73262,
+          "y": 8.064898,
+          "z": -681.1093
+        },
+        "size": {
+          "x": 117.388893,
+          "y": 50.00001,
+          "z": 503.185455
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.01745245,
+        "z": 0.0,
+        "w": 0.99984777
+      }
+    },
+    {
+      "Id": "w_race_cam1",
+      "Position": {
+        "x": 38.2026062,
+        "y": 5.3349,
+        "z": -669.4993
+      },
+      "Bounds": {
+        "center": {
+          "x": 38.2026062,
+          "y": 5.3349,
+          "z": -669.4993
+        },
+        "size": {
+          "x": 3.27440643,
+          "y": 2.09025,
+          "z": 2.33081055
+        }
+      },
+      "Rotation": {
+        "x": 0.0228129867,
+        "y": -0.6083172,
+        "z": 0.02973175,
+        "w": 0.792808831
+      }
+    },
+    {
+      "Id": "zone_ball",
+      "Position": {
+        "x": 117.081985,
+        "y": 0.8717003,
+        "z": -154.473389
+      },
+      "Bounds": {
+        "center": {
+          "x": 117.140152,
+          "y": 0.952201843,
+          "z": -154.487915
+        },
+        "size": {
+          "x": 0.9119873,
+          "y": 0.8295293,
+          "z": 0.814178467
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_welcome_silient_hill",
+      "Position": {
+        "x": 36.0599976,
+        "y": 7.38999939,
+        "z": -261.599976
+      },
+      "Bounds": {
+        "center": {
+          "x": 35.5617523,
+          "y": 8.328949,
+          "z": -261.521729
+        },
+        "size": {
+          "x": 3.85759735,
+          "y": 3.49512863,
+          "z": 5.36907959
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.102100231,
+        "z": 0.0,
+        "w": 0.994774163
+      }
+    },
+    {
+      "Id": "qlight_extension_medic1_exploration1",
+      "Position": {
+        "x": -119.217392,
+        "y": 13.0148983,
+        "z": -841.129333
+      },
+      "Bounds": {
+        "center": {
+          "x": -119.217392,
+          "y": 13.0148983,
+          "z": -841.129333
+        },
+        "size": {
+          "x": 12.3399963,
+          "y": 6.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_extension_bariga1_exploration1",
+      "Position": {
+        "x": 353.1126,
+        "y": 17.0239,
+        "z": 547.821655
+      },
+      "Bounds": {
+        "center": {
+          "x": 353.1126,
+          "y": 17.0239,
+          "z": 547.821655
+        },
+        "size": {
+          "x": 2.90997314,
+          "y": 3.24000072,
+          "z": 6.209961
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "qlight_fuel_blood_bezovoz1",
+      "Position": {
+        "x": -73.70739,
+        "y": 11.6148987,
+        "z": -875.5493
+      },
+      "Bounds": {
+        "center": {
+          "x": -73.70739,
+          "y": 11.6148987,
+          "z": -875.5493
+        },
+        "size": {
+          "x": 6.60273743,
+          "y": 3.0,
+          "z": 14.0982666
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.135800868,
+        "z": 0.0,
+        "w": 0.9907361
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -186.6834,
+        "y": 5.30989838,
+        "z": -705.6583
+      },
+      "Bounds": {
+        "center": {
+          "x": -186.6834,
+          "y": 5.30989838,
+          "z": -705.6583
+        },
+        "size": {
+          "x": 2.28250122,
+          "y": 2.015749,
+          "z": 2.07348633
+        }
+      },
+      "Rotation": {
+        "x": -0.0009702188,
+        "y": 0.0258714017,
+        "z": 0.0374628939,
+        "w": 0.9989626
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 139.77562,
+        "y": 3.4448967,
+        "z": -130.80835
+      },
+      "Bounds": {
+        "center": {
+          "x": 139.77562,
+          "y": 3.4448967,
+          "z": -130.80835
+        },
+        "size": {
+          "x": 2.84484863,
+          "y": 1.17549253,
+          "z": 2.60998535
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0374754481,
+        "w": 0.999297559
+      }
+    },
+    {
+      "Id": "qlight16_peace_terra",
+      "Position": {
+        "x": 136.8986,
+        "y": 0.790897369,
+        "z": 47.88867
+      },
+      "Bounds": {
+        "center": {
+          "x": 136.8986,
+          "y": 0.790897369,
+          "z": 47.88867
+        },
+        "size": {
+          "x": 1.70785522,
+          "y": 1.0,
+          "z": 1.35446167
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.7934316,
+        "z": 0.0,
+        "w": 0.6086595
+      }
+    },
+    {
+      "Id": "qlight_fuel_blood",
+      "Position": {
+        "x": -116.5974,
+        "y": 11.6748981,
+        "z": -921.8493
+      },
+      "Bounds": {
+        "center": {
+          "x": -116.5974,
+          "y": 11.6748981,
+          "z": -921.8493
+        },
+        "size": {
+          "x": 29.9047775,
+          "y": 5.0,
+          "z": 14.02771
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00382754649,
+        "z": 0.0,
+        "w": 0.9999927
+      }
+    },
+    {
+      "Id": "w_race_cam3",
+      "Position": {
+        "x": -184.643387,
+        "y": 4.87189865,
+        "z": -615.5453
+      },
+      "Bounds": {
+        "center": {
+          "x": -184.643387,
+          "y": 4.87189865,
+          "z": -615.5453
+        },
+        "size": {
+          "x": 1.94662476,
+          "y": 1.99052262,
+          "z": 1.5748291
+        }
+      },
+      "Rotation": {
+        "x": 0.00397647964,
+        "y": -0.106034227,
+        "z": 0.03726389,
+        "w": 0.9936561
+      }
+    },
+    {
+      "Id": "meh_48_transponder_area_check_1",
+      "Position": {
+        "x": 119.3026,
+        "y": 2.1548996,
+        "z": 520.7606
+      },
+      "Bounds": {
+        "center": {
+          "x": 119.3026,
+          "y": 2.1548996,
+          "z": 520.7606
+        },
+        "size": {
+          "x": 24.8550034,
+          "y": 11.712,
+          "z": 25.61499
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 145.318985,
+        "y": 3.80389786,
+        "z": -138.524353
+      },
+      "Bounds": {
+        "center": {
+          "x": 145.318985,
+          "y": 3.80389786,
+          "z": -138.524353
+        },
+        "size": {
+          "x": 2.79650879,
+          "y": 1.01838112,
+          "z": 1.41000366
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.008728533,
+        "w": 0.9999619
+      }
+    },
+    {
+      "Id": "qlight_br_secure_road",
+      "Position": {
+        "x": 0.0326080322,
+        "y": 7.844898,
+        "z": 47.6906738
+      },
+      "Bounds": {
+        "center": {
+          "x": 0.0326080322,
+          "y": 7.844898,
+          "z": 47.6906738
+        },
+        "size": {
+          "x": 101.997246,
+          "y": 10.0000019,
+          "z": 700.2827
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "kill_in_forest_lighthouse",
+      "Position": {
+        "x": 79.83261,
+        "y": 8.064898,
+        "z": 68.6906738
+      },
+      "Bounds": {
+        "center": {
+          "x": 79.83261,
+          "y": 8.064898,
+          "z": 68.6906738
+        },
+        "size": {
+          "x": 126.1138,
+          "y": 50.00001,
+          "z": 753.033264
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.01745245,
+        "z": 0.0,
+        "w": 0.99984777
+      }
+    },
+    {
+      "Id": "qlight_extension_prapor1_ags_exploration4",
+      "Position": {
+        "x": 43.69261,
+        "y": 10.9548988,
+        "z": -448.549316
+      },
+      "Bounds": {
+        "center": {
+          "x": 43.69261,
+          "y": 10.9548988,
+          "z": -448.549316
+        },
+        "size": {
+          "x": 3.699997,
+          "y": 2.79999924,
+          "z": 3.0300293
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "q_ny_hide_christmas_tree_light",
+      "Position": {
+        "x": 114.642593,
+        "y": 2.81489944,
+        "z": 268.110718
+      },
+      "Bounds": {
+        "center": {
+          "x": 114.642593,
+          "y": 2.81489944,
+          "z": 268.110718
+        },
+        "size": {
+          "x": 5.32725525,
+          "y": 5.0,
+          "z": 5.32727051
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.03389342,
+        "z": 0.0,
+        "w": 0.9994255
+      }
+    },
+    {
+      "Id": "em_quest5_1",
+      "Position": {
+        "x": 138.7246,
+        "y": 3.61189651,
+        "z": -192.570313
+      },
+      "Bounds": {
+        "center": {
+          "x": 138.7246,
+          "y": 3.61189651,
+          "z": -192.570313
+        },
+        "size": {
+          "x": 1.2767334,
+          "y": 0.9918473,
+          "z": 1.41000366
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.008728533,
+        "w": 0.9999619
+      }
+    },
+    {
+      "Id": "meh_42_radio_area_mark_1",
+      "Position": {
+        "x": -94.61739,
+        "y": 1.94389725,
+        "z": -550.689331
+      },
+      "Bounds": {
+        "center": {
+          "x": -94.61739,
+          "y": 1.94389725,
+          "z": -550.689331
+        },
+        "size": {
+          "x": 4.40180969,
+          "y": 2.003749,
+          "z": 4.944702
+        }
+      },
+      "Rotation": {
+        "x": -0.0304575711,
+        "y": 0.8917724,
+        "z": -0.015410102,
+        "w": 0.451195
+      }
+    },
+    {
+      "Id": "w_race_cam1",
+      "Position": {
+        "x": 40.6746063,
+        "y": 5.4249,
+        "z": -566.8103
+      },
+      "Bounds": {
+        "center": {
+          "x": 40.6746063,
+          "y": 5.4249,
+          "z": -566.8103
+        },
+        "size": {
+          "x": 2.4376297,
+          "y": 2.027401,
+          "z": 2.32580566
+        }
+      },
+      "Rotation": {
+        "x": 0.0361440368,
+        "y": -0.963794768,
+        "z": 0.009900415,
+        "w": 0.263998568
+      }
+    },
+    {
+      "Id": "qlight_pr1_heli2_kill",
+      "Position": {
+        "x": -51.16739,
+        "y": 14.544899,
+        "z": -573.209351
+      },
+      "Bounds": {
+        "center": {
+          "x": -51.16739,
+          "y": 14.544899,
+          "z": -573.209351
+        },
+        "size": {
+          "x": 228.861816,
+          "y": 24.3000031,
+          "z": 302.949463
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "qlight_find_crushed_heli",
+      "Position": {
+        "x": -126.697388,
+        "y": 22.4348984,
+        "z": 301.52063
+      },
+      "Bounds": {
+        "center": {
+          "x": -126.697388,
+          "y": 22.4348984,
+          "z": 301.52063
+        },
+        "size": {
+          "x": 20.0570068,
+          "y": 4.0,
+          "z": 20.0570068
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.00142687687,
+        "z": 0.0,
+        "w": 0.999999046
+      }
+    },
+    {
+      "Id": "w_race_cam2",
+      "Position": {
+        "x": -60.6273956,
+        "y": 5.0849,
+        "z": -748.209351
+      },
+      "Bounds": {
+        "center": {
+          "x": -60.6273956,
+          "y": 5.0849,
+          "z": -748.209351
+        },
+        "size": {
+          "x": 1.81958008,
+          "y": 1.98097992,
+          "z": 2.824707
+        }
+      },
+      "Rotation": {
+        "x": 0.000167161692,
+        "y": -0.004457428,
+        "z": 0.0374750756,
+        "w": 0.9992876
+      }
+    },
+    {
+      "Id": "quest_terminal_cottage",
+      "Position": {
+        "x": -111.47139,
+        "y": 21.6388988,
+        "z": -13.3423462
+      },
+      "Bounds": {
+        "center": {
+          "x": -110.866928,
+          "y": 21.972538,
+          "z": -14.3062744
+        },
+        "size": {
+          "x": 1.23207092,
+          "y": 2.167282,
+          "z": 1.14499474
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": -0.2763982,
+        "z": 0.0,
+        "w": 0.961043239
+      }
+    },
+    {
+      "Id": "Halloween_zone_for_antivirus(lighthouse)",
+      "Position": {
+        "x": -207.467392,
+        "y": -14.7551,
+        "z": -348.1093
+      },
+      "Bounds": {
+        "center": {
+          "x": -257.7971,
+          "y": -14.2979889,
+          "z": -321.984161
+        },
+        "size": {
+          "x": 311.5805,
+          "y": 28.3348465,
+          "z": 205.243118
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0471135378,
+        "z": 0.0,
+        "w": 0.998889565
+      }
+    }
+  ]
 }

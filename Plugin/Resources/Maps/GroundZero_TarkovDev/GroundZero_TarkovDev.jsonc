@@ -1,235 +1,1116 @@
 {
-    "DisplayName": "Ground Zero (TarkovDev)",
-    "Author": "Tarkov.dev",
-    "AuthorLink": "https://tarkov.dev",
-    "MapInternalNames": [ "Sandbox", "Sandbox_high" ],
-    "CoordinateRotation": 180,
-    "Bounds": {
-        "Min": {"x": -99, "y": -124},
-        "Max": {"x": 249, "y": 364}
+  "DisplayName": "Ground Zero (TarkovDev)",
+  "Author": "Tarkov.dev",
+  "AuthorLink": "https://tarkov.dev",
+  "MapInternalNames": [ "Sandbox", "Sandbox_high" ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -99,
+      "y": -124
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Garage": {
-            "Level": -1,
-            "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -99, "y": -124},
-                "Max": {"x": 249, "y": 364}
-            },
-            "GameBounds": [
-                {   // garage
-                    "Min": {"x": 43, "y": -100, "z": -100},
-                    "Max": {"x": 117, "y": 190, "z": 21}
-                },
-                {   // underpass
-                    "Min": {"x": 117, "y": 49, "z": -100},
-                    "Max": {"x": 143, "y": 80, "z": 21}
-                }
-            ]
+    "Max": {
+      "x": 249,
+      "y": 364
+    }
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Garage": {
+      "Level": -1,
+      "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_-1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -99,
+          "y": -124
         },
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -99, "y": -124},
-                "Max": {"x": 249, "y": 364}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -99, "y": -124, "z": -100},
-                    "Max": {"x": 249, "y": 364, "z": 100}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -99, "y": -124},
-                "Max": {"x": 249, "y": 364}
-            },
-            "GameBounds": [
-                {   // rest of 2nd floor
-                    "Min": {"x": -99, "y": -124, "z": 28},
-                    "Max": {"x": 249, "y": 364, "z": 32.3}
-                },
-                {   // m showroom
-                    "Min": {"x": 91, "y": 216, "z": 26},
-                    "Max": {"x": 98, "y": 228, "z": 31}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -99, "y": -124},
-                "Max": {"x": 249, "y": 364}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -99, "y": -124, "z": 32.3},
-                    "Max": {"x": 249, "y": 364, "z": 100}
-                }
-            ]
+        "Max": {
+          "x": 249,
+          "y": 364
         }
+      },
+      "GameBounds": [
+        { // garage
+          "Min": {
+            "x": 43,
+            "y": -100,
+            "z": -100
+          },
+          "Max": {
+            "x": 117,
+            "y": 190,
+            "z": 21
+          }
+        },
+        { // underpass
+          "Min": {
+            "x": 117,
+            "y": 49,
+            "z": -100
+          },
+          "Max": {
+            "x": 143,
+            "y": 80,
+            "z": 21
+          }
+        }
+      ]
     },
-    "Labels": [
-        {
-            "Text": "TerraGroup",
-            "Position": {"x": -50, "y": 0, "z": 0},
-            "FontSize": 16
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_0.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -99,
+          "y": -124
         },
-        {
-            "Text": "Skyside",
-            "Position": {"x": 150, "y": 1, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Fusion",
-            "Position": {"x": 141, "y": 142, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Empire",
-            "Position": {"x": 14, "y": 201, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Capital Insight",
-            "Position": {"x": 115, "y": 285, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Nakatani",
-            "Position": {"x": 2, "y": 324, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Elemental Global",
-            "Position": {"x": 80, "y": -118, "z": 0},
-            "FontSize": 16
-        },
-        {
-            "Text": "Oasis",
-            "Position": {"x": 115, "y": 104, "z": 22},
-            "FontSize": 16
-        },
-        {
-            "Text": "ASAP Winery",
-            "Position": {"x": 115, "y": 30, "z": 22},
-            "FontSize": 12
-        },
-        {
-            "Text": "Tarbank",
-            "Position": {"x": 43, "y": 150, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "GAGRIN Hotel",
-            "Position": {"x": 58, "y": 234, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "M Showroom",
-            "Position": {"x": 97, "y": 223, "z": 0},
-            "FontSize": 12
-        },
-        {
-            "Text": "Science Offices",
-            "Position": {"x": -13, "y": 48, "z": 29},
-            "FontSize": 12
+        "Max": {
+          "x": 249,
+          "y": 364
         }
-    ],
-    "StaticMarkers": [
+      },
+      "GameBounds": [
         {
-            "Text": "Scav Checkpoint (Co-op)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 26.1550121, "y": -82.52659, "z": 24.5091858 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Police Cordon V-Ex",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -19.5134068, "y": 114.942139, "z": 23.7110023 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Emercom Checkpoint",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 151.625, "y": -97.45658, "z": 24.662056 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Nakatani Basement Stairs",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -16.1249924, "y": 335.063416, "z": 14.7620564 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Mira Ave (Flare)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 218.225, "y": -38.5065842, "z": 17.9920559 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": {"r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Streets of Tarkov",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 222.829117, "y": 65.72, "z": 15.993 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": {"r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Tartowers Sales Office (Secret)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 190.804, "y": 133.388992, "z": 17.6449986 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": {"r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "Underground Parking Utility Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 107.056, "y": 50.6362534, "z": 13.499 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
-            "AssociatedItemId": "658199972dc4e60f6d556a2f"
-        },
-        {
-            "Text": "TerraGroup Science Offices",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -17.975647, "y": 58.5532341, "z": 30.7062054 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
-            "AssociatedItemId": "658199aa38c79576a2569e13"
-        },
-        {
-            "Text": "Unity Credit Bank Cash Register",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 58.2430344, "y": 172.438, "z": 24.5026741 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
-            "AssociatedItemId": "6581998038c79576a2569e11"
-        },
-        {
-            "Text": "Horse Restaurant Toilet",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 120.074966, "y": 149.382675, "z": 25.4368019 },
-            "Category": "LockedDoor",
-            "Color": { "r": 1.0, "g": 0.921568632, "b": 0.0156862754, "a": 1.0},
-            "AssociatedItemId": "658199a0490414548c0fa83b"
+          "Min": {
+            "x": -99,
+            "y": -124,
+            "z": -100
+          },
+          "Max": {
+            "x": 249,
+            "y": 364,
+            "z": 100
+          }
         }
-    ]
+      ]
+    },
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_1.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -99,
+          "y": -124
+        },
+        "Max": {
+          "x": 249,
+          "y": 364
+        }
+      },
+      "GameBounds": [
+        { // rest of 2nd floor
+          "Min": {
+            "x": -99,
+            "y": -124,
+            "z": 28
+          },
+          "Max": {
+            "x": 249,
+            "y": 364,
+            "z": 32.3
+          }
+        },
+        { // m showroom
+          "Min": {
+            "x": 91,
+            "y": 216,
+            "z": 26
+          },
+          "Max": {
+            "x": 98,
+            "y": 228,
+            "z": 31
+          }
+        }
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/GroundZero_TarkovDev/Layers/ground_zero_layer_2.png",
+      "ImageBounds": {
+        "Min": {
+          "x": -99,
+          "y": -124
+        },
+        "Max": {
+          "x": 249,
+          "y": 364
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -99,
+            "y": -124,
+            "z": 32.3
+          },
+          "Max": {
+            "x": 249,
+            "y": 364,
+            "z": 100
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "TerraGroup",
+      "Position": {
+        "x": -50,
+        "y": 0,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Skyside",
+      "Position": {
+        "x": 150,
+        "y": 1,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Fusion",
+      "Position": {
+        "x": 141,
+        "y": 142,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Empire",
+      "Position": {
+        "x": 14,
+        "y": 201,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Capital Insight",
+      "Position": {
+        "x": 115,
+        "y": 285,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Nakatani",
+      "Position": {
+        "x": 2,
+        "y": 324,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Elemental Global",
+      "Position": {
+        "x": 80,
+        "y": -118,
+        "z": 0
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "Oasis",
+      "Position": {
+        "x": 115,
+        "y": 104,
+        "z": 22
+      },
+      "FontSize": 16
+    },
+    {
+      "Text": "ASAP Winery",
+      "Position": {
+        "x": 115,
+        "y": 30,
+        "z": 22
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Tarbank",
+      "Position": {
+        "x": 43,
+        "y": 150,
+        "z": 0
+      },
+      "FontSize": 14
+    },
+    {
+      "Text": "GAGRIN Hotel",
+      "Position": {
+        "x": 58,
+        "y": 234,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "M Showroom",
+      "Position": {
+        "x": 97,
+        "y": 223,
+        "z": 0
+      },
+      "FontSize": 12
+    },
+    {
+      "Text": "Science Offices",
+      "Position": {
+        "x": -13,
+        "y": 48,
+        "z": 29
+      },
+      "FontSize": 12
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Scav Checkpoint (Co-op)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 26.1550121,
+        "y": -82.52659,
+        "z": 24.5091858
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.460784316,
+        "b": 0.007843138,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Police Cordon V-Ex",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -19.5134068,
+        "y": 114.942139,
+        "z": 23.7110023
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Emercom Checkpoint",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 151.625,
+        "y": -97.45658,
+        "z": 24.662056
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Nakatani Basement Stairs",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": -16.1249924,
+        "y": 335.063416,
+        "z": 14.7620564
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Mira Ave (Flare)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 218.225,
+        "y": -38.5065842,
+        "z": 17.9920559
+      },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.0,
+        "g": 1.0,
+        "b": 0.0,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Transit to Streets of Tarkov",
+      "ImagePath": "Markers/transit.png",
+      "Position": {
+        "x": 222.829117,
+        "y": 65.72,
+        "z": 15.993
+      },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 1.0,
+        "g": 0.368627429,
+        "b": 0.00627450971,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Tartowers Sales Office (Secret)",
+      "ImagePath": "Markers/exit.png",
+      "Position": {
+        "x": 190.804,
+        "y": 133.388992,
+        "z": 17.6449986
+      },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": {
+        "r": 0.1,
+        "g": 0.6,
+        "b": 0.6,
+        "a": 1.0
+      }
+    },
+    {
+      "Text": "Underground Parking Utility Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 107.056,
+        "y": 50.6362534,
+        "z": 13.499
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "658199972dc4e60f6d556a2f"
+    },
+    {
+      "Text": "TerraGroup Science Offices",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": -17.975647,
+        "y": 58.5532341,
+        "z": 30.7062054
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "658199aa38c79576a2569e13"
+    },
+    {
+      "Text": "Unity Credit Bank Cash Register",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 58.2430344,
+        "y": 172.438,
+        "z": 24.5026741
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "6581998038c79576a2569e11"
+    },
+    {
+      "Text": "Horse Restaurant Toilet",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": {
+        "x": 120.074966,
+        "y": 149.382675,
+        "z": 25.4368019
+      },
+      "Category": "LockedDoor",
+      "Color": {
+        "r": 1.0,
+        "g": 0.921568632,
+        "b": 0.0156862754,
+        "a": 1.0
+      },
+      "AssociatedItemId": "658199a0490414548c0fa83b"
+    }
+  ],
+  "TriggersWithId": [
+    {
+      "Id": "Sandbox_2_AGS_exploration",
+      "Position": {
+        "x": 101.043,
+        "y": 34.16,
+        "z": 276.36
+      },
+      "Bounds": {
+        "center": {
+          "x": 101.043,
+          "y": 34.16,
+          "z": 276.36
+        },
+        "size": {
+          "x": 7.550003,
+          "y": 3.0,
+          "z": 6.59997559
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_2_Kord_exploration",
+      "Position": {
+        "x": 56.603,
+        "y": 32.336,
+        "z": 130.605
+      },
+      "Bounds": {
+        "center": {
+          "x": 56.603,
+          "y": 32.336,
+          "z": 130.605
+        },
+        "size": {
+          "x": 7.0,
+          "y": 3.0,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_nakatoimi",
+      "Position": {
+        "x": 4.628006,
+        "y": 23.95,
+        "z": 337.2477
+      },
+      "Bounds": {
+        "center": {
+          "x": 3.98678946,
+          "y": 24.27497,
+          "z": 336.334167
+        },
+        "size": {
+          "x": 3.68427134,
+          "y": 1.31846237,
+          "z": 3.40368652
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_terminal_camera_3",
+      "Position": {
+        "x": -16.4086,
+        "y": 30.97,
+        "z": 71.983
+      },
+      "Bounds": {
+        "center": {
+          "x": -17.1026421,
+          "y": 30.5684738,
+          "z": 71.95373
+        },
+        "size": {
+          "x": 2.33885956,
+          "y": 1.803051,
+          "z": 1.20713806
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.160794646,
+        "z": 0.0,
+        "w": 0.986987948
+      }
+    },
+    {
+      "Id": "Mark_transits_sandbox",
+      "Position": {
+        "x": 222.829117,
+        "y": 15.993,
+        "z": 65.72
+      },
+      "Bounds": {
+        "center": {
+          "x": 234.3135,
+          "y": 17.3685055,
+          "z": 68.3257751
+        },
+        "size": {
+          "x": 3.19671631,
+          "y": 1.24898911,
+          "z": 26.8612633
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_computer",
+      "Position": {
+        "x": 118.714516,
+        "y": 24.2415,
+        "z": 190.304688
+      },
+      "Bounds": {
+        "center": {
+          "x": 118.705147,
+          "y": 24.510479,
+          "z": 190.582184
+        },
+        "size": {
+          "x": 1.19525146,
+          "y": 1.20648193,
+          "z": 1.02160645
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_terminal_camera_1",
+      "Position": {
+        "x": -35.01,
+        "y": 26.234,
+        "z": -17.424
+      },
+      "Bounds": {
+        "center": {
+          "x": -28.6815987,
+          "y": 24.9514427,
+          "z": -24.84588
+        },
+        "size": {
+          "x": 0.6144562,
+          "y": 1.64036179,
+          "z": 1.64873886
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_3_Vino_exploration",
+      "Position": {
+        "x": 117.06,
+        "y": 24.228,
+        "z": 26.86
+      },
+      "Bounds": {
+        "center": {
+          "x": 117.06,
+          "y": 24.228,
+          "z": 26.86
+        },
+        "size": {
+          "x": 23.0,
+          "y": 3.0,
+          "z": 13.3000011
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_3_Vino_exploration",
+      "Position": {
+        "x": 117.06,
+        "y": 24.228,
+        "z": 26.86
+      },
+      "Bounds": {
+        "center": {
+          "x": 117.06,
+          "y": 24.228,
+          "z": 26.86
+        },
+        "size": {
+          "x": 23.0,
+          "y": 3.0,
+          "z": 13.3000011
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_02_mech_place_01",
+      "Position": {
+        "x": -15.4,
+        "y": 23.79,
+        "z": 68.9
+      },
+      "Bounds": {
+        "center": {
+          "x": 18.5320072,
+          "y": 23.79,
+          "z": 41.0063477
+        },
+        "size": {
+          "x": 48.925,
+          "y": 10.0600014,
+          "z": 107.26001
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_mine_quest",
+      "Position": {
+        "x": 60.3543625,
+        "y": 23.7417164,
+        "z": 170.889557
+      },
+      "Bounds": {
+        "center": {
+          "x": 59.46489,
+          "y": 24.2940941,
+          "z": 172.849442
+        },
+        "size": {
+          "x": 2.257248,
+          "y": 1.89524078,
+          "z": 3.604309
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Prospect_mira",
+      "Position": {
+        "x": 172.43,
+        "y": 17.31,
+        "z": 64.7
+      },
+      "Bounds": {
+        "center": {
+          "x": 205.373688,
+          "y": 17.31,
+          "z": 36.8063431
+        },
+        "size": {
+          "x": 55.1353455,
+          "y": 3.0,
+          "z": 174.959335
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_5_Office_exploration",
+      "Position": {
+        "x": -13.48,
+        "y": 31.01,
+        "z": 51.33
+      },
+      "Bounds": {
+        "center": {
+          "x": -13.48,
+          "y": 31.0100021,
+          "z": 51.33
+        },
+        "size": {
+          "x": 13.5999994,
+          "y": 3.000002,
+          "z": 13.3000031
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_5_DeadGroup_exploration",
+      "Position": {
+        "x": -21.01,
+        "y": 24.228,
+        "z": -25.1
+      },
+      "Bounds": {
+        "center": {
+          "x": -21.01,
+          "y": 24.228,
+          "z": -25.1
+        },
+        "size": {
+          "x": 16.0,
+          "y": 3.0,
+          "z": 8.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_5_Laborant_exploration",
+      "Position": {
+        "x": -60.45,
+        "y": 25.62,
+        "z": 27.42
+      },
+      "Bounds": {
+        "center": {
+          "x": -60.45,
+          "y": 25.62,
+          "z": 27.42
+        },
+        "size": {
+          "x": 5.0,
+          "y": 3.0,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Sandbox_1_MedicalArea_exploration",
+      "Position": {
+        "x": 156.2,
+        "y": 25.52,
+        "z": -83.59
+      },
+      "Bounds": {
+        "center": {
+          "x": 156.2,
+          "y": 25.52,
+          "z": -83.59
+        },
+        "size": {
+          "x": 25.5,
+          "y": 6.0,
+          "z": 14.1999969
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "nt2024_5_throtil_epicentr",
+      "Position": {
+        "x": 107.46,
+        "y": 29.09,
+        "z": 148.06
+      },
+      "Bounds": {
+        "center": {
+          "x": 107.46,
+          "y": 29.09,
+          "z": 148.06
+        },
+        "size": {
+          "x": 17.0,
+          "y": 1.5,
+          "z": 18.8999939
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_04_mech_place_01",
+      "Position": {
+        "x": 79.5,
+        "y": 16.347,
+        "z": 99.308
+      },
+      "Bounds": {
+        "center": {
+          "x": 79.5,
+          "y": 16.347,
+          "z": 99.308
+        },
+        "size": {
+          "x": 2.5,
+          "y": 2.0,
+          "z": 10.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_terminal_camera_4",
+      "Position": {
+        "x": -4.807,
+        "y": 30.943,
+        "z": 57.66
+      },
+      "Bounds": {
+        "center": {
+          "x": -4.807,
+          "y": 30.5445976,
+          "z": 57.66
+        },
+        "size": {
+          "x": 1.17293358,
+          "y": 1.79680634,
+          "z": 1.17293549
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.09615917,
+        "z": 0.0,
+        "w": 0.995366
+      }
+    },
+    {
+      "Id": "quest_terminal_kill_zone",
+      "Position": {
+        "x": -13.48,
+        "y": 31.01,
+        "z": 28.27
+      },
+      "Bounds": {
+        "center": {
+          "x": -7.34437,
+          "y": 29.4955654,
+          "z": 20.523756
+        },
+        "size": {
+          "x": 114.057541,
+          "y": 16.8034477,
+          "z": 168.361633
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "Transits_to_streets",
+      "Position": {
+        "x": 222.829117,
+        "y": 15.993,
+        "z": 65.72
+      },
+      "Bounds": {
+        "center": {
+          "x": 227.4538,
+          "y": 16.993,
+          "z": 66.49675
+        },
+        "size": {
+          "x": 12.440033,
+          "y": 2.0,
+          "z": 35.5210228
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_01_mech_place_01",
+      "Position": {
+        "x": 55.26,
+        "y": 23.79,
+        "z": 252.75
+      },
+      "Bounds": {
+        "center": {
+          "x": 89.192,
+          "y": 23.79,
+          "z": 224.856354
+        },
+        "size": {
+          "x": 7.21000671,
+          "y": 7.0,
+          "z": 7.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "event_labyrinth_04_thepar",
+      "Position": {
+        "x": 45.53,
+        "y": 16.23,
+        "z": 130.67
+      },
+      "Bounds": {
+        "center": {
+          "x": 79.4620056,
+          "y": 16.23,
+          "z": 100.57
+        },
+        "size": {
+          "x": 2.05999756,
+          "y": 3.0,
+          "z": 11.0
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "quest_terminal_camera_2",
+      "Position": {
+        "x": -35.426,
+        "y": 28.599,
+        "z": 18.857
+      },
+      "Bounds": {
+        "center": {
+          "x": -35.64206,
+          "y": 28.7959633,
+          "z": 18.8773575
+        },
+        "size": {
+          "x": 0.5678711,
+          "y": 1.39392471,
+          "z": 1.2415123
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "Id": "zone_six_chair",
+      "Position": {
+        "x": 41.1,
+        "y": 31.411,
+        "z": 140.81
+      },
+      "Bounds": {
+        "center": {
+          "x": 40.3980865,
+          "y": 31.6799774,
+          "z": 140.6831
+        },
+        "size": {
+          "x": 2.58033752,
+          "y": 1.20648193,
+          "z": 4.5567627
+        }
+      },
+      "Rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    }
+  ]
 }

@@ -65,6 +65,14 @@ namespace DynamicMaps.Data
         public string Category { get; set; } = "None";
     }
 
+    public class TriggerWithIdAbstraction
+    {
+        public string Id { get; set; }
+        public Vector3 Position { get; set; }
+        public Bounds Bounds { get; set; }
+        public Quaternion Rotation { get; set; }
+    }
+
     public class MapDef
     {
         [JsonRequired]
@@ -100,5 +108,7 @@ namespace DynamicMaps.Data
 
             return null;
         }
+
+        public List<TriggerWithIdAbstraction> TriggersWithId { get; set; } = [];
     }
 }

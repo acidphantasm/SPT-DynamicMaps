@@ -1,5 +1,4 @@
 using BepInEx.Configuration;
-using DynamicMaps.Config;
 using DynamicMaps.Utils;
 using System;
 using UnityEngine;

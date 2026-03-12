@@ -1,36 +1,16 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
+using DynamicMaps.Common;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Eft.Hideout;
 using SPTarkov.Server.Core.Models.Enums;
-using SPTarkov.Server.Core.Models.Enums.Hideout;
-using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Mod;
 
 namespace _dynamicMapsServer;
-
-public record ModMetadata : AbstractModMetadata
-{
-    public override string ModGuid { get; init; } = "com.mpstark.dynamicmaps";
-    public override string Name { get; init; } = "Dynamic Maps";
-    public override string Author { get; init; } = "mpstark";
-    public override List<string>? Contributors { get; init; } = [" dirtbikercj, acidphantasm"];
-    public override SemanticVersioning.Version Version { get; init; } = new("1.0.4");
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    public override List<string>? Incompatibilities { get; init; }
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; }
-    public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
-}
 
 [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 90000)]
 public class DynamicMapsServer(
@@ -47,7 +27,7 @@ public class DynamicMapsServer(
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         _modConfig = modHelper.GetJsonDataFromFile<ModConfig>(pathToMod, "config.json");
 
-        customStaticRouter.PassConfig(_modConfig);
+        customStaticRouter.PassConfig(_modConfig, databaseService);
 
         CreateNewMaps();
         return Task.CompletedTask;
@@ -296,39 +276,4 @@ public class DynamicMapsServer(
         assort.BarterScheme[assortId] = [[barterScheme]];
         assort.LoyalLevelItems[assortId] = 1;
     }
-}
-
-public class ModConfig
-{
-    public bool AllowShowPlayerMarker { get; set; } = true;
-    public bool AllowShowFriendlyPlayerMarkersInRaid { get; set; } = true;
-    public bool AllowShowEnemyPlayerMarkersInRaid { get; set; } = true;
-    public bool AllowShowBossMarkersInRaid { get; set; } = true;
-    public bool AllowShowScavMarkersInRaid { get; set; } = true;
-    public bool AllowShowLockedDoorStatus { get; set; } = true;
-    public bool AllowShowQuestsInRaid { get; set; } = true;
-    public bool AllowShowExtractsInRaid { get; set; } = true;
-    public bool AllowShowExtractStatusInRaid { get; set; } = true;
-    public bool AllowShowTransitPointsInRaid { get; set; } = true;
-    public bool AllowShowSecretExtractsInRaid { get; set; } = true;
-    public bool AllowShowDroppedBackpackInRaid { get; set; } = true;
-    public bool AllowShowWishlistedItemsInRaid { get; set; } = true;
-    public bool AllowShowBTRInRaid { get; set; } = true;
-    public bool AllowShowAirdropsInRaid { get; set; } = true;
-    public bool AllowShowHiddenStashesInRaid { get; set; } = true;
-    public bool AllowShowFriendlyCorpses { get; set; } = true;
-    public bool AllowShowKilledCorpses { get; set; } = true;
-    public bool AllowShowFriendlyKilledCorpses { get; set; } = true;
-    public bool AllowShowBossCorpses { get; set; } = true;
-    public bool AllowShowOtherCorpses { get; set; } = true;
-    public bool AllowShowHeliCrashSiteInRaid { get; set; } = true;
-    public bool AllowMiniMap { get; set; } = true;
-    public bool RequireMapInInventory { get; set; } = false;
-    public int ShowScavIntelLevel { get; set; } = 0;
-    public int ShowPmcIntelLevel { get; set; } = 0;
-    public int ShowBossIntelLevel { get; set; } = 0;
-    public int ShowFriendlyIntelLevel { get; set; } = 0;
-    public int ShowCorpseIntelLevel { get; set; } = 0;
-    public int ShowWishListIntelLevel { get; set; } = 0;
-    public int ShowHiddenStashIntelLevel { get; set; } = 0;
 }

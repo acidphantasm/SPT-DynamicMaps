@@ -589,15 +589,16 @@ namespace DynamicMaps.UI
                 return;
             }
             
+            // Reset the zoom level
+            if (_resetZoomOnCenter && !_showingMiniMap)
+            {
+                // change zoom to desired level
+                _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
+            }
+            
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
-                // change zoom to desired level
-                if (_resetZoomOnCenter)
-                {
-                    _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
-                }
-
                 // shift map to player position, Vector3 to Vector2 discards z
                 _mapView.ShiftMapToPlayer(mapPosition, 0, false);
             }
@@ -713,10 +714,20 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
-                var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-                _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
-                
+
+                if (_isPeeking)
+                {
+                    var player = GameUtils.GetMainPlayer();
+                    var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+                    _mapView.IncrementalZoomInto(zoomAmount, mapPosition, 0f);
+                }
+                else
+                {
+                    var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
+                    _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+                }
+        
                 return;
             }
             
@@ -995,7 +1006,7 @@ namespace DynamicMaps.UI
                 AdjustSizeAndPosition();
             }
 
-            _mapView.LoadMap(mapDef);
+            _mapView.LoadMap(mapDef, _scrollMask.GetRectTransform());
 
             _mapSelectDropdown.OnLoadMap(mapDef);
             _levelSelectSlider.OnLoadMap(mapDef, _mapView.SelectedLevel);

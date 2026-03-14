@@ -172,7 +172,7 @@ namespace DynamicMaps.UI.Components
             GameObject.Destroy(label.gameObject);
         }
 
-        public void LoadMap(MapDef mapDef)
+        public void LoadMap(MapDef mapDef, RectTransform maskTransform)
         {
             if (mapDef == null || CurrentMapDef == mapDef)
             {
@@ -196,7 +196,7 @@ namespace DynamicMaps.UI.Components
             RectTransform.localRotation = Quaternion.Euler(0, 0, CoordinateRotation);
 
             // set min/max zoom based on parent's rect transform
-            SetMinMaxZoom(transform.parent as RectTransform);
+            SetMinMaxZoom(maskTransform);
 
             // load all layers in the order of level
             // BSG has extension method deconstruct for KVP, so have to do this

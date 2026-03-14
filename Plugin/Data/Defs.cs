@@ -25,6 +25,9 @@ namespace DynamicMaps.Data
 
         [JsonRequired]
         public string ImagePath { get; set; }
+        
+        [JsonRequired]
+        public int TesselationIndex { get; set; }
 
         [JsonRequired]
         public BoundingRectangle ImageBounds { get; set; }

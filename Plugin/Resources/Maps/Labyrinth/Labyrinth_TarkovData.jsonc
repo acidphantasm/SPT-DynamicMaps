@@ -18,7 +18,8 @@
   "Layers": {
     "Ground Level": {
       "Level": 0,
-      "ImagePath": "Maps/Labyrinth/Layers/labyrinth_layer_0.png",
+      "ImagePath": "Maps/Labyrinth/Layers/Labyrinth.svg",
+      "TesselationIndex": 1,
       "ImageBounds": {
         "Min": {
           "x": -52.5,

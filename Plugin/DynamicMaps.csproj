@@ -70,7 +70,12 @@
     <Reference Include="UnityEngine.UIModule">
       <HintPath>$(TarkovManagedDir)UnityEngine.UIModule.dll</HintPath>
     </Reference>
-
+      <Reference Include="Unity.VectorGraphics">
+          <HintPath>$(TarkovManagedDir)Unity.VectorGraphics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InternalAPIEngineBridge.003">
+          <HintPath>$(TarkovManagedDir)Unity.InternalAPIEngineBridge.003.dll</HintPath>
+      </Reference>
     <Reference Include="0Harmony">
       <HintPath>$(TarkovBepInExCoreDir)0Harmony.dll</HintPath>
     </Reference>
@@ -80,7 +85,6 @@
     <Reference Include="BepinEx.Preloader">
       <HintPath>$(TarkovBepInExCoreDir)BepInEx.Preloader.dll</HintPath>
     </Reference>
-
     <Reference Include="spt-reflection">
       <HintPath>$(TarkovPluginsSPTDir)spt-reflection.dll</HintPath>
     </Reference>

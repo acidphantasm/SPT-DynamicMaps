@@ -1,304 +1,308 @@
 {
-    "DisplayName": "Factory (TarkovDev)",
-    "Author": "Tarkov.dev",
-    "AuthorLink": "https://tarkov.dev",
-    "MapInternalNames": [ "factory4_day", "factory4_night" ],
-    "CoordinateRotation": 90,
-    "Bounds": {
+  "DisplayName": "Factory (TarkovDev)",
+  "Author": "Tarkov.dev",
+  "AuthorLink": "https://tarkov.dev",
+  "MapInternalNames": [ "factory4_day", "factory4_night" ],
+  "CoordinateRotation": 90,
+  "Bounds": {
+    "Min": {"x": -65, "y": -64.5},
+    "Max": {"x": 77.6, "y": 67.2}
+  },
+  "DefaultLevel": 0,
+  "Layers": {
+    "Tunnels": {
+      "Level": -1,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/Factory-Basement.svg",
+      "TesselationIndex": 0,
+      "ImageBounds": {
         "Min": {"x": -65, "y": -64.5},
         "Max": {"x": 77.6, "y": 67.2}
+      },
+      "GameBounds": [
+        {
+          "Min": {"x": -65, "y": -64.5, "z": -100},
+          "Max": {"x": 77.6, "y": 67.2, "z": -1}
+        }
+      ]
     },
-    "DefaultLevel": 0,
-    "Layers": {
-        "Tunnels": {
-            "Level": -1,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_-1.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": -100},
-                    "Max": {"x": 77.6, "y": 67.2, "z": -1}
-                }
-            ]
-        },
-        "Ground Floor": {
-            "Level": 0,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_0.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": -1},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 3}
-                }
-            ]
-        },
-        "2nd Floor": {
-            "Level": 1,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_1.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": 3},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 6}
-                }
-            ]
-        },
-        "3rd Floor": {
-            "Level": 2,
-            "ImagePath": "Maps/Factory_TarkovDev/Layers/factory_layer_2.png",
-            "ImageBounds": {
-                "Min": {"x": -65, "y": -64.5},
-                "Max": {"x": 77.6, "y": 67.2}
-            },
-            "GameBounds": [
-                {
-                    "Min": {"x": -65, "y": -64.5, "z": 6},
-                    "Max": {"x": 77.6, "y": 67.2, "z": 100}
-                }
-            ]
+    "Ground Floor": {
+      "Level": 0,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/Factory-Ground_Floor.svg",
+      "TesselationIndex": 0,
+      "ImageBounds": {
+        "Min": {"x": -65, "y": -64.5},
+        "Max": {"x": 77.6, "y": 67.2}
+      },
+      "GameBounds": [
+        {
+          "Min": {"x": -65, "y": -64.5, "z": -1},
+          "Max": {"x": 77.6, "y": 67.2, "z": 3}
         }
+      ]
     },
-    "Labels": [
+    "2nd Floor": {
+      "Level": 1,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/Factory-Second_Floor.svg",
+      "TesselationIndex": 0,
+      "ImageBounds": {
+        "Min": {"x": -65, "y": -64.5},
+        "Max": {"x": 77.6, "y": 67.2}
+      },
+      "GameBounds": [
         {
-            "Text": "Pit",
-            "Position": {"x": 0, "y": 17, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Underground Stash",
-            "Position": {"x": -2, "y": -22, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Boilers",
-            "Position": {"x": 56, "y": 6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Pumping Station",
-            "Position": {"x": 42, "y": -12, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Glass Hall",
-            "Position": {"x": 70, "y": -15, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Forklifts",
-            "Position": {"x": 66, "y": -41, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "East Halls",
-            "Position": {"x": 45, "y": -40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Heli Crash",
-            "Position": {"x": 33, "y": -6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Rafters",
-            "Position": {"x": 19, "y": 6, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Silos",
-            "Position": {"x": 5, "y": 11, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Connector",
-            "Position": {"x": 30, "y": 18, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Sky Bridge",
-            "Position": {"x": 35, "y": 28, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "North Stairs",
-            "Position": {"x": 36.5, "y": 38, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Locked Office",
-            "Position": {"x": 30, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Breach Room",
-            "Position": {"x": 24, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Main Office",
-            "Position": {"x": 16, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "South Stairs",
-            "Position": {"x": 9, "y": 40, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Platform",
-            "Position": {"x": -2, "y": 36, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Blue Containers",
-            "Position": {"x": -17, "y": 50, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Wood Room",
-            "Position": {"x": -45, "y": 61, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Scav Bunker",
-            "Position": {"x": -20, "y": 23, "z": 0},
-            "FontSize": 14
-        },
-        {
-            "Text": "Med Tent",
-            "Position": {"x": -18, "y": -28, "z": 0},
-            "FontSize": 14
+          "Min": {"x": -65, "y": -64.5, "z": 3},
+          "Max": {"x": 77.6, "y": 67.2, "z": 6}
         }
-    ],
-    "StaticMarkers": [
+      ]
+    },
+    "3rd Floor": {
+      "Level": 2,
+      "ImagePath": "Maps/Factory_TarkovDev/Layers/Factory-Third_Floor.svg",
+      "TesselationIndex": 0,
+      "ImageBounds": {
+        "Min": {"x": -65, "y": -64.5},
+        "Max": {"x": 77.6, "y": 67.2}
+      },
+      "GameBounds": [
         {
-            "Text": "Camera Bunker Door",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -15.71578, "y": 40.1081123, "z": -1.64766669 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Office Window",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 17.8332214, "y": 39.8851128, "z": 8.730333 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
-        },
-        {
-            "Text": "Cellars",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 73.89422, "y": -29.0818882, "z": -3.2876668 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Gate 3",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 58.43222, "y": 63.29811, "z": 3.17233324 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Gate 0",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -63.66578, "y": 55.8781128, "z": 2.85233331 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Med Tent Gate",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": -17.5257778, "y": -61.27189, "z": 1.99233329 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Courtyard Gate",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 23.7642212, "y": 68.93811, "z": 1.3623333 },
-            "Category": "Extract",
-            "ShowInRaid": false,
-            "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Woods",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 23.7, "y": 61.61, "z": 0.84 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to Customs",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": 18.51, "y": -48.33, "z": -0.423 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Transit to The Lab",
-            "ImagePath": "Markers/transit.png",
-            "Position": { "x": -26.539, "y": -42.013, "z": -4.085 },
-            "Category": "Transit",
-            "ShowInRaid": false,
-            "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
-        },
-        {
-            "Text": "Smugglers' Passage (Secret)",
-            "ImagePath": "Markers/exit.png",
-            "Position": { "x": 48.026, "y": -28.8580017, "z": -1.61300015 },
-            "Category": "Secret",
-            "ShowInRaid": false,
-            "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
-        },
-        {
-            "Text": "Locked Office",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 29.1163082, "y": 36.51697, "z": 9.08 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Med Tent",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -19.077774, "y": -48.57139, "z": 1.44520187 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Cellars",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": 66.8279953, "y": -29.3244076, "z": -1.60700011 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
-        },
-        {
-            "Text": "Terraroup Storage Room",
-            "ImagePath": "Markers/door_with_lock.png",
-            "Position": { "x": -20.4309616, "y": 44.06125, "z": -1.51576364 },
-            "Category": "LockedDoor",
-            "AssociatedItemId": "66acd6702b17692df20144c0",
-            "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+          "Min": {"x": -65, "y": -64.5, "z": 6},
+          "Max": {"x": 77.6, "y": 67.2, "z": 100}
         }
-    ]
+      ]
+    }
+  },
+  "Labels": [
+    {
+      "Text": "Pit",
+      "Position": {"x": 0, "y": 17, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Underground Stash",
+      "Position": {"x": -2, "y": -22, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Boilers",
+      "Position": {"x": 56, "y": 6, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Pumping Station",
+      "Position": {"x": 42, "y": -12, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Glass Hall",
+      "Position": {"x": 70, "y": -15, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Forklifts",
+      "Position": {"x": 66, "y": -41, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "East Halls",
+      "Position": {"x": 45, "y": -40, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Heli Crash",
+      "Position": {"x": 33, "y": -6, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Rafters",
+      "Position": {"x": 19, "y": 6, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Silos",
+      "Position": {"x": 5, "y": 11, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Connector",
+      "Position": {"x": 30, "y": 18, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Sky Bridge",
+      "Position": {"x": 35, "y": 28, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "North Stairs",
+      "Position": {"x": 36.5, "y": 38, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Locked Office",
+      "Position": {"x": 30, "y": 40, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Breach Room",
+      "Position": {"x": 24, "y": 40, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Main Office",
+      "Position": {"x": 16, "y": 40, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "South Stairs",
+      "Position": {"x": 9, "y": 40, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Platform",
+      "Position": {"x": -2, "y": 36, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Blue Containers",
+      "Position": {"x": -17, "y": 50, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Wood Room",
+      "Position": {"x": -45, "y": 61, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Scav Bunker",
+      "Position": {"x": -20, "y": 23, "z": 0},
+      "FontSize": 14
+    },
+    {
+      "Text": "Med Tent",
+      "Position": {"x": -18, "y": -28, "z": 0},
+      "FontSize": 14
+    }
+  ],
+  "StaticMarkers": [
+    {
+      "Text": "Camera Bunker Door",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": -15.71578, "y": 40.1081123, "z": -1.64766669 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
+    },
+    {
+      "Text": "Office Window",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": 17.8332214, "y": 39.8851128, "z": 8.730333 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 1.0, "g": 0.460784316, "b": 0.007843138, "a": 1.0 }
+    },
+    {
+      "Text": "Cellars",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": 73.89422, "y": -29.0818882, "z": -3.2876668 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+    },
+    {
+      "Text": "Gate 3",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": 58.43222, "y": 63.29811, "z": 3.17233324 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+    },
+    {
+      "Text": "Gate 0",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": -63.66578, "y": 55.8781128, "z": 2.85233331 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+    },
+    {
+      "Text": "Med Tent Gate",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": -17.5257778, "y": -61.27189, "z": 1.99233329 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+    },
+    {
+      "Text": "Courtyard Gate",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": 23.7642212, "y": 68.93811, "z": 1.3623333 },
+      "Category": "Extract",
+      "ShowInRaid": false,
+      "Color": { "r": 0.0, "g": 1.0, "b": 0.0, "a": 1.0 }
+    },
+    {
+      "Text": "Transit to Woods",
+      "ImagePath": "Markers/transit.png",
+      "Position": { "x": 23.7, "y": 61.61, "z": 0.84 },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+    },
+    {
+      "Text": "Transit to Customs",
+      "ImagePath": "Markers/transit.png",
+      "Position": { "x": 18.51, "y": -48.33, "z": -0.423 },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+    },
+    {
+      "Text": "Transit to The Lab",
+      "ImagePath": "Markers/transit.png",
+      "Position": { "x": -26.539, "y": -42.013, "z": -4.085 },
+      "Category": "Transit",
+      "ShowInRaid": false,
+      "Color": { "r": 1.0, "g": 0.368627429, "b": 0.00627450971, "a": 1.0 }
+    },
+    {
+      "Text": "Smugglers' Passage (Secret)",
+      "ImagePath": "Markers/exit.png",
+      "Position": { "x": 48.026, "y": -28.8580017, "z": -1.61300015 },
+      "Category": "Secret",
+      "ShowInRaid": false,
+      "Color": { "r": 0.1, "g": 0.6, "b": 0.6, "a": 1.0 }
+    },
+    {
+      "Text": "Locked Office",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": { "x": 29.1163082, "y": 36.51697, "z": 9.08 },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+    },
+    {
+      "Text": "Med Tent",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": { "x": -19.077774, "y": -48.57139, "z": 1.44520187 },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+    },
+    {
+      "Text": "Cellars",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": { "x": 66.8279953, "y": -29.3244076, "z": -1.60700011 },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "5448ba0b4bdc2d02308b456c",
+      "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+    },
+    {
+      "Text": "Terraroup Storage Room",
+      "ImagePath": "Markers/door_with_lock.png",
+      "Position": { "x": -20.4309616, "y": 44.06125, "z": -1.51576364 },
+      "Category": "LockedDoor",
+      "AssociatedItemId": "66acd6702b17692df20144c0",
+      "Color": { "r": 1, "g": 0.921569, "b": 0.015686275, "a": 1.0 }
+    }
+  ]
 }

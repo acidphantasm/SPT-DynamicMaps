@@ -1,7 +1,7 @@
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
+using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace DynamicMaps.UI.Components
 {
@@ -24,8 +24,8 @@ namespace DynamicMaps.UI.Components
         private static float _fadeMultiplierPerLayer = 0.5f;
         private static float _defaultLevelFallbackAlpha = 0.1f;
 
-        public string Name { get; private set; }
-        public Image Image { get; private set; }
+        private string Name { get; set; }
+        private SVGImage Image { get; set; }
         public RectTransform RectTransform => gameObject.transform as RectTransform;
 
         public int Level => _def.Level;
@@ -60,10 +60,13 @@ namespace DynamicMaps.UI.Components
             layer._def = def;
 
             // load image
-            layer.Image = go.AddComponent<Image>();
+            var svgSprite = SvgUtils.GetOrLoadCachedSprite(def);
+            if (svgSprite == null) return null;
+            
+            layer.Image = go.AddComponent<SVGImage>();
             layer.Image.raycastTarget = false;
-            layer.Image.sprite = TextureUtils.GetOrLoadCachedSprite(def.ImagePath);
-            layer.Image.type = Image.Type.Simple;
+            layer.Image.preserveAspect = false;
+            layer.Image.sprite = svgSprite;
 
             return layer;
         }

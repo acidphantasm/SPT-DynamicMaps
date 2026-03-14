@@ -17,10 +17,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
-using BepInEx;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using SPT.Common.Http;
 
 namespace DynamicMaps.UI
 {

@@ -690,8 +690,8 @@ namespace DynamicMaps.UI
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
 
-            var zoomDelta = scrollAmount * _mapView.ZoomCurrent * _scrollZoomScaler;
-            _mapView.IncrementalZoomInto(zoomDelta, mouseRelative, _zoomScrollTweenTime);
+            var zoomDelta = scrollAmount * _mapView.ZoomMain * _scrollZoomScaler;
+            _mapView.IncrementalZoomInto(zoomDelta, mouseRelative, 0f);
         }
 
         private void OnZoomMain()
@@ -813,12 +813,6 @@ namespace DynamicMaps.UI
 
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
-            
-            if (_mapView is not null)
-            {
-                _mapView.ZoomMain = Settings.ZoomMainMap.Value;
-                _mapView.ZoomMini = Settings.ZoomMiniMap.Value;
-            }
             
             if (_peekComponent is not null)
             {

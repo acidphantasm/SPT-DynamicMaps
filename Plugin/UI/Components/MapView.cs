@@ -31,8 +31,8 @@ namespace DynamicMaps.UI.Components
         public float ZoomMin { get; private set; }      // set when map loaded
         public float ZoomMax { get; private set; }      // set when map loaded
 
-        public float ZoomMain { get; set; } = Settings.ZoomMainMap.Value;
-        public float ZoomMini { get; set; } = Settings.ZoomMiniMap.Value;
+        public float ZoomMain { get; private set; }
+        public float ZoomMini { get; private set; }
         
         public float ZoomCurrent { get; private set; }  // set when map loaded
         public Vector2 MainMapPos { get; private set; } = Vector2.zero;
@@ -62,6 +62,18 @@ namespace DynamicMaps.UI.Components
             // for some reason these don't follow creation order in some cases
             MapLayerContainer.transform.SetAsFirstSibling();
             MapMarkerContainer.transform.SetAsLastSibling();
+        }
+
+        private void OnEnable()
+        {
+            Settings.OnZoomMainMapChanged += HandleZoomMainChanged;
+            Settings.OnZoomMiniMapChanged += HandleZoomMiniChanged;
+        }
+
+        private void OnDisable()
+        {
+            Settings.OnZoomMainMapChanged -= HandleZoomMainChanged;
+            Settings.OnZoomMiniMapChanged -= HandleZoomMiniChanged;
         }
 
         public void AddMapMarker(MapMarker marker)
@@ -288,6 +300,16 @@ namespace DynamicMaps.UI.Components
             SelectTopLevel(matchingLayer.Level);
         }
 
+        private float NormalizedToActual(float normalized)
+        {
+            return Mathf.Lerp(ZoomMin, ZoomMax, normalized);
+        }
+
+        private float ActualToNormalized(float actual)
+        {
+            return Mathf.InverseLerp(ZoomMin, ZoomMax, actual);
+        }
+        
         public void SetMinMaxZoom(RectTransform parentTransform)
         {
             // set zoom min and max based on size of map and size of mask
@@ -296,7 +318,10 @@ namespace DynamicMaps.UI.Components
             ZoomMax = _zoomMaxScaler * ZoomMin;
 
             // this will set everything up for initial zoom
-            SetMapZoom(ZoomMin, 0);
+            ZoomMain = NormalizedToActual(Settings.ZoomMainMap.Value);
+            ZoomMini = NormalizedToActual(Settings.ZoomMiniMap.Value);
+
+            SetMapZoom(ZoomMain, 0, false);
 
             // shift map to center it
             // FIXME: this doesn't center in the parent
@@ -319,13 +344,13 @@ namespace DynamicMaps.UI.Components
             if (updateMainZoom)
             {
                 ZoomMain = zoomNew;
-                Settings.ZoomMainMap.Value = zoomNew;
+                Settings.ZoomMainMap.Value = ActualToNormalized(zoomNew);
             }
 
             if (updateMiniZoom)
             {
                 ZoomMini = zoomNew;
-                Settings.ZoomMiniMap.Value = zoomNew;
+                Settings.ZoomMiniMap.Value = ActualToNormalized(zoomNew);
             }
             
             ZoomCurrent = zoomNew;
@@ -340,6 +365,22 @@ namespace DynamicMaps.UI.Components
             {
                 thing.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
             }
+        }
+        
+        private void HandleZoomMainChanged(float normalized)
+        {
+            var actual = NormalizedToActual(normalized);
+            ZoomMain = actual;
+
+            SetMapZoom(actual, 0, updateMainZoom: false);
+        }
+
+        private void HandleZoomMiniChanged(float normalized)
+        {
+            var actual = NormalizedToActual(normalized);
+            ZoomMini = actual;
+
+            SetMapZoom(actual, 0, updateMainZoom: false, updateMiniZoom: false);
         }
 
         public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)

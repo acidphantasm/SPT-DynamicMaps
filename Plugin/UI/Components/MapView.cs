@@ -404,6 +404,12 @@ namespace DynamicMaps.UI.Components
             ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime, true);
             SetMapZoom(zoomNew, zoomTweenTime, false, true);
         }
+        
+        public void CancelPositionTween()
+        {
+            DOTween.Kill(RectTransform, true);
+            _immediateMapAnchor = RectTransform.anchoredPosition;
+        }
 
         public void ShiftMap(Vector2 shift, float tweenTime, bool isMini)
         {

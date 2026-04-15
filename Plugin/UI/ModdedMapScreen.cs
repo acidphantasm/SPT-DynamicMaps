@@ -31,6 +31,9 @@ namespace DynamicMaps.UI
         private static float _positionTweenTime = 0.25f;
         private static float _scrollZoomScaler = 1.75f;
         private static float _zoomScrollTweenTime = 0.25f;
+        private float _targetZoom = 0f;
+        private Vector2 _zoomFocusPoint = Vector2.zero;
+        private static float _scrollZoomLerpSpeed = 8f;
 
         private static Vector2 _levelSliderPosition = new Vector2(15f, 750f);
         private static Vector2 _mapSelectDropdownPosition = new Vector2(-780f, -50f);
@@ -172,6 +175,17 @@ namespace DynamicMaps.UI
             ReadConfig();
 
             GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
+            
+            // Add listener to cancel the position tweening on scroll to make scroll smoother
+            var eventTrigger = scrollRectGO.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+            var beginDragEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
+            beginDragEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
+            beginDragEntry.callback.AddListener((_) =>
+            {
+                _targetZoom = 0f;
+                _mapView.CancelPositionTween();
+            });
+            eventTrigger.triggers.Add(beginDragEntry);
 
             // load initial maps from path
             _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
@@ -200,6 +214,7 @@ namespace DynamicMaps.UI
                     OnScroll(scroll);
                 }
             }
+            OnScrollZoomUpdate();
 
             // change level hotkeys
             if (!_showingMiniMap)
@@ -585,16 +600,15 @@ namespace DynamicMaps.UI
                 return;
             }
             
-            // Reset the zoom level
-            if (_resetZoomOnCenter && !_showingMiniMap)
-            {
-                // change zoom to desired level
-                _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
-            }
-            
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
+                // Reset the zoom level
+                if (_resetZoomOnCenter && !_showingMiniMap)
+                {
+                    // change zoom to desired level
+                    _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
+                }
                 // shift map to player position, Vector3 to Vector2 discards z
                 _mapView.ShiftMapToPlayer(mapPosition, 0, false);
             }
@@ -683,15 +697,43 @@ namespace DynamicMaps.UI
                 {
                     _levelSelectSlider.ChangeLevelBy(-1);
                 }
-
                 return;
+            }
+
+            // Initialize target zoom if not set
+            if (_targetZoom == 0f)
+            {
+                _targetZoom = _mapView.ZoomMain;
             }
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
 
-            var zoomDelta = scrollAmount * _mapView.ZoomMain * _scrollZoomScaler;
-            _mapView.IncrementalZoomInto(zoomDelta, mouseRelative, 0f);
+            _targetZoom = Mathf.Clamp(
+                _targetZoom + scrollAmount * _targetZoom * _scrollZoomScaler,
+                _mapView.ZoomMin,
+                _mapView.ZoomMax);
+
+            _zoomFocusPoint = mouseRelative;
+        }
+        
+        private void OnScrollZoomUpdate()
+        {
+            // Return early if there's nothing to change, this is in Update
+            if (_targetZoom == 0f || _isPeeking || _showingMiniMap) 
+                return;
+
+            var currentZoom = _mapView.ZoomMain;
+            if (Mathf.Abs(currentZoom - _targetZoom) < 0.0001f)
+            {
+                _targetZoom = 0f;
+                return;
+            }
+
+            var newZoom = Mathf.Lerp(currentZoom, _targetZoom, _scrollZoomLerpSpeed * Time.deltaTime);
+            var zoomDelta = newZoom - currentZoom;
+
+            _mapView.IncrementalZoomInto(zoomDelta, _zoomFocusPoint, 0f);
         }
 
         private void OnZoomMain()

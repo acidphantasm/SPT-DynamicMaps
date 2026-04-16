@@ -22,8 +22,10 @@ namespace DynamicMaps.UI
 {
     public class ModdedMapScreen : MonoBehaviour
     {
-        #region Variables and Declerations
-
+        #region Variables and Declarations
+        private EventHandler _adjustMiniMapHandler;
+        private UnityEngine.Events.UnityAction<Vector2> _scrollHandler;
+        
         private const string _mapRelPath = "Maps";
 
         private bool _initialized = false;
@@ -127,11 +129,12 @@ namespace DynamicMaps.UI
             var scrollRectGO = UIUtils.CreateUIGameObject(gameObject, "Scroll");
             var scrollMaskGO = UIUtils.CreateUIGameObject(scrollRectGO, "ScrollMask");
 
-            Settings.MiniMapPosition.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            _adjustMiniMapHandler = (_, _) => AdjustForMiniMap(false);
+            Settings.MiniMapPosition.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetX.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetY.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapSizeX.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapSizeY.SettingChanged += _adjustMiniMapHandler;
             
             _mapView = MapView.Create(scrollMaskGO, "MapView");
 
@@ -195,13 +198,19 @@ namespace DynamicMaps.UI
 
         private void OnDestroy()
         {
+            if (_scrollRect != null)
+            {
+                _scrollRect.onValueChanged.RemoveListener(_scrollHandler);
+                _scrollRect.OnBeginDragCallback = null;
+            }
+            
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
             
-            Settings.MiniMapPosition.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapPosition.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetX.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetY.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapSizeX.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapSizeY.SettingChanged -= _adjustMiniMapHandler;
         }
 
         private void Update()

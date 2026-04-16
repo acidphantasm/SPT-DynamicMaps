@@ -953,7 +953,6 @@ namespace DynamicMaps.Config
             }
             else
             {
-                RetainMapPosition.Value = true;
                 ResetZoomOnCenter.Value = false;
             }
         }
@@ -964,10 +963,6 @@ namespace DynamicMaps.Config
             {
                 AutoCenterOnPlayerMarker.Value = false;
                 ResetZoomOnCenter.Value = false;
-            }
-            else
-            {
-                AutoCenterOnPlayerMarker.Value = true;
             }
         }
 

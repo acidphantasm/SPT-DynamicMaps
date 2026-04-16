@@ -612,6 +612,14 @@ namespace DynamicMaps.UI
                 return;
             }
             
+            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
+            {
+                _mapView.SetMapZoom(_mapView.ZoomMin, 0f);
+                var midpoint = MathUtils.GetMidpoint(_mapView.CurrentMapDef.Bounds.Min, _mapView.CurrentMapDef.Bounds.Max);
+                _mapView.ShiftMapToCoordinate(midpoint, 0f, false);
+                return;
+            }
+            
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {

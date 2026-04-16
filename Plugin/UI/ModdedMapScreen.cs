@@ -54,7 +54,7 @@ namespace DynamicMaps.UI
         private bool _isShown = false;
 
         // map and transport mechanism
-        private ScrollRect _scrollRect;
+        private MapScrollRect _scrollRect;
         private Mask _scrollMask;
         private MapView _mapView;
 
@@ -140,7 +140,7 @@ namespace DynamicMaps.UI
             _scrollMask = scrollMaskGO.AddComponent<Mask>();
 
             // set up scroll rect
-            _scrollRect = scrollRectGO.AddComponent<ScrollRect>();
+            _scrollRect = scrollRectGO.AddComponent<MapScrollRect>();
             _scrollRect.scrollSensitivity = 0;  // don't scroll on mouse wheel
             _scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
             _scrollRect.viewport = _scrollMask.GetRectTransform();

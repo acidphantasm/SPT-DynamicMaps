@@ -17,6 +17,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
+using UnityEngine.EventSystems;
 
 namespace DynamicMaps.UI
 {
@@ -149,7 +150,16 @@ namespace DynamicMaps.UI
             _scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
             _scrollRect.viewport = _scrollMask.GetRectTransform();
             _scrollRect.content = _mapView.RectTransform;
-
+            _scrollHandler = (_) => _mapView.ClampToMapBounds();
+            _scrollRect.onValueChanged.AddListener(_scrollHandler);
+            _scrollRect.OnBeginDragCallback = () =>
+            {
+                if (_mapView == null) 
+                    return;
+                
+                _targetZoom = 0f;
+                _mapView.CancelPositionTween();
+            };
             // create map controls
 
             // level select slider
@@ -180,17 +190,6 @@ namespace DynamicMaps.UI
 
             GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
             
-            // Add listener to cancel the position tweening on scroll to make scroll smoother
-            var eventTrigger = scrollRectGO.AddComponent<UnityEngine.EventSystems.EventTrigger>();
-            var beginDragEntry = new UnityEngine.EventSystems.EventTrigger.Entry();
-            beginDragEntry.eventID = UnityEngine.EventSystems.EventTriggerType.BeginDrag;
-            beginDragEntry.callback.AddListener((_) =>
-            {
-                _targetZoom = 0f;
-                _mapView.CancelPositionTween();
-            });
-            eventTrigger.triggers.Add(beginDragEntry);
-
             // load initial maps from path
             _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
             PrecacheMapLayerImages();
@@ -224,6 +223,7 @@ namespace DynamicMaps.UI
                     OnScroll(scroll);
                 }
             }
+            
             OnScrollZoomUpdate();
 
             // change level hotkeys
@@ -269,13 +269,15 @@ namespace DynamicMaps.UI
             
             if (shiftMapX != 0f || shiftMapY != 0f)
             {
+                _targetZoom = 0f;
+                _mapView.CancelPositionTween();
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
+                _mapView.ClampToMapBounds();
             }
 
             if (_showingMiniMap)
             {
                 OnZoomMini();
-
             }
             else
             {
@@ -762,8 +764,10 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
+                // Cancel any existing scroll zoom
+                _targetZoom = 0f;
+                
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-
                 if (_isPeeking)
                 {
                     var player = GameUtils.GetMainPlayer();
@@ -807,6 +811,9 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
+                // Cancel any existing scroll zoom
+                _targetZoom = 0f;
+                
                 var player = GameUtils.GetMainPlayer();
                 var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
@@ -864,6 +871,8 @@ namespace DynamicMaps.UI
             _zoomMiniMapOutShortcut = Settings.ZoomOutMiniMapHotkey.Value;
             
             _zoomMapHotkeySpeed = Settings.ZoomMapHotkeySpeed.Value;
+
+            _zoomMainMapToMouse = Settings.ZoomMainMapToMouse.Value;
 
             _autoCenterOnPlayerMarker = Settings.AutoCenterOnPlayerMarker.Value;
             _resetZoomOnCenter = Settings.ResetZoomOnCenter.Value;

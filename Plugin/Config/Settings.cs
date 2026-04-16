@@ -25,6 +25,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<float> MapMoveHotkeySpeed;
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelUpHotkey;
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelDownHotkey;
+        public static ConfigEntry<bool> ZoomMainMapToMouse;
         public static ConfigEntry<KeyboardShortcut> ZoomMapInHotkey;
         public static ConfigEntry<KeyboardShortcut> ZoomMapOutHotkey;
         public static ConfigEntry<float> ZoomMapHotkeySpeed;
@@ -223,6 +224,16 @@ namespace DynamicMaps.Config
                     null,
                     new ConfigurationManagerAttributes { })));
 
+            
+            ConfigEntries.Add(ZoomMainMapToMouse = config.Bind(
+                GeneralTitle,
+                "Zoom Menu Map to Mouse",
+                true,
+                new ConfigDescription(
+                    "If the zoom hotkeys should zoom to mouse position or center when on Map Screen in inventory / out of raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
             ConfigEntries.Add(ZoomMapInHotkey = config.Bind(
                 GeneralTitle,
                 "Zoom Map In Hotkey",

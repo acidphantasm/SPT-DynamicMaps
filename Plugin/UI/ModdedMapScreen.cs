@@ -91,7 +91,8 @@ namespace DynamicMaps.UI
         private float _moveMapSpeed = 0.25f;
         private KeyboardShortcut _moveMapLevelUpShortcut;
         private KeyboardShortcut _moveMapLevelDownShortcut;
-        
+
+        private bool _zoomMainMapToMouse;
         private KeyboardShortcut _zoomMainMapInShortcut;
         private KeyboardShortcut _zoomMainMapOutShortcut;
         
@@ -762,8 +763,17 @@ namespace DynamicMaps.UI
                 }
                 else
                 {
-                    var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
-                    _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+                    if (_zoomMainMapToMouse)
+                    {
+                        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                            _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
+                        _mapView.IncrementalZoomInto(zoomAmount, mouseRelative, 0f);
+                    }
+                    else
+                    {
+                        var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
+                        _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+                    }
                 }
         
                 return;

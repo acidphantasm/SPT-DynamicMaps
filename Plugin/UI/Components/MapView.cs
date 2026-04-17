@@ -29,13 +29,14 @@ namespace DynamicMaps.UI.Components
         public GameObject MapLabelsContainer { get; private set; }
         public GameObject MapLayerContainer { get; private set; }
 
+        // Zoom holders
         public float ZoomMin { get; private set; }      // set when map loaded
         public float ZoomMax { get; private set; }      // set when map loaded
-
         public float ZoomMain { get; private set; }
         public float ZoomMini { get; private set; }
+        public bool IsMiniMapActive { get; set; }
+        private float ZoomCurrent => IsMiniMapActive ? ZoomMini : ZoomMain;
         
-        public float ZoomCurrent { get; private set; }  // set when map loaded
         public Vector2 MainMapPos { get; private set; } = Vector2.zero;
         
         private Vector2 _immediateMapAnchor = Vector2.zero;
@@ -369,11 +370,11 @@ namespace DynamicMaps.UI.Components
             ZoomMin = Mathf.Min(parentTransform.sizeDelta.x / mapSize.x, parentTransform.sizeDelta.y / mapSize.y) / _zoomMinScaler;
             ZoomMax = _zoomMaxScaler * ZoomMin;
 
-            // this will set everything up for initial zoom
-            ZoomMain = NormalizedToActual(Settings.ZoomMainMap.Value);
+            // this will set everything up for initial zoom - mini comes from the settings on load, main needs to be minimum so the user can change it
+            ZoomMain = ZoomMin;
             ZoomMini = NormalizedToActual(Settings.ZoomMiniMap.Value);
-
-            SetMapZoom(ZoomMain, 0f);
+            
+            ApplyZoom(ZoomMin, 0f);
 
             // shift map to center it
             // FIXME: this doesn't center in the parent
@@ -386,37 +387,48 @@ namespace DynamicMaps.UI.Components
         public void SetMapZoom(float zoomNew, float tweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
         {
             zoomNew = Mathf.Clamp(zoomNew, ZoomMin, ZoomMax);
-            // already there
-            if (zoomNew == ZoomCurrent)
-            {
-                return;
-            }
 
             if (updateMainZoom)
             {
+                if (Mathf.Approximately(zoomNew, ZoomMain)) 
+                    return;
+                
                 ZoomMain = zoomNew;
                 Settings.ZoomMainMap.Value = ActualToNormalized(zoomNew);
             }
 
             if (updateMiniZoom)
             {
+                if (Mathf.Approximately(zoomNew, ZoomMini)) 
+                    return;
+                
                 ZoomMini = zoomNew;
                 Settings.ZoomMiniMap.Value = ActualToNormalized(zoomNew);
             }
-            
-            ZoomCurrent = zoomNew;
-            
-            // scale all map content up by scaling parent
-            RectTransform.DOScale(ZoomCurrent * Vector3.one, updateMainZoom ? 0 : tweenTime);
+
+            ApplyZoom(ZoomCurrent, tweenTime);
+        }
+        
+        public void ApplyMainMapZoom()
+        {
+            ApplyZoom(ZoomMain, 0f);
+        }
+        
+        public void ApplyMiniMapZoom()
+        {
+            ApplyZoom(ZoomMini, 0f);
+        }
+        
+        private void ApplyZoom(float zoom, float tweenTime)
+        {
+            zoom = Mathf.Clamp(zoom, ZoomMin, ZoomMax);
+    
+            RectTransform.DOScale(zoom * Vector3.one, tweenTime);
 
             foreach (var marker in _markers)
-            {
-                marker.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
-            }
+                marker.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
             foreach (var label in _labels)
-            {
-                label.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
-            }
+                label.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
         }
         
         private void HandleZoomMainChanged(float normalized)
@@ -424,15 +436,21 @@ namespace DynamicMaps.UI.Components
             var actual = NormalizedToActual(normalized);
             ZoomMain = actual;
 
-            SetMapZoom(actual, 0, updateMainZoom: false);
+            if (!IsMiniMapActive)
+            {
+                ApplyZoom(actual, 0);
+            }
         }
 
         private void HandleZoomMiniChanged(float normalized)
         {
             var actual = NormalizedToActual(normalized);
             ZoomMini = actual;
-
-            SetMapZoom(actual, 0, updateMainZoom: false, updateMiniZoom: false);
+            
+            if (IsMiniMapActive)
+            {
+                ApplyZoom(actual, 0);
+            }
         }
 
         public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)

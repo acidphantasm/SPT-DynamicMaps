@@ -61,6 +61,7 @@ namespace DynamicMaps.UI
         // map and transport mechanism
         private MapScrollRect _scrollRect;
         private Mask _scrollMask;
+        internal MapView MapView => _mapView;
         private MapView _mapView;
 
         // map controls
@@ -321,11 +322,6 @@ namespace DynamicMaps.UI
             }
 
             IsShowingMapScreen = true;
-
-            if (_rememberMapPosition && _savedMainMapPos != Vector2.zero)
-            {
-                _mapView.SetMapPos(_savedMainMapPos, 0f);
-            }
             
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
@@ -346,6 +342,7 @@ namespace DynamicMaps.UI
             
             if (_peekComponent is not null && _peekComponent.WasMiniMapActive)
             {
+                _mapView.ApplyMiniMapZoom();
                 _peekComponent.BeginMiniMap();
             }
         }
@@ -403,6 +400,7 @@ namespace DynamicMaps.UI
             
             // Reset saved main map position
             _savedMainMapPos = Vector2.zero;
+            _mapView.IsMiniMapActive = false;
             
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
@@ -433,6 +431,14 @@ namespace DynamicMaps.UI
         
         #region Size And Positioning
 
+        internal void SaveMainMapPos()
+        {
+            if (_rememberMapPosition)
+            {
+                _savedMainMapPos = _mapView.MainMapPos;
+            }
+        }
+        
         private void AdjustSizeAndPosition()
         {
             // set width and height based on inventory screen
@@ -622,12 +628,14 @@ namespace DynamicMaps.UI
             // Don't set the map position if we're the mini-map, otherwise it can cause artifacting
             if (_rememberMapPosition && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
-                _mapView.SetMapPos(_mapView.MainMapPos, _transitionAnimations ? 0.35f : 0f);
+                _mapView.ApplyMainMapZoom();
+                _mapView.SetMapPos(_savedMainMapPos, _transitionAnimations ? 0.35f : 0f);
                 return;
             }
             
-            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
+            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
+                _mapView.ApplyMainMapZoom();
                 _mapView.SetMapZoom(_mapView.ZoomMin, 0f);
                 var midpoint = MathUtils.GetMidpoint(_mapView.CurrentMapDef.Bounds.Min, _mapView.CurrentMapDef.Bounds.Max);
                 _mapView.ShiftMapToCoordinate(midpoint, 0f, false);
@@ -638,6 +646,7 @@ namespace DynamicMaps.UI
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
                 // Reset the zoom level
+                _mapView.ApplyMainMapZoom();
                 if (_resetZoomOnCenter && !_showingMiniMap)
                 {
                     // change zoom to desired level
@@ -1099,7 +1108,11 @@ namespace DynamicMaps.UI
                 // Plugin.Log.LogInfo($"MapScreen: Resetting Map Size");
                 AdjustSizeAndPosition();
             }
-
+            
+            _mapView.CancelPositionTween();
+            _targetZoom = 0f;
+            _savedMainMapPos = Vector2.zero;
+            
             _mapView.LoadMap(mapDef, _scrollMask.GetRectTransform());
 
             _mapSelectDropdown.OnLoadMap(mapDef);

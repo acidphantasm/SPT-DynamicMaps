@@ -73,6 +73,7 @@ namespace DynamicMaps.UI
         private MapPeekComponent _peekComponent;
         private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
         private bool _showingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
+        private Vector2 _savedMainMapPos = Vector2.zero;
         
         public bool IsShowingMapScreen { get; private set; }
         
@@ -321,9 +322,9 @@ namespace DynamicMaps.UI
 
             IsShowingMapScreen = true;
 
-            if (_rememberMapPosition)
+            if (_rememberMapPosition && _savedMainMapPos != Vector2.zero)
             {
-                _mapView.SetMapPos(_mapView.MainMapPos, 0f);
+                _mapView.SetMapPos(_savedMainMapPos, 0f);
             }
             
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
@@ -335,8 +336,12 @@ namespace DynamicMaps.UI
 
         internal void OnMapScreenClose()
         {
+            if (_rememberMapPosition)
+            {
+                _savedMainMapPos = _mapView.MainMapPos;
+            }
+            
             Hide();
-
             IsShowingMapScreen = false;
             
             if (_peekComponent is not null && _peekComponent.WasMiniMapActive)
@@ -395,6 +400,9 @@ namespace DynamicMaps.UI
         private void OnRaidEnd()
         {
             if (!BattleUIScreenShowPatch.IsAttached) return;
+            
+            // Reset saved main map position
+            _savedMainMapPos = Vector2.zero;
             
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
@@ -907,7 +915,6 @@ namespace DynamicMaps.UI
             
             _autoSelectLevel = Settings.AutoSelectLevel.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
-
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
             

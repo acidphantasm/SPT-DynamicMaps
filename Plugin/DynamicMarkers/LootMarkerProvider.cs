@@ -73,6 +73,9 @@ namespace DynamicMaps.DynamicMarkers
         
         private void TryAddMarker(LootItem item)
         {
+            if (item == null || item.Item == null)
+                return;
+            
             if (_lootMarkers.ContainsKey(item)) return;
             if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
             
@@ -80,12 +83,16 @@ namespace DynamicMaps.DynamicMarkers
             var itemType = ItemViewFactory.GetItemType(item.Item.GetType());
             var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
 
+            var transform = item.transform;
+            if (transform == null)
+                return;
+            
             var markerDef = new MapMarkerDef
             {
                 Category = "Loot",
                 Color = Settings.LootItemColor.Value,
                 Sprite = itemSprite,
-                Position = MathUtils.ConvertToMapPosition(item.transform),
+                Position = MathUtils.ConvertToMapPosition(transform),
                 Text = item.Item.TemplateId.LocalizedName()
             };
             

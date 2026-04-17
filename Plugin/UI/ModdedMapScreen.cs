@@ -629,7 +629,9 @@ namespace DynamicMaps.UI
             if (_rememberMapPosition && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
                 _mapView.ApplyMainMapZoom();
-                _mapView.SetMapPos(_savedMainMapPos, _transitionAnimations ? 0.35f : 0f);
+    
+                var tweenTime = _transitionAnimations && _mapView.MainMapPos != _savedMainMapPos ? 0.35f : 0f;
+                _mapView.SetMapPos(_savedMainMapPos, tweenTime);
                 return;
             }
             

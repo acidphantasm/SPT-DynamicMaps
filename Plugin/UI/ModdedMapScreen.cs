@@ -17,21 +17,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
+using UnityEngine.EventSystems;
 
 namespace DynamicMaps.UI
 {
     public class ModdedMapScreen : MonoBehaviour
     {
-        #region Variables and Declerations
-
+        #region Variables and Declarations
+        private EventHandler _adjustMiniMapHandler;
+        private UnityEngine.Events.UnityAction<Vector2> _scrollHandler;
+        
         private const string _mapRelPath = "Maps";
 
         private bool _initialized = false;
         
+        // zoom stuff
         private static float _positionTweenTime = 0.25f;
         private static float _scrollZoomScaler = 1.75f;
         private static float _zoomScrollTweenTime = 0.25f;
+        private float _targetZoom = 0f;
+        private Vector2 _zoomFocusPoint = Vector2.zero;
+        private static float _scrollZoomLerpSpeed = 8f;
 
+        // vectors
         private static Vector2 _levelSliderPosition = new Vector2(15f, 750f);
         private static Vector2 _mapSelectDropdownPosition = new Vector2(-780f, -50f);
         private static Vector2 _mapSelectDropdownSize = new Vector2(360f, 31f);
@@ -51,7 +59,7 @@ namespace DynamicMaps.UI
         private bool _isShown = false;
 
         // map and transport mechanism
-        private ScrollRect _scrollRect;
+        private MapScrollRect _scrollRect;
         private Mask _scrollMask;
         private MapView _mapView;
 
@@ -70,6 +78,10 @@ namespace DynamicMaps.UI
         
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
+        
+        // minimap throttle
+        private float _miniMapUpdateInterval = 0.033f;
+        private float _miniMapUpdateTimer = 0f;
 
         // config
         private bool _autoCenterOnPlayerMarker = true;
@@ -88,7 +100,8 @@ namespace DynamicMaps.UI
         private float _moveMapSpeed = 0.25f;
         private KeyboardShortcut _moveMapLevelUpShortcut;
         private KeyboardShortcut _moveMapLevelDownShortcut;
-        
+
+        private bool _zoomMainMapToMouse;
         private KeyboardShortcut _zoomMainMapInShortcut;
         private KeyboardShortcut _zoomMainMapOutShortcut;
         
@@ -123,11 +136,12 @@ namespace DynamicMaps.UI
             var scrollRectGO = UIUtils.CreateUIGameObject(gameObject, "Scroll");
             var scrollMaskGO = UIUtils.CreateUIGameObject(scrollRectGO, "ScrollMask");
 
-            Settings.MiniMapPosition.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged += (sender, args) => AdjustForMiniMap(false); 
+            _adjustMiniMapHandler = (_, _) => AdjustForMiniMap(false);
+            Settings.MiniMapPosition.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetX.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetY.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapSizeX.SettingChanged += _adjustMiniMapHandler;
+            Settings.MiniMapSizeY.SettingChanged += _adjustMiniMapHandler;
             
             _mapView = MapView.Create(scrollMaskGO, "MapView");
 
@@ -137,12 +151,21 @@ namespace DynamicMaps.UI
             _scrollMask = scrollMaskGO.AddComponent<Mask>();
 
             // set up scroll rect
-            _scrollRect = scrollRectGO.AddComponent<ScrollRect>();
+            _scrollRect = scrollRectGO.AddComponent<MapScrollRect>();
             _scrollRect.scrollSensitivity = 0;  // don't scroll on mouse wheel
             _scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
             _scrollRect.viewport = _scrollMask.GetRectTransform();
             _scrollRect.content = _mapView.RectTransform;
-
+            _scrollHandler = (_) => _mapView.ClampToMapBounds();
+            _scrollRect.onValueChanged.AddListener(_scrollHandler);
+            _scrollRect.OnBeginDragCallback = () =>
+            {
+                if (_mapView == null) 
+                    return;
+                
+                _targetZoom = 0f;
+                _mapView.CancelPositionTween();
+            };
             // create map controls
 
             // level select slider
@@ -172,7 +195,7 @@ namespace DynamicMaps.UI
             ReadConfig();
 
             GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
-
+            
             // load initial maps from path
             _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
             PrecacheMapLayerImages();
@@ -180,13 +203,19 @@ namespace DynamicMaps.UI
 
         private void OnDestroy()
         {
+            if (_scrollRect != null)
+            {
+                _scrollRect.onValueChanged.RemoveListener(_scrollHandler);
+                _scrollRect.OnBeginDragCallback = null;
+            }
+            
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
             
-            Settings.MiniMapPosition.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapScreenOffsetY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeX.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
-            Settings.MiniMapSizeY.SettingChanged -= (sender, args) => AdjustForMiniMap(false); 
+            Settings.MiniMapPosition.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetX.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapScreenOffsetY.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapSizeX.SettingChanged -= _adjustMiniMapHandler;
+            Settings.MiniMapSizeY.SettingChanged -= _adjustMiniMapHandler;
         }
 
         private void Update()
@@ -200,6 +229,8 @@ namespace DynamicMaps.UI
                     OnScroll(scroll);
                 }
             }
+            
+            OnScrollZoomUpdate();
 
             // change level hotkeys
             if (!_showingMiniMap)
@@ -244,13 +275,15 @@ namespace DynamicMaps.UI
             
             if (shiftMapX != 0f || shiftMapY != 0f)
             {
+                _targetZoom = 0f;
+                _mapView.CancelPositionTween();
                 _mapView.ScaledShiftMap(new Vector2(shiftMapX, shiftMapY), _moveMapSpeed * Time.deltaTime, false);
+                _mapView.ClampToMapBounds();
             }
 
             if (_showingMiniMap)
             {
                 OnZoomMini();
-
             }
             else
             {
@@ -585,16 +618,23 @@ namespace DynamicMaps.UI
                 return;
             }
             
-            // Reset the zoom level
-            if (_resetZoomOnCenter && !_showingMiniMap)
+            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
-                // change zoom to desired level
-                _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
+                _mapView.SetMapZoom(_mapView.ZoomMin, 0f);
+                var midpoint = MathUtils.GetMidpoint(_mapView.CurrentMapDef.Bounds.Min, _mapView.CurrentMapDef.Bounds.Max);
+                _mapView.ShiftMapToCoordinate(midpoint, 0f, false);
+                return;
             }
             
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !_showingMiniMap)
             {
+                // Reset the zoom level
+                if (_resetZoomOnCenter && !_showingMiniMap)
+                {
+                    // change zoom to desired level
+                    _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
+                }
                 // shift map to player position, Vector3 to Vector2 discards z
                 _mapView.ShiftMapToPlayer(mapPosition, 0, false);
             }
@@ -683,15 +723,43 @@ namespace DynamicMaps.UI
                 {
                     _levelSelectSlider.ChangeLevelBy(-1);
                 }
-
                 return;
+            }
+
+            // Initialize target zoom if not set
+            if (_targetZoom == 0f)
+            {
+                _targetZoom = _mapView.ZoomMain;
             }
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
 
-            var zoomDelta = scrollAmount * _mapView.ZoomCurrent * _scrollZoomScaler;
-            _mapView.IncrementalZoomInto(zoomDelta, mouseRelative, _zoomScrollTweenTime);
+            _targetZoom = Mathf.Clamp(
+                _targetZoom + scrollAmount * _targetZoom * _scrollZoomScaler,
+                _mapView.ZoomMin,
+                _mapView.ZoomMax);
+
+            _zoomFocusPoint = mouseRelative;
+        }
+        
+        private void OnScrollZoomUpdate()
+        {
+            // Return early if there's nothing to change, this is in Update
+            if (_targetZoom == 0f || _isPeeking || _showingMiniMap) 
+                return;
+
+            var currentZoom = _mapView.ZoomMain;
+            if (Mathf.Abs(currentZoom - _targetZoom) < 0.0001f)
+            {
+                _targetZoom = 0f;
+                return;
+            }
+
+            var newZoom = Mathf.Lerp(currentZoom, _targetZoom, _scrollZoomLerpSpeed * Time.deltaTime);
+            var zoomDelta = newZoom - currentZoom;
+
+            _mapView.IncrementalZoomInto(zoomDelta, _zoomFocusPoint, 0f);
         }
 
         private void OnZoomMain()
@@ -710,8 +778,10 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
+                // Cancel any existing scroll zoom
+                _targetZoom = 0f;
+                
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-
                 if (_isPeeking)
                 {
                     var player = GameUtils.GetMainPlayer();
@@ -720,8 +790,17 @@ namespace DynamicMaps.UI
                 }
                 else
                 {
-                    var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
-                    _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+                    if (_zoomMainMapToMouse)
+                    {
+                        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                            _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
+                        _mapView.IncrementalZoomInto(zoomAmount, mouseRelative, 0f);
+                    }
+                    else
+                    {
+                        var currentCenter = _mapView.RectTransform.anchoredPosition / _mapView.ZoomMain;
+                        _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
+                    }
                 }
         
                 return;
@@ -746,6 +825,9 @@ namespace DynamicMaps.UI
             
             if (zoomAmount != 0f)
             {
+                // Cancel any existing scroll zoom
+                _targetZoom = 0f;
+                
                 var player = GameUtils.GetMainPlayer();
                 var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
@@ -760,22 +842,35 @@ namespace DynamicMaps.UI
 
         private void OnCenter()
         {
-            if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
+            if (_centerPlayerShortcut.BetterIsDown())
             {
-                var player = GameUtils.GetMainPlayer();
-                
-                if (player is not null)
-                {
-                    var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-                    
-                    _mapView.ShiftMapToCoordinate(
-                        mapPosition, 
-                        _showingMiniMap ? 0f : _positionTweenTime, 
-                        _showingMiniMap);
-                    
-                    _mapView.SelectLevelByCoords(mapPosition);
-                }
+                CenterOnPlayer(false);
+                return;
             }
+    
+            if (_showingMiniMap)
+            {
+                _miniMapUpdateTimer -= Time.deltaTime;
+                if (_miniMapUpdateTimer > 0f)
+                {
+                    return;
+                }
+                _miniMapUpdateTimer = _miniMapUpdateInterval;
+                CenterOnPlayer(true);
+            }
+        }
+
+        private void CenterOnPlayer(bool isMini)
+        {
+            var player = GameUtils.GetMainPlayer();
+            if (player is null)
+            {
+                return;
+            }
+    
+            var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+            _mapView.ShiftMapToCoordinate(mapPosition, isMini ? 0f : _positionTweenTime, isMini);
+            _mapView.SelectLevelByCoords(mapPosition);
         }
 
         #endregion
@@ -804,6 +899,8 @@ namespace DynamicMaps.UI
             
             _zoomMapHotkeySpeed = Settings.ZoomMapHotkeySpeed.Value;
 
+            _zoomMainMapToMouse = Settings.ZoomMainMapToMouse.Value;
+
             _autoCenterOnPlayerMarker = Settings.AutoCenterOnPlayerMarker.Value;
             _resetZoomOnCenter = Settings.ResetZoomOnCenter.Value;
             _rememberMapPosition = Settings.RetainMapPosition.Value;
@@ -813,12 +910,6 @@ namespace DynamicMaps.UI
 
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
-            
-            if (_mapView is not null)
-            {
-                _mapView.ZoomMain = Settings.ZoomMainMap.Value;
-                _mapView.ZoomMini = Settings.ZoomMiniMap.Value;
-            }
             
             if (_peekComponent is not null)
             {

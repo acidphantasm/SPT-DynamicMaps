@@ -25,6 +25,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<float> MapMoveHotkeySpeed;
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelUpHotkey;
         public static ConfigEntry<KeyboardShortcut> ChangeMapLevelDownHotkey;
+        public static ConfigEntry<bool> ZoomMainMapToMouse;
         public static ConfigEntry<KeyboardShortcut> ZoomMapInHotkey;
         public static ConfigEntry<KeyboardShortcut> ZoomMapOutHotkey;
         public static ConfigEntry<float> ZoomMapHotkeySpeed;
@@ -223,6 +224,16 @@ namespace DynamicMaps.Config
                     null,
                     new ConfigurationManagerAttributes { })));
 
+            
+            ConfigEntries.Add(ZoomMainMapToMouse = config.Bind(
+                GeneralTitle,
+                "Zoom Menu Map to Mouse",
+                true,
+                new ConfigDescription(
+                    "If the zoom hotkeys should zoom to mouse position or center when on Map Screen in inventory / out of raid",
+                    null,
+                    new ConfigurationManagerAttributes { })));
+            
             ConfigEntries.Add(ZoomMapInHotkey = config.Bind(
                 GeneralTitle,
                 "Zoom Map In Hotkey",
@@ -592,7 +603,7 @@ namespace DynamicMaps.Config
                 0f,
                 new ConfigDescription(
                     "What zoom level should be used for the main map. (Tab view/Peek view) (0 is fully zoomed out, and 1 is fully zoomed in)",
-                    new AcceptableValueRange<float>(0f, 15f),
+                    new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes { })));
             
             ConfigEntries.Add(PeekShortcut = config.Bind(
@@ -624,9 +635,10 @@ namespace DynamicMaps.Config
 
             #endregion
 
-            AutoCenterOnPlayerMarker.SettingChanged += OnAutoOrCenterEnable;
-            ResetZoomOnCenter.SettingChanged += OnAutoOrCenterEnable;
+            AutoCenterOnPlayerMarker.SettingChanged += OnAutoCenterOnPlayerEnable;
+            ResetZoomOnCenter.SettingChanged += OnResetZoomEnable;
             RetainMapPosition.SettingChanged += OnPositionRetainEnable;
+            ZoomMainMap.SettingChanged += ZoomMainMapChanged;
             
             #region Mini Map
 
@@ -696,10 +708,10 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(ZoomMiniMap = config.Bind(
                 MiniMapTitle,
                 "Mini map zoom",
-                5.0f,
+                0.33f,
                 new ConfigDescription(
                     "What zoom level should be used for the mini map. (0 is fully zoomed out, and 15 is fully zoomed in)",
-                    new AcceptableValueRange<float>(0f, 15f),
+                    new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes { })));
 
             ConfigEntries.Add(ZoomInMiniMapHotkey = config.Bind(
@@ -719,6 +731,8 @@ namespace DynamicMaps.Config
                     "Zoom out on mini map key bind",
                     null,
                     new ConfigurationManagerAttributes { })));
+            
+            ZoomMiniMap.SettingChanged += ZoomMiniMapChanged;
             
             #endregion
 
@@ -931,14 +945,18 @@ namespace DynamicMaps.Config
             }
         }
         
-        private static void OnAutoOrCenterEnable(object sender, EventArgs e)
+        private static void OnAutoCenterOnPlayerEnable(object sender, EventArgs e)
         {
-            if (AutoCenterOnPlayerMarker.Value || ResetZoomOnCenter.Value)
+            if (AutoCenterOnPlayerMarker.Value)
             {
                 RetainMapPosition.Value = false;
             }
+            else
+            {
+                ResetZoomOnCenter.Value = false;
+            }
         }
-        
+
         private static void OnPositionRetainEnable(object sender, EventArgs e)
         {
             if (RetainMapPosition.Value)
@@ -946,6 +964,31 @@ namespace DynamicMaps.Config
                 AutoCenterOnPlayerMarker.Value = false;
                 ResetZoomOnCenter.Value = false;
             }
+        }
+
+        private static void OnResetZoomEnable(object sender, EventArgs e)
+        {
+            if (ResetZoomOnCenter.Value)
+            {
+                AutoCenterOnPlayerMarker.Value = true;
+                RetainMapPosition.Value = false;
+            }
+        }
+
+        public static event Action<float> OnZoomMainMapChanged;
+        private static void ZoomMainMapChanged(object sender, EventArgs e)
+        {
+            if (ZoomMainMap == null) 
+                return;
+            OnZoomMainMapChanged?.Invoke(ZoomMainMap.Value);
+        }
+
+        public static event Action<float> OnZoomMiniMapChanged;
+        private static void ZoomMiniMapChanged(object sender, EventArgs e)
+        {
+            if (ZoomMiniMap == null) 
+                return;
+            OnZoomMiniMapChanged?.Invoke(ZoomMiniMap.Value);
         }
     }
 }

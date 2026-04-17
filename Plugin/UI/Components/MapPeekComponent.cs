@@ -105,6 +105,7 @@ namespace DynamicMaps.UI.Components
                 if (PeekShortcut.BetterIsPressed())
                 {
                     WasMiniMapActive = ShowingMiniMap;
+                    MapScreen.SaveMainMapPos();
                     EndMiniMap();
                     BeginPeek(WasMiniMapActive && !IsMiniMapHidden);
                 }
@@ -119,6 +120,7 @@ namespace DynamicMaps.UI.Components
                 if (!IsPeeking)
                 {
                     WasMiniMapActive = ShowingMiniMap;
+                    MapScreen.SaveMainMapPos();
                     EndMiniMap();
                     BeginPeek(WasMiniMapActive);
                 }
@@ -164,6 +166,8 @@ namespace DynamicMaps.UI.Components
             if (ShowingMiniMap) return;
             
             ShowingMiniMap = true;
+            MapScreen.MapView.IsMiniMapActive = true;
+            MapScreen.MapView.ApplyMiniMapZoom();
             
             // just in case something else is attached and tries to be in front
             transform.SetAsLastSibling();
@@ -177,6 +181,7 @@ namespace DynamicMaps.UI.Components
             if (!ShowingMiniMap) return;
             
             ShowingMiniMap = false;
+            MapScreen.MapView.IsMiniMapActive = false;
             
             MapScreen.Hide();
             MapScreen.transform.SetParent(MapScreenTrueParent);

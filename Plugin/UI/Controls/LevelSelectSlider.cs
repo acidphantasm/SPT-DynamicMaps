@@ -165,10 +165,7 @@ namespace DynamicMaps.UI.Controls
             _scrollbar.numberOfSteps = _levels.Count();
             SelectedLevel = initialLevel;
 
-            if (_levels.Count() == 1)
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(_levels.Count > 1);
         }
     }
 }

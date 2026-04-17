@@ -316,7 +316,6 @@ namespace DynamicMaps.UI.Components
         {
             if (CurrentMapDef == null || _maskTransform == null) return;
 
-            CancelPositionTween();
             var mapSize = CurrentMapDef.Bounds.Max - CurrentMapDef.Bounds.Min;
             var rotatedSize = MathUtils.GetRotatedRectangle(mapSize, CoordinateRotation);
             var scaledMapSize = rotatedSize * ZoomCurrent;
@@ -410,12 +409,13 @@ namespace DynamicMaps.UI.Components
             // scale all map content up by scaling parent
             RectTransform.DOScale(ZoomCurrent * Vector3.one, updateMainZoom ? 0 : tweenTime);
 
-            // inverse scale all map markers and labels
-            // FIXME: does this generate large amounts of garbage?
-            var things = _markers.Cast<MonoBehaviour>().Concat(_labels);
-            foreach (var thing in things)
+            foreach (var marker in _markers)
             {
-                thing.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
+                marker.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
+            }
+            foreach (var label in _labels)
+            {
+                label.GetRectTransform().DOScale(1 / ZoomCurrent * Vector3.one, tweenTime);
             }
         }
         

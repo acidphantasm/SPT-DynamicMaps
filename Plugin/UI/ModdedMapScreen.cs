@@ -31,6 +31,7 @@ namespace DynamicMaps.UI
 
         private bool _initialized = false;
         
+        // zoom stuff
         private static float _positionTweenTime = 0.25f;
         private static float _scrollZoomScaler = 1.75f;
         private static float _zoomScrollTweenTime = 0.25f;
@@ -38,6 +39,7 @@ namespace DynamicMaps.UI
         private Vector2 _zoomFocusPoint = Vector2.zero;
         private static float _scrollZoomLerpSpeed = 8f;
 
+        // vectors
         private static Vector2 _levelSliderPosition = new Vector2(15f, 750f);
         private static Vector2 _mapSelectDropdownPosition = new Vector2(-780f, -50f);
         private static Vector2 _mapSelectDropdownSize = new Vector2(360f, 31f);
@@ -76,6 +78,10 @@ namespace DynamicMaps.UI
         
         // dynamic map marker providers
         private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
+        
+        // minimap throttle
+        private float _miniMapUpdateInterval = 0.033f;
+        private float _miniMapUpdateTimer = 0f;
 
         // config
         private bool _autoCenterOnPlayerMarker = true;
@@ -836,22 +842,35 @@ namespace DynamicMaps.UI
 
         private void OnCenter()
         {
-            if (_centerPlayerShortcut.BetterIsDown() || _showingMiniMap)
+            if (_centerPlayerShortcut.BetterIsDown())
             {
-                var player = GameUtils.GetMainPlayer();
-                
-                if (player is not null)
-                {
-                    var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-                    
-                    _mapView.ShiftMapToCoordinate(
-                        mapPosition, 
-                        _showingMiniMap ? 0f : _positionTweenTime, 
-                        _showingMiniMap);
-                    
-                    _mapView.SelectLevelByCoords(mapPosition);
-                }
+                CenterOnPlayer(false);
+                return;
             }
+    
+            if (_showingMiniMap)
+            {
+                _miniMapUpdateTimer -= Time.deltaTime;
+                if (_miniMapUpdateTimer > 0f)
+                {
+                    return;
+                }
+                _miniMapUpdateTimer = _miniMapUpdateInterval;
+                CenterOnPlayer(true);
+            }
+        }
+
+        private void CenterOnPlayer(bool isMini)
+        {
+            var player = GameUtils.GetMainPlayer();
+            if (player is null)
+            {
+                return;
+            }
+    
+            var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+            _mapView.ShiftMapToCoordinate(mapPosition, isMini ? 0f : _positionTweenTime, isMini);
+            _mapView.SelectLevelByCoords(mapPosition);
         }
 
         #endregion

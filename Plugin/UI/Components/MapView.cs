@@ -374,7 +374,7 @@ namespace DynamicMaps.UI.Components
             ZoomMain = ZoomMin;
             ZoomMini = NormalizedToActual(Settings.ZoomMiniMap.Value);
             
-            ApplyZoom(ZoomMin, 0f);
+            ApplyZoom(ZoomCurrent, 0f);
 
             // shift map to center it
             // FIXME: this doesn't center in the parent

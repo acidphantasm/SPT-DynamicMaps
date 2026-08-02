@@ -64,7 +64,7 @@ public class TransitMarkerProvider : IDynamicMarkerProvider
         var transitController = Singleton<GameWorld>.Instance.TransitController;
         if (transitController != null)
         {
-            foreach (var point in transitController.Dictionary_0.Values)
+            foreach (var point in transitController.pointsById.Values)
             {
                 TryAddMarker(map, point);
             }

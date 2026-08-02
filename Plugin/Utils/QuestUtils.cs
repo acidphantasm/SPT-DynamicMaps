@@ -55,7 +55,7 @@ namespace DynamicMaps.Utils
             {
                 QuestItems = Traverse.Create(gameWorld)
                     .Field("LootItems")
-                    .Field("List_0")
+                    .Field("_iteration")
                     .GetValue<List<LootItem>>()
                     .Where(i => i.Item.QuestItem).ToList();
             }
@@ -213,7 +213,7 @@ namespace DynamicMaps.Utils
         private static IEnumerable<Vector3> GetPositionsForConditionCreator(ConditionCounterCreator conditionCreator,
                                                                             string questName, string conditionDescription)
         {
-            var counter = conditionCreator.TemplateConditions;
+            var counter = conditionCreator._templateConditions;
             foreach (var condition in counter.Conditions)
             {
                 foreach (var position in GetPositionsForCondition(condition, questName, conditionDescription))
@@ -282,7 +282,7 @@ namespace DynamicMaps.Utils
 
         private static IEnumerable<QuestDataClass> GetIncompleteQuests(Player player)
         {
-            var questController = player.AbstractQuestControllerClass;
+            var questController = player.QuestController;
             if (questController == null)
             {
                 Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questController is null");
@@ -296,7 +296,7 @@ namespace DynamicMaps.Utils
                 yield break;
             }
 
-            var questsList = quests.List_1;
+            var questsList = quests.list_1;
             if (questsList == null)
             {
                 Plugin.Log.LogError($"Not able to get quests for player: {player.Id}, questsList is null");
@@ -328,7 +328,7 @@ namespace DynamicMaps.Utils
                 return false;
             }
 
-            var questController = player.AbstractQuestControllerClass;
+            var questController = player.QuestController;
             if (questController == null)
             {
                 return false;

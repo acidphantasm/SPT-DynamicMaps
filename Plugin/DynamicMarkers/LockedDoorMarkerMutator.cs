@@ -3,6 +3,7 @@ using System.Linq;
 using DynamicMaps.Data;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
+using EFT.InventoryLogic;
 using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers

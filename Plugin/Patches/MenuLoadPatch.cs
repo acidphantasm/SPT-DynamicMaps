@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using EFT.Communications;
 using static DynamicMaps.UI.ModdedMapScreen;
 
 namespace DynamicMaps.Patches
@@ -36,7 +37,7 @@ namespace DynamicMaps.Patches
                 if (serverConfigLoaded == false)
                 {
                     serverConfigLoaded = true;
-                    ModdedMapScreen._serverConfig = await LoadFromServer();
+                    ModdedMapScreen.ServerConfig = await LoadFromServer();
 
                     Plugin.Log.LogInfo($"Loaded server config");
                 }
@@ -49,18 +50,18 @@ namespace DynamicMaps.Patches
                 Plugin.Log.LogError($"{e.StackTrace}");
             }
         }
-        private static async Task<DMServerConfig> LoadFromServer()
+        private static async Task<DmServerConfig> LoadFromServer()
         {
             try
             {
                 string payload = await RequestHandler.GetJsonAsync("/dynamicmaps/load");
-                return JsonConvert.DeserializeObject<DMServerConfig>(payload);
+                return JsonConvert.DeserializeObject<DmServerConfig>(payload);
 
             }
             catch (Exception ex)
             {
                 Plugin.Log.LogError("Failed to load: " + ex.ToString());
-                NotificationManagerClass.DisplayWarningNotification("Failed to load Dynamic Maps server config - check the server");
+                NotificationManager.DisplayWarningNotification("Failed to load Dynamic Maps server config - check the server");
                 return null;
             }
         }

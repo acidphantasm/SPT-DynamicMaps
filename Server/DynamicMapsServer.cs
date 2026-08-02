@@ -1,40 +1,34 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Eft.Hideout;
 using SPTarkov.Server.Core.Models.Enums;
-using SPTarkov.Server.Core.Models.Enums.Hideout;
-using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
-using SPTarkov.Server.Core.Services.Mod;
+using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Modding.Custom;
 
-namespace _dynamicMapsServer;
+namespace DynamicMaps;
 
-public record ModMetadata : AbstractModMetadata
+public record ModMetadata : IModMetadata
 {
-    public override string ModGuid { get; init; } = "com.mpstark.dynamicmaps";
-    public override string Name { get; init; } = "Dynamic Maps";
-    public override string Author { get; init; } = "mpstark";
-    public override List<string>? Contributors { get; init; } = [" dirtbikercj, acidphantasm"];
-    public override SemanticVersioning.Version Version { get; init; } = new("1.1.3");
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    public override List<string>? Incompatibilities { get; init; }
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; }
-    public override bool? IsBundleMod { get; init; }
-    public override string? License { get; init; } = "MIT";
+    public string ModGuid { get; init; } = "com.mpstark.dynamicmaps";
+    public string Name { get; init; } = "Dynamic Maps";
+    public string Author { get; init; } = "mpstark";
+    public List<string>? Contributors { get; init; } = [" dirtbikercj, acidphantasm"];
+    public SemanticVersioning.Version Version { get; init; } = new("1.2.0");
+    public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
+    public List<string>? Incompatibilities { get; init; }
+    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
+    public string? Url { get; init; }
+    public bool HasPrepatcher { get; init; }
+    public string? License { get; init; } = "MIT";
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 90000)]
+[Injectable(TypePriority = OnLoadOrder.Preload)]
 public class DynamicMapsServer(
-    DatabaseService databaseService,
+    TradersTable tradersTable,
     ModHelper modHelper,
     CustomItemService customItemService,
     CustomStaticRouter customStaticRouter)
@@ -42,7 +36,7 @@ public class DynamicMapsServer(
 {
     private ModConfig? _modConfig;
     
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     { 
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         _modConfig = modHelper.GetJsonDataFromFile<ModConfig>(pathToMod, "config.json");
@@ -67,6 +61,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails groundZeroMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "gz_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "6738033eb7305d3bdafe9518",
@@ -101,6 +96,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails streetsMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "streets_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "673803448cb3819668d77b1b",
@@ -135,6 +131,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails reserveMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "reserve_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "6738034a9713b5f42b4a8b78",
@@ -169,6 +166,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails labsMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "labs_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "6738034e9d22459ad7cd1b81",
@@ -203,6 +201,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails lighthouseMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "lighthouse_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "6738035350b24a4ae4a57997",
@@ -237,6 +236,7 @@ public class DynamicMapsServer(
     {
         NewItemFromCloneDetails labyrinthMap = new NewItemFromCloneDetails()
         {
+            NewItemName = "labyrinth_map_plan",
             ItemTplToClone = ItemTpl.MAP_WOODS_PLAN,
             ParentId = "567849dd4bdc2d150f8b456e",
             NewId = "68f1ad32317cc52f4c0b6fae",
@@ -269,7 +269,7 @@ public class DynamicMapsServer(
 
     private void PushToTraderAssort(MongoId traderId, MongoId itemId, double? price, MongoId assortId)
     {
-        var assort = databaseService.GetTrader(traderId).Assort;
+        var assort = tradersTable[traderId].Assort;
 
         var assortEntry = new Item()
         {

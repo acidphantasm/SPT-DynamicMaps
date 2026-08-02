@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>DynamicMaps</AssemblyName>
     <Description>Dynamic in-game maps for SPT</Description>
     <LangVersion>latest</LangVersion>
@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SPT 4.0.0 DEV\</TarkovDir>
+    <TarkovDir Condition=" '$(TarkovDir)' == '' ">D:\SPT 4.1 BE\</TarkovDir>
     <TarkovPluginsSPTDir>$(TarkovDir)BepInEx\plugins\spt\</TarkovPluginsSPTDir>
     <TarkovManagedDir>$(TarkovDir)EscapeFromTarkov_Data\Managed\</TarkovManagedDir>
     <TarkovBepInExCoreDir>$(TarkovDir)BepInEx\core\</TarkovBepInExCoreDir>
@@ -123,13 +123,13 @@
     </ItemGroup>
 
     <!-- Copies the output and resources to tarkov game folder -->
-      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
-      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(TarkovDir)SPT\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(TarkovDir)SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
 
     <!-- Creates a release zip file -->
     <RemoveDir Directories="$(ProjectDir)release" />
-      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\DynamicMaps\%(RecursiveDir)" />
-      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(ProjectDir)release\DynamicMaps\SPT\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
+      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(ProjectDir)release\DynamicMaps\SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
     <ZipDirectory SourceDirectory="$(ProjectDir)release\DynamicMaps\" DestinationFile="$(ProjectDir)release\DynamicMaps-$(Version).zip" />
   </Target>
 

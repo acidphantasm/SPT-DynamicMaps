@@ -7,6 +7,7 @@ using SPT.Reflection.Utils;
 using Comfort.Common;
 using DynamicMaps.Config;
 using EFT;
+using EFT.InventoryLogic;
 using EFT.Vehicle;
 using HarmonyLib;
 using UnityEngine.Profiling;
@@ -19,14 +20,14 @@ namespace DynamicMaps.Utils
         private static FieldInfo _playerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
         private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
         
-        private static Type _profileInterface = typeof(ISession).GetInterfaces().First(i =>
+        private static Type _profileInterface = typeof(IEftSession).GetInterfaces().First(i =>
             {
                 var properties = i.GetProperties();
                 return properties.Length == 2 &&
                        properties.Any(p => p.Name == "Profile");
             });
         private static PropertyInfo _sessionProfileProperty = AccessTools.Property(_profileInterface, "Profile");
-        public static ISession Session => ClientAppUtils.GetMainApp().GetClientBackEndSession();
+        public static IEftSession Session => ClientAppUtils.GetMainApp().GetClientBackEndSession();
         public static Profile PlayerProfile => _sessionProfileProperty.GetValue(Session) as Profile;
         //
 

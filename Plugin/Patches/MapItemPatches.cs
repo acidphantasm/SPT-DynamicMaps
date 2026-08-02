@@ -4,6 +4,7 @@ using HarmonyLib;
 using SPT.Reflection.Patching;
 using System.Collections.Generic;
 using System.Reflection;
+using EFT.UI;
 
 namespace DynamicMaps.Patches;
 
@@ -11,8 +12,8 @@ public class ShowViewButtonPatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return AccessTools.Method(typeof(ContextInteractionSwitcherClass),
-            nameof(ContextInteractionSwitcherClass.IsActive));
+        return AccessTools.Method(typeof(BaseItemContextInteractions),
+            nameof(BaseItemContextInteractions.IsActive));
     }
 
     private static readonly HashSet<string> _mapsToIgnore = [
@@ -24,11 +25,11 @@ public class ShowViewButtonPatch : ModulePatch
     ];
 
     [PatchPostfix]
-    public static void PatchPrefix(ContextInteractionSwitcherClass __instance, EItemInfoButton button, ref bool __result)
+    public static void PatchPrefix(BaseItemContextInteractions __instance, EItemInfoButton button, ref bool __result)
     {
         if (button is not EItemInfoButton.ViewMap || Settings.ReplaceMapScreen.Value) return;
 
-        var item = __instance.Item_0;
+        var item = __instance.Item;
 
         __result = !_mapsToIgnore.Contains(item.TemplateId);
     }

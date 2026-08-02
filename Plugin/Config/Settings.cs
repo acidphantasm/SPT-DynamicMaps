@@ -564,7 +564,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(AutoCenterOnPlayerMarker = config.Bind(
                 InRaidTitle,
                 "Auto Center On Player Marker",
-                false,
+                true,
                 new ConfigDescription(
                     "If the player marker should be centered when showing the map in raid (Conflicts with 'Remember Map Position')",
                     null,
@@ -582,7 +582,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(RetainMapPosition = config.Bind(
                 InRaidTitle,
                 "Remember Map Position",
-                true,
+                false,
                 new ConfigDescription(
                     "Should we remember the map position (Map position memory is only maintained for the current raid) (Conflicts with 'Auto Center On Player Marker' and 'Reset Zoom On Center')",
                     null,

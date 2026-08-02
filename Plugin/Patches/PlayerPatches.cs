@@ -50,7 +50,7 @@ namespace DynamicMaps.Patches
         public static void PatchPostfix(Player.PlayerInventoryController __instance, Item item)
         {
             // only look at main player's dropped items
-            var player = __instance.Player_0;
+            var player = __instance.Player;
             if (player == null || player != GameUtils.GetMainPlayer())
             {
                 return;

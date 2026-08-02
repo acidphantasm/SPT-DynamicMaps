@@ -27,34 +27,33 @@ namespace DynamicMaps.UI
         private EventHandler _adjustMiniMapHandler;
         private UnityEngine.Events.UnityAction<Vector2> _scrollHandler;
         
-        private const string _mapRelPath = "Maps";
+        private const string MapRelPath = "Maps";
 
         private bool _initialized = false;
         
         // zoom stuff
-        private static float _positionTweenTime = 0.25f;
-        private static float _scrollZoomScaler = 1.75f;
-        private static float _zoomScrollTweenTime = 0.25f;
+        private static readonly float PositionTweenTime = 0.25f;
+        private static readonly float ScrollZoomScaler = 1.75f;
         private float _targetZoom = 0f;
         private Vector2 _zoomFocusPoint = Vector2.zero;
-        private static float _scrollZoomLerpSpeed = 8f;
+        private static readonly float ScrollZoomLerpSpeed = 8f;
 
         // vectors
-        private static Vector2 _levelSliderPosition = new Vector2(15f, 750f);
-        private static Vector2 _mapSelectDropdownPosition = new Vector2(-780f, -50f);
-        private static Vector2 _mapSelectDropdownSize = new Vector2(360f, 31f);
-        private static Vector2 _maskSizeModifierInRaid = new Vector2(0, -42f);
-        private static Vector2 _maskPositionInRaid = new Vector2(0, -20f);
-        private static Vector2 _maskSizeModifierOutOfRaid = new Vector2(0, -70f);
-        private static Vector2 _maskPositionOutOfRaid = new Vector2(0, -5f);
-        private static Vector2 _textAnchor = new Vector2(0f, 1f);
-        private static Vector2 _cursorPositionTextOffset = new Vector2(15f, -52f);
-        private static Vector2 _playerPositionTextOffset = new Vector2(15f, -68f);
-        private static float _positionTextFontSize = 15f;
-        
-        public RectTransform RectTransform => gameObject.GetRectTransform();
+        private static readonly Vector2 LevelSliderPosition = new Vector2(15f, 750f);
+        private static readonly Vector2 MapSelectDropdownPosition = new Vector2(-780f, -50f);
+        private static readonly Vector2 MapSelectDropdownSize = new Vector2(360f, 31f);
+        private static readonly Vector2 MaskSizeModifierInRaid = new Vector2(0, -42f);
+        private static readonly Vector2 MaskPositionInRaid = new Vector2(0, -20f);
+        private static readonly Vector2 MaskSizeModifierOutOfRaid = new Vector2(0, -70f);
+        private static readonly Vector2 MaskPositionOutOfRaid = new Vector2(0, -5f);
+        private static readonly Vector2 TextAnchor = new Vector2(0f, 1f);
+        private static readonly Vector2 CursorPositionTextOffset = new Vector2(15f, -52f);
+        private static readonly Vector2 PlayerPositionTextOffset = new Vector2(15f, -68f);
+        private static readonly float PositionTextFontSize = 15f;
 
-        private RectTransform _parentTransform => gameObject.transform.parent as RectTransform;
+        private RectTransform RectTransform => gameObject.GetRectTransform();
+
+        private RectTransform ParentTransform => gameObject.transform.parent as RectTransform;
 
         private bool _isShown = false;
 
@@ -72,17 +71,17 @@ namespace DynamicMaps.UI
 
         // peek
         private MapPeekComponent _peekComponent;
-        private bool _isPeeking => _peekComponent != null && _peekComponent.IsPeeking;
-        private bool _showingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
+        private bool IsPeeking => _peekComponent != null && _peekComponent.IsPeeking;
+        private bool ShowingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
         private Vector2 _savedMainMapPos = Vector2.zero;
         
         public bool IsShowingMapScreen { get; private set; }
         
         // dynamic map marker providers
-        private Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
+        private readonly Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
         
         // minimap throttle
-        private float _miniMapUpdateInterval = 0.033f;
+        private readonly float _miniMapUpdateInterval = 0.033f;
         private float _miniMapUpdateTimer = 0f;
 
         // config
@@ -110,13 +109,13 @@ namespace DynamicMaps.UI
         private KeyboardShortcut _zoomMiniMapInShortcut;
         private KeyboardShortcut _zoomMiniMapOutShortcut;
 
-        public static DMServerConfig _serverConfig;
-        public class DMServerConfig
+        public static DmServerConfig ServerConfig;
+        public class DmServerConfig
         {
-            public bool allowShowFriendlyPlayerMarkersInRaid;
-            public bool allowShowEnemyPlayerMarkersInRaid;
-            public bool allowShowBossMarkersInRaid;
-            public bool allowShowScavMarkersInRaid;
+            public bool AllowShowFriendlyPlayerMarkersInRaid;
+            public bool AllowShowEnemyPlayerMarkersInRaid;
+            public bool AllowShowBossMarkersInRaid;
+            public bool AllowShowScavMarkersInRaid;
         }
 
 
@@ -135,8 +134,8 @@ namespace DynamicMaps.UI
         private void Awake()
         {
             // make our game object hierarchy
-            var scrollRectGO = UIUtils.CreateUIGameObject(gameObject, "Scroll");
-            var scrollMaskGO = UIUtils.CreateUIGameObject(scrollRectGO, "ScrollMask");
+            var scrollRectGo = UIUtils.CreateUIGameObject(gameObject, "Scroll");
+            var scrollMaskGo = UIUtils.CreateUIGameObject(scrollRectGo, "ScrollMask");
 
             _adjustMiniMapHandler = (_, _) => AdjustForMiniMap(false);
             Settings.MiniMapPosition.SettingChanged += _adjustMiniMapHandler;
@@ -145,15 +144,15 @@ namespace DynamicMaps.UI
             Settings.MiniMapSizeX.SettingChanged += _adjustMiniMapHandler;
             Settings.MiniMapSizeY.SettingChanged += _adjustMiniMapHandler;
             
-            _mapView = MapView.Create(scrollMaskGO, "MapView");
+            _mapView = MapView.Create(scrollMaskGo, "MapView");
 
             // set up mask; size will be set later in Raid/NoRaid
-            var scrollMaskImage = scrollMaskGO.AddComponent<Image>();
+            var scrollMaskImage = scrollMaskGo.AddComponent<Image>();
             scrollMaskImage.color = new Color(0f, 0f, 0f, 0.5f);
-            _scrollMask = scrollMaskGO.AddComponent<Mask>();
+            _scrollMask = scrollMaskGo.AddComponent<Mask>();
 
             // set up scroll rect
-            _scrollRect = scrollRectGO.AddComponent<MapScrollRect>();
+            _scrollRect = scrollRectGo.AddComponent<MapScrollRect>();
             _scrollRect.scrollSensitivity = 0;  // don't scroll on mouse wheel
             _scrollRect.movementType = ScrollRect.MovementType.Unrestricted;
             _scrollRect.viewport = _scrollMask.GetRectTransform();
@@ -184,13 +183,13 @@ namespace DynamicMaps.UI
             _mapSelectDropdown.OnMapSelected += ChangeMap;
 
             // texts
-            _cursorPositionText = CursorPositionText.Create(gameObject, _mapView.RectTransform, _positionTextFontSize);
-            _cursorPositionText.RectTransform.anchorMin = _textAnchor;
-            _cursorPositionText.RectTransform.anchorMax = _textAnchor;
+            _cursorPositionText = CursorPositionText.Create(gameObject, _mapView.RectTransform, PositionTextFontSize);
+            _cursorPositionText.RectTransform.anchorMin = TextAnchor;
+            _cursorPositionText.RectTransform.anchorMax = TextAnchor;
 
-            _playerPositionText = PlayerPositionText.Create(gameObject, _positionTextFontSize);
-            _playerPositionText.RectTransform.anchorMin = _textAnchor;
-            _playerPositionText.RectTransform.anchorMax = _textAnchor;
+            _playerPositionText = PlayerPositionText.Create(gameObject, PositionTextFontSize);
+            _playerPositionText.RectTransform.anchorMin = TextAnchor;
+            _playerPositionText.RectTransform.anchorMax = TextAnchor;
             _playerPositionText.gameObject.SetActive(false);
 
             // read config before setting up marker providers
@@ -199,7 +198,7 @@ namespace DynamicMaps.UI
             GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
             
             // load initial maps from path
-            _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
+            _mapSelectDropdown.LoadMapDefsFromPath(MapRelPath);
             PrecacheMapLayerImages();
         }
 
@@ -235,7 +234,7 @@ namespace DynamicMaps.UI
             OnScrollZoomUpdate();
 
             // change level hotkeys
-            if (!_showingMiniMap)
+            if (!ShowingMiniMap)
             {
                 if (_moveMapLevelUpShortcut.BetterIsDown())
                 {
@@ -252,7 +251,7 @@ namespace DynamicMaps.UI
             var shiftMapX = 0f;
             var shiftMapY = 0f;
 
-            if (!_showingMiniMap)
+            if (!ShowingMiniMap)
             {
                 if (_moveMapUpShortcut.BetterIsPressed())
                 {
@@ -283,7 +282,7 @@ namespace DynamicMaps.UI
                 _mapView.ClampToMapBounds();
             }
 
-            if (_showingMiniMap)
+            if (ShowingMiniMap)
             {
                 OnZoomMini();
             }
@@ -315,7 +314,7 @@ namespace DynamicMaps.UI
         {
             if (_peekComponent is not null)
             {
-                _peekComponent.WasMiniMapActive = _showingMiniMap;
+                _peekComponent.WasMiniMapActive = ShowingMiniMap;
                 
                 _peekComponent?.EndPeek();
                 _peekComponent?.EndMiniMap();
@@ -360,7 +359,7 @@ namespace DynamicMaps.UI
             gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
 
             // populate map select dropdown
-            _mapSelectDropdown.LoadMapDefsFromPath(_mapRelPath);
+            _mapSelectDropdown.LoadMapDefsFromPath(MapRelPath);
 
             if (GameUtils.IsInRaid())
             {
@@ -448,23 +447,23 @@ namespace DynamicMaps.UI
 
             _scrollRect.GetRectTransform().sizeDelta = RectTransform.sizeDelta;
 
-            _scrollMask.GetRectTransform().anchoredPosition = _maskPositionOutOfRaid;
-            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + _maskSizeModifierOutOfRaid;
+            _scrollMask.GetRectTransform().anchoredPosition = MaskPositionOutOfRaid;
+            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + MaskSizeModifierOutOfRaid;
 
-            _levelSelectSlider.RectTransform.anchoredPosition = _levelSliderPosition;
+            _levelSelectSlider.RectTransform.anchoredPosition = LevelSliderPosition;
 
-            _mapSelectDropdown.RectTransform.sizeDelta = _mapSelectDropdownSize;
-            _mapSelectDropdown.RectTransform.anchoredPosition = _mapSelectDropdownPosition;
+            _mapSelectDropdown.RectTransform.sizeDelta = MapSelectDropdownSize;
+            _mapSelectDropdown.RectTransform.anchoredPosition = MapSelectDropdownPosition;
 
-            _cursorPositionText.RectTransform.anchoredPosition = _cursorPositionTextOffset;
-            _playerPositionText.RectTransform.anchoredPosition = _playerPositionTextOffset;
+            _cursorPositionText.RectTransform.anchoredPosition = CursorPositionTextOffset;
+            _playerPositionText.RectTransform.anchoredPosition = PlayerPositionTextOffset;
         }
 
         private void AdjustForOutOfRaid()
         {
             // adjust mask
-            _scrollMask.GetRectTransform().anchoredPosition = _maskPositionOutOfRaid;
-            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + _maskSizeModifierOutOfRaid;
+            _scrollMask.GetRectTransform().anchoredPosition = MaskPositionOutOfRaid;
+            _scrollMask.GetRectTransform().sizeDelta = RectTransform.sizeDelta + MaskSizeModifierOutOfRaid;
 
             // turn on cursor and off player position texts
             _cursorPositionText.gameObject.SetActive(true);
@@ -477,8 +476,8 @@ namespace DynamicMaps.UI
             var speed = playAnimation ? 0.35f : 0f;
             
             // adjust mask
-            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + _maskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
-            _scrollMask.GetRectTransform().DOAnchorPos(_maskPositionInRaid, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + MaskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
+            _scrollMask.GetRectTransform().DOAnchorPos(MaskPositionInRaid, _transitionAnimations ? speed : 0f);
             
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
@@ -578,11 +577,11 @@ namespace DynamicMaps.UI
 
         private void OnShowInRaid(bool playAnimation)
         {
-            if (_showingMiniMap)
+            if (ShowingMiniMap)
             {
                 AdjustForMiniMap(playAnimation);
             }
-            else if (_isPeeking)
+            else if (IsPeeking)
             {
                 AdjustForPeek(playAnimation);
             }
@@ -626,7 +625,7 @@ namespace DynamicMaps.UI
             }
 
             // Don't set the map position if we're the mini-map, otherwise it can cause artifacting
-            if (_rememberMapPosition && !_showingMiniMap && _mapView.MainMapPos != Vector2.zero)
+            if (_rememberMapPosition && !ShowingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
                 _mapView.ApplyMainMapZoom();
     
@@ -635,21 +634,19 @@ namespace DynamicMaps.UI
                 return;
             }
             
-            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !_showingMiniMap)
+            if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !ShowingMiniMap)
             {
                 _mapView.ApplyMainMapZoom();
                 _mapView.SetMapZoom(_mapView.ZoomMin, 0f);
-                var midpoint = MathUtils.GetMidpoint(_mapView.CurrentMapDef.Bounds.Min, _mapView.CurrentMapDef.Bounds.Max);
-                _mapView.ShiftMapToCoordinate(midpoint, 0f, false);
                 return;
             }
             
             // Auto centering while the minimap is active here can cause artifacting
-            if (_autoCenterOnPlayerMarker && !_showingMiniMap)
+            if (_autoCenterOnPlayerMarker && !ShowingMiniMap)
             {
                 // Reset the zoom level
                 _mapView.ApplyMainMapZoom();
-                if (_resetZoomOnCenter && !_showingMiniMap)
+                if (_resetZoomOnCenter && !ShowingMiniMap)
                 {
                     // change zoom to desired level
                     _mapView.SetMapZoom(GetInRaidStartingZoom(), 0);
@@ -727,7 +724,7 @@ namespace DynamicMaps.UI
         
         private void OnScroll(float scrollAmount)
         {
-            if (_isPeeking || _showingMiniMap)
+            if (IsPeeking || ShowingMiniMap)
             {
                 return;
             }
@@ -755,7 +752,7 @@ namespace DynamicMaps.UI
                 _mapView.RectTransform, Input.mousePosition, null, out Vector2 mouseRelative);
 
             _targetZoom = Mathf.Clamp(
-                _targetZoom + scrollAmount * _targetZoom * _scrollZoomScaler,
+                _targetZoom + scrollAmount * _targetZoom * ScrollZoomScaler,
                 _mapView.ZoomMin,
                 _mapView.ZoomMax);
 
@@ -765,7 +762,7 @@ namespace DynamicMaps.UI
         private void OnScrollZoomUpdate()
         {
             // Return early if there's nothing to change, this is in Update
-            if (_targetZoom == 0f || _isPeeking || _showingMiniMap) 
+            if (_targetZoom == 0f || IsPeeking || ShowingMiniMap) 
                 return;
 
             var currentZoom = _mapView.ZoomMain;
@@ -775,7 +772,7 @@ namespace DynamicMaps.UI
                 return;
             }
 
-            var newZoom = Mathf.Lerp(currentZoom, _targetZoom, _scrollZoomLerpSpeed * Time.deltaTime);
+            var newZoom = Mathf.Lerp(currentZoom, _targetZoom, ScrollZoomLerpSpeed * Time.deltaTime);
             var zoomDelta = newZoom - currentZoom;
 
             _mapView.IncrementalZoomInto(zoomDelta, _zoomFocusPoint, 0f);
@@ -801,7 +798,7 @@ namespace DynamicMaps.UI
                 _targetZoom = 0f;
                 
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-                if (_isPeeking)
+                if (IsPeeking)
                 {
                     var player = GameUtils.GetMainPlayer();
                     var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
@@ -867,7 +864,7 @@ namespace DynamicMaps.UI
                 return;
             }
     
-            if (_showingMiniMap)
+            if (ShowingMiniMap)
             {
                 _miniMapUpdateTimer -= Time.deltaTime;
                 if (_miniMapUpdateTimer > 0f)
@@ -888,7 +885,7 @@ namespace DynamicMaps.UI
             }
     
             var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-            _mapView.ShiftMapToCoordinate(mapPosition, isMini ? 0f : _positionTweenTime, isMini);
+            _mapView.ShiftMapToCoordinate(mapPosition, isMini ? 0f : PositionTweenTime, isMini);
             _mapView.SelectLevelByCoords(mapPosition);
         }
 
@@ -999,10 +996,10 @@ namespace DynamicMaps.UI
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
-                provider.ShowFriendlyPlayers = _serverConfig.allowShowFriendlyPlayerMarkersInRaid ? Settings.ShowFriendlyPlayerMarkersInRaid.Value : false;
-                provider.ShowEnemyPlayers = _serverConfig.allowShowEnemyPlayerMarkersInRaid ? Settings.ShowEnemyPlayerMarkersInRaid.Value : false;
-                provider.ShowScavs = _serverConfig.allowShowScavMarkersInRaid ? Settings.ShowScavMarkersInRaid.Value : false;
-                provider.ShowBosses = _serverConfig.allowShowBossMarkersInRaid ? Settings.ShowBossMarkersInRaid.Value : false;
+                provider.ShowFriendlyPlayers = ServerConfig.AllowShowFriendlyPlayerMarkersInRaid ? Settings.ShowFriendlyPlayerMarkersInRaid.Value : false;
+                provider.ShowEnemyPlayers = ServerConfig.AllowShowEnemyPlayerMarkersInRaid ? Settings.ShowEnemyPlayerMarkersInRaid.Value : false;
+                provider.ShowScavs = ServerConfig.AllowShowScavMarkersInRaid ? Settings.ShowScavMarkersInRaid.Value : false;
+                provider.ShowBosses = ServerConfig.AllowShowBossMarkersInRaid ? Settings.ShowBossMarkersInRaid.Value : false;
                 
                 provider.RefreshMarkers();
             }
@@ -1045,7 +1042,7 @@ namespace DynamicMaps.UI
 
             _peekComponent = MapPeekComponent.Create(battleUI.gameObject);
             _peekComponent.MapScreen = this;
-            _peekComponent.MapScreenTrueParent = _parentTransform;
+            _peekComponent.MapScreenTrueParent = ParentTransform;
 
             ReadConfig();
         }

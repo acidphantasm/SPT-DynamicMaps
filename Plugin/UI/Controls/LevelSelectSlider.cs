@@ -12,8 +12,8 @@ namespace DynamicMaps.UI.Controls
 {
     public class LevelSelectSlider : MonoBehaviour
     {
-        private static float _levelTextSize = 15f;
-        private static Vector2 _levelTextOffset = new Vector2(10f, 0f);
+        private static readonly float LevelTextSize = 15f;
+        private static readonly Vector2 LevelTextOffset = new Vector2(10f, 0f);
 
         public event Action<int> OnLevelSelectedBySlider;
         public RectTransform RectTransform => gameObject.transform as RectTransform;
@@ -75,11 +75,11 @@ namespace DynamicMaps.UI.Controls
             var slidingArea = gameObject.transform.Find("Scrollbar/Sliding Area/Handle").gameObject;
             var layerTextGO = UIUtils.CreateUIGameObject(slidingArea, "SlidingLayerText");
             _text = layerTextGO.AddComponent<TextMeshProUGUI>();
-            _text.fontSize = _levelTextSize;
+            _text.fontSize = LevelTextSize;
             _text.alignment = TextAlignmentOptions.Left;
             _text.GetRectTransform().offsetMin = Vector2.zero;
             _text.GetRectTransform().offsetMax = Vector2.zero;
-            _text.GetRectTransform().anchoredPosition = _levelTextOffset;
+            _text.GetRectTransform().anchoredPosition = LevelTextOffset;
 
             _hasSetOutline = UIUtils.TrySetTMPOutline(_text);
 

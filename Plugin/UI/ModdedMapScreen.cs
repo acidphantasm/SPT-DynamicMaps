@@ -170,15 +170,14 @@ namespace DynamicMaps.UI
             // create map controls
 
             // level select slider
-            var sliderPrefab = Singleton<CommonUI>.Instance.transform.Find(
-                "Common UI/InventoryScreen/Map Panel/MapBlock/ZoomScroll").gameObject;
+            var sliderPrefab = Singleton<CommonUI>.Instance.transform.Find("Common UI/InventoryScreen/Map Panel/MapBlock/ZoomScroll").gameObject;
             _levelSelectSlider = LevelSelectSlider.Create(sliderPrefab, RectTransform);
             _levelSelectSlider.OnLevelSelectedBySlider += _mapView.SelectTopLevel;
             _mapView.OnLevelSelected += (level) => _levelSelectSlider.SelectedLevel = level;
+            _levelSelectSlider.gameObject.SetActive(false);
 
             // map select dropdown, this will call LoadMap on the first option
-            var selectPrefab = Singleton<CommonUI>.Instance.transform.Find(
-                "Common UI/InventoryScreen/SkillsAndMasteringPanel/BottomPanel/SkillsPanel/Options/Filter").gameObject;
+            var selectPrefab = Singleton<CommonUI>.Instance.transform.Find("Common UI/InventoryScreen/SkillsAndMasteringPanel/BottomPanel/SkillsPanel/Options/Filter").gameObject;
             _mapSelectDropdown = MapSelectDropdown.Create(selectPrefab, RectTransform);
             _mapSelectDropdown.OnMapSelected += ChangeMap;
 
@@ -482,7 +481,7 @@ namespace DynamicMaps.UI
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(true);
-            _levelSelectSlider.gameObject.SetActive(true);
+            _levelSelectSlider.gameObject.SetActive(!ShowingMiniMap);
         }
 
         private void AdjustForPeek(bool playAnimation)
@@ -594,6 +593,11 @@ namespace DynamicMaps.UI
             var mapInternalName = GameUtils.GetCurrentMapInternalName();
             _mapSelectDropdown.FilterByInternalMapName(mapInternalName);
             _mapSelectDropdown.LoadFirstAvailableMap();
+            
+            if (ShowingMiniMap)
+            {
+                _levelSelectSlider.gameObject.SetActive(false);
+            }
 
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
@@ -996,10 +1000,10 @@ namespace DynamicMaps.UI
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
-                provider.ShowFriendlyPlayers = ServerConfig.AllowShowFriendlyPlayerMarkersInRaid ? Settings.ShowFriendlyPlayerMarkersInRaid.Value : false;
-                provider.ShowEnemyPlayers = ServerConfig.AllowShowEnemyPlayerMarkersInRaid ? Settings.ShowEnemyPlayerMarkersInRaid.Value : false;
-                provider.ShowScavs = ServerConfig.AllowShowScavMarkersInRaid ? Settings.ShowScavMarkersInRaid.Value : false;
-                provider.ShowBosses = ServerConfig.AllowShowBossMarkersInRaid ? Settings.ShowBossMarkersInRaid.Value : false;
+                provider.ShowFriendlyPlayers = ServerConfig.AllowShowFriendlyPlayerMarkersInRaid && Settings.ShowFriendlyPlayerMarkersInRaid.Value;
+                provider.ShowEnemyPlayers = ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
+                provider.ShowScavs = ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
+                provider.ShowBosses = ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
                 
                 provider.RefreshMarkers();
             }

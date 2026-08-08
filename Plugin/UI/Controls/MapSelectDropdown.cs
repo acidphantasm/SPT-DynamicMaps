@@ -11,14 +11,14 @@ namespace DynamicMaps.UI.Controls
 {
     public class MapSelectDropdown : MonoBehaviour
     {
-        private static HashSet<string> _acceptableExtensions = new HashSet<string>{ "json", "jsonc" };
+        private static readonly HashSet<string> AcceptableExtensions = new HashSet<string>{ "json", "jsonc" };
 
         public event Action<MapDef> OnMapSelected;
         public RectTransform RectTransform => gameObject.transform as RectTransform;
 
         private DropDownBox _dropdown;
-        private Dictionary<string, DateTime> _writeTimes = new Dictionary<string, DateTime>();
-        private Dictionary<string, MapDef> _mapDefs = new Dictionary<string, MapDef>();
+        private readonly Dictionary<string, DateTime> _writeTimes = new Dictionary<string, DateTime>();
+        private readonly Dictionary<string, MapDef> _mapDefs = new Dictionary<string, MapDef>();
         private List<MapDef> _selectableMapDefs;
         private string _nameFilter = null;
 
@@ -68,7 +68,7 @@ namespace DynamicMaps.UI.Controls
         {
             var absolutePath = Path.Combine(Plugin.Path, relPath);
             var paths = Directory.EnumerateFiles(absolutePath, "*.*", SearchOption.AllDirectories)
-                .Where(p => _acceptableExtensions.Contains(Path.GetExtension(p).TrimStart('.').ToLowerInvariant()));
+                .Where(p => AcceptableExtensions.Contains(Path.GetExtension(p).TrimStart('.').ToLowerInvariant()));
 
             // NOTE: this will not catch deleted maps, which I'm fine with
             foreach (var path in paths)

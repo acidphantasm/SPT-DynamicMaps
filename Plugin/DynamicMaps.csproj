@@ -116,20 +116,23 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
-        <ServerComponents Include="$(ProjectDir)../Server/bin/Release/mpstark-dynamicmaps/*.*" />
-        <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
-        <License Include="$(ProjectDir)LICENSE" />
-        <Resources Include="$(ProjectDir)Resources\**\*.*" />
+      <ServerComponents Include="$(ProjectDir)../Server/bin/Release/mpstark-dynamicmaps/*.*" />
+      <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />
+      <License Include="$(ProjectDir)LICENSE" />
+      <Resources Include="$(ProjectDir)Resources\**\*.*" />
+      <ManagedDlls Include="$(ProjectDir)../EscapeFromTarkov_Data\**\*.*" />
     </ItemGroup>
 
     <!-- Copies the output and resources to tarkov game folder -->
-      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
-      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(TarkovDir)SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
+    <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(TarkovDir)BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ManagedDlls)" DestinationFolder="$(TarkovDir)\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(TarkovDir)SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
 
     <!-- Creates a release zip file -->
     <RemoveDir Directories="$(ProjectDir)release" />
-      <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
-      <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(ProjectDir)release\DynamicMaps\SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
+    <Copy SourceFiles="@(OutputDLL);@(Resources);@(License)" DestinationFolder="$(ProjectDir)release\DynamicMaps\BepInEx\plugins\mpstark-dynamicmaps\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ManagedDlls)" DestinationFolder="$(ProjectDir)release\DynamicMaps\EscapeFromTarkov_Data\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ServerComponents)" DestinationFolder="$(ProjectDir)release\DynamicMaps\SPT_Runtime\user\mods\mpstark-dynamicmaps\%(RecursiveDir)" />
     <ZipDirectory SourceDirectory="$(ProjectDir)release\DynamicMaps\" DestinationFile="$(ProjectDir)release\DynamicMaps-$(Version).zip" />
   </Target>
 

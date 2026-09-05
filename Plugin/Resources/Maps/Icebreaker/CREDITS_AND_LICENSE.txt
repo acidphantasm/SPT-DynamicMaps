@@ -1,0 +1,6 @@
+Icebreaker map artwork version 1.5 by RE3MR.COM
+Source: https://reemr.se/Icebreaker/
+License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Modification: the single 7680x4320 overview was cropped into 14 individual deck images for noncommercial use in SPT DynamicMaps. No claim of authorship over the map artwork.

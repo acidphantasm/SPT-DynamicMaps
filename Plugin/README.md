@@ -41,6 +41,7 @@ An SPT mod that adds a custom in-game map viewer in the place of the BSG map scr
   - In-raid dynamic BTR icon (with icon by Kuromi, see [`marker_credits.txt`](Resources/Markers/marker_credits.txt) for more info)
   - In-raid dynamic airdrop icons (generated when airdrop lands)
   - In-raid dynamic markers for corpses
+    - Corpse loot screens include a small hide-marker icon that marks that body as searched for the current raid
   - In-raid dynamic other players/bots icons
     - Friendly players will only show if using another mod that adds multiplayer or adds friendly bots (not sure if that exists)
     - Enemy players, bosses, and scavs off by default, intended for mostly debug

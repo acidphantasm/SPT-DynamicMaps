@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Logging;
 using Comfort.Common;
 using DrakiaXYZ.VersionChecker;
@@ -12,6 +12,7 @@ using EFT.UI.Map;
 using SPT.Custom.Utils;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 namespace DynamicMaps
@@ -44,8 +45,10 @@ namespace DynamicMaps
             Config.SettingChanged += (x, y) => Map?.ReadConfig();
 
             // Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
-            
+
             Instance = this;
+            var assemblyPath = Assembly.GetExecutingAssembly().Location;
+            Logger.LogInfo($"DynamicMaps loaded from {assemblyPath}; version={BuildInfo.Version}; fileTimestamp={File.GetLastWriteTime(assemblyPath):yyyy-MM-dd HH:mm:ss}");
 
             // patches
             new BattleUIScreenShowPatch().Enable();
@@ -60,6 +63,9 @@ namespace DynamicMaps
             new AirdropBoxOnBoxLandPatch().Enable();
             new PlayerOnDeadPatch().Enable();
             new PlayerInventoryThrowItemPatch().Enable();
+            new InventoryScreenShowPatch().Enable();
+            new ComplexStashPanelShowPatch().Enable();
+            Logger.LogInfo("Corpse marker UI diagnostics enabled. Search BepInEx logs for [CorpseMarkerButton].");
             new ShowViewButtonPatch().Enable();
             new MenuLoadPatch().Enable();
         }
@@ -70,7 +76,7 @@ namespace DynamicMaps
         internal void TryAttachToMapScreen(MapScreen mapScreen)
         {
             if (Map is not null) return;
-            
+
             Log.LogInfo("Trying to attach to MapScreen");
 
             // attach to common UI first to call awake and set things up, then attach to sleeping map screen
@@ -87,7 +93,7 @@ namespace DynamicMaps
             {
                 return;
             }
-            
+
             Map.TryAddPeekComponent(battleUI);
         }
 

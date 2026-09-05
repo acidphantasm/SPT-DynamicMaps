@@ -1,0 +1,431 @@
+{
+  "DisplayName": "Icebreaker / Ледокол",
+  "Author": "RE3MR (DynamicMaps adaptation by OpenAI Codex)",
+  "AuthorLink": "https://reemr.se/Icebreaker/",
+  "MapInternalNames": [
+    "Suburbs",
+    "suburbs"
+  ],
+  "CoordinateRotation": 180,
+  "Bounds": {
+    "Min": {
+      "x": -19,
+      "y": -90
+    },
+    "Max": {
+      "x": 19,
+      "y": 94
+    }
+  },
+  "DefaultLevel": 1,
+  "Layers": {
+    "Bridge Roof": {
+      "Level": 10,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L10.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 41.4
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 100
+          }
+        }
+      ]
+    },
+    "Bridge": {
+      "Level": 9,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L9.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 38.7
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 41.4
+          }
+        }
+      ]
+    },
+    "Stairs (Blocked)": {
+      "Level": 8,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L8.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 36.0
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 38.7
+          }
+        }
+      ]
+    },
+    "Officers Deck": {
+      "Level": 7,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L7.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 33.275
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 36.0
+          }
+        }
+      ]
+    },
+    "Accommodation 6": {
+      "Level": 6,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L6.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 30.55
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 33.275
+          }
+        }
+      ]
+    },
+    "Accommodation 5": {
+      "Level": 5,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L5.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 27.85
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 30.55
+          }
+        }
+      ]
+    },
+    "Accommodation 4": {
+      "Level": 4,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L4.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 25.15
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 27.85
+          }
+        }
+      ]
+    },
+    "Gym & Canteen": {
+      "Level": 3,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L3.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 22.45
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 25.15
+          }
+        }
+      ]
+    },
+    "Helipad": {
+      "Level": 2,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L2.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 19.75
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 22.45
+          }
+        }
+      ]
+    },
+    "Infirmary": {
+      "Level": 1,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L1.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 17.075
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 19.75
+          }
+        }
+      ]
+    },
+    "Storage & Security": {
+      "Level": 0,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L0.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 14.375
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 17.075
+          }
+        }
+      ]
+    },
+    "Fuel Pumps": {
+      "Level": -1,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L-1.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 11.65
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 14.375
+          }
+        }
+      ]
+    },
+    "Engine Room": {
+      "Level": -2,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L-2.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": 9.8
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 11.65
+          }
+        }
+      ]
+    },
+    "Lower Automation": {
+      "Level": -3,
+      "ImagePath": "Maps/Icebreaker/Layers/Icebreaker_L-3.png",
+      "TesselationIndex": 1,
+      "ImageBounds": {
+        "Min": {
+          "x": -19.77,
+          "y": -97.11
+        },
+        "Max": {
+          "x": 18.23,
+          "y": 86.89
+        }
+      },
+      "GameBounds": [
+        {
+          "Min": {
+            "x": -25,
+            "y": -100,
+            "z": -100
+          },
+          "Max": {
+            "x": 25,
+            "y": 105,
+            "z": 9.8
+          }
+        }
+      ]
+    }
+  },
+  "Labels": [],
+  "StaticMarkers": []
+}

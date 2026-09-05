@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Comfort.Common;
@@ -8,6 +9,8 @@ using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
 using UnityEngine;
+using CompoundItem = EFT.InventoryLogic.CompoundItem;
+using IItemOwner = EFT.InventoryLogic.IItemOwner;
 
 namespace DynamicMaps.DynamicMarkers
 {
@@ -112,11 +115,12 @@ namespace DynamicMaps.DynamicMarkers
 
         private MapView _lastMapView;
         private Dictionary<Player, MapMarker> _corpseMarkers = [];
+        private static readonly HashSet<string> _searchedCorpseProfileIds = [];
 
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-            
+
             TryAddMarkers();
 
             GameWorldUnregisterPlayerPatch.OnUnregisterPlayer += OnUnregisterPlayer;
@@ -133,6 +137,7 @@ namespace DynamicMaps.DynamicMarkers
 
             _lastMapView = map;
             TryRemoveMarkers();
+            _searchedCorpseProfileIds.Clear();
         }
 
         public void OnMapChanged(MapView map, MapDef mapDef)
@@ -160,7 +165,7 @@ namespace DynamicMaps.DynamicMarkers
             }
 
             var player = iPlayer as Player;
-            if (player.HasCorpse())
+            if (player.HasCorpse() && !IsMarkedSearched(player))
             {
                 TryAddMarker(player);
             }
@@ -187,7 +192,7 @@ namespace DynamicMaps.DynamicMarkers
             var gameWorld = Singleton<GameWorld>.Instance;
             foreach (var player in gameWorld.AllPlayersEverExisted)
             {
-                if (!player.HasCorpse() || _corpseMarkers.ContainsKey(player))
+                if (!player.HasCorpse() || _corpseMarkers.ContainsKey(player) || IsMarkedSearched(player))
                 {
                     continue;
                 }
@@ -206,30 +211,94 @@ namespace DynamicMaps.DynamicMarkers
             }
 
             var corpses = Singleton<GameWorld>.Instance.AllPlayersEverExisted
-                .Where(p => p.HasCorpse());
-            
+                .Where(p => p.HasCorpse() && !IsMarkedSearched(p));
+
             foreach (var corpse in corpses)
             {
                 TryAddMarker(corpse);
             }
         }
-        
+
+        public bool TryGetCorpseLootMarkerState(CompoundItem lootItem, out bool isMarkedSearched, out string reason)
+        {
+            isMarkedSearched = false;
+
+            if (!TryGetCorpsePlayerByLootItem(lootItem, out var player, out reason))
+            {
+                return false;
+            }
+
+            isMarkedSearched = IsMarkedSearched(player);
+            reason = $"matched {DescribeCorpsePlayer(player)}; isMarkedSearched={isMarkedSearched}";
+            return true;
+        }
+
+        public bool TryMarkCorpseSearchedByLootItem(CompoundItem lootItem, out string reason)
+        {
+            if (!TryGetCorpsePlayerByLootItem(lootItem, out var corpsePlayer, out reason))
+            {
+                return false;
+            }
+
+            MarkCorpseSearched(corpsePlayer);
+            reason = $"marked {DescribeCorpsePlayer(corpsePlayer)}";
+            return true;
+        }
+
+
+        public bool TryToggleCorpseSearchedByLootItem(CompoundItem lootItem, out bool isMarkedSearched, out string reason)
+        {
+            isMarkedSearched = false;
+            if (!TryGetCorpsePlayerByLootItem(lootItem, out var corpsePlayer, out reason))
+            {
+                return false;
+            }
+
+            if (IsMarkedSearched(corpsePlayer))
+            {
+                _searchedCorpseProfileIds.Remove(corpsePlayer.ProfileId);
+                TryAddMarker(corpsePlayer);
+                reason = $"shown {DescribeCorpsePlayer(corpsePlayer)}";
+                return true;
+            }
+
+            MarkCorpseSearched(corpsePlayer);
+            isMarkedSearched = true;
+            reason = $"marked {DescribeCorpsePlayer(corpsePlayer)}";
+            return true;
+        }
+        public bool IsCorpseLootRootItem(string rootItemId)
+        {
+            return TryGetCorpsePlayerByRootItemId(rootItemId, out _, out _);
+        }
+
+        public bool IsCorpseMarkedSearchedByRootItemId(string rootItemId)
+        {
+            return TryGetCorpsePlayerByRootItemId(rootItemId, out var player, out _) && IsMarkedSearched(player);
+        }
+
+        public bool TryMarkCorpseSearchedByRootItemId(string rootItemId)
+        {
+            return TryGetCorpsePlayerByRootItemId(rootItemId, out var corpsePlayer, out _)
+                && TryMarkCorpseSearched(corpsePlayer);
+        }
+
         private void TryAddMarker(Player player)
         {
-            if (_lastMapView is null || _corpseMarkers.ContainsKey(player))
+            if (_lastMapView is null || _corpseMarkers.ContainsKey(player) || IsMarkedSearched(player))
             {
                 return;
             }
 
             var intelLevel = GameUtils.GetIntelLevel();
-            
+
             if (Settings.ShowCorpseIntelLevel.Value > intelLevel) return;
-            
+
             // set category and color
             var category = _otherCorpseCategory;
             var imagePath = _otherCorpseImagePath;
             var color = Settings.KilledOtherColor.Value;
-            
+
             if (player.IsGroupedWithMainPlayer())
             {
                 category = _friendlyCorpseCategory;
@@ -278,7 +347,7 @@ namespace DynamicMaps.DynamicMarkers
                 ImagePath = imagePath,
                 Text = player.Profile.GetCorrectedNickname(),
                 Color = color,
-                Position = MathUtils.ConvertToMapPosition(((IPlayer)player).Position)
+                Position = MathUtils.ConvertToMapPosition(GetCorpsePosition(player))
             };
 
             // try adding marker
@@ -307,6 +376,191 @@ namespace DynamicMaps.DynamicMarkers
 
             _corpseMarkers[player].ContainingMapView.RemoveMapMarker(_corpseMarkers[player]);
             _corpseMarkers.Remove(player);
+        }
+
+        private void MarkCorpseSearched(Player player)
+        {
+            TryMarkCorpseSearched(player);
+        }
+
+        private bool TryMarkCorpseSearched(Player player)
+        {
+            if (player is null || string.IsNullOrEmpty(player.ProfileId))
+            {
+                return false;
+            }
+
+            _searchedCorpseProfileIds.Add(player.ProfileId);
+            TryRemoveMarker(player);
+            Plugin.Log.LogInfo($"Marked corpse {player.Profile.GetCorrectedNickname()} as searched");
+            return true;
+        }
+
+        private static bool IsMarkedSearched(Player player)
+        {
+            return player is not null
+                && !string.IsNullOrEmpty(player.ProfileId)
+                && _searchedCorpseProfileIds.Contains(player.ProfileId);
+        }
+
+        private static bool TryGetCorpsePlayerByRootItemId(string rootItemId, out Player corpsePlayer, out string reason)
+        {
+            corpsePlayer = null;
+            reason = "not scanned";
+
+            if (string.IsNullOrEmpty(rootItemId) || !GameUtils.IsInRaid())
+            {
+                reason = $"rootItemId empty or not in raid; rootItemId={rootItemId ?? "null"}; isInRaid={GameUtils.IsInRaid()}";
+                return false;
+            }
+
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld is null)
+            {
+                reason = "GameWorld is null";
+                return false;
+            }
+
+            var scannedCorpses = 0;
+            var samples = new List<string>();
+
+            foreach (var player in gameWorld.AllPlayersEverExisted)
+            {
+                if (player is null || !player.HasCorpse())
+                {
+                    continue;
+                }
+
+                var corpse = player.GetCorpse();
+                if (corpse is null)
+                {
+                    continue;
+                }
+
+                scannedCorpses++;
+                AddCorpseSample(samples, player, corpse);
+
+                if (string.Equals(corpse.ItemId, rootItemId, StringComparison.Ordinal)
+                    || string.Equals(corpse.Item?.Id, rootItemId, StringComparison.Ordinal))
+                {
+                    corpsePlayer = player;
+                    reason = $"matched by rootItemId={rootItemId}; {DescribeCorpsePlayer(player)}";
+                    return true;
+                }
+            }
+
+            reason = $"no matching corpse by rootItemId={rootItemId}; scannedCorpses={scannedCorpses}; sample={FormatSamples(samples)}";
+            return false;
+        }
+
+        private static bool TryGetCorpsePlayerByLootItem(CompoundItem lootItem, out Player corpsePlayer, out string reason)
+        {
+            corpsePlayer = null;
+
+            if (lootItem is null)
+            {
+                reason = "lootItem is null";
+                return false;
+            }
+
+            if (!GameUtils.IsInRaid())
+            {
+                reason = $"not in raid; lootItem={DescribeLootItem(lootItem)}";
+                return false;
+            }
+
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld is null)
+            {
+                reason = $"GameWorld is null; lootItem={DescribeLootItem(lootItem)}";
+                return false;
+            }
+
+            var lootOwner = lootItem.Owner;
+            var scannedCorpses = 0;
+            var samples = new List<string>();
+
+            foreach (var player in gameWorld.AllPlayersEverExisted)
+            {
+                if (player is null || !player.HasCorpse())
+                {
+                    continue;
+                }
+
+                var corpse = player.GetCorpse();
+                if (corpse is null)
+                {
+                    continue;
+                }
+
+                scannedCorpses++;
+                AddCorpseSample(samples, player, corpse);
+
+                var matchedByReference = ReferenceEquals(corpse.Item, lootItem);
+                var matchedByItemId = string.Equals(corpse.ItemId, lootItem.Id, StringComparison.Ordinal)
+                    || string.Equals(corpse.Item?.Id, lootItem.Id, StringComparison.Ordinal);
+                var matchedByOwner = lootOwner is not null
+                    && corpse.ItemOwner is not null
+                    && (ReferenceEquals(corpse.ItemOwner, lootOwner)
+                        || string.Equals(corpse.ItemOwner.RootItem?.Id, lootOwner.RootItem?.Id, StringComparison.Ordinal));
+
+                if (matchedByReference || matchedByItemId || matchedByOwner)
+                {
+                    corpsePlayer = player;
+                    reason = $"matchedByReference={matchedByReference}; matchedByItemId={matchedByItemId}; matchedByOwner={matchedByOwner}; lootItem={DescribeLootItem(lootItem)}; lootOwner={DescribeOwner(lootOwner)}; {DescribeCorpsePlayer(player)}";
+                    return true;
+                }
+            }
+
+            reason = $"no matching corpse for lootItem={DescribeLootItem(lootItem)}; lootOwner={DescribeOwner(lootOwner)}; scannedCorpses={scannedCorpses}; sample={FormatSamples(samples)}";
+            return false;
+        }
+
+        private static void AddCorpseSample(List<string> samples, Player player, EFT.Interactive.Corpse corpse)
+        {
+            if (samples.Count >= 5)
+            {
+                return;
+            }
+
+            samples.Add($"{player.ProfileId ?? "noProfile"}:{player.Profile?.GetCorrectedNickname() ?? "noName"}:corpseItemId={corpse.ItemId ?? "null"}:itemId={corpse.Item?.Id ?? "null"}:ownerRoot={corpse.ItemOwner?.RootItem?.Id ?? "null"}:marked={IsMarkedSearched(player)}");
+        }
+
+        private static string FormatSamples(List<string> samples)
+        {
+            return samples.Count == 0 ? "none" : string.Join(" | ", samples);
+        }
+
+        private static string DescribeCorpsePlayer(Player player)
+        {
+            return player is null
+                ? "player=null"
+                : $"playerProfile={player.ProfileId ?? "null"}; nickname={player.Profile?.GetCorrectedNickname() ?? "null"}";
+        }
+
+        private static string DescribeLootItem(CompoundItem lootItem)
+        {
+            return lootItem is null
+                ? "null"
+                : $"{lootItem.GetType().Name}:id={lootItem.Id ?? "null"}:template={lootItem.TemplateId}:ownerRoot={DescribeRootItemId(lootItem.Owner)}";
+        }
+
+        private static string DescribeOwner(IItemOwner owner)
+        {
+            return owner is null
+                ? "null"
+                : $"{owner.GetType().Name}:root={DescribeRootItemId(owner)}:container={owner.ContainerName ?? "null"}:type={owner.OwnerType}";
+        }
+
+        private static string DescribeRootItemId(IItemOwner owner)
+        {
+            return owner?.RootItem is null ? "null" : owner.RootItem.Id.ToString();
+        }
+
+        private static Vector3 GetCorpsePosition(Player player)
+        {
+            var corpse = player.GetCorpse();
+            return corpse?.TrackableTransform?.position ?? ((IPlayer)player).Position;
         }
 
         private bool ShouldShowCategory(string category)

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>DynamicMaps</AssemblyName>
@@ -114,7 +114,7 @@
     <WriteLinesToFile File="@(VersionCs)" Lines="namespace DynamicMaps{public static class BuildInfo {public const string Version = &quot;$(Version)&quot;%3B}}" />
   </Target>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Condition="'$(DeployToGame)' == 'true'" Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
       <ServerComponents Include="$(ProjectDir)../Server/bin/Release/mpstark-dynamicmaps/*.*" />
       <OutputDLL Include="$(ProjectDir)$(OutDir)$(TargetName).dll" />

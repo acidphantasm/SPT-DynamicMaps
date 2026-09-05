@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BepInEx.Configuration;
 using Comfort.Common;
 using DG.Tweening;
@@ -18,6 +19,7 @@ using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
 using UnityEngine.EventSystems;
+using CompoundItem = EFT.InventoryLogic.CompoundItem;
 
 namespace DynamicMaps.UI
 {
@@ -26,11 +28,11 @@ namespace DynamicMaps.UI
         #region Variables and Declarations
         private EventHandler _adjustMiniMapHandler;
         private UnityEngine.Events.UnityAction<Vector2> _scrollHandler;
-        
+
         private const string MapRelPath = "Maps";
 
         private bool _initialized = false;
-        
+
         // zoom stuff
         private static readonly float PositionTweenTime = 0.25f;
         private static readonly float ScrollZoomScaler = 1.75f;
@@ -74,12 +76,12 @@ namespace DynamicMaps.UI
         private bool IsPeeking => _peekComponent != null && _peekComponent.IsPeeking;
         private bool ShowingMiniMap => _peekComponent != null && _peekComponent.ShowingMiniMap;
         private Vector2 _savedMainMapPos = Vector2.zero;
-        
+
         public bool IsShowingMapScreen { get; private set; }
-        
+
         // dynamic map marker providers
         private readonly Dictionary<Type, IDynamicMarkerProvider> _dynamicMarkerProviders = [];
-        
+
         // minimap throttle
         private readonly float _miniMapUpdateInterval = 0.033f;
         private float _miniMapUpdateTimer = 0f;
@@ -90,7 +92,7 @@ namespace DynamicMaps.UI
         private bool _resetZoomOnCenter = false;
         private bool _rememberMapPosition = true;
         private bool _transitionAnimations = true;
-        
+
         private float _centeringZoomResetPoint = 0f;
         private KeyboardShortcut _centerPlayerShortcut;
         private KeyboardShortcut _dumpShortcut;
@@ -105,7 +107,7 @@ namespace DynamicMaps.UI
         private bool _zoomMainMapToMouse;
         private KeyboardShortcut _zoomMainMapInShortcut;
         private KeyboardShortcut _zoomMainMapOutShortcut;
-        
+
         private KeyboardShortcut _zoomMiniMapInShortcut;
         private KeyboardShortcut _zoomMiniMapOutShortcut;
 
@@ -120,9 +122,9 @@ namespace DynamicMaps.UI
 
 
         private float _zoomMapHotkeySpeed = 2.5f;
-        
+
         #endregion
-        
+
         internal static ModdedMapScreen Create(GameObject parent)
         {
             var go = UIUtils.CreateUIGameObject(parent, "ModdedMapBlock");
@@ -143,7 +145,7 @@ namespace DynamicMaps.UI
             Settings.MiniMapScreenOffsetY.SettingChanged += _adjustMiniMapHandler;
             Settings.MiniMapSizeX.SettingChanged += _adjustMiniMapHandler;
             Settings.MiniMapSizeY.SettingChanged += _adjustMiniMapHandler;
-            
+
             _mapView = MapView.Create(scrollMaskGo, "MapView");
 
             // set up mask; size will be set later in Raid/NoRaid
@@ -161,9 +163,9 @@ namespace DynamicMaps.UI
             _scrollRect.onValueChanged.AddListener(_scrollHandler);
             _scrollRect.OnBeginDragCallback = () =>
             {
-                if (_mapView == null) 
+                if (_mapView == null)
                     return;
-                
+
                 _targetZoom = 0f;
                 _mapView.CancelPositionTween();
             };
@@ -195,7 +197,7 @@ namespace DynamicMaps.UI
             ReadConfig();
 
             GameWorldOnDestroyPatch.OnRaidEnd += OnRaidEnd;
-            
+
             // load initial maps from path
             _mapSelectDropdown.LoadMapDefsFromPath(MapRelPath);
             PrecacheMapLayerImages();
@@ -208,9 +210,9 @@ namespace DynamicMaps.UI
                 _scrollRect.onValueChanged.RemoveListener(_scrollHandler);
                 _scrollRect.OnBeginDragCallback = null;
             }
-            
+
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
-            
+
             Settings.MiniMapPosition.SettingChanged -= _adjustMiniMapHandler;
             Settings.MiniMapScreenOffsetX.SettingChanged -= _adjustMiniMapHandler;
             Settings.MiniMapScreenOffsetY.SettingChanged -= _adjustMiniMapHandler;
@@ -229,7 +231,7 @@ namespace DynamicMaps.UI
                     OnScroll(scroll);
                 }
             }
-            
+
             OnScrollZoomUpdate();
 
             // change level hotkeys
@@ -245,7 +247,7 @@ namespace DynamicMaps.UI
                     _levelSelectSlider.ChangeLevelBy(-1);
                 }
             }
-            
+
             // shift hotkeys
             var shiftMapX = 0f;
             var shiftMapY = 0f;
@@ -272,7 +274,7 @@ namespace DynamicMaps.UI
                     shiftMapX += 1f;
                 }
             }
-            
+
             if (shiftMapX != 0f || shiftMapY != 0f)
             {
                 _targetZoom = 0f;
@@ -289,9 +291,9 @@ namespace DynamicMaps.UI
             {
                 OnZoomMain();
             }
-            
+
             OnCenter();
-            
+
             if (_dumpShortcut.BetterIsDown())
             {
                 DumpUtils.DumpExtracts();
@@ -314,13 +316,13 @@ namespace DynamicMaps.UI
             if (_peekComponent is not null)
             {
                 _peekComponent.WasMiniMapActive = ShowingMiniMap;
-                
+
                 _peekComponent?.EndPeek();
                 _peekComponent?.EndMiniMap();
             }
 
             IsShowingMapScreen = true;
-            
+
             transform.parent.Find("MapBlock").gameObject.SetActive(false);
             transform.parent.Find("EmptyBlock").gameObject.SetActive(false);
             transform.parent.gameObject.SetActive(true);
@@ -334,10 +336,10 @@ namespace DynamicMaps.UI
             {
                 _savedMainMapPos = _mapView.MainMapPos;
             }
-            
+
             Hide();
             IsShowingMapScreen = false;
-            
+
             if (_peekComponent is not null && _peekComponent.WasMiniMapActive)
             {
                 _mapView.ApplyMiniMapZoom();
@@ -353,7 +355,7 @@ namespace DynamicMaps.UI
                 AdjustSizeAndPosition();
                 _initialized = true;
             }
-            
+
             _isShown = true;
             gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
 
@@ -395,11 +397,11 @@ namespace DynamicMaps.UI
         private void OnRaidEnd()
         {
             if (!BattleUIScreenShowPatch.IsAttached) return;
-            
+
             // Reset saved main map position
             _savedMainMapPos = Vector2.zero;
             _mapView.IsMiniMapActive = false;
-            
+
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
                 try
@@ -417,16 +419,16 @@ namespace DynamicMaps.UI
             // reset peek and remove reference, it will be destroyed very shortly with parent object
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
-            
+
             Destroy(_peekComponent.gameObject);
             _peekComponent = null;
 
             // unload map completely when raid ends, since we've removed markers
             _mapView.UnloadMap();
         }
-        
+
         #endregion
-        
+
         #region Size And Positioning
 
         internal void SaveMainMapPos()
@@ -436,7 +438,7 @@ namespace DynamicMaps.UI
                 _savedMainMapPos = _mapView.MainMapPos;
             }
         }
-        
+
         private void AdjustSizeAndPosition()
         {
             // set width and height based on inventory screen
@@ -473,11 +475,11 @@ namespace DynamicMaps.UI
         private void AdjustForInRaid(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             // adjust mask
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta + MaskSizeModifierInRaid, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(MaskPositionInRaid, _transitionAnimations ? speed : 0f);
-            
+
             // turn both cursor and player position texts on
             _cursorPositionText.gameObject.SetActive(true);
             _playerPositionText.gameObject.SetActive(true);
@@ -487,11 +489,11 @@ namespace DynamicMaps.UI
         private void AdjustForPeek(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             // adjust mask
             _scrollMask.GetRectTransform().DOAnchorPos(Vector2.zero, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOSizeDelta(RectTransform.sizeDelta, _transitionAnimations ? speed : 0f);
-            
+
             // turn both cursor and player position texts off
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
@@ -501,20 +503,20 @@ namespace DynamicMaps.UI
         private void AdjustForMiniMap(bool playAnimation)
         {
             var speed = playAnimation ? 0.35f : 0f;
-            
+
             var cornerPosition = ConvertEnumToScreenPos(Settings.MiniMapPosition.Value);
-            
+
             var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value);
             offset *= ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
-            
+
             var size = new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
-            
+
             _scrollMask.GetRectTransform().DOSizeDelta(size, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorPos(offset, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMin(cornerPosition, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOAnchorMax(cornerPosition, _transitionAnimations ? speed : 0f);
             _scrollMask.GetRectTransform().DOPivot(cornerPosition, _transitionAnimations ? speed : 0f);
-            
+
             _cursorPositionText.gameObject.SetActive(false);
             _playerPositionText.gameObject.SetActive(false);
             _levelSelectSlider.gameObject.SetActive(false);
@@ -526,18 +528,18 @@ namespace DynamicMaps.UI
             // 0,1 Top left
             // 1,1 Top right
             // 1,0 Bottom right
-            
+
             switch (pos)
             {
                 case EMiniMapPosition.TopRight:
                     return new Vector2(1, 1);
-                
+
                 case EMiniMapPosition.BottomRight:
                     return new Vector2(1, 0);
-                
+
                 case EMiniMapPosition.TopLeft:
                     return new Vector2(0, 1);
-                
+
                 case EMiniMapPosition.BottomLeft:
                     return new Vector2(0, 0);
             }
@@ -551,25 +553,25 @@ namespace DynamicMaps.UI
             // Bottom right = neg pos
             // Top left = pos neg
             // Bottom left = pos pos
-            
+
             switch (pos)
             {
                 case EMiniMapPosition.TopRight:
                     return new Vector2(-1, -1);
-                
+
                 case EMiniMapPosition.BottomRight:
                     return new Vector2(-1, 1);
-                
+
                 case EMiniMapPosition.TopLeft:
                     return new Vector2(1, -1);
-                
+
                 case EMiniMapPosition.BottomLeft:
                     return new Vector2(1, 1);
             }
 
             return Vector2.zero;
         }
-        
+
         #endregion
 
         #region Show And Hide Bottom Level
@@ -588,12 +590,12 @@ namespace DynamicMaps.UI
             {
                 AdjustForInRaid(playAnimation);
             }
-            
+
             // filter dropdown to only maps containing the internal map name
             var mapInternalName = GameUtils.GetCurrentMapInternalName();
             _mapSelectDropdown.FilterByInternalMapName(mapInternalName);
             _mapSelectDropdown.LoadFirstAvailableMap();
-            
+
             if (ShowingMiniMap)
             {
                 _levelSelectSlider.gameObject.SetActive(false);
@@ -632,19 +634,19 @@ namespace DynamicMaps.UI
             if (_rememberMapPosition && !ShowingMiniMap && _mapView.MainMapPos != Vector2.zero)
             {
                 _mapView.ApplyMainMapZoom();
-    
+
                 var tweenTime = _transitionAnimations && _mapView.MainMapPos != _savedMainMapPos ? 0.35f : 0f;
                 _mapView.SetMapPos(_savedMainMapPos, tweenTime);
                 return;
             }
-            
+
             if (!_rememberMapPosition && !_autoCenterOnPlayerMarker && !ShowingMiniMap)
             {
                 _mapView.ApplyMainMapZoom();
                 _mapView.SetMapZoom(_mapView.ZoomMin, 0f);
                 return;
             }
-            
+
             // Auto centering while the minimap is active here can cause artifacting
             if (_autoCenterOnPlayerMarker && !ShowingMiniMap)
             {
@@ -723,9 +725,9 @@ namespace DynamicMaps.UI
         }
 
         #endregion
-        
+
         #region Map Manipulation
-        
+
         private void OnScroll(float scrollAmount)
         {
             if (IsPeeking || ShowingMiniMap)
@@ -762,11 +764,11 @@ namespace DynamicMaps.UI
 
             _zoomFocusPoint = mouseRelative;
         }
-        
+
         private void OnScrollZoomUpdate()
         {
             // Return early if there's nothing to change, this is in Update
-            if (_targetZoom == 0f || IsPeeking || ShowingMiniMap) 
+            if (_targetZoom == 0f || IsPeeking || ShowingMiniMap)
                 return;
 
             var currentZoom = _mapView.ZoomMain;
@@ -785,7 +787,7 @@ namespace DynamicMaps.UI
         private void OnZoomMain()
         {
             var zoomAmount = 0f;
-            
+
             if (_zoomMainMapOutShortcut.BetterIsPressed())
             {
                 zoomAmount -= 1f;
@@ -795,12 +797,12 @@ namespace DynamicMaps.UI
             {
                 zoomAmount += 1f;
             }
-            
+
             if (zoomAmount != 0f)
             {
                 // Cancel any existing scroll zoom
                 _targetZoom = 0f;
-                
+
                 zoomAmount = _mapView.ZoomMain * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
                 if (IsPeeking)
                 {
@@ -822,41 +824,41 @@ namespace DynamicMaps.UI
                         _mapView.IncrementalZoomInto(zoomAmount, currentCenter, 0f);
                     }
                 }
-        
+
                 return;
             }
-            
+
             _mapView.SetMapZoom(_mapView.ZoomMain, 0f);
         }
 
         private void OnZoomMini()
         {
             var zoomAmount = 0f;
-            
+
             if (_zoomMiniMapOutShortcut.BetterIsPressed())
             {
                 zoomAmount -= 1f;
             }
-            
+
             if (_zoomMiniMapInShortcut.BetterIsPressed())
             {
                 zoomAmount += 1f;
             }
-            
+
             if (zoomAmount != 0f)
             {
                 // Cancel any existing scroll zoom
                 _targetZoom = 0f;
-                
+
                 var player = GameUtils.GetMainPlayer();
                 var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
                 zoomAmount = _mapView.ZoomMini * zoomAmount * (_zoomMapHotkeySpeed * Time.deltaTime);
-                    
+
                 _mapView.IncrementalZoomIntoMiniMap(zoomAmount, mapPosition, 0.0f);
-                
+
                 return;
             }
-            
+
             _mapView.SetMapZoom(_mapView.ZoomMini, 0f, false, true);
         }
 
@@ -867,7 +869,7 @@ namespace DynamicMaps.UI
                 CenterOnPlayer(false);
                 return;
             }
-    
+
             if (ShowingMiniMap)
             {
                 _miniMapUpdateTimer -= Time.deltaTime;
@@ -887,7 +889,7 @@ namespace DynamicMaps.UI
             {
                 return;
             }
-    
+
             var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
             _mapView.ShiftMapToCoordinate(mapPosition, isMini ? 0f : PositionTweenTime, isMini);
             _mapView.SelectLevelByCoords(mapPosition);
@@ -913,10 +915,10 @@ namespace DynamicMaps.UI
 
             _zoomMainMapInShortcut = Settings.ZoomMapInHotkey.Value;
             _zoomMainMapOutShortcut = Settings.ZoomMapOutHotkey.Value;
-            
+
             _zoomMiniMapInShortcut = Settings.ZoomInMiniMapHotkey.Value;
             _zoomMiniMapOutShortcut = Settings.ZoomOutMiniMapHotkey.Value;
-            
+
             _zoomMapHotkeySpeed = Settings.ZoomMapHotkeySpeed.Value;
 
             _zoomMainMapToMouse = Settings.ZoomMainMapToMouse.Value;
@@ -924,12 +926,12 @@ namespace DynamicMaps.UI
             _autoCenterOnPlayerMarker = Settings.AutoCenterOnPlayerMarker.Value;
             _resetZoomOnCenter = Settings.ResetZoomOnCenter.Value;
             _rememberMapPosition = Settings.RetainMapPosition.Value;
-            
+
             _autoSelectLevel = Settings.AutoSelectLevel.Value;
             _centeringZoomResetPoint = Settings.CenteringZoomResetPoint.Value;
 
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
-            
+
             if (_peekComponent is not null)
             {
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;
@@ -947,7 +949,7 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
             AddRemoveMarkerProvider<TransitMarkerProvider>(Settings.ShowTransitPointsInRaid.Value);
             AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
-            
+
             if (Settings.ShowAirdropsInRaid.Value)
             {
                 GetMarkerProvider<AirdropMarkerProvider>()
@@ -996,7 +998,7 @@ namespace DynamicMaps.UI
                                       || Settings.ShowScavMarkersInRaid.Value;
 
             AddRemoveMarkerProvider<OtherPlayersMarkerProvider>(needOtherPlayerMarkers);
-            
+
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
@@ -1004,7 +1006,7 @@ namespace DynamicMaps.UI
                 provider.ShowEnemyPlayers = ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
                 provider.ShowScavs = ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
                 provider.ShowBosses = ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
-                
+
                 provider.RefreshMarkers();
             }
 
@@ -1024,10 +1026,10 @@ namespace DynamicMaps.UI
                 provider.ShowFriendlyKilledCorpses = Settings.ShowFriendlyKilledCorpsesInRaid.Value;
                 provider.ShowBossCorpses = Settings.ShowBossCorpsesInRaid.Value;
                 provider.ShowOtherCorpses = Settings.ShowOtherCorpsesInRaid.Value;
-                
+
                 provider.RefreshMarkers();
             }
-            
+
             if (ModDetection.HeliCrashLoaded)
             {
                 AddRemoveMarkerProvider<HeliCrashMarkerProvider>(Settings.ShowHeliCrashMarker.Value);
@@ -1050,7 +1052,7 @@ namespace DynamicMaps.UI
 
             ReadConfig();
         }
-        
+
         public void AddRemoveMarkerProvider<T>(bool status) where T : IDynamicMarkerProvider, new()
         {
             if (status && !_dynamicMarkerProviders.ContainsKey(typeof(T)))
@@ -1084,6 +1086,63 @@ namespace DynamicMaps.UI
             return (T)_dynamicMarkerProviders[typeof(T)];
         }
 
+        internal bool TryGetCorpseLootMarkerState(string rootItemId, out bool isMarkedSearched)
+        {
+            isMarkedSearched = false;
+            var provider = GetMarkerProvider<CorpseMarkerProvider>();
+            if (provider is null || !provider.IsCorpseLootRootItem(rootItemId))
+            {
+                return false;
+            }
+
+            isMarkedSearched = provider.IsCorpseMarkedSearchedByRootItemId(rootItemId);
+            return true;
+        }
+
+        internal bool TryGetCorpseLootMarkerState(CompoundItem lootItem, out bool isMarkedSearched, out string reason)
+        {
+            isMarkedSearched = false;
+            var provider = GetMarkerProvider<CorpseMarkerProvider>();
+            if (provider is null)
+            {
+                reason = $"CorpseMarkerProvider is not registered; providers={string.Join(", ", _dynamicMarkerProviders.Keys.Select(t => t.Name))}";
+                return false;
+            }
+
+            return provider.TryGetCorpseLootMarkerState(lootItem, out isMarkedSearched, out reason);
+        }
+
+        internal bool TryMarkCorpseSearchedByRootItemId(string rootItemId)
+        {
+            var provider = GetMarkerProvider<CorpseMarkerProvider>();
+            return provider is not null && provider.TryMarkCorpseSearchedByRootItemId(rootItemId);
+        }
+
+        internal bool TryMarkCorpseSearchedByLootItem(CompoundItem lootItem, out string reason)
+        {
+            var provider = GetMarkerProvider<CorpseMarkerProvider>();
+            if (provider is null)
+            {
+                reason = $"CorpseMarkerProvider is not registered; providers={string.Join(", ", _dynamicMarkerProviders.Keys.Select(t => t.Name))}";
+                return false;
+            }
+
+            return provider.TryMarkCorpseSearchedByLootItem(lootItem, out reason);
+        }
+
+
+        internal bool TryToggleCorpseSearchedByLootItem(CompoundItem lootItem, out bool isMarkedSearched, out string reason)
+        {
+            isMarkedSearched = false;
+            var provider = GetMarkerProvider<CorpseMarkerProvider>();
+            if (provider is null)
+            {
+                reason = $"CorpseMarkerProvider is not registered; providers={string.Join(", ", _dynamicMarkerProviders.Keys.Select(t => t.Name))}";
+                return false;
+            }
+
+            return provider.TryToggleCorpseSearchedByLootItem(lootItem, out isMarkedSearched, out reason);
+        }
         #endregion
 
         #region Utils And Caching
@@ -1111,11 +1170,11 @@ namespace DynamicMaps.UI
                 // Plugin.Log.LogInfo($"MapScreen: Resetting Map Size");
                 AdjustSizeAndPosition();
             }
-            
+
             _mapView.CancelPositionTween();
             _targetZoom = 0f;
             _savedMainMapPos = Vector2.zero;
-            
+
             _mapView.LoadMap(mapDef, _scrollMask.GetRectTransform());
 
             _mapSelectDropdown.OnLoadMap(mapDef);

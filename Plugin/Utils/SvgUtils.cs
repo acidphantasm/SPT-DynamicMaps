@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -24,7 +24,7 @@ public static class SvgUtils
     private static Sprite LoadSvgFromPath(MapLayerDef def, string absolutePath)
     {
         var svgData = File.ReadAllText(absolutePath);
-        
+
         var viewBoxRect = GetViewbox(svgData);
         if (viewBoxRect is null)
             return null;
@@ -63,7 +63,7 @@ public static class SvgUtils
 
         return null;
     }
-    
+
     public static Sprite GetOrLoadCachedSprite(MapLayerDef def)
     {
         var key = (def.ImagePath, def.TesselationIndex);
@@ -71,9 +71,38 @@ public static class SvgUtils
             return sprite;
 
         var absolutePath = Path.Combine(Plugin.Path, def.ImagePath);
-        return MapCache[key] = LoadSvgFromPath(def, absolutePath);
+        // Raster decks share the same bounds and sprite cache as SVG maps.
+        // Do not feed a PNG into SVGParser; other maps retain tessellation.
+        return MapCache[key] = string.Equals(Path.GetExtension(absolutePath), ".png", StringComparison.OrdinalIgnoreCase)
+            ? LoadPngFromPath(absolutePath)
+            : LoadSvgFromPath(def, absolutePath);
     }
-    
+
+    private static Sprite LoadPngFromPath(string absolutePath)
+    {
+        // No mipmaps: deck diagrams are UI artwork. Release the CPU pixel copy
+        // after upload; all fourteen decoded decks otherwise retain extra memory.
+        var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+        try
+        {
+            if (!texture.LoadImage(File.ReadAllBytes(absolutePath), markNonReadable: true))
+            {
+                UnityEngine.Object.Destroy(texture);
+                Plugin.Log.LogError($"Could not decode map PNG: {absolutePath}");
+                return null;
+            }
+            texture.name = Path.GetFileNameWithoutExtension(absolutePath);
+            var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero, 1f);
+            sprite.name = texture.name;
+            return sprite;
+        }
+        catch
+        {
+            UnityEngine.Object.Destroy(texture);
+            throw;
+        }
+    }
+
     private static bool OverBudgetVertices(List<VectorUtils.Geometry> geometry)
     {
         var verts = 0;

@@ -5,7 +5,7 @@ Include the actual Icebreaker map data used in the tested SPT 4.1.3 setup, with 
 ## Icebreaker map and renderer
 
 - Register both Suburbs and suburbs. Fourteen decks cover levels -3 through 10, default level 1, rotation 180 degrees.
-- Include the exact deployed PNGs and Icebreaker.jsonc. Every layer now uses ImageBounds min (-19.69, -90.44), max (18.31, 93.56). Overall Bounds and GameBounds retain their prior values. This translates the artwork right/up at the current rotation without altering its scale.
+- Include the exact deployed PNGs and Icebreaker.jsonc. Every layer now uses ImageBounds min (-19.77, -97.11), max (18.23, 86.89). Overall Bounds and GameBounds retain their prior values. This translates the artwork right/up at the current rotation without altering its scale.
 - Add direct PNG decoding to the existing cached sprite loader. SVG maps retain their tessellation path; raster decoding does not parse SVG. Texture data becomes non-readable after upload. The installed test used a separate Harmony PNG adapter; this PR integrates equivalent loading directly into DynamicMaps, so that adapter is not needed with this build.
 - Include tools/icebreaker generation/cropping scripts. Source artwork is supplied explicitly to the crop tool; no machine-specific input path is required.
 
@@ -21,7 +21,7 @@ The local source also adds a corpse loot-screen hide/show marker button, tracks 
 
 The tester confirmed map display and player tracking in raid using the PNG adapter. The latest uniform translation was installed afterward in both test installations, with matching SHA256, but **has not yet been confirmed by another in-game calibration test**. Exact alignment at the bow, stern and helipad remains a manual check. Deck-height boundaries were inferred from spawn heights and the approximate deck spacing; stairs/double-height rooms can need additional GameBounds.
 
-The cursor reading was (-11.80, 24.25), player (-11.11, 20.42, 23.81). Shift direction followed the tester's red-circle/arrow screenshots and explicit right/up request. A single point does not establish scale or rotation accuracy; the source images are schematic. The integrated native PNG path is build-checked, not separately raid-tested. Approximately 80 MiB of decoded textures can be cached; no frame-time profiling was performed.
+The initial coordinate interpretation was incorrect and is superseded by the correction below. A single point does not establish scale or rotation accuracy; the source images are schematic. The integrated native PNG path is build-checked, not separately raid-tested. Approximately 80 MiB of decoded textures can be cached; no frame-time profiling was performed.
 
 Build with dotnet build Plugin/DynamicMaps.csproj -c Release -p:TarkovDir=<SPT-root-with-trailing-separator>. DeployToGame=true explicitly enables installation. Remove the separate DynamicMapsIcebreaker adapter when evaluating native PNG support.
 
@@ -40,3 +40,12 @@ The migration used installed SPT 4.1.3 assemblies and these guides:
 ## Contribution build checks
 
 The publication working copies were built in Release against the installed SPT 4.1.3 assemblies with deployment disabled. Client/server builds passed for Icebreaker, MoreBotsAPI, BlackDiv and ManimalCSGas; the Backport prepatcher and DynamicMaps client also passed. Existing compiler warnings remain in several ports. Fika was not built as part of this contribution gate. These checks validate compilation, not untested gameplay.
+
+## Calibration correction after additional raid feedback
+
+The earlier coordinate interpretation was wrong: PlayerPositionText already prints **X, Z, height**, not Unity X, Y, Z. In the new screenshot Cursor=(-2.61,68.18), Player=(-2.69,61.51,18.87). Height is 18.87 and must not enter the 2D calibration.
+
+Translate the previous ImageBounds by player.xy-cursor=(-0.08,-6.67), giving min=(-19.77,-97.11), max=(18.23,86.89), uniformly on all fourteen decks. This maps the selected cursor point exactly to the player coordinates without a second manual sign inversion. Overall bounds, scale and deck selection are unchanged. The red-circle/arrow vertical separation supports a much larger longitudinal correction; their approximate horizontal centers are not additional numerical control points.
+
+The screenshot is from SPT 4.1.4 / EFT 0.16.9.5.40743. This is calibration feedback, not blanket validation of the whole port on 4.1.4. The new translation is installed but still requires an in-game check at multiple locations.
+

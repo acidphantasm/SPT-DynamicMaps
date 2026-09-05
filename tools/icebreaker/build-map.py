@@ -8,11 +8,13 @@ levels=list(range(10,-4,-1))
 missing=[level for level in levels if not (layers/f'Icebreaker_L{level}.png').exists()]
 if missing: raise RuntimeError('Run crop-dynamic-map.ps1 first; missing '+str(missing))
 
-# In-game calibration from a known player position on the Infirmary deck.
-# DynamicMaps rotates the map container by 180 degrees, so decreasing the image
-# midpoint moves the rendered deck artwork right and up relative to its markers.
-image_offset_x=-0.69
-image_offset_y=-0.44
+# Calibration 2026-09-05: PlayerPositionText already prints (X, Z, height).
+# Compare its FIRST TWO numbers to Cursor, not the first and third.
+# Translate the image by player_xy - cursor_xy in map-local coordinates;
+# the map container applies its existing rotation to both positions.
+# Previous offset (-0.69, -0.44), cursor (-2.61, 68.18), player (-2.69, 61.51).
+image_offset_x=-0.77
+image_offset_y=-7.11
 image_bounds={
  'Min':{'x':round(-19+image_offset_x,2),'y':round(-90+image_offset_y,2)},
  'Max':{'x':round(19+image_offset_x,2),'y':round(94+image_offset_y,2)}

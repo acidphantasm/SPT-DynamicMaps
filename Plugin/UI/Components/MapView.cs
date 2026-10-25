@@ -16,6 +16,8 @@ namespace DynamicMaps.UI.Components
         private static Vector2 _markerSize = new Vector2(30, 30);
         private static float _zoomMaxScaler = 10f;  // multiplier against zoomMin
         private static float _zoomMinScaler = 1.1f; // divider against ratio of a provided rect
+        private const float ZoomPersistDelay = 3f;  // seconds after last zoom change before writing to config
+        private const string ZoomTweenId = "DynamicMaps.MapView.Zoom";
 
         public event Action<int> OnLevelSelected;
 
@@ -40,6 +42,12 @@ namespace DynamicMaps.UI.Components
         public Vector2 MainMapPos { get; private set; } = Vector2.zero;
         
         private Vector2 _immediateMapAnchor = Vector2.zero;
+
+        // zoom is persisted to config with a delay, since every config write saves the file and notifies listeners
+        private float _zoomPersistTimer = -1f;
+        private bool _isMainZoomDirty;
+        private bool _isMiniZoomDirty;
+        private bool _isPersistingZoom;
 
         private List<MapMarker> _markers = new List<MapMarker>();
         private List<MapLayer> _layers = new List<MapLayer>();
@@ -72,8 +80,24 @@ namespace DynamicMaps.UI.Components
             Settings.OnZoomMiniMapChanged += HandleZoomMiniChanged;
         }
 
+        private void Update()
+        {
+            if (_zoomPersistTimer < 0f)
+            {
+                return;
+            }
+
+            _zoomPersistTimer -= Time.unscaledDeltaTime;
+            if (_zoomPersistTimer <= 0f)
+            {
+                PersistZoom();
+            }
+        }
+
         private void OnDisable()
         {
+            PersistZoom();
+
             Settings.OnZoomMainMapChanged -= HandleZoomMainChanged;
             Settings.OnZoomMiniMapChanged -= HandleZoomMiniChanged;
         }
@@ -198,6 +222,9 @@ namespace DynamicMaps.UI.Components
             {
                 UnloadMap();
             }
+
+            // normalized zoom depends on the current map's min/max zoom, so flush any pending zoom first
+            PersistZoom();
 
             CurrentMapDef = mapDef;
             CoordinateRotation = mapDef.CoordinateRotation;
@@ -394,7 +421,8 @@ namespace DynamicMaps.UI.Components
                     return;
                 
                 ZoomMain = zoomNew;
-                Settings.ZoomMainMap.Value = ActualToNormalized(zoomNew);
+                _isMainZoomDirty = true;
+                _zoomPersistTimer = ZoomPersistDelay;
             }
 
             if (updateMiniZoom)
@@ -403,7 +431,8 @@ namespace DynamicMaps.UI.Components
                     return;
                 
                 ZoomMini = zoomNew;
-                Settings.ZoomMiniMap.Value = ActualToNormalized(zoomNew);
+                _isMiniZoomDirty = true;
+                _zoomPersistTimer = ZoomPersistDelay;
             }
 
             ApplyZoom(ZoomCurrent, tweenTime);
@@ -423,16 +452,70 @@ namespace DynamicMaps.UI.Components
         {
             zoom = Mathf.Clamp(zoom, ZoomMin, ZoomMax);
     
-            RectTransform.DOScale(zoom * Vector3.one, tweenTime);
+            var mapScale = zoom * Vector3.one;
+            var inverseScale = 1 / zoom * Vector3.one;
+
+            // stop any running zoom tweens, so they don't override the new zoom
+            DOTween.Kill(ZoomTweenId);
+
+            if (tweenTime <= 0f)
+            {
+                // set directly, a zero length tween per marker every frame is needlessly expensive
+                RectTransform.localScale = mapScale;
+                foreach (var marker in _markers)
+                    marker.RectTransform.localScale = inverseScale;
+                foreach (var label in _labels)
+                    label.RectTransform.localScale = inverseScale;
+
+                return;
+            }
+
+            RectTransform.DOScale(mapScale, tweenTime).SetId(ZoomTweenId);
 
             foreach (var marker in _markers)
-                marker.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
+                marker.RectTransform.DOScale(inverseScale, tweenTime).SetId(ZoomTweenId);
             foreach (var label in _labels)
-                label.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
+                label.RectTransform.DOScale(inverseScale, tweenTime).SetId(ZoomTweenId);
         }
-        
+
+        private void PersistZoom()
+        {
+            _zoomPersistTimer = -1f;
+
+            if (!_isMainZoomDirty && !_isMiniZoomDirty)
+            {
+                return;
+            }
+
+            _isPersistingZoom = true;
+            try
+            {
+                if (_isMainZoomDirty)
+                {
+                    Settings.ZoomMainMap.Value = ActualToNormalized(ZoomMain);
+                }
+
+                if (_isMiniZoomDirty)
+                {
+                    Settings.ZoomMiniMap.Value = ActualToNormalized(ZoomMini);
+                }
+            }
+            finally
+            {
+                _isPersistingZoom = false;
+                _isMainZoomDirty = false;
+                _isMiniZoomDirty = false;
+            }
+        }
+
         private void HandleZoomMainChanged(float normalized)
         {
+            // ignore our own writes, zoom is already applied
+            if (_isPersistingZoom)
+            {
+                return;
+            }
+
             var actual = NormalizedToActual(normalized);
             ZoomMain = actual;
 
@@ -444,6 +527,12 @@ namespace DynamicMaps.UI.Components
 
         private void HandleZoomMiniChanged(float normalized)
         {
+            // ignore our own writes, zoom is already applied
+            if (_isPersistingZoom)
+            {
+                return;
+            }
+
             var actual = NormalizedToActual(normalized);
             ZoomMini = actual;
             

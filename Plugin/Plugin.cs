@@ -41,7 +41,16 @@ namespace DynamicMaps
             ExternalModSupport.ModDetection.CheckforMods();
 
             Settings.Init(Config);
-            Config.SettingChanged += (x, y) => Map?.ReadConfig();
+            Config.SettingChanged += (_, args) =>
+            {
+                // zoom is handled by the map view itself, re-reading the whole config would rebuild all markers
+                if (args.ChangedSetting == Settings.ZoomMainMap || args.ChangedSetting == Settings.ZoomMiniMap)
+                {
+                    return;
+                }
+
+                Map?.ReadConfig();
+            };
 
             // Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
             

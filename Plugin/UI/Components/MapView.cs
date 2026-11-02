@@ -72,6 +72,11 @@ namespace DynamicMaps.UI.Components
             Settings.OnZoomMiniMapChanged += HandleZoomMiniChanged;
         }
 
+        private void OnDestroy()
+        {
+            TextureUtils.ClearMapCache();
+        }
+
         private void OnDisable()
         {
             Settings.OnZoomMainMapChanged -= HandleZoomMainChanged;
@@ -273,7 +278,9 @@ namespace DynamicMaps.UI.Components
             }
             _layers.Clear();
 
+            TextureUtils.ClearMapCache();
             _immediateMapAnchor = Vector2.zero;
+            MainMapPos = Vector2.zero;
             CurrentMapDef = null;
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
 using TMPro;
@@ -75,59 +76,45 @@ namespace DynamicMaps.UI.Components
                 }},
             };
 
-        private static Vector2 _labelSizeMultiplier = new Vector2(2.5f, 2f);
-        private static float _markerMinFontSize = 9f;
-        private static float _markerMaxFontSize = 13f;
+        private static readonly Vector2 LabelSizeMultiplier = new Vector2(2.5f, 2f);
+        private static readonly float MarkerMinFontSize = 9f;
+        private static readonly float MarkerMaxFontSize = 13f;
 
         public event Action<ILayerBound> OnPositionChanged;
 
-        public string Text { get; protected set; }
-        public string Category { get; protected set; }
+        private string Text { get; set; }
+        public string Category { get; private set; }
         public MapView ContainingMapView { get; set; }
 
-        public Image Image { get; protected set; }
-        public TextMeshProUGUI Label { get; protected set; }
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
+        private Image Image { get; set; }
+        private TextMeshProUGUI Label { get; set; }
+        private RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
 
-        public string AssociatedItemId { get; protected set; } = "";
-        public bool IsDynamic { get; protected set; } = false;
-        public bool ShowInRaid { get; protected set; } = true;
+        public string AssociatedItemId { get; private set; } = "";
+        public bool IsDynamic { get; protected set; }
+        private bool ShowInRaid { get; set; } = true;
 
         private Vector3 _position;
         public Vector3 Position
         {
-            get
-            {
-                return _position;
-            }
-
-            set
-            {
-                Move(value);
-            }
+            get => _position;
+            set => Move(value);
         }
 
-        private float _rotation = 0f;
+        private float _rotation;
         public float Rotation
         {
-            get
-            {
-                return _rotation;
-            }
-
-            set
-            {
-                SetRotation(value);
-            }
+            get => _rotation;
+            set => SetRotation(value);
         }
 
         private Color _color = Color.white;
         public Color Color
         {
-            get
-            {
-                return _color;
-            }
+            get => _color;
 
             set
             {
@@ -150,28 +137,30 @@ namespace DynamicMaps.UI.Components
                 _size = value;
                 RectTransform.sizeDelta = _size;
                 Image.GetRectTransform().sizeDelta = _size;
-                Label.GetRectTransform().sizeDelta = _size * _labelSizeMultiplier;
+                Label.GetRectTransform().sizeDelta = _size * LabelSizeMultiplier;
             }
         }
 
-        public Dictionary<LayerStatus, float> ImageAlphaLayerStatus { get; protected set; } = new Dictionary<LayerStatus, float>
-            {
-                {LayerStatus.Hidden, 0.0f},
-                {LayerStatus.Underneath, 0.0f},
-                {LayerStatus.OnTop, 1f},
-                {LayerStatus.FullReveal, 1f},
-            };
-        public Dictionary<LayerStatus, float> LabelAlphaLayerStatus { get; protected set; } = new Dictionary<LayerStatus, float>
-            {
-                {LayerStatus.Hidden, 0.0f},
-                {LayerStatus.Underneath, 0.0f},
-                {LayerStatus.OnTop, 0.0f},
-                {LayerStatus.FullReveal, 1f},
-            };
+        protected Dictionary<LayerStatus, float> ImageAlphaLayerStatus { get; set; } = new()
+        {
+            {LayerStatus.Hidden, 0.0f},
+            {LayerStatus.Underneath, 0.0f},
+            {LayerStatus.OnTop, 1f},
+            {LayerStatus.FullReveal, 1f},
+        };
+        
+        protected Dictionary<LayerStatus, float> LabelAlphaLayerStatus { get; set; } = new()
+        {
+            {LayerStatus.Hidden, 0.0f},
+            {LayerStatus.Underneath, 0.0f},
+            {LayerStatus.OnTop, 0.0f},
+            {LayerStatus.FullReveal, 1f},
+        };
 
+        private string _imagePath;
         private float _initialRotation;
-        private bool _hasSetOutline = false;
-        private bool _isInFullReveal = false;
+        private bool _hasSetOutline;
+        private bool _isInFullReveal;
 
         public static MapMarker Create(GameObject parent, MapMarkerDef def, Vector2 size, float degreesRotation, float scale)
         {
@@ -209,15 +198,21 @@ namespace DynamicMaps.UI.Components
             marker.ShowInRaid = showInRaid;
 
             // image
-            var imageGO = UIUtils.CreateUIGameObject(go, "image");
-            imageGO.AddComponent<CanvasRenderer>();
-            imageGO.GetRectTransform().sizeDelta = size;
-            imageGO.GetRectTransform().pivot = new Vector2(0.5f, 0.5f);
-            marker.Image = imageGO.AddComponent<Image>();
+            var imageGo = UIUtils.CreateUIGameObject(go, "image");
+            imageGo.AddComponent<CanvasRenderer>();
+            imageGo.GetRectTransform().sizeDelta = size;
+            imageGo.GetRectTransform().pivot = new Vector2(0.5f, 0.5f);
+            marker.Image = imageGo.AddComponent<Image>();
             marker.Image.raycastTarget = false;
-            marker.Image.sprite = sprite is null 
-                ? TextureUtils.GetOrLoadCachedSprite(imageRelativePath)
-                : sprite;
+            if (sprite is null)
+            {
+                marker.SetImagePath(imageRelativePath);
+                Settings.MarkerPack.SettingChanged += marker.OnMarkerPackChanged;
+            }
+            else
+            {
+                marker.Image.sprite = sprite;
+            }
             marker.Image.type = Image.Type.Simple;
 
             // var outline = imageGO.AddComponent<Outline>();
@@ -225,18 +220,18 @@ namespace DynamicMaps.UI.Components
             // outline.effectDistance = Vector2.one;
 
             // label
-            var labelGO = UIUtils.CreateUIGameObject(go, "label");
-            labelGO.AddComponent<CanvasRenderer>();
-            labelGO.GetRectTransform().anchorMin = new Vector2(0.5f, 0f);
-            labelGO.GetRectTransform().anchorMax = new Vector2(0.5f, 0f);
-            labelGO.GetRectTransform().pivot = new Vector2(0.5f, 1f);
-            labelGO.GetRectTransform().sizeDelta = size * _labelSizeMultiplier;
-            marker.Label = labelGO.AddComponent<TextMeshProUGUI>();
+            var labelGo = UIUtils.CreateUIGameObject(go, "label");
+            labelGo.AddComponent<CanvasRenderer>();
+            labelGo.GetRectTransform().anchorMin = new Vector2(0.5f, 0f);
+            labelGo.GetRectTransform().anchorMax = new Vector2(0.5f, 0f);
+            labelGo.GetRectTransform().pivot = new Vector2(0.5f, 1f);
+            labelGo.GetRectTransform().sizeDelta = size * LabelSizeMultiplier;
+            marker.Label = labelGo.AddComponent<TextMeshProUGUI>();
             marker.Label.alignment = TextAlignmentOptions.Top;
             marker.Label.enableWordWrapping = true;
             marker.Label.enableAutoSizing = true;
-            marker.Label.fontSizeMin = _markerMinFontSize;
-            marker.Label.fontSizeMax = _markerMaxFontSize;
+            marker.Label.fontSizeMin = MarkerMinFontSize;
+            marker.Label.fontSizeMax = MarkerMaxFontSize;
             marker.Label.text = marker.Text;
 
             marker._hasSetOutline = UIUtils.TrySetTMPOutline(marker.Label);
@@ -256,7 +251,22 @@ namespace DynamicMaps.UI.Components
 
         protected virtual void OnDestroy()
         {
+            if (Settings.MarkerPack != null)
+                Settings.MarkerPack.SettingChanged -= OnMarkerPackChanged;
+            
             OnPositionChanged = null;
+        }
+
+        public void SetImagePath(string path)
+        {
+            Image.sprite = TextureUtils.GetOrLoadCachedSprite(path);
+            _imagePath = path;
+        }
+
+        private void OnMarkerPackChanged(object sender, EventArgs e)
+        {
+            if (Image != null && _imagePath != null)
+                SetImagePath(_imagePath);
         }
 
         public void Move(Vector3 newPosition, bool callback = true)
@@ -340,8 +350,8 @@ namespace DynamicMaps.UI.Components
             // try resetting text, since it seems like if outline fails, it doesn't size properly
             Label.enableAutoSizing = true;
             Label.enableWordWrapping = true;
-            Label.fontSizeMin = _markerMinFontSize;
-            Label.fontSizeMax = _markerMaxFontSize;
+            Label.fontSizeMin = MarkerMinFontSize;
+            Label.fontSizeMax = MarkerMaxFontSize;
             Label.alignment = TextAlignmentOptions.Top;
             Label.text = $"{Label.text}";
 

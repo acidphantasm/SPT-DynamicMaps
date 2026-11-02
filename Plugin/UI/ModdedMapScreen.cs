@@ -17,7 +17,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DynamicMaps.ExternalModSupport.SamSWATHeliCrash;
 using EFT;
-using UnityEngine.EventSystems;
 
 namespace DynamicMaps.UI
 {
@@ -29,19 +28,19 @@ namespace DynamicMaps.UI
         
         private const string MapRelPath = "Maps";
 
-        private bool _initialized = false;
+        private bool _initialized;
         
         // zoom stuff
         private static readonly float PositionTweenTime = 0.25f;
         private static readonly float ScrollZoomScaler = 1.75f;
-        private float _targetZoom = 0f;
+        private float _targetZoom;
         private Vector2 _zoomFocusPoint = Vector2.zero;
         private static readonly float ScrollZoomLerpSpeed = 8f;
 
         // vectors
         private static readonly Vector2 LevelSliderPosition = new Vector2(15f, 750f);
         private static readonly Vector2 MapSelectDropdownPosition = new Vector2(-780f, -50f);
-        private static readonly Vector2 MapSelectDropdownSize = new Vector2(360f, 31f);
+        private static readonly Vector2 MapSelectDropdownSize = new Vector2(540f, 31f);
         private static readonly Vector2 MaskSizeModifierInRaid = new Vector2(0, -42f);
         private static readonly Vector2 MaskPositionInRaid = new Vector2(0, -20f);
         private static readonly Vector2 MaskSizeModifierOutOfRaid = new Vector2(0, -70f);
@@ -55,7 +54,7 @@ namespace DynamicMaps.UI
 
         private RectTransform ParentTransform => gameObject.transform.parent as RectTransform;
 
-        private bool _isShown = false;
+        private bool _isShown;
 
         // map and transport mechanism
         private MapScrollRect _scrollRect;
@@ -82,16 +81,16 @@ namespace DynamicMaps.UI
         
         // minimap throttle
         private readonly float _miniMapUpdateInterval = 0.033f;
-        private float _miniMapUpdateTimer = 0f;
+        private float _miniMapUpdateTimer;
 
         // config
         private bool _autoCenterOnPlayerMarker = true;
         private bool _autoSelectLevel = true;
-        private bool _resetZoomOnCenter = false;
+        private bool _resetZoomOnCenter;
         private bool _rememberMapPosition = true;
         private bool _transitionAnimations = true;
         
-        private float _centeringZoomResetPoint = 0f;
+        private float _centeringZoomResetPoint;
         private KeyboardShortcut _centerPlayerShortcut;
         private KeyboardShortcut _dumpShortcut;
         private KeyboardShortcut _moveMapUpShortcut;
@@ -345,8 +344,42 @@ namespace DynamicMaps.UI
             }
         }
 
+        internal bool EnsureInRaidMapAvailable()
+        {
+            if (!GameUtils.IsInRaid()
+                || _mapSelectDropdown.HasMapForLocation(GameUtils.GetCurrentMapInternalName()))
+                return true;
+
+            if (_isShown)
+                Hide();
+            if (_mapView.CurrentMapDef != null)
+            {
+                foreach (var provider in _dynamicMarkerProviders.Values)
+                {
+                    try
+                    {
+                        provider.OnRaidEnd(_mapView);
+                    }
+                    catch (Exception e)
+                    {
+                        Plugin.Log.LogError($"Failed to clear map markers: {e}");
+                    }
+                }
+                _mapView.UnloadMap();
+            }
+            _savedMainMapPos = Vector2.zero;
+            _targetZoom = 0f;
+            gameObject.SetActive(false);
+            return false;
+        }
+
         internal void Show(bool playAnimation)
         {
+            _mapSelectDropdown.LoadMapDefsFromPath(MapRelPath);
+            if (!EnsureInRaidMapAvailable())
+                return;
+            if (_isShown)
+                Hide();
             if (!_initialized)
             {
                 //Plugin.Log.LogInfo("Map was not initialized, is resetting size and position");
@@ -356,9 +389,6 @@ namespace DynamicMaps.UI
             
             _isShown = true;
             gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
-
-            // populate map select dropdown
-            _mapSelectDropdown.LoadMapDefsFromPath(MapRelPath);
 
             if (GameUtils.IsInRaid())
             {
@@ -374,6 +404,9 @@ namespace DynamicMaps.UI
 
         internal void Hide()
         {
+            if (!_isShown)
+                return;
+
             _mapSelectDropdown?.TryCloseDropdown();
 
             // close isn't called when hidden
@@ -418,7 +451,7 @@ namespace DynamicMaps.UI
             _peekComponent?.EndPeek();
             _peekComponent?.EndMiniMap();
             
-            Destroy(_peekComponent.gameObject);
+            Destroy(_peekComponent?.gameObject);
             _peekComponent = null;
 
             // unload map completely when raid ends, since we've removed markers
@@ -592,8 +625,15 @@ namespace DynamicMaps.UI
             // filter dropdown to only maps containing the internal map name
             var mapInternalName = GameUtils.GetCurrentMapInternalName();
             _mapSelectDropdown.FilterByInternalMapName(mapInternalName);
-            _mapSelectDropdown.LoadFirstAvailableMap();
-            
+            _mapSelectDropdown.LoadPreferredMap(mapInternalName);
+            if (_mapView.CurrentMapDef == null)
+            {
+                _isShown = false;
+                gameObject.SetActive(false);
+                return;
+            }
+            _mapSelectDropdown.gameObject.SetActive(false);
+
             if (ShowingMiniMap)
             {
                 _levelSelectSlider.gameObject.SetActive(false);
@@ -688,6 +728,13 @@ namespace DynamicMaps.UI
             if (_mapView.CurrentMapDef == null)
             {
                 _mapSelectDropdown.LoadFirstAvailableMap();
+            }
+
+            if (_mapView.CurrentMapDef == null)
+            {
+                _isShown = false;
+                gameObject.SetActive(false);
+                return;
             }
 
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
@@ -1116,10 +1163,35 @@ namespace DynamicMaps.UI
             _targetZoom = 0f;
             _savedMainMapPos = Vector2.zero;
             
-            _mapView.LoadMap(mapDef, _scrollMask.GetRectTransform());
+            try
+            {
+                _levelSelectSlider.OnLoadMap(mapDef, mapDef.DefaultLevel);
+                _mapView.LoadMap(mapDef, _scrollMask.GetRectTransform());
+            }
+            catch (Exception e)
+            {
+                Plugin.Log.LogError($"Failed to load map {mapDef.DisplayName}: {e}");
+                _mapSelectDropdown.RemoveUnavailableMap(mapDef);
+                foreach (var provider in _dynamicMarkerProviders.Values)
+                {
+                    try
+                    {
+                        provider.OnRaidEnd(_mapView);
+                    }
+                    catch (Exception cleanupError)
+                    {
+                        Plugin.Log.LogError($"Failed to clear map markers: {cleanupError}");
+                    }
+                }
+                _mapView.UnloadMap();
+                _isShown = false;
+                gameObject.SetActive(false);
+                return;
+            }
 
+            _isShown = true;
+            gameObject.SetActive(GameUtils.ShouldShowMapInRaid());
             _mapSelectDropdown.OnLoadMap(mapDef);
-            _levelSelectSlider.OnLoadMap(mapDef, _mapView.SelectedLevel);
 
             foreach (var dynamicProvider in _dynamicMarkerProviders.Values)
             {
@@ -1146,11 +1218,26 @@ namespace DynamicMaps.UI
         {
             foreach (var mapDef in mapDefs)
             {
+                if (mapDef.IsAddon)
+                    continue;
+
                 foreach (var layerDef in mapDef.Layers.Values)
                 {
                     // just load sprite to cache it, one a frame
                     Plugin.Log.LogInfo($"Precaching sprite: {layerDef.ImagePath}");
-                    SvgUtils.GetOrLoadCachedSprite(layerDef);
+                    if (!System.IO.Path.GetExtension(layerDef.ImagePath).Equals(".svg", StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+                    
+                    try
+                    {
+                        SvgUtils.GetOrLoadCachedSprite(layerDef);
+                    }
+                    catch (Exception e)
+                    {
+                        Plugin.Log.LogError($"Failed to precache {layerDef.ImagePath}: {e}");
+                    }
                     yield return null;
                 }
             }

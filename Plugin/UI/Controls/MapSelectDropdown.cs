@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
 using EFT.UI;
@@ -11,7 +12,7 @@ namespace DynamicMaps.UI.Controls
 {
     public class MapSelectDropdown : MonoBehaviour
     {
-        private static readonly HashSet<string> AcceptableExtensions = new HashSet<string>{ "json", "jsonc" };
+        private static readonly HashSet<string> AcceptableJsonExtensions = new HashSet<string>{ "json", "jsonc" };
 
         public event Action<MapDef> OnMapSelected;
         public RectTransform RectTransform => gameObject.transform as RectTransform;
@@ -43,18 +44,28 @@ namespace DynamicMaps.UI.Controls
 
         private void OnSelectDropdownMap(int index)
         {
+            if (_selectableMapDefs == null || index < 0 || index >= _selectableMapDefs.Count)
+                return;
+            
             OnMapSelected?.Invoke(_selectableMapDefs[index]);
         }
 
         private void ChangeAvailableMapDefs(IEnumerable<MapDef> mapDefs)
         {
             // check if these are the same map defs as before
-            if (_selectableMapDefs != null && Enumerable.SequenceEqual(mapDefs, _selectableMapDefs))
+            var mapDefList = mapDefs.ToList();
+            if (_selectableMapDefs != null && mapDefList.SequenceEqual(_selectableMapDefs))
             {
                 return;
             }
 
-            _selectableMapDefs = mapDefs.ToList();
+            _selectableMapDefs = mapDefList.ToList();
+
+            if (_selectableMapDefs.Count == 0)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
 
             _dropdown.Show(_selectableMapDefs.Select(def => def.DisplayName));
 
@@ -66,32 +77,117 @@ namespace DynamicMaps.UI.Controls
 
         public void LoadMapDefsFromPath(string relPath)
         {
+            var paths = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             var absolutePath = Path.Combine(Plugin.Path, relPath);
-            var paths = Directory.EnumerateFiles(absolutePath, "*.*", SearchOption.AllDirectories)
-                .Where(p => AcceptableExtensions.Contains(Path.GetExtension(p).TrimStart('.').ToLowerInvariant()));
-
-            // NOTE: this will not catch deleted maps, which I'm fine with
-            foreach (var path in paths)
+            if (Directory.Exists(absolutePath))
             {
-                var writeTime = File.GetLastWriteTimeUtc(path);
-                if (_writeTimes.ContainsKey(path) && _writeTimes[path] == writeTime)
+                foreach (var file in Directory.EnumerateFiles(absolutePath, "*.*", SearchOption.AllDirectories))
                 {
-                    // this is the same file as before
-                    continue;
-                }
-
-                _writeTimes[path] = writeTime;
-
-                Plugin.Log.LogInfo($"Trying to load MapDef from path: {path}");
-                var mapDef = MapDef.LoadFromPath(path);
-                if (mapDef != null)
-                {
-                    Plugin.Log.LogInfo($"Loaded MapDef with display name: {mapDef.DisplayName}");
-                    _mapDefs[path] = mapDef;
+                    if (AcceptableJsonExtensions.Contains(Path.GetExtension(file).TrimStart('.').ToLowerInvariant()))
+                    {
+                        paths[file] = null;
+                    }
                 }
             }
 
+            var addonsPath = Path.Combine(Plugin.Path, "Addons");
+            if (Directory.Exists(addonsPath))
+            {
+                foreach (var addon in Directory.EnumerateDirectories(addonsPath))
+                {
+                    foreach (var map in Directory.EnumerateDirectories(addon))
+                    {
+                        foreach (var file in Directory.EnumerateFiles(map))
+                        {
+                            if (AcceptableJsonExtensions.Contains(Path.GetExtension(file).TrimStart('.').ToLowerInvariant()))
+                            {
+                                paths[file] = Path.GetFileName(addon);
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (var removed in _mapDefs.Keys.Where(p => !paths.ContainsKey(p)).ToList())
+            {
+                _mapDefs.Remove(removed);
+                _writeTimes.Remove(removed);
+            }
+
+            foreach (var entry in paths.OrderBy(p => p.Key, StringComparer.OrdinalIgnoreCase))
+            {
+                var writeTime = File.GetLastWriteTimeUtc(entry.Key);
+                if (_writeTimes.TryGetValue(entry.Key, out var previous) && previous == writeTime)
+                    continue;
+
+                var mapDef = MapDef.LoadFromPath(entry.Key, entry.Value);
+                if (mapDef == null)
+                {
+                    _mapDefs.Remove(entry.Key);
+                    continue;
+                }
+
+                _writeTimes[entry.Key] = writeTime;
+                _mapDefs[entry.Key] = mapDef;
+            }
+
+            RegisterMapPreferences();
             ChangeAvailableMapDefs(FilteredMapDefs());
+        }
+
+        private Dictionary<string, MapDef> GetMapChoices(string location)
+        {
+            return _mapDefs.Values
+                .Where(m => m.MapInternalNames.Contains(location, StringComparer.OrdinalIgnoreCase))
+                .OrderBy(m => m.IsAddon).ThenBy(m => m.SelectionId, StringComparer.OrdinalIgnoreCase)
+                .GroupBy(m => m.DisplayName)
+                .SelectMany(group => group.Select(m => new
+                {
+                    Name = group.Count() == 1 ? m.DisplayName : $"{m.DisplayName} [{m.SelectionId}]",
+                    Map = m
+                }))
+                .ToDictionary(entry => entry.Name, entry => entry.Map);
+        }
+
+        private void RegisterMapPreferences()
+        {
+            foreach (var location in _mapDefs.Values.SelectMany(m => m.MapInternalNames)
+                .Where(nameOf => !string.IsNullOrWhiteSpace(nameOf)).Distinct(StringComparer.OrdinalIgnoreCase))
+                Settings.RegisterMapPreference(location, GetMapChoices(location).Keys);
+        }
+
+        public void RemoveUnavailableMap(MapDef mapDef)
+        {
+            foreach (var entry in _mapDefs.Where(p => p.Value == mapDef).ToList())
+            {
+                _mapDefs.Remove(entry.Key);
+            }
+            ChangeAvailableMapDefs(FilteredMapDefs());
+        }
+
+        public bool HasMapForLocation(string location)
+        {
+            return !string.IsNullOrWhiteSpace(location) && _mapDefs.Values.Any(x => x.MapInternalNames.Contains(location, StringComparer.OrdinalIgnoreCase));
+        }
+
+        public void LoadPreferredMap(string location)
+        {
+            var choices = GetMapChoices(location);
+            if (choices.TryGetValue(Settings.GetPreferredMap(location), out var preferred))
+            {
+                OnMapSelected?.Invoke(preferred);
+                if (_mapDefs.ContainsValue(preferred))
+                    return;
+            }
+
+            foreach (var fallback in choices.Values)
+            {
+                if (!_mapDefs.ContainsValue(fallback))
+                    continue;
+                OnMapSelected?.Invoke(fallback);
+                if (_mapDefs.ContainsValue(fallback))
+                    return;
+            }
         }
 
         private IEnumerable<MapDef> FilteredMapDefs()
@@ -103,13 +199,13 @@ namespace DynamicMaps.UI.Controls
                         return true;
                     }
 
-                    return m.MapInternalNames.Contains(_nameFilter);
+                    return m.MapInternalNames.Contains(_nameFilter, StringComparer.OrdinalIgnoreCase);
                 }).OrderBy(m => m.DisplayName);
         }
 
         public IEnumerable<MapDef> GetMapDefs()
         {
-            return _mapDefs.Values;
+            return _mapDefs.Values.ToArray();
         }
 
         public void LoadFirstAvailableMap()
@@ -125,12 +221,6 @@ namespace DynamicMaps.UI.Controls
         public void FilterByInternalMapName(string internalMapName)
         {
             _nameFilter = internalMapName;
-            if (FilteredMapDefs().FirstOrDefault() == null)
-            {
-                _nameFilter = "";
-                Plugin.Log.LogWarning($"Cannot filter by {internalMapName}, no MapDefs match that map");
-            }
-
             ChangeAvailableMapDefs(FilteredMapDefs());
         }
 

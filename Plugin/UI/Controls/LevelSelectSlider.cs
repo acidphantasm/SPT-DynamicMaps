@@ -28,18 +28,18 @@ namespace DynamicMaps.UI.Controls
 
             set
             {
-                if (_selectedLevel == value && !_levels.Contains(value))
+                if (!_levels.Contains(value))
                 {
                     return;
                 }
 
                 if (_levels.Count == 1)
                 {
-                    _scrollbar.value = 0.5f;
+                    _scrollbar.SetValueWithoutNotify(0.5f);
                 }
                 else
                 {
-                    _scrollbar.value = _levels.IndexOf(value) / (_levels.Count - 1f);
+                    _scrollbar.SetValueWithoutNotify(_levels.IndexOf(value) / (_levels.Count - 1f));
                 }
 
                 _text.text = $"Level {value}";
@@ -49,18 +49,14 @@ namespace DynamicMaps.UI.Controls
 
         private TextMeshProUGUI _text;
         private Scrollbar _scrollbar;
-        private List<int> _levels = new List<int>();
-        private bool _hasSetOutline = false;
+        private List<int> _levels = [];
+        private bool _hasSetOutline;
 
         public static LevelSelectSlider Create(GameObject prefab, Transform parent)
         {
-            var go = Instantiate(prefab);
+            var go = Instantiate(prefab, parent, true);
             go.name = "LevelSelectScrollbar";
-            go.transform.SetParent(parent);
             go.transform.localScale = Vector3.one;
-
-            // position to top left
-            var oldPosition = go.GetRectTransform().anchoredPosition;
 
             // remove useless component
             Destroy(go.GetComponent<MapZoomer>());
@@ -73,8 +69,8 @@ namespace DynamicMaps.UI.Controls
         {
             // create layer text
             var slidingArea = gameObject.transform.Find("Scrollbar/Sliding Area/Handle").gameObject;
-            var layerTextGO = UIUtils.CreateUIGameObject(slidingArea, "SlidingLayerText");
-            _text = layerTextGO.AddComponent<TextMeshProUGUI>();
+            var layerTextGo = UIUtils.CreateUIGameObject(slidingArea, "SlidingLayerText");
+            _text = layerTextGo.AddComponent<TextMeshProUGUI>();
             _text.fontSize = LevelTextSize;
             _text.alignment = TextAlignmentOptions.Left;
             _text.GetRectTransform().offsetMin = Vector2.zero;
@@ -84,8 +80,8 @@ namespace DynamicMaps.UI.Controls
             _hasSetOutline = UIUtils.TrySetTMPOutline(_text);
 
             // setup the scrollbar component
-            var actualScrollbarGO = gameObject.transform.Find("Scrollbar").gameObject;
-            _scrollbar = actualScrollbarGO.GetComponent<Scrollbar>();
+            var actualScrollbarGo = gameObject.transform.Find("Scrollbar").gameObject;
+            _scrollbar = actualScrollbarGo.GetComponent<Scrollbar>();
             _scrollbar.direction = Scrollbar.Direction.BottomToTop;
             _scrollbar.onValueChanged.AddListener(OnScrollbarChanged);
             _scrollbar.onValueChanged.SetPersistentListenerState(0, UnityEngine.Events.UnityEventCallState.Off);
@@ -122,13 +118,16 @@ namespace DynamicMaps.UI.Controls
 
         private void OnScrollbarChanged(float newValue)
         {
+            if (_levels.Count == 0)
+                return;
+
             if (_levels.Count == 1)
             {
-                _scrollbar.value = 0.5f;
+                _scrollbar.SetValueWithoutNotify(0.5f);
                 return;
             }
 
-            var levelIndex = Mathf.RoundToInt(newValue * (_levels.Count - 1));
+            var levelIndex = Mathf.Clamp(Mathf.RoundToInt(newValue * (_levels.Count - 1)), 0, _levels.Count - 1);
             var level = _levels[levelIndex];
             if (_selectedLevel != int.MinValue && _selectedLevel != level)
             {

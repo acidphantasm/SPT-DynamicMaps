@@ -11,8 +11,8 @@ namespace DynamicMaps.DynamicMarkers
     public class LockedDoorMarkerMutator : IDynamicMarkerProvider
     {
         // FIXME: move to configuration somehow
-        private static string doorWithKeyPath = Path.Combine(Plugin.Path, "Markers/door_with_key.png");
-        private static string doorWithLockPath = Path.Combine(Plugin.Path, "Markers/door_with_lock.png");
+        private static readonly string DoorWithKeyPath = Path.Combine(Plugin.Path, "Markers/door_with_key.png");
+        private static readonly string DoorWithLockPath = Path.Combine(Plugin.Path, "Markers/door_with_lock.png");
 
         public void OnShowInRaid(MapView map)
         {
@@ -29,9 +29,7 @@ namespace DynamicMaps.DynamicMarkers
                 // TODO: GetAllItems is a BSG extension method under GClass
                 var hasKey = player.Inventory.Equipment.GetAllItems().Any(i => i.TemplateId == marker.AssociatedItemId);
 
-                marker.Image.sprite = hasKey
-                    ? TextureUtils.GetOrLoadCachedSprite(doorWithKeyPath)
-                    : TextureUtils.GetOrLoadCachedSprite(doorWithLockPath);
+                marker.SetImagePath(hasKey ? DoorWithKeyPath : DoorWithLockPath);
 
                 marker.Color = hasKey
                     ? Color.green
@@ -56,9 +54,7 @@ namespace DynamicMaps.DynamicMarkers
                 var keyInEquipment = profile.Inventory.Equipment.GetAllItems().Any(i => i.TemplateId == marker.AssociatedItemId);
 
                 // change icon
-                marker.Image.sprite = (keyInStash || keyInEquipment)
-                    ? TextureUtils.GetOrLoadCachedSprite(doorWithKeyPath)
-                    : TextureUtils.GetOrLoadCachedSprite(doorWithLockPath);
+                marker.SetImagePath(keyInStash || keyInEquipment ? DoorWithKeyPath : DoorWithLockPath);
 
                 // change color
                 marker.Color = keyInEquipment
@@ -93,7 +89,7 @@ namespace DynamicMaps.DynamicMarkers
                     continue;
                 }
 
-                marker.Image.sprite = TextureUtils.GetOrLoadCachedSprite(doorWithLockPath);
+                marker.SetImagePath(DoorWithLockPath);
                 marker.Color = Color.yellow;
             }
         }

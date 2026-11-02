@@ -26,7 +26,6 @@ namespace DynamicMaps.Data
         [JsonRequired]
         public string ImagePath { get; set; }
         
-        [JsonRequired]
         public int TesselationIndex { get; set; }
 
         [JsonRequired]
@@ -85,14 +84,48 @@ namespace DynamicMaps.Data
         public List<MapMarkerDef> StaticMarkers { get; set; } = new List<MapMarkerDef>();
         public int DefaultLevel { get; set; } = 0;
 
+        [JsonIgnore]
+        public string SelectionId { get; set; }
+
+        [JsonIgnore]
+        public bool IsAddon { get; set; }
+
         public string Author { get; set; }
         public string AuthorLink { get; set; }
 
-        public static MapDef LoadFromPath(string absolutePath)
+        public static MapDef LoadFromPath(string absolutePath, string addonName = null)
         {
             try
             {
-                return JsonConvert.DeserializeObject<MapDef>(File.ReadAllText(absolutePath));
+                var mapDef = JsonConvert.DeserializeObject<MapDef>(File.ReadAllText(absolutePath));
+                if (mapDef?.Bounds == null || mapDef.Layers == null || mapDef.Layers.Count == 0 || mapDef.MapInternalNames == null || string.IsNullOrWhiteSpace(mapDef.DisplayName))
+                {
+                    throw new InvalidDataException("Incomplete map definition");
+                }
+
+                mapDef.SelectionId = Path.GetRelativePath(Plugin.Path, absolutePath).Replace('\\', '/');
+                mapDef.IsAddon = addonName != null;
+                if (mapDef.IsAddon)
+                {
+                    mapDef.DisplayName = $"{mapDef.DisplayName} ({addonName})";
+                }
+
+                foreach (var layer in mapDef.Layers.Values)
+                {
+                    if (layer == null || string.IsNullOrWhiteSpace(layer.ImagePath) || layer.ImageBounds == null || layer.GameBounds == null)
+                    {
+                        throw new InvalidDataException("Incomplete map layer");
+                    }
+
+                    layer.ImagePath = Path.GetFullPath(Path.Combine(mapDef.IsAddon ? Path.GetDirectoryName(absolutePath) : Plugin.Path, layer.ImagePath));
+                    var extension = Path.GetExtension(layer.ImagePath);
+                    if (!extension.Equals(".svg", StringComparison.OrdinalIgnoreCase) && !extension.Equals(".png", StringComparison.OrdinalIgnoreCase) || !File.Exists(layer.ImagePath))
+                    {
+                        throw new InvalidDataException($"Missing or unsupported map image: {layer.ImagePath}");
+                    }
+                }
+
+                return mapDef;
             }
             catch (Exception e)
             {

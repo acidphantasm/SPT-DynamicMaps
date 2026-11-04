@@ -45,6 +45,8 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowEnemyPlayerMarkersInRaid;
         public static ConfigEntry<bool> ShowScavMarkersInRaid;
         public static ConfigEntry<bool> ShowBossMarkersInRaid;
+        public static ConfigEntry<bool> ShowNonVanillaBotMarkersInRaid;
+        public static ConfigEntry<bool> NonVanillaBotUseStar;
         public static ConfigEntry<bool> ShowLockedDoorStatus;
         public static ConfigEntry<bool> ShowQuestsInRaid;
         public static ConfigEntry<bool> ShowExtractsInRaid;
@@ -118,6 +120,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<Color> PmcUsecColor;
         public static ConfigEntry<Color> ScavColor;
         public static ConfigEntry<Color> BossColor;
+        public static ConfigEntry<Color> NonVanillaBotColor;
         public static ConfigEntry<Color> AirdropColor;
         public static ConfigEntry<Color> BackpackColor;
         public static ConfigEntry<Color> LootItemColor;
@@ -345,6 +348,24 @@ namespace DynamicMaps.Config
                 false,
                 new ConfigDescription(
                     "If enemy boss markers should be shown in-raid",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(ShowNonVanillaBotMarkersInRaid = config.Bind(
+                DynamicMarkerTitle,
+                "Show Non-Vanilla Bot Markers",
+                false,
+                new ConfigDescription(
+                    "If non-vanilla bot markers should be shown in-raid",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(NonVanillaBotUseStar = config.Bind(
+                DynamicMarkerTitle,
+                "Use Star for Non-Vanilla Bots",
+                true,
+                new ConfigDescription(
+                    "Use a star instead of an arrow for non-vanilla bot markers",
                     null,
                     new ConfigurationManagerAttributes())));
 
@@ -809,6 +830,15 @@ namespace DynamicMaps.Config
                 new Color(1f, 0.45f, 0.007f),
                 new ConfigDescription(
                     "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(NonVanillaBotColor = config.Bind(
+                MarkerColors,
+                "Non-Vanilla bot marker color",
+                new Color(1f, 0.45f, 0.007f),
+                new ConfigDescription(
+                    "Color of non-vanilla bot markers",
                     null,
                     new ConfigurationManagerAttributes())));
             

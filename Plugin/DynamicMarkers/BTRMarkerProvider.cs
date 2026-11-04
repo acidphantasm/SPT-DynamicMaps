@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {
-    public class BTRMarkerProvider : IDynamicMarkerProvider
+    public class BtrMarkerProvider : IDynamicMarkerProvider
     {
         // TODO: move to config
-        private static string _btrIconPath = "Markers/btr.png";
-        private static Vector2 _btrSize = new(45, 45f);
-        private static string _btrName = "BTR";
-        private static string _btrCategory = "BTR";
+        private static readonly string BtrIconPath = "Markers/btr.png";
+        private static readonly Vector2 BtrSize = new(45, 45f);
+        private static readonly string BtrName = "BTR";
+        private static readonly string BtrCategory = "BTR";
         //
 
         private MapMarker _btrMarker;
@@ -50,7 +50,7 @@ namespace DynamicMaps.DynamicMarkers
                 return;
             }
 
-            var btrView = GameUtils.GetBTRView();
+            var btrView = GameUtils.GetBtrView();
             if (btrView is null)
             {
                 return;
@@ -59,8 +59,8 @@ namespace DynamicMaps.DynamicMarkers
             var color = Settings.BtrColor.Value;
             
             // try adding the marker
-            _btrMarker = map.AddTransformMarker(btrView.transform, _btrName, _btrCategory, color,
-                                                _btrIconPath, _btrSize);
+            _btrMarker = map.AddTransformMarker(btrView.transform, BtrName, BtrCategory, color,
+                                                BtrIconPath, BtrSize);
         }
 
         private void TryRemoveMarker()

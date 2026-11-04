@@ -14,8 +14,8 @@ namespace DynamicMaps.DynamicMarkers
     public class ExtractMarkerProvider : IDynamicMarkerProvider
     {
         // TODO: move to config
-        private const string _extractCategory = "Extract";
-        private const string _extractImagePath = "Markers/exit.png";
+        private const string ExtractCategory = "Extract";
+        private const string ExtractImagePath = "Markers/exit.png";
         //
 
         private bool _showExtractStatusInRaid = true;
@@ -160,9 +160,9 @@ namespace DynamicMaps.DynamicMarkers
 
             var markerDef = new MapMarkerDef
             {
-                Category = _extractCategory,
-                ImagePath = _extractImagePath,
-                Text = extract.Settings.Name.BSGLocalized(),
+                Category = ExtractCategory,
+                ImagePath = ExtractImagePath,
+                Text = extract.Settings.Name.BsgLocalized(),
                 Position = MathUtils.ConvertToMapPosition(extract.transform)
             };
 

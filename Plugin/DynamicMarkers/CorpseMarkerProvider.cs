@@ -13,31 +13,31 @@ namespace DynamicMaps.DynamicMarkers
 {
     public class CorpseMarkerProvider : IDynamicMarkerProvider
     {
-        private const string _skullImagePath = "Markers/skull.png";
+        private const string SkullImagePath = "Markers/skull.png";
 
         // TODO: move to config
-        private const string _friendlyCorpseCategory = "Friendly Corpse";
-        private const string _friendlyCorpseImagePath = _skullImagePath;
-        private static Color _friendlyCorpseColor = Color.Lerp(Color.blue, Color.white, 0.5f);
+        private const string FriendlyCorpseCategory = "Friendly Corpse";
+        private const string FriendlyCorpseImagePath = SkullImagePath;
+        private static readonly Color FriendlyCorpseColor = Color.Lerp(Color.blue, Color.white, 0.5f);
 
-        private const string _killedCorpseCategory = "Killed Corpse";
-        private const string _killedCorpseImagePath = _skullImagePath;
+        private const string KilledCorpseCategory = "Killed Corpse";
+        private const string KilledCorpseImagePath = SkullImagePath;
 
-        private const string _killedBossCorpseCategory = "Killed Boss Corpse";
-        private const string _killedBossCorpseImagePath = _skullImagePath;
+        private const string KilledBossCorpseCategory = "Killed Boss Corpse";
+        private const string KilledBossCorpseImagePath = SkullImagePath;
 
-        private const string _bossCorpseCategory = "Boss Corpse";
-        private const string _bossCorpseImagePath = _skullImagePath;
+        private const string BossCorpseCategory = "Boss Corpse";
+        private const string BossCorpseImagePath = SkullImagePath;
 
-        private const string _friendlyKilledCorpseCategory = "Friendly Killed Corpse";
-        private const string _friendlyKilledCorpseImagePath = _skullImagePath;
-        private static Color _friendlyKilledCorpseColor = Color.Lerp(Color.Lerp(Color.blue, Color.white, 0.5f), Color.red, 0.5f);
+        private const string FriendlyKilledCorpseCategory = "Friendly Killed Corpse";
+        private const string FriendlyKilledCorpseImagePath = SkullImagePath;
+        private static readonly Color FriendlyKilledCorpseColor = Color.Lerp(Color.Lerp(Color.blue, Color.white, 0.5f), Color.red, 0.5f);
 
-        private const string _friendlyKilledBossCorpseCategory = "Friendly Killed Boss Corpse";
-        private const string _friendlyKilledBossCorpseImagePath = _skullImagePath;
+        private const string FriendlyKilledBossCorpseCategory = "Friendly Killed Boss Corpse";
+        private const string FriendlyKilledBossCorpseImagePath = SkullImagePath;
 
-        private const string _otherCorpseCategory = "Other Corpse";
-        private const string _otherCorpseImagePath = _skullImagePath;
+        private const string OtherCorpseCategory = "Other Corpse";
+        private const string OtherCorpseImagePath = SkullImagePath;
         //
 
         private bool _showFriendlyCorpses = true;
@@ -111,7 +111,7 @@ namespace DynamicMaps.DynamicMarkers
         }
 
         private MapView _lastMapView;
-        private Dictionary<Player, MapMarker> _corpseMarkers = [];
+        private readonly Dictionary<Player, MapMarker> _corpseMarkers = [];
 
         public void OnShowInRaid(MapView map)
         {
@@ -226,44 +226,44 @@ namespace DynamicMaps.DynamicMarkers
             if (Settings.ShowCorpseIntelLevel.Value > intelLevel) return;
             
             // set category and color
-            var category = _otherCorpseCategory;
-            var imagePath = _otherCorpseImagePath;
+            var category = OtherCorpseCategory;
+            var imagePath = OtherCorpseImagePath;
             var color = Settings.KilledOtherColor.Value;
             
             if (player.IsGroupedWithMainPlayer())
             {
-                category = _friendlyCorpseCategory;
-                imagePath = _friendlyCorpseImagePath;
-                color = _friendlyCorpseColor;
+                category = FriendlyCorpseCategory;
+                imagePath = FriendlyCorpseImagePath;
+                color = FriendlyCorpseColor;
             }
             else if (player.IsTrackedBoss() && player.DidMainPlayerKill())
             {
-                category = _killedBossCorpseCategory;
-                imagePath = _killedBossCorpseImagePath;
+                category = KilledBossCorpseCategory;
+                imagePath = KilledBossCorpseImagePath;
                 color = Settings.KilledBossColor.Value;
             }
             else if (player.DidMainPlayerKill())
             {
-                category = _killedCorpseCategory;
-                imagePath = _killedCorpseImagePath;
+                category = KilledCorpseCategory;
+                imagePath = KilledCorpseImagePath;
                 color = Settings.KilledCorpseColor.Value;
             }
             else if (player.IsTrackedBoss() && player.DidTeammateKill())
             {
-                category = _friendlyKilledBossCorpseCategory;
-                imagePath = _friendlyKilledBossCorpseImagePath;
+                category = FriendlyKilledBossCorpseCategory;
+                imagePath = FriendlyKilledBossCorpseImagePath;
                 color = Settings.KilledBossColor.Value;
             }
             else if (player.DidTeammateKill())
             {
-                category = _friendlyKilledCorpseCategory;
-                imagePath = _friendlyKilledCorpseImagePath;
-                color = _friendlyKilledCorpseColor;
+                category = FriendlyKilledCorpseCategory;
+                imagePath = FriendlyKilledCorpseImagePath;
+                color = FriendlyKilledCorpseColor;
             }
             else if (player.IsTrackedBoss())
             {
-                category = _bossCorpseCategory;
-                imagePath = _bossCorpseImagePath;
+                category = BossCorpseCategory;
+                imagePath = BossCorpseImagePath;
                 color = Settings.KilledBossColor.Value;
             }
 
@@ -313,17 +313,17 @@ namespace DynamicMaps.DynamicMarkers
         {
             switch (category)
             {
-                case _friendlyCorpseCategory:
+                case FriendlyCorpseCategory:
                     return _showFriendlyCorpses;
-                case _killedCorpseCategory:
-                case _killedBossCorpseCategory:
+                case KilledCorpseCategory:
+                case KilledBossCorpseCategory:
                     return _showKilledCorpses;
-                case _friendlyKilledCorpseCategory:
-                case _friendlyKilledBossCorpseCategory:
+                case FriendlyKilledCorpseCategory:
+                case FriendlyKilledBossCorpseCategory:
                     return _showFriendlyKilledCorpses;
-                case _bossCorpseCategory:
+                case BossCorpseCategory:
                     return _showBossCorpses;
-                case _otherCorpseCategory:
+                case OtherCorpseCategory:
                     return _showOtherCorpses;
                 default:
                     return false;

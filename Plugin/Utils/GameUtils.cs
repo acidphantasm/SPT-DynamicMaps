@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using SPT.Reflection.Utils;
 using Comfort.Common;
 using DynamicMaps.Config;
@@ -10,51 +9,56 @@ using EFT;
 using EFT.InventoryLogic;
 using EFT.Vehicle;
 using HarmonyLib;
-using UnityEngine.Profiling;
 
 namespace DynamicMaps.Utils
 {
     public static class GameUtils
     {
         // reflection        
-        private static FieldInfo _playerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
-        private static FieldInfo _playerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
+        private static readonly FieldInfo PlayerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
+        private static readonly FieldInfo PlayerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
         
-        private static Type _profileInterface = typeof(IEftSession).GetInterfaces().First(i =>
+        private static readonly Type ProfileInterface = typeof(IEftSession).GetInterfaces().First(i =>
             {
                 var properties = i.GetProperties();
                 return properties.Length == 2 &&
                        properties.Any(p => p.Name == "Profile");
             });
-        private static PropertyInfo _sessionProfileProperty = AccessTools.Property(_profileInterface, "Profile");
-        public static IEftSession Session => ClientAppUtils.GetMainApp().GetClientBackEndSession();
-        public static Profile PlayerProfile => _sessionProfileProperty.GetValue(Session) as Profile;
-        //
-
-        private static HashSet<WildSpawnType> _trackedBosses = new HashSet<WildSpawnType>
+        private static readonly PropertyInfo SessionProfileProperty = AccessTools.Property(ProfileInterface, "Profile");
+        private static IEftSession Session
         {
-            WildSpawnType.bossBoar,             // Kaban
-            WildSpawnType.bossBully,            // Reshala
-            WildSpawnType.bossGluhar,           // Glukhar
+            get => ClientAppUtils.GetMainApp().GetClientBackEndSession();
+        }
+        private static Profile PlayerProfile
+        {
+            get => SessionProfileProperty.GetValue(Session) as Profile;
+        }
+
+        private static readonly HashSet<WildSpawnType> TrackedBosses =
+        [
+            WildSpawnType.bossBoar,// Kaban
+            WildSpawnType.bossBully,// Reshala
+            WildSpawnType.bossGluhar,// Glukhar
             WildSpawnType.bossKilla,
             WildSpawnType.bossKnight,
             WildSpawnType.followerBigPipe,
             WildSpawnType.followerBirdEye,
             WildSpawnType.bossKolontay,
-            WildSpawnType.bossKojaniy,          // Shturman
+            WildSpawnType.bossKojaniy,// Shturman
             WildSpawnType.bossSanitar,
             WildSpawnType.bossTagilla,
             WildSpawnType.bossPartisan,
             WildSpawnType.bossZryachiy,
-            WildSpawnType.gifter,               // Santa
-            WildSpawnType.arenaFighterEvent,    // Blood Hounds
-            WildSpawnType.sectantPriest,        // Cultist Priest
-            WildSpawnType.bossTagillaAgro,      // Tagilla Labyrinth
-            WildSpawnType.bossKillaAgro,        // Killa Labyrinth
-            WildSpawnType.tagillaHelperAgro,    // Tagilla Helper Labyrinth
-            (WildSpawnType) 199,                // Legion
-            (WildSpawnType) 801,                // Punisher
-        };
+            WildSpawnType.followerZryachiy,
+            WildSpawnType.gifter,// Santa
+            WildSpawnType.arenaFighterEvent,// Blood Hounds
+            WildSpawnType.sectantPriest,// Cultist Priest
+            WildSpawnType.bossTagillaAgro,// Tagilla Labyrinth
+            WildSpawnType.bossKillaAgro,// Killa Labyrinth
+            WildSpawnType.tagillaHelperAgro,// Tagilla Helper Labyrinth
+            WildSpawnType.peacefullZryachiyEvent,
+            WildSpawnType.ravangeZryachiyEvent
+        ];
 
         private static readonly Dictionary<string, string> MapLookUp = new()
         {
@@ -101,7 +105,7 @@ namespace DynamicMaps.Utils
             return PlayerProfile;
         }
 
-        public static BTRView GetBTRView()
+        public static BTRView GetBtrView()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
             return gameWorld?.BtrController?.BtrView;
@@ -113,25 +117,23 @@ namespace DynamicMaps.Utils
             return IsInRaid() && (player != null) && player.Side == EPlayerSide.Savage;
         }
 
-        public static string BSGLocalized(this MongoID id)
+        public static string BsgLocalized(this MongoID id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return "";
             }
 
-            // TODO: use reflection to get rid of this gclass reference
             return id.ToString().Localized();
         }
         
-        public static string BSGLocalized(this string id)
+        public static string BsgLocalized(this string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
                 return "";
             }
 
-            // TODO: use reflection to get rid of this gclass reference
             return id.Localized();
         }
 
@@ -141,12 +143,17 @@ namespace DynamicMaps.Utils
             return !string.IsNullOrEmpty(mainPlayerGroupId) && player.GroupId == mainPlayerGroupId;
         }
 
-        public static bool IsTrackedBoss(this IPlayer player)
+        public static bool IsNonVanillaBot(this IPlayer player)
         {
-            return player.Profile.Side == EPlayerSide.Savage && _trackedBosses.Contains(player.Profile.Info.Settings.Role);
+            return (int)player.Profile.Info.Settings.Role > 195;
         }
 
-        public static bool IsPMC(this IPlayer player)
+        public static bool IsTrackedBoss(this IPlayer player)
+        {
+            return player.Profile.Side == EPlayerSide.Savage && TrackedBosses.Contains(player.Profile.Info.Settings.Role);
+        }
+
+        public static bool IsPmc(this IPlayer player)
         {
             return player.Profile.Side == EPlayerSide.Bear || player.Profile.Side == EPlayerSide.Usec;
         }
@@ -158,7 +165,7 @@ namespace DynamicMaps.Utils
 
         public static bool DidMainPlayerKill(this IPlayer player)
         {
-            var aggressor = _playerLastAggressorField.GetValue(player) as IPlayer;
+            var aggressor = PlayerLastAggressorField.GetValue(player) as IPlayer;
             if (aggressor == null)
             {
                 return false;
@@ -175,7 +182,7 @@ namespace DynamicMaps.Utils
 
         public static bool DidTeammateKill(this IPlayer player)
         {
-            var aggressor = _playerLastAggressorField.GetValue(player) as IPlayer;
+            var aggressor = PlayerLastAggressorField.GetValue(player) as IPlayer;
             if (aggressor == null || string.IsNullOrEmpty(aggressor.GroupId))
             {
                 return false;
@@ -190,7 +197,7 @@ namespace DynamicMaps.Utils
             return false;
         }
 
-        public static bool IsBTRShooter(this IPlayer player)
+        public static bool IsBtrShooter(this IPlayer player)
         {
             return player.Profile.Side == EPlayerSide.Savage
                 && player.Profile.Info.Settings.Role == WildSpawnType.shooterBTR;
@@ -198,7 +205,7 @@ namespace DynamicMaps.Utils
 
         public static bool HasCorpse(this Player player)
         {
-            return _playerCorpseField.GetValue(player) != null;
+            return PlayerCorpseField.GetValue(player) != null;
         }
 
         public static bool IsHeadlessClient(this IPlayer player)

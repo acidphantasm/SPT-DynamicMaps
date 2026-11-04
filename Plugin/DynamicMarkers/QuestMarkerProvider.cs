@@ -8,7 +8,7 @@ namespace DynamicMaps
 {
     public class QuestMarkerProvider : IDynamicMarkerProvider
     {
-        private List<MapMarker> _questMarkers = [];
+        private readonly List<MapMarker> _questMarkers = [];
 
         public void OnShowInRaid(MapView map)
         {

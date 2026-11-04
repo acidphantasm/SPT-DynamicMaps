@@ -12,8 +12,8 @@ namespace DynamicMaps.DynamicMarkers;
 public class HiddenStashMarkerProvider : IDynamicMarkerProvider
 {
     private MapView _lastMapView;
-    private Dictionary<LootableContainer, MapMarker> _stashMarkers = [];
-    private const string _hiddenCacheImagePath = "Markers/barrel.png";
+    private readonly Dictionary<LootableContainer, MapMarker> _stashMarkers = [];
+    private const string HiddenCacheImagePath = "Markers/barrel.png";
     
     public void OnShowInRaid(MapView map)
     {
@@ -71,7 +71,7 @@ public class HiddenStashMarkerProvider : IDynamicMarkerProvider
         {
             Category = "Hidden Stash",
             Color = Settings.HiddenStashColor.Value,
-            ImagePath = _hiddenCacheImagePath,
+            ImagePath = HiddenCacheImagePath,
             Position = MathUtils.ConvertToMapPosition(stash.transform),
             Text = "Hidden Stash"
         };

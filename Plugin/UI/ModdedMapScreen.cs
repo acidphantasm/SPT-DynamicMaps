@@ -93,6 +93,7 @@ namespace DynamicMaps.UI
             public bool AllowShowEnemyPlayerMarkersInRaid;
             public bool AllowShowBossMarkersInRaid;
             public bool AllowShowScavMarkersInRaid;
+            public bool AllowShowNonVanillaBotMarkersInRaid;
         }
 
         private struct MapLayout
@@ -724,7 +725,7 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<QuestMarkerProvider>(Settings.ShowQuestsInRaid.Value);
             AddRemoveMarkerProvider<LockedDoorMarkerMutator>(Settings.ShowLockedDoorStatus.Value);
             AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
-            AddRemoveMarkerProvider<BTRMarkerProvider>(Settings.ShowBTRInRaid.Value);
+            AddRemoveMarkerProvider<BtrMarkerProvider>(Settings.ShowBTRInRaid.Value);
             AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
             AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
             AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
@@ -776,7 +777,8 @@ namespace DynamicMaps.UI
             var needOtherPlayerMarkers = Settings.ShowFriendlyPlayerMarkersInRaid.Value
                                       || Settings.ShowEnemyPlayerMarkersInRaid.Value
                                       || Settings.ShowBossMarkersInRaid.Value
-                                      || Settings.ShowScavMarkersInRaid.Value;
+                                      || Settings.ShowScavMarkersInRaid.Value
+                                      || Settings.ShowNonVanillaBotMarkersInRaid.Value;
 
             AddRemoveMarkerProvider<OtherPlayersMarkerProvider>(needOtherPlayerMarkers);
             
@@ -787,6 +789,7 @@ namespace DynamicMaps.UI
                 provider.ShowEnemyPlayers = ServerConfig != null && ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
                 provider.ShowScavs = ServerConfig != null && ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
                 provider.ShowBosses = ServerConfig != null && ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
+                provider.ShowNonVanillaBots = ServerConfig != null && ServerConfig.AllowShowNonVanillaBotMarkersInRaid && Settings.ShowNonVanillaBotMarkersInRaid.Value;
                 
                 provider.RefreshMarkers();
             }

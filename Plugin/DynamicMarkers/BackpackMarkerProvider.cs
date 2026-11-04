@@ -16,13 +16,13 @@ namespace DynamicMaps.DynamicMarkers
     public class BackpackMarkerProvider : IDynamicMarkerProvider
     {
         // TODO: move to config
-        private const string _backpackCategory = "Backpack";
-        private const string _backpackImagePath = "Markers/backpack.png";
-        private static Vector2 _backpackSize = new Vector2(30f, 30f);
+        private const string BackpackCategory = "Backpack";
+        private const string BackpackImagePath = "Markers/backpack.png";
+        private static readonly Vector2 BackpackSize = new Vector2(30f, 30f);
         //
 
         private MapView _lastMapView;
-        private Dictionary<int, MapMarker> _backpackMarkers = new Dictionary<int, MapMarker>();
+        private readonly Dictionary<int, MapMarker> _backpackMarkers = new();
 
         public void OnShowInRaid(MapView map)
         {
@@ -159,8 +159,8 @@ namespace DynamicMaps.DynamicMarkers
             var color = Settings.BackpackColor.Value;
 
             // try adding the marker
-            var marker = map.AddTransformMarker(lootItem.TrackableTransform, lootItem.Item.ShortName.BSGLocalized(),
-                                                _backpackCategory, color, _backpackImagePath, _backpackSize);
+            var marker = map.AddTransformMarker(lootItem.TrackableTransform, lootItem.Item.ShortName.BsgLocalized(),
+                                                BackpackCategory, color, BackpackImagePath, BackpackSize);
 
             _backpackMarkers[itemNetId] = marker;
         }

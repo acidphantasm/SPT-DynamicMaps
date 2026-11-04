@@ -297,11 +297,12 @@ public class DynamicMapsServer(
         assort.LoyalLevelItems[assortId] = 1;
     }
 }
-    
+
 public class ModConfig
 {
     public bool AllowShowFriendlyPlayerMarkersInRaid { get; set; }
     public bool AllowShowEnemyPlayerMarkersInRaid { get; set; }
     public bool AllowShowBossMarkersInRaid { get; set; }
     public bool AllowShowScavMarkersInRaid { get; set; }
+    public bool AllowShowNonVanillaBotMarkersInRaid { get; set; }
 }

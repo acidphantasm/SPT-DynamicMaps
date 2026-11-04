@@ -14,7 +14,7 @@ namespace DynamicMaps.DynamicMarkers
     public class LootMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private Dictionary<LootItem, MapMarker> _lootMarkers = [];
+        private readonly Dictionary<LootItem, MapMarker> _lootMarkers = [];
         
         public void OnShowInRaid(MapView map)
         {

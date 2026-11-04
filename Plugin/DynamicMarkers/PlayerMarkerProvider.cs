@@ -9,8 +9,8 @@ namespace DynamicMaps.DynamicMarkers
     public class PlayerMarkerProvider : IDynamicMarkerProvider
     {
         // TODO: move to config
-        private const string _playerCategory = "Main Player";
-        private const string _playerImagePath = "Markers/arrow.png";
+        private const string PlayerCategory = "Main Player";
+        private const string PlayerImagePath = "Markers/arrow.png";
         //
 
         private PlayerMapMarker _playerMarker;
@@ -56,7 +56,7 @@ namespace DynamicMaps.DynamicMarkers
             var color = Settings.PlayerColor.Value;
             
             // try adding the marker
-            _playerMarker = map.AddPlayerMarker(player, _playerCategory, color, _playerImagePath);
+            _playerMarker = map.AddPlayerMarker(player, PlayerCategory, color, PlayerImagePath);
         }
 
         private void TryRemoveMarker()

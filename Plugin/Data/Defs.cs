@@ -78,10 +78,10 @@ namespace DynamicMaps.Data
         [JsonRequired]
         public Dictionary<string, MapLayerDef> Layers { get; set; } = new Dictionary<string, MapLayerDef>();
 
-        public List<string> MapInternalNames { get; set; } = new List<string>();
+        public List<string> MapInternalNames { get; set; } = [];
         public float CoordinateRotation { get; set; } = 0;
-        public List<MapLabelDef> Labels { get; set; } = new List<MapLabelDef>();
-        public List<MapMarkerDef> StaticMarkers { get; set; } = new List<MapMarkerDef>();
+        public List<MapLabelDef> Labels { get; set; } = [];
+        public List<MapMarkerDef> StaticMarkers { get; set; } = [];
         public int DefaultLevel { get; set; } = 0;
 
         [JsonIgnore]

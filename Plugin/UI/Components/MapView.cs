@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using DynamicMaps.Config;
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
 using EFT;
@@ -13,37 +12,27 @@ namespace DynamicMaps.UI.Components
 {
     public class MapView : MonoBehaviour
     {
-        private static Vector2 _markerSize = new Vector2(30, 30);
-        private static float _zoomMaxScaler = 10f;  // multiplier against zoomMin
-        private static float _zoomMinScaler = 1.1f; // divider against ratio of a provided rect
+        private static readonly Vector2 MarkerSize = new Vector2(30, 30);
 
         public event Action<int> OnLevelSelected;
 
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
-        private RectTransform _maskTransform;
+        public RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
         public MapDef CurrentMapDef { get; private set; }
-        public float CoordinateRotation { get; private set; }
-        public int SelectedLevel { get; private set; }
+        private float CoordinateRotation { get; set; }
+        private int SelectedLevel { get; set; }
 
-        public GameObject MapMarkerContainer { get; private set; }
-        public GameObject MapLabelsContainer { get; private set; }
-        public GameObject MapLayerContainer { get; private set; }
+        private GameObject MapMarkerContainer { get; set; }
+        private GameObject MapLabelsContainer { get; set; }
+        private GameObject MapLayerContainer { get; set; }
 
-        // Zoom holders
-        public float ZoomMin { get; private set; }      // set when map loaded
-        public float ZoomMax { get; private set; }      // set when map loaded
-        public float ZoomMain { get; private set; }
-        public float ZoomMini { get; private set; }
-        public bool IsMiniMapActive { get; set; }
-        private float ZoomCurrent => IsMiniMapActive ? ZoomMini : ZoomMain;
-        
-        public Vector2 MainMapPos { get; private set; } = Vector2.zero;
-        
-        private Vector2 _immediateMapAnchor = Vector2.zero;
+        private float _zoomCurrent = 1f;
 
-        private List<MapMarker> _markers = new List<MapMarker>();
-        private List<MapLayer> _layers = new List<MapLayer>();
-        private List<MapLabel> _labels = new List<MapLabel>();
+        private readonly List<MapMarker> _markers = [];
+        private readonly List<MapLayer> _layers = [];
+        private readonly List<MapLabel> _labels = [];
 
         public static MapView Create(GameObject parent, string name)
         {
@@ -66,21 +55,9 @@ namespace DynamicMaps.UI.Components
             MapMarkerContainer.transform.SetAsLastSibling();
         }
 
-        private void OnEnable()
-        {
-            Settings.OnZoomMainMapChanged += HandleZoomMainChanged;
-            Settings.OnZoomMiniMapChanged += HandleZoomMiniChanged;
-        }
-
         private void OnDestroy()
         {
             TextureUtils.ClearMapCache();
-        }
-
-        private void OnDisable()
-        {
-            Settings.OnZoomMainMapChanged -= HandleZoomMainChanged;
-            Settings.OnZoomMiniMapChanged -= HandleZoomMiniChanged;
         }
 
         public void AddMapMarker(MapMarker marker)
@@ -102,24 +79,22 @@ namespace DynamicMaps.UI.Components
 
         public MapMarker AddMapMarker(MapMarkerDef markerDef)
         {
-            var marker = MapMarker.Create(MapMarkerContainer, markerDef, _markerSize, -CoordinateRotation, 1f/ZoomCurrent);
+            var marker = MapMarker.Create(MapMarkerContainer, markerDef, MarkerSize, -CoordinateRotation, 1f/_zoomCurrent);
             AddMapMarker(marker);
             return marker;
         }
 
-        public TransformMapMarker AddTransformMarker(Transform followingTransform, string name, string category, Color color,
+        public TransformMapMarker AddTransformMarker(Transform followingTransform, string markerName, string category, Color color,
                                                      string imagePath, Vector2 size)
         {
-            var marker = TransformMapMarker.Create(followingTransform, MapMarkerContainer, imagePath, color, name, category,
-                                                   size, -CoordinateRotation, 1f/ZoomCurrent);
+            var marker = TransformMapMarker.Create(followingTransform, MapMarkerContainer, imagePath, color, markerName, category, size, -CoordinateRotation, 1f/_zoomCurrent);
             AddMapMarker(marker);
             return marker;
         }
 
         public PlayerMapMarker AddPlayerMarker(IPlayer player, string category, Color color, string imagePath)
         {
-            var marker = PlayerMapMarker.Create(player, MapMarkerContainer, imagePath, color, category,
-                                                _markerSize, -CoordinateRotation, 1f/ZoomCurrent);
+            var marker = PlayerMapMarker.Create(player, MapMarkerContainer, imagePath, color, category, MarkerSize, -CoordinateRotation, 1f/_zoomCurrent);
             AddMapMarker(marker);
             return marker;
         }
@@ -171,7 +146,7 @@ namespace DynamicMaps.UI.Components
 
         public void AddMapLabel(MapLabelDef labelDef)
         {
-            var label = MapLabel.Create(MapLabelsContainer, labelDef, -CoordinateRotation, 1f/ZoomCurrent);
+            var label = MapLabel.Create(MapLabelsContainer, labelDef, -CoordinateRotation, 1f/_zoomCurrent);
 
             UpdateLayerBound(label);
 
@@ -191,9 +166,8 @@ namespace DynamicMaps.UI.Components
             GameObject.Destroy(label.gameObject);
         }
 
-        public void LoadMap(MapDef mapDef, RectTransform maskTransform)
+        public void LoadMap(MapDef mapDef)
         {
-            _maskTransform = maskTransform;
             if (mapDef == null || CurrentMapDef == mapDef)
             {
                 return;
@@ -215,8 +189,9 @@ namespace DynamicMaps.UI.Components
             // rotate all of the map content
             RectTransform.localRotation = Quaternion.Euler(0, 0, CoordinateRotation);
 
-            // set min/max zoom based on parent's rect transform
-            SetMinMaxZoom(maskTransform);
+            _zoomCurrent = 1f;
+            RectTransform.localScale = Vector3.one;
+            RectTransform.anchoredPosition = Vector2.zero;
 
             // load all layers in the order of level
             // BSG has extension method deconstruct for KVP, so have to do this
@@ -279,8 +254,7 @@ namespace DynamicMaps.UI.Components
             _layers.Clear();
 
             TextureUtils.ClearMapCache();
-            _immediateMapAnchor = Vector2.zero;
-            MainMapPos = Vector2.zero;
+            _zoomCurrent = 1f;
             CurrentMapDef = null;
         }
 
@@ -310,238 +284,49 @@ namespace DynamicMaps.UI.Components
             SelectTopLevel(matchingLayer.Level);
         }
 
-        private float NormalizedToActual(float normalized)
+        internal MapViewportState CaptureViewportState()
         {
-            return Mathf.Lerp(ZoomMin, ZoomMax, normalized);
-        }
-
-        private float ActualToNormalized(float actual)
-        {
-            return Mathf.InverseLerp(ZoomMin, ZoomMax, actual);
-        }
-        
-        public void ClampToMapBounds()
-        {
-            if (CurrentMapDef == null || _maskTransform == null) return;
-
-            var mapSize = CurrentMapDef.Bounds.Max - CurrentMapDef.Bounds.Min;
-            var rotatedSize = MathUtils.GetRotatedRectangle(mapSize, CoordinateRotation);
-            var scaledMapSize = rotatedSize * ZoomCurrent;
-            var maskSize = _maskTransform.rect.size;
-
-            var boundsCenter = MathUtils.GetMidpoint(CurrentMapDef.Bounds.Min, CurrentMapDef.Bounds.Max);
-            var rotatedCenter = MathUtils.GetRotatedVector2(boundsCenter, CoordinateRotation);
-            var scaledCenter = rotatedCenter * ZoomCurrent;
-
-            var paddingX = maskSize.x * 0.5f;
-            var paddingY = maskSize.y * 0.5f;
-
-            var halfMap = scaledMapSize * 0.5f;
-            var halfMask = maskSize * 0.5f;
-
-            var sizeDiff = halfMap - halfMask;
-
-            var rangeX = sizeDiff.x + paddingX;
-            var rangeY = sizeDiff.y + paddingY;
-
-            const float epsilon = 0.05f;
-
-            if (Mathf.Abs(rangeX) < epsilon)
-                rangeX = 0f;
-
-            if (Mathf.Abs(rangeY) < epsilon)
-                rangeY = 0f;
-
-            rangeX = Mathf.Max(0f, rangeX);
-            rangeY = Mathf.Max(0f, rangeY);
-
-            var maxX = rangeX;
-            var maxY = rangeY;
-
-            var clamped = new Vector2(
-                Mathf.Clamp(RectTransform.anchoredPosition.x, -scaledCenter.x - maxX, -scaledCenter.x + maxX),
-                Mathf.Clamp(RectTransform.anchoredPosition.y, -scaledCenter.y - maxY, -scaledCenter.y + maxY));
-
-            if (clamped != RectTransform.anchoredPosition)
+            var zoom = Mathf.Max(RectTransform.localScale.x, 0.0001f);
+            return new MapViewportState
             {
-                RectTransform.anchoredPosition = clamped;
-                _immediateMapAnchor = clamped;
-                MainMapPos = clamped;
-            }
-        }
-        
-        public void SetMinMaxZoom(RectTransform parentTransform)
-        {
-            // set zoom min and max based on size of map and size of mask
-            var mapSize = RectTransform.sizeDelta;
-            ZoomMin = Mathf.Min(parentTransform.sizeDelta.x / mapSize.x, parentTransform.sizeDelta.y / mapSize.y) / _zoomMinScaler;
-            ZoomMax = _zoomMaxScaler * ZoomMin;
-
-            // this will set everything up for initial zoom - mini comes from the settings on load, main needs to be minimum so the user can change it
-            ZoomMain = ZoomMin;
-            ZoomMini = NormalizedToActual(Settings.ZoomMiniMap.Value);
-            
-            ApplyZoom(ZoomCurrent, 0f);
-
-            // shift map to center it
-            // FIXME: this doesn't center in the parent
-            RectTransform.anchoredPosition = Vector2.zero;
-
-            var midpoint = MathUtils.GetMidpoint(CurrentMapDef.Bounds.Min, CurrentMapDef.Bounds.Max);
-            ShiftMapToCoordinate(midpoint, 0, false);
+                Center = MathUtils.GetRotatedVector2(-RectTransform.anchoredPosition / zoom, -CoordinateRotation),
+                Zoom = zoom,
+                Level = SelectedLevel
+            };
         }
 
-        public void SetMapZoom(float zoomNew, float tweenTime, bool updateMainZoom = true, bool updateMiniZoom = false)
+        internal void ApplyViewportState(MapViewportState state)
         {
-            zoomNew = Mathf.Clamp(zoomNew, ZoomMin, ZoomMax);
-
-            if (updateMainZoom)
-            {
-                if (Mathf.Approximately(zoomNew, ZoomMain)) 
-                    return;
-                
-                ZoomMain = zoomNew;
-                Settings.ZoomMainMap.Value = ActualToNormalized(zoomNew);
-            }
-
-            if (updateMiniZoom)
-            {
-                if (Mathf.Approximately(zoomNew, ZoomMini)) 
-                    return;
-                
-                ZoomMini = zoomNew;
-                Settings.ZoomMiniMap.Value = ActualToNormalized(zoomNew);
-            }
-
-            ApplyZoom(ZoomCurrent, tweenTime);
-        }
-        
-        public void ApplyMainMapZoom()
-        {
-            ApplyZoom(ZoomMain, 0f);
-        }
-        
-        public void ApplyMiniMapZoom()
-        {
-            ApplyZoom(ZoomMini, 0f);
-        }
-        
-        private void ApplyZoom(float zoom, float tweenTime)
-        {
-            zoom = Mathf.Clamp(zoom, ZoomMin, ZoomMax);
-    
-            RectTransform.DOScale(zoom * Vector3.one, tweenTime);
-
-            foreach (var marker in _markers)
-                marker.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
-            foreach (var label in _labels)
-                label.GetRectTransform().DOScale(1 / zoom * Vector3.one, tweenTime);
-        }
-        
-        private void HandleZoomMainChanged(float normalized)
-        {
-            var actual = NormalizedToActual(normalized);
-            ZoomMain = actual;
-
-            if (!IsMiniMapActive)
-            {
-                ApplyZoom(actual, 0);
-            }
-        }
-
-        private void HandleZoomMiniChanged(float normalized)
-        {
-            var actual = NormalizedToActual(normalized);
-            ZoomMini = actual;
-            
-            if (IsMiniMapActive)
-            {
-                ApplyZoom(actual, 0);
-            }
-        }
-
-        public void IncrementalZoomInto(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
-        {
-            CancelPositionTween();
-            
-            var zoomNew = Mathf.Clamp(ZoomMain + zoomDelta, ZoomMin, ZoomMax);
-            var actualDelta = zoomNew - ZoomMain;
-            var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
-
-            // have to shift first, so that the tween is started in the shift first
-            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime, false);
-            SetMapZoom(zoomNew, zoomTweenTime);
-        }
-        
-        public void IncrementalZoomIntoMiniMap(float zoomDelta, Vector2 rectPoint, float zoomTweenTime)
-        {
-            CancelPositionTween();
-            
-            var zoomNew = Mathf.Clamp(ZoomMini + zoomDelta, ZoomMin, ZoomMax);
-            var actualDelta = zoomNew - ZoomMini;
-            var rotatedPoint = MathUtils.GetRotatedVector2(rectPoint, CoordinateRotation);
-
-            // have to shift first, so that the tween is started in the shift first
-            ShiftMap(-rotatedPoint * actualDelta, zoomTweenTime, true);
-            SetMapZoom(zoomNew, zoomTweenTime, false, true);
-        }
-        
-        public void CancelPositionTween()
-        {
-            DOTween.Kill(RectTransform, true);
-            _immediateMapAnchor = RectTransform.anchoredPosition;
-        }
-
-        public void ShiftMap(Vector2 shift, float tweenTime, bool isMini)
-        {
-            if (shift == Vector2.zero)
+            if (CurrentMapDef == null)
             {
                 return;
             }
 
-            // check if tweening to update _immediateMapAnchor, since the scroll rect might have moved the anchor
-            if (!DOTween.IsTweening(RectTransform, true) || tweenTime == 0)
+            if (!Mathf.Approximately(_zoomCurrent, state.Zoom))
             {
-                _immediateMapAnchor = RectTransform.anchoredPosition;
-            }
+                _zoomCurrent = state.Zoom;
+                RectTransform.localScale = Vector3.one * state.Zoom;
+                foreach (var marker in _markers)
+                {
+                    marker.GetRectTransform().localScale = Vector3.one / state.Zoom;
+                }
 
-            _immediateMapAnchor += shift;
-
-            if (!isMini)
-            {
-                MainMapPos = _immediateMapAnchor;
+                foreach (var label in _labels)
+                {
+                    label.GetRectTransform().localScale = Vector3.one / state.Zoom;
+                }
             }
             
-            RectTransform.DOAnchorPos(_immediateMapAnchor, tweenTime);
+            RectTransform.anchoredPosition = -MathUtils.GetRotatedVector2(state.Center, CoordinateRotation) * state.Zoom;
+            if (SelectedLevel != state.Level)
+            {
+                SelectTopLevel(state.Level);
+            }
         }
 
-        public void SetMapPos(Vector2 pos, float tweenTime)
+        internal int GetLevelAtPosition(Vector3 position, int fallback)
         {
-            MainMapPos = pos;
-            RectTransform.DOAnchorPos(pos, tweenTime);
-        }
-        
-        public void ShiftMapToCoordinate(Vector2 coord, float tweenTime, bool isMini)
-        {
-            var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
-            var currentCenter = RectTransform.anchoredPosition / ZoomCurrent;
-            ShiftMap((-rotatedCoord - currentCenter) * ZoomCurrent, tweenTime, isMini);
-        }
-
-        public void ShiftMapToPlayer(Vector2 coord, float tweenTime, bool isMini)
-        {
-            var rotatedCoord = MathUtils.GetRotatedVector2(coord, CoordinateRotation);
-            var currentCenter = RectTransform.anchoredPosition / ZoomMain;
-            ShiftMap((-rotatedCoord - currentCenter) * ZoomMain, tweenTime, isMini);
-        }
-
-        public void ScaledShiftMap(Vector2 shiftIncrements, float incrementScale, bool isMini)
-        {
-            var smallestDimension = Mathf.Min(CurrentMapDef.Bounds.Max.x - CurrentMapDef.Bounds.Min.x,
-                                              CurrentMapDef.Bounds.Max.y - CurrentMapDef.Bounds.Min.y);
-            
-            var incrementSize = smallestDimension * ZoomCurrent * incrementScale;
-            ShiftMap(shiftIncrements * incrementSize, 0, isMini);
+            return FindMatchingLayerByCoordinate(position)?.Level ?? fallback;
         }
 
         private MapLayer FindMatchingLayerByCoordinate(Vector3 coordinate)
@@ -571,4 +356,30 @@ namespace DynamicMaps.UI.Components
             }
         }
     }
+
+    internal struct MapViewportState
+    {
+        internal Vector2 Center;
+        internal float Zoom;
+        internal int Level;
+
+        internal static MapViewportState Lerp(MapViewportState from, MapViewportState to, float progress)
+        {
+            return new MapViewportState
+            {
+                Center = Vector2.Lerp(from.Center, to.Center, progress),
+                Zoom = Mathf.Lerp(from.Zoom, to.Zoom, progress),
+                Level = progress < 1f ? from.Level : to.Level
+            };
+        }
+    }
+
+    internal enum MapDisplayMode
+    {
+        Hidden,
+        Main,
+        Peek,
+        Mini
+    }
+
 }

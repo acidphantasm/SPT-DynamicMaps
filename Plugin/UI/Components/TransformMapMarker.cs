@@ -1,4 +1,3 @@
-using Comfort.Common;
 using DynamicMaps.Utils;
 using UnityEngine;
 
@@ -6,21 +5,21 @@ namespace DynamicMaps.UI.Components
 {
     public class TransformMapMarker : MapMarker
     {
-        private static float _maxCallbackTime = 0.5f;  // how often to call callback in seconds
-        private static Vector2 _pivot = new Vector2(0.5f, 0.5f);
+        private static readonly float MaxCallbackTime = 0.5f;  // how often to call callback in seconds
+        private static readonly Vector2 Pivot = new(0.5f, 0.5f);
 
-        public Transform FollowingTransform { get; private set; }
+        private Transform FollowingTransform { get; set; }
         public MathUtils.RotationAxis RotationAxis { get; set; } = MathUtils.RotationAxis.Y;
 
-        private float _callbackTime = _maxCallbackTime;  // make sure to start with a callback
-        private bool _warnedAttachedIsDisabled = false;
+        private float _callbackTime = MaxCallbackTime;  // make sure to start with a callback
+        private bool _warnedAttachedIsDisabled;
 
         public static TransformMapMarker Create(Transform followingTransform, GameObject parent, string imagePath, Color color,
                                                 string name, string category, Vector2 size, float degreesRotation, float scale)
         {
             var marker = Create<TransformMapMarker>(parent, name, category, imagePath, color,
                                                     MathUtils.ConvertToMapPosition(followingTransform),
-                                                    size, _pivot, degreesRotation, scale);
+                                                    size, Pivot, degreesRotation, scale);
             marker.IsDynamic = true;
             marker.FollowingTransform = followingTransform;
 
@@ -76,7 +75,7 @@ namespace DynamicMaps.UI.Components
 
             // throttle callback, since that leads to a layer search which might be expensive
             _callbackTime += Time.deltaTime;
-            var callback = _callbackTime >= _maxCallbackTime;
+            var callback = _callbackTime >= MaxCallbackTime;
             if (callback)
             {
                 _callbackTime = 0f;

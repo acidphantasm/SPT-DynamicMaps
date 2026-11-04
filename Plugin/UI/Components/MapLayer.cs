@@ -29,9 +29,15 @@ namespace DynamicMaps.UI.Components
 
         private string Name { get; set; }
         private MaskableGraphic Image { get; set; }
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
+        public RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
 
-        public int Level => _def.Level;
+        public int Level
+        {
+            get => _def.Level;
+        }
         public LayerStatus Status { get; private set; }
         public bool IsOnDefaultLevel { get; set; }
 

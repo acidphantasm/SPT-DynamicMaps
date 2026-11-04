@@ -8,26 +8,28 @@ namespace DynamicMaps.UI.Components
     internal class MapPeekComponent : MonoBehaviour
     {
         public ModdedMapScreen MapScreen { get; set; }
-        public RectTransform MapScreenTrueParent { get; set; }
-
-        private RectTransform RectTransform { get; set; }
+        internal RectTransform RectTransform { get; private set; }
+        
         public KeyboardShortcut PeekShortcut { get; set; }
         public KeyboardShortcut HideMinimapShortcut { get; set; }
-        public bool HoldForPeek { get; set; }  // opposite is peek toggle
-        public bool IsPeeking { get; private set; }
-        private static bool IsMiniMapEnabled => Settings.MiniMapEnabled.Value;
-        public bool ShowingMiniMap { get; private set; }
+        public bool HoldForPeek { get; set; }
+        private bool IsPeeking
+        {
+            get => MapScreen != null && MapScreen.DisplayMode == MapDisplayMode.Peek;
+        }
         public bool WasMiniMapActive { get; set; }
         private bool _isMiniMapHidden;
-        
+        internal bool ShouldShowMiniMap
+        {
+            get => Settings.MiniMapEnabled.Value && !_isMiniMapHidden;
+        }
+
         internal static MapPeekComponent Create(GameObject parent)
         {
             var go = UIUtils.CreateUIGameObject(parent, "MapPeek");
             go.GetRectTransform().sizeDelta = parent.GetRectTransform().sizeDelta;
-
-            var component = go.AddComponent<MapPeekComponent>();
-
-            return component;
+            
+            return go.AddComponent<MapPeekComponent>();
         }
 
         private void Awake()
@@ -37,155 +39,66 @@ namespace DynamicMaps.UI.Components
 
         private void Update()
         {
+            if (MapScreen == null || MapScreen.IsShowingMapScreen)
+            {
+                return;
+            }
+            
             if (!MapScreen.EnsureInRaidMapAvailable() || !GameUtils.ShouldShowMapInRaid())
             {
                 WasMiniMapActive = false;
-                if (ShowingMiniMap)
-                {
-                    EndMiniMap();
-                }
+                MapScreen.RequestMode(MapDisplayMode.Hidden, false);
+                return;
+            }
+            if (HideMinimapShortcut.BetterIsDown())
+            {
+                _isMiniMapHidden = !_isMiniMapHidden;
+            }
 
+            if (HoldForPeek)
+            {
+                if (PeekShortcut.BetterIsPressed())
+                {
+                    BeginPeek();
+                }
+                else if (IsPeeking)
+                {
+                    EndPeek();
+                }
+            }
+            else if (PeekShortcut.BetterIsDown())
+            {
                 if (IsPeeking)
                 {
                     EndPeek();
                 }
-
-                return;
-            }
-            
-            HandleMinimapState();
-            HandlePeekState();
-        }
-
-        private void HandleMinimapState()
-        {
-            if (!IsMiniMapEnabled)
-            {
-                if (ShowingMiniMap)
-                {
-                    EndMiniMap();
-                    WasMiniMapActive = false;
-                }
-                
-                return;
-            }
-            
-            if (HideMinimapShortcut.BetterIsDown())
-            {
-                _isMiniMapHidden = !_isMiniMapHidden;
-                
-                if (!_isMiniMapHidden && !ShowingMiniMap)
-                {
-                    BeginMiniMap(false);
-                }
                 else
                 {
-                    EndMiniMap();
+                    BeginPeek();
                 }
+            }
+            if (!IsPeeking)
+            {
+                MapScreen.RequestMode(ShouldShowMiniMap ? MapDisplayMode.Mini : MapDisplayMode.Hidden, true);
+            }
+        }
 
+        private void BeginPeek()
+        {
+            if (IsPeeking)
+            {
                 return;
             }
-
-            if (_isMiniMapHidden) return;
-            
-            if (!IsPeeking && !MapScreen.IsShowingMapScreen)
-            {
-                BeginMiniMap();
-            }
-            else
-            {
-                EndMiniMap();
-            }
+            WasMiniMapActive = ShouldShowMiniMap;
+            MapScreen.RequestMode(MapDisplayMode.Peek, true);
         }
 
-        private void HandlePeekState()
+        private void EndPeek()
         {
-            if (HoldForPeek && PeekShortcut.BetterIsPressed() != IsPeeking)
+            if (IsPeeking)
             {
-                // hold for peek
-                if (PeekShortcut.BetterIsPressed())
-                {
-                    WasMiniMapActive = ShowingMiniMap;
-                    MapScreen.SaveMainMapPos();
-                    EndMiniMap();
-                    BeginPeek(WasMiniMapActive && !_isMiniMapHidden);
-                }
-                else
-                {
-                    EndPeek();
-                }
+                MapScreen.RequestMode(ShouldShowMiniMap ? MapDisplayMode.Mini : MapDisplayMode.Hidden, true);
             }
-            else if (!HoldForPeek && PeekShortcut.BetterIsDown())
-            {
-                // toggle peek
-                if (!IsPeeking)
-                {
-                    WasMiniMapActive = ShowingMiniMap;
-                    MapScreen.SaveMainMapPos();
-                    EndMiniMap();
-                    BeginPeek(WasMiniMapActive);
-                }
-                else
-                {
-                    EndPeek();
-                }
-            }
-        }
-        
-        private void BeginPeek(bool playAnimation = true)
-        {
-            if (IsPeeking || !MapScreen.EnsureInRaidMapAvailable()) return;
-            
-            // just in case something else is attached and tries to be in front
-            transform.SetAsLastSibling();
-
-            IsPeeking = true;
-            
-            // attach map screen to peek mask
-            MapScreen.transform.SetParent(RectTransform);
-            MapScreen.Show(playAnimation);
-        }
-
-        internal void EndPeek()
-        {
-            if (!IsPeeking) return;
-
-            IsPeeking = false;
-            
-            // un-attach map screen and re-attach to true parent
-            MapScreen.Hide();
-            MapScreen.transform.SetParent(MapScreenTrueParent);
-
-            if (WasMiniMapActive)
-            {
-                BeginMiniMap();
-            }
-        }
-    
-        internal void BeginMiniMap(bool playAnimation = true)
-        {
-            if (ShowingMiniMap || !MapScreen.EnsureInRaidMapAvailable()) return;
-            
-            ShowingMiniMap = true;
-            MapScreen.MapView.IsMiniMapActive = true;
-            MapScreen.MapView.ApplyMiniMapZoom();
-            
-            // just in case something else is attached and tries to be in front
-            transform.SetAsLastSibling();
-            
-            MapScreen.transform.SetParent(RectTransform);
-            MapScreen.Show(playAnimation);
-        }
-
-        internal void EndMiniMap()
-        {
-            if (!ShowingMiniMap) return;
-            
-            ShowingMiniMap = false;
-            MapScreen.MapView.IsMiniMapActive = false;
-            
-            MapScreen.Hide();
-            MapScreen.transform.SetParent(MapScreenTrueParent);
         }
     }
 }

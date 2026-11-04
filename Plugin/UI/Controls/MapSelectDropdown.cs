@@ -12,16 +12,19 @@ namespace DynamicMaps.UI.Controls
 {
     public class MapSelectDropdown : MonoBehaviour
     {
-        private static readonly HashSet<string> AcceptableJsonExtensions = new HashSet<string>{ "json", "jsonc" };
+        private static readonly HashSet<string> AcceptableJsonExtensions = ["json", "jsonc"];
 
         public event Action<MapDef> OnMapSelected;
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
+        public RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
 
         private DropDownBox _dropdown;
-        private readonly Dictionary<string, DateTime> _writeTimes = new Dictionary<string, DateTime>();
-        private readonly Dictionary<string, MapDef> _mapDefs = new Dictionary<string, MapDef>();
+        private readonly Dictionary<string, DateTime> _writeTimes = new();
+        private readonly Dictionary<string, MapDef> _mapDefs = new();
         private List<MapDef> _selectableMapDefs;
-        private string _nameFilter = null;
+        private string _nameFilter;
 
         public static MapSelectDropdown Create(GameObject prefab, Transform parent)
         {
@@ -45,7 +48,9 @@ namespace DynamicMaps.UI.Controls
         private void OnSelectDropdownMap(int index)
         {
             if (_selectableMapDefs == null || index < 0 || index >= _selectableMapDefs.Count)
+            {
                 return;
+            }
             
             OnMapSelected?.Invoke(_selectableMapDefs[index]);
         }
@@ -68,8 +73,6 @@ namespace DynamicMaps.UI.Controls
             }
 
             _dropdown.Show(_selectableMapDefs.Select(def => def.DisplayName));
-
-            // TODO: this references a BSG method of GInterface390
             _dropdown.OnValueChanged.Subscribe(OnSelectDropdownMap);
 
             gameObject.SetActive(_selectableMapDefs.Count > 1);
@@ -118,7 +121,9 @@ namespace DynamicMaps.UI.Controls
             {
                 var writeTime = File.GetLastWriteTimeUtc(entry.Key);
                 if (_writeTimes.TryGetValue(entry.Key, out var previous) && previous == writeTime)
+                {
                     continue;
+                }
 
                 var mapDef = MapDef.LoadFromPath(entry.Key, entry.Value);
                 if (mapDef == null)
@@ -177,16 +182,22 @@ namespace DynamicMaps.UI.Controls
             {
                 OnMapSelected?.Invoke(preferred);
                 if (_mapDefs.ContainsValue(preferred))
+                {
                     return;
+                }
             }
 
             foreach (var fallback in choices.Values)
             {
                 if (!_mapDefs.ContainsValue(fallback))
+                {
                     continue;
+                }
                 OnMapSelected?.Invoke(fallback);
                 if (_mapDefs.ContainsValue(fallback))
+                {
                     return;
+                }
             }
         }
 
@@ -210,7 +221,7 @@ namespace DynamicMaps.UI.Controls
 
         public void LoadFirstAvailableMap()
         {
-            if (_selectableMapDefs.Count  == 0)
+            if (_selectableMapDefs.Count == 0)
             {
                 return;
             }

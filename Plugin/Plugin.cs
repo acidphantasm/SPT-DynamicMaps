@@ -27,7 +27,7 @@ namespace DynamicMaps
         public const int TarkovVersion = 40743;
         public static Plugin Instance;
         public static ManualLogSource Log => Instance.Logger;
-        public static string Path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static readonly string Path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public ModdedMapScreen Map;
 

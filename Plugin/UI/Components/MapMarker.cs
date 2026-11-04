@@ -13,8 +13,8 @@ namespace DynamicMaps.UI.Components
     public class MapMarker : MonoBehaviour, ILayerBound, IPointerEnterHandler, IPointerExitHandler
     {
         // TODO: this seems... not great?
-        public static Dictionary<string, Dictionary<LayerStatus, float>> CategoryImageAlphaLayerStatus { get; protected set; }
-            = new Dictionary<string, Dictionary<LayerStatus, float>>
+        private static Dictionary<string, Dictionary<LayerStatus, float>> CategoryImageAlphaLayerStatus { get; }
+            = new()
             {
                 {"Extract", new Dictionary<LayerStatus, float> {
                     {LayerStatus.Hidden, 0.50f},
@@ -47,8 +47,8 @@ namespace DynamicMaps.UI.Components
                     {LayerStatus.FullReveal, 1.0f},
                 }},
             };
-        public static Dictionary<string, Dictionary<LayerStatus, float>> CategoryLabelAlphaLayerStatus { get; protected set; }
-            = new Dictionary<string, Dictionary<LayerStatus, float>>
+        private static Dictionary<string, Dictionary<LayerStatus, float>> CategoryLabelAlphaLayerStatus { get; }
+            = new()
             {
                 {"Extract", new Dictionary<LayerStatus, float> {
                     {LayerStatus.Hidden, 0.0f},

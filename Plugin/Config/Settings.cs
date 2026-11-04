@@ -286,11 +286,13 @@ namespace DynamicMaps.Config
             var addonsPath = Path.Combine(Plugin.Path, "Addons");
             var markerPacks = new List<string> { "Default" };
             if (Directory.Exists(addonsPath))
+            {
                 markerPacks.AddRange(Directory.EnumerateDirectories(addonsPath)
                     .Where(folder => Directory.Exists(Path.Combine(folder, "Markers")))
                     .Select(folder => Path.GetFileName(folder))
                     .Where(name => !name.Equals("Default", StringComparison.OrdinalIgnoreCase))
                     .OrderBy(name => name, StringComparer.OrdinalIgnoreCase));
+            }
 
             ConfigEntries.Add(MarkerPack = config.Bind(
                 DynamicMarkerTitle,
@@ -620,7 +622,7 @@ namespace DynamicMaps.Config
                 "Centering On Player Zoom Level",
                 0.15f,
                 new ConfigDescription(
-                    "What zoom level should be used as while centering on the player (0 is fully zoomed out, and 1 is fully zoomed in)",
+                    "What zoom level should be used as while centering on the player, with reset zoom enabled (0 is fully zoomed out, and 1 is fully zoomed in)",
                     new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes())));
             
@@ -629,7 +631,7 @@ namespace DynamicMaps.Config
                 "Main map zoom",
                 0f,
                 new ConfigDescription(
-                    "What zoom level should be used for the main map. (Tab view/Peek view) (0 is fully zoomed out, and 1 is fully zoomed in)",
+                    "Starting zoom for the in-raid Map tab and Peek view (ignored if reset zoom on center is on). Out-of-raid maps open fitted to the screen. (0 is fully zoomed out, and 1 is fully zoomed in)",
                     new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes())));
             
@@ -964,7 +966,10 @@ namespace DynamicMaps.Config
             {
                 var acceptable = (AcceptableValueList<string>)existing.Description.AcceptableValues;
                 if (acceptable.AcceptableValues.SequenceEqual(choices))
+                {
                     return;
+                }
+                
                 selected = existing.Value;
                 _config.Remove(existing.Definition);
                 ConfigEntries.Remove(existing);
@@ -975,8 +980,12 @@ namespace DynamicMaps.Config
                     "Map used in raid. Automatic prefers a bundled map, then a matching addon. Changes apply when the map next opens.",
                     new AcceptableValueList<string>(choices),
                     new ConfigurationManagerAttributes()));
+            
             if (choices.Contains(selected) && selected != "Automatic")
+            {
                 preference.Value = selected;
+            }
+            
             MapPreferences[location] = preference;
             ConfigEntries.Add(preference);
             RecalcOrder();

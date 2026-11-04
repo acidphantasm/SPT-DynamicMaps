@@ -26,7 +26,7 @@ namespace DynamicMaps.Utils
                 throw new InvalidDataException($"Unsupported map image: {def.ImagePath}");
             }
 
-            var absolutePath = Path.GetFullPath(Path.Combine(Plugin.Path, def.ImagePath));
+            var absolutePath = Path.GetFullPath(Path.Combine(Plugin.Path, def.ImagePath ?? throw new InvalidOperationException()));
             if (MapSpriteCache.TryGetValue(absolutePath, out var sprite))
             {
                 return sprite;
@@ -63,7 +63,9 @@ namespace DynamicMaps.Utils
         {
             imageRect = default;
             if (string.IsNullOrEmpty(absolutePath) || !File.Exists(absolutePath))
+            {
                 return null;
+            }
 
             if (MapCache.TryGetValue(absolutePath, out var cached))
             {
@@ -115,7 +117,9 @@ namespace DynamicMaps.Utils
         private static Texture2D LoadTexture2DFromPath(string absolutePath)
         {
             if (string.IsNullOrEmpty(absolutePath) || !File.Exists(absolutePath))
+            {
                 return null;
+            }
 
             var tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
             tex.LoadImage(File.ReadAllBytes(absolutePath));

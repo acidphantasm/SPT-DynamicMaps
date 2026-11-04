@@ -224,6 +224,10 @@ namespace DynamicMaps.Utils
             if (!Settings.RequireMapInInventory.Value || !IsInRaid()) return true;
             
             var player = GetMainPlayer();
+            if (player == null)
+            {
+                return false;
+            }
             var currentLocation = player.Location;
 
             if (!MapLookUp.TryGetValue(currentLocation, out var id))

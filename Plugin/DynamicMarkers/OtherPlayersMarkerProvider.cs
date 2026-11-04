@@ -106,7 +106,11 @@ namespace DynamicMaps.DynamicMarkers
         public void OnHideInRaid(MapView map)
         {
             // unregister from events while map isn't showing
-            Singleton<GameWorld>.Instance.OnPersonAdd -= TryAddMarker;
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld is not null)
+            {
+                gameWorld.OnPersonAdd -= TryAddMarker;
+            }
             GameWorldUnregisterPlayerPatch.OnUnregisterPlayer -= OnUnregisterPlayer;
             PlayerOnDeadPatch.OnDead -= TryRemoveMarker;
         }

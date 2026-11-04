@@ -45,6 +45,7 @@ namespace DynamicMaps
 
         public void OnDisable(MapView map)
         {
+            QuestUtils.DiscardQuestData();
             TryRemoveMarkers();
         }
 

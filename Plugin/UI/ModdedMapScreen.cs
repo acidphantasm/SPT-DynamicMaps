@@ -629,10 +629,6 @@ namespace DynamicMaps.UI
 
         private void OnRaidEnd()
         {
-            if (!BattleUIScreenShowPatch.IsAttached)
-            {
-                return;
-            }
             HideDisplay();
             foreach (var provider in _dynamicMarkerProviders.Values)
             {
@@ -787,10 +783,10 @@ namespace DynamicMaps.UI
             if (needOtherPlayerMarkers)
             {
                 var provider = GetMarkerProvider<OtherPlayersMarkerProvider>();
-                provider.ShowFriendlyPlayers = ServerConfig.AllowShowFriendlyPlayerMarkersInRaid && Settings.ShowFriendlyPlayerMarkersInRaid.Value;
-                provider.ShowEnemyPlayers = ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
-                provider.ShowScavs = ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
-                provider.ShowBosses = ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
+                provider.ShowFriendlyPlayers = ServerConfig != null && ServerConfig.AllowShowFriendlyPlayerMarkersInRaid && Settings.ShowFriendlyPlayerMarkersInRaid.Value;
+                provider.ShowEnemyPlayers = ServerConfig != null && ServerConfig.AllowShowEnemyPlayerMarkersInRaid && Settings.ShowEnemyPlayerMarkersInRaid.Value;
+                provider.ShowScavs = ServerConfig != null && ServerConfig.AllowShowScavMarkersInRaid && Settings.ShowScavMarkersInRaid.Value;
+                provider.ShowBosses = ServerConfig != null && ServerConfig.AllowShowBossMarkersInRaid && Settings.ShowBossMarkersInRaid.Value;
                 
                 provider.RefreshMarkers();
             }

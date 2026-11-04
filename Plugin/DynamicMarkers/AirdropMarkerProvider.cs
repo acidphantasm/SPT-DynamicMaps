@@ -44,6 +44,7 @@ namespace DynamicMaps.DynamicMarkers
 
         public void OnRaidEnd(MapView map)
         {
+            AirdropBoxOnBoxLandPatch.OnAirdropLanded -= TryAddMarker;
             TryRemoveMarkers();
         }
 

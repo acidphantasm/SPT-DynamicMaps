@@ -43,6 +43,7 @@ namespace DynamicMaps.UI.Controls
         {
             _dropdown = gameObject.GetComponentInChildren<DropDownBox>();
             _dropdown.SetLabelText("Select a Map");
+            _dropdown.OnValueChanged.Subscribe(OnSelectDropdownMap);
         }
 
         private void OnSelectDropdownMap(int index)
@@ -73,7 +74,6 @@ namespace DynamicMaps.UI.Controls
             }
 
             _dropdown.Show(_selectableMapDefs.Select(def => def.DisplayName));
-            _dropdown.OnValueChanged.Subscribe(OnSelectDropdownMap);
 
             gameObject.SetActive(_selectableMapDefs.Count > 1);
         }

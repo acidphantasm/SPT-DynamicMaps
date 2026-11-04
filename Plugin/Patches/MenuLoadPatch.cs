@@ -1,17 +1,10 @@
 ﻿using DynamicMaps.UI;
-using DynamicMaps.Utils;
-using EFT.UI;
-using EFT.UI.Map;
-using HarmonyLib;
 using Newtonsoft.Json;
 using SPT.Common.Http;
 using SPT.Reflection.Patching;
 using SPT.Reflection.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using EFT.Communications;
 using static DynamicMaps.UI.ModdedMapScreen;
@@ -20,7 +13,7 @@ namespace DynamicMaps.Patches
 {
     internal class MenuLoadPatch : ModulePatch
     {
-        private static bool serverConfigLoaded = false;
+        private static bool _serverConfigLoaded;
 
         protected override MethodBase GetTargetMethod()
         {
@@ -34,14 +27,15 @@ namespace DynamicMaps.Patches
         {
             try
             {
-                if (serverConfigLoaded == false)
+                if (_serverConfigLoaded)
                 {
-                    serverConfigLoaded = true;
-                    ModdedMapScreen.ServerConfig = await LoadFromServer();
-
-                    Plugin.Log.LogInfo($"Loaded server config");
+                    return;
                 }
-                else return;
+                
+                _serverConfigLoaded = true;
+                ModdedMapScreen.ServerConfig = await LoadFromServer();
+
+                Plugin.Log.LogInfo($"Loaded server config");
             }
             catch (Exception e)
             {
@@ -54,8 +48,9 @@ namespace DynamicMaps.Patches
         {
             try
             {
-                string payload = await RequestHandler.GetJsonAsync("/dynamicmaps/load");
-                return JsonConvert.DeserializeObject<DmServerConfig>(payload);
+                var payload = await RequestHandler.GetJsonAsync("/dynamicmaps/load");
+                var config = JsonConvert.DeserializeObject<DmServerConfig>(payload);
+                return config ?? throw new InvalidOperationException("Server config was empty");
 
             }
             catch (Exception ex)

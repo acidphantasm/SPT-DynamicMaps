@@ -22,11 +22,15 @@ namespace DynamicMaps
     [BepInDependency("com.SamSWAT.HeliCrash.ArysReloaded", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.fika.core", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.fika.headless", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInIncompatibility("com.blackhawk.dynamicmapsextended")]
     public class Plugin : BaseUnityPlugin
     {
         public const int TarkovVersion = 40743;
         public static Plugin Instance;
-        public static ManualLogSource Log => Instance.Logger;
+        public static ManualLogSource Log
+        {
+            get => Instance.Logger;
+        }
         public static readonly string Path = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         public ModdedMapScreen Map;

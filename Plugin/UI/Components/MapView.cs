@@ -85,11 +85,17 @@ namespace DynamicMaps.UI.Components
         }
 
         public TransformMapMarker AddTransformMarker(Transform followingTransform, string markerName, string category, Color color,
-                                                     string imagePath, Vector2 size)
+                                                     string imagePath, Vector2 size, Sprite sprite = null)
         {
-            var marker = TransformMapMarker.Create(followingTransform, MapMarkerContainer, imagePath, color, markerName, category, size, -CoordinateRotation, 1f/_zoomCurrent);
+            var marker = TransformMapMarker.Create(followingTransform, MapMarkerContainer, imagePath, color, markerName, category, size, -CoordinateRotation, 1f/_zoomCurrent, sprite);
             AddMapMarker(marker);
             return marker;
+        }
+
+        public TransformMapMarker AddTransformMarker(Transform followingTransform, string markerName, string category, Color color,
+                                                     Sprite sprite)
+        {
+            return AddTransformMarker(followingTransform, markerName, category, color, null, MarkerSize, sprite);
         }
 
         public PlayerMapMarker AddPlayerMarker(IPlayer player, string category, Color color, string imagePath)

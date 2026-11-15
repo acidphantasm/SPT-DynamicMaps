@@ -15,11 +15,12 @@ namespace DynamicMaps.UI.Components
         private bool _warnedAttachedIsDisabled;
 
         public static TransformMapMarker Create(Transform followingTransform, GameObject parent, string imagePath, Color color,
-                                                string name, string category, Vector2 size, float degreesRotation, float scale)
+                                                string name, string category, Vector2 size, float degreesRotation, float scale,
+                                                Sprite sprite = null)
         {
             var marker = Create<TransformMapMarker>(parent, name, category, imagePath, color,
                                                     MathUtils.ConvertToMapPosition(followingTransform),
-                                                    size, Pivot, degreesRotation, scale);
+                                                    size, Pivot, degreesRotation, scale, true, sprite);
             marker.IsDynamic = true;
             marker.FollowingTransform = followingTransform;
 

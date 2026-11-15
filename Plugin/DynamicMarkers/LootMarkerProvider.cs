@@ -3,6 +3,7 @@ using System.Linq;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
@@ -15,32 +16,49 @@ namespace DynamicMaps.DynamicMarkers
     {
         private MapView _lastMapView;
         private readonly Dictionary<LootItem, MapMarker> _lootMarkers = [];
+        private WishlistManager _wishlistManager;
+        private bool _lootEventsSubscribed;
         
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-            
-            var lootList = Singleton<GameWorld>.Instance.LootList;
-            var wishListItems = new HashSet<MongoID>(GameUtils.GetWishListItems());
-            
-            foreach (var item in lootList)
+
+            var wishlistManager = GameUtils.GetPlayerProfile()?.WishlistManager;
+            if (!ReferenceEquals(_wishlistManager, wishlistManager))
             {
-                if (item is not LootItem loot) continue;
+                UnsubscribeFromWishlist();
                 
-                if (wishListItems.Contains(new MongoID(loot.TemplateId)))
+                _wishlistManager = wishlistManager;
+                if (_wishlistManager != null)
                 {
-                    TryAddMarker(loot);
+                    _wishlistManager.OnAddInWishlist += OnWishlistChanged;
+                    _wishlistManager.OnRemoveFromWishlist += OnWishlistChanged;
                 }
             }
+
+            if (!_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot += OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot += OnDestroyLoot;
+                _lootEventsSubscribed = true;
+            }
+
+            RefreshMarkers();
         }
 
         public void OnHideInRaid(MapView map)
         {
-            // Do nothing
         }
 
         public void OnRaidEnd(MapView map)
         {
+            UnsubscribeFromWishlist();
+            if (_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
+                _lootEventsSubscribed = false;
+            }
             TryRemoveMarkers();
         }
 
@@ -63,13 +81,63 @@ namespace DynamicMaps.DynamicMarkers
 
         public void RefreshMarkers()
         {
-            if (!GameUtils.IsInRaid()) return;
+            if (!GameUtils.IsInRaid() || _lastMapView == null) 
+                return;
+
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld == null) 
+                return;
+
+            var wishListItems = new HashSet<MongoID>(GameUtils.GetWishListItems());
+            var availableLoot = gameWorld.LootList.OfType<LootItem>().ToHashSet();
 
             foreach (var item in _lootMarkers.Keys.ToList())
             {
-                TryRemoveMarker(item);
+                if (!availableLoot.Contains(item) || !wishListItems.Contains(new MongoID(item.TemplateId)))
+                {
+                    TryRemoveMarker(item);
+                }
+            }
+
+            foreach (var item in availableLoot)
+            {
+                if (item != null && wishListItems.Contains(new MongoID(item.TemplateId)))
+                {
+                    TryAddMarker(item);
+                }
+            }
+        }
+
+        private void OnWishlistChanged(MongoID itemId, EWishlistGroup group)
+        {
+            RefreshMarkers();
+        }
+
+        private void OnRegisterLoot(LootItem item)
+        {
+            if (_lastMapView == null || item?.Item == null || _wishlistManager == null)
+                return;
+
+            if (_wishlistManager.GetWishlist().ContainsKey(new MongoID(item.TemplateId)))
+            {
                 TryAddMarker(item);
             }
+        }
+
+        private void OnDestroyLoot(LootItem item)
+        {
+            TryRemoveMarker(item);
+        }
+
+        private void UnsubscribeFromWishlist()
+        {
+            if (_wishlistManager == null) 
+                return;
+
+            _wishlistManager.OnAddInWishlist -= OnWishlistChanged;
+            _wishlistManager.OnRemoveFromWishlist -= OnWishlistChanged;
+            
+            _wishlistManager = null;
         }
         
         private void TryAddMarker(LootItem item)
@@ -93,20 +161,12 @@ namespace DynamicMaps.DynamicMarkers
                 return;
             }
 
-            var transform = item.transform;
+            var transform = item.TrackableTransform;
             if (transform == null)
                 return;
             
-            var markerDef = new MapMarkerDef
-            {
-                Category = "Loot",
-                Color = Settings.LootItemColor.Value,
-                Sprite = itemSprite,
-                Position = MathUtils.ConvertToMapPosition(transform),
-                Text = item.Item.TemplateId.LocalizedName()
-            };
-            
-            var marker = _lastMapView.AddMapMarker(markerDef);
+            var marker = _lastMapView.AddTransformMarker(transform, item.Item.TemplateId.LocalizedName(),
+                                                        "Loot", Settings.LootItemColor.Value, itemSprite);
             _lootMarkers[item] = marker;
         }
 

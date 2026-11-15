@@ -21,12 +21,13 @@ namespace DynamicMaps.DynamicMarkers
             _lastMapView = map;
             
             var lootList = Singleton<GameWorld>.Instance.LootList;
+            var wishListItems = new HashSet<MongoID>(GameUtils.GetWishListItems());
             
             foreach (var item in lootList)
             {
                 if (item is not LootItem loot) continue;
                 
-                if (GameUtils.GetWishListItems().Contains(new MongoID(loot.TemplateId)))
+                if (wishListItems.Contains(new MongoID(loot.TemplateId)))
                 {
                     TryAddMarker(loot);
                 }

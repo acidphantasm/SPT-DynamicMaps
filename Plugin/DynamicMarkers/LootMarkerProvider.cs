@@ -76,12 +76,20 @@ namespace DynamicMaps.DynamicMarkers
             if (item == null || item.Item == null)
                 return;
             
-            if (_lootMarkers.ContainsKey(item)) return;
-            if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
+            if (_lootMarkers.ContainsKey(item)) 
+                return;
+            
+            if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) 
+                return;
             
             var staticIcons = EFTHardSettings.Instance.StaticIcons;
             var itemType = ItemViewFactory.GetItemType(item.Item.GetType());
             var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
+
+            if (itemSprite == null)
+            {
+                return;
+            }
 
             var transform = item.transform;
             if (transform == null)

@@ -64,8 +64,12 @@ public class HiddenStashMarkerProvider : IDynamicMarkerProvider
 
     private void TryAddMarker(LootableContainer stash)
     {
-        if (_stashMarkers.ContainsKey(stash)) return;
-        if (Settings.ShowHiddenStashIntelLevel.Value > GameUtils.GetIntelLevel()) return;
+        if (_stashMarkers.ContainsKey(stash)) 
+            return;
+        
+        var intelLevel = GameUtils.GetIntelLevel();
+        if (Settings.ShowHiddenStashIntelLevel.Value > intelLevel) 
+            return;
 
         var markerDef = new MapMarkerDef
         {

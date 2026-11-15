@@ -213,10 +213,10 @@ namespace DynamicMaps.Utils
             return player.Profile.Info.MemberCategory == EMemberCategory.UnitTest;
         }
 
-        public static int? GetIntelLevel()
+        public static int GetIntelLevel()
         {
             return PlayerProfile.Hideout.Areas
-                .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.Level;
+                .SingleOrDefault(a => a.AreaType == EAreaType.IntelligenceCenter)?.Level ?? 0;
         }
 
         public static MongoID[] GetWishListItems()

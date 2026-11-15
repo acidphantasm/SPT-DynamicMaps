@@ -79,7 +79,8 @@ namespace DynamicMaps.DynamicMarkers
             if (_lootMarkers.ContainsKey(item)) 
                 return;
             
-            if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) 
+            var intelLevel = GameUtils.GetIntelLevel();
+            if (Settings.ShowWishListItemsIntelLevel.Value > intelLevel) 
                 return;
             
             var staticIcons = EFTHardSettings.Instance.StaticIcons;

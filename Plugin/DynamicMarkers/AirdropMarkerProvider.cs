@@ -89,7 +89,8 @@ namespace DynamicMaps.DynamicMarkers
 
             var intelLevel = GameUtils.GetIntelLevel();
 
-            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) return;
+            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) 
+                return;
             
             var markerDef = new MapMarkerDef
             {

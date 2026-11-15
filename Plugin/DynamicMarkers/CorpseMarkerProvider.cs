@@ -223,7 +223,8 @@ namespace DynamicMaps.DynamicMarkers
 
             var intelLevel = GameUtils.GetIntelLevel();
             
-            if (Settings.ShowCorpseIntelLevel.Value > intelLevel) return;
+            if (Settings.ShowCorpseIntelLevel.Value > intelLevel) 
+                return;
             
             // set category and color
             var category = OtherCorpseCategory;

@@ -55,6 +55,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowSecretPointsInRaid;
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
         public static ConfigEntry<bool> ShowWishListItemsInRaid;
+        public static ConfigEntry<bool> ShowWishListItemsInContainers;
         public static ConfigEntry<bool> ShowBTRInRaid;
         public static ConfigEntry<bool> ShowAirdropsInRaid;
         public static ConfigEntry<bool> ShowHiddenStashesInRaid;
@@ -124,6 +125,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<Color> AirdropColor;
         public static ConfigEntry<Color> BackpackColor;
         public static ConfigEntry<Color> LootItemColor;
+        public static ConfigEntry<Color> ContainerLootItemColor;
         public static ConfigEntry<Color> KilledCorpseColor;
         public static ConfigEntry<Color> KilledBossColor;
         public static ConfigEntry<Color> KilledOtherColor;
@@ -438,6 +440,15 @@ namespace DynamicMaps.Config
                 true,
                 new ConfigDescription(
                     "Shows items that are in your wishlist on the map in raid",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(ShowWishListItemsInContainers = config.Bind(
+                DynamicMarkerTitle,
+                "Show wish listed items in containers In Raid",
+                false,
+                new ConfigDescription(
+                    "Shows wish listed items inside containers without searching them",
                     null,
                     new ConfigurationManagerAttributes())));
 
@@ -866,6 +877,15 @@ namespace DynamicMaps.Config
                 new Color(0.98f, 0.81f, 0.007f),
                 new ConfigDescription(
                     "Color of the marker",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(ContainerLootItemColor = config.Bind(
+                MarkerColors,
+                "Wishlisted container loot marker color",
+                new Color(0.77f, 0.81f, 0.7f),
+                new ConfigDescription(
+                    "Color of wish listed item markers inside world containers",
                     null,
                     new ConfigurationManagerAttributes())));
             

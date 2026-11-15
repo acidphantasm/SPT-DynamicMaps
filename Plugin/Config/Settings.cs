@@ -354,7 +354,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(ShowNonVanillaBotMarkersInRaid = config.Bind(
                 DynamicMarkerTitle,
                 "Show Non-Vanilla Bot Markers",
-                false,
+                true,
                 new ConfigDescription(
                     "If non-vanilla bot markers should be shown in-raid",
                     null,
@@ -836,7 +836,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(NonVanillaBotColor = config.Bind(
                 MarkerColors,
                 "Non-Vanilla bot marker color",
-                new Color(1f, 0.45f, 0.007f),
+                new Color(0.33f, 0.15f, 0.15f),
                 new ConfigDescription(
                     "Color of non-vanilla bot markers",
                     null,

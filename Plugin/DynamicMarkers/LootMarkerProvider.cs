@@ -312,7 +312,18 @@ namespace DynamicMaps.DynamicMarkers
 
             var staticIcons = EFTHardSettings.Instance.StaticIcons;
             var itemType = ItemViewFactory.GetItemType(item.GetType());
+            
             var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
+            
+            if (itemSprite == null && _wishlistManager.GetWishlist().TryGetValue(item.TemplateId, out var group))
+                itemSprite = staticIcons.WishlistSprites.GetValueOrDefault(group);
+
+            if (itemSprite == null)
+                itemSprite = staticIcons.WishlistSprites.GetValueOrDefault(EWishlistGroup.Other);
+
+            if (itemSprite == null)
+                itemSprite = staticIcons.BarterSign;
+
             if (itemSprite == null)
                 return null;
 

@@ -3,44 +3,77 @@ using System.Linq;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
 using EFT.Interactive;
+using EFT.InventoryLogic;
 using EFT.UI.DragAndDrop;
+using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {
+    using MapMarker=UI.Components.MapMarker;
+
     public class LootMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private Dictionary<LootItem, MapMarker> _lootMarkers = [];
+        private readonly Dictionary<LootItem, MapMarker> _lootMarkers = [];
+        private readonly Dictionary<Item, (ItemController Owner, MapMarker Marker)> _containerMarkers = [];
+        private readonly HashSet<ItemController> _containerOwners = [];
+        private WishlistManager _wishlistManager;
+        private bool _lootEventsSubscribed;
         
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
-            
-            var lootList = Singleton<GameWorld>.Instance.LootList;
-            
-            foreach (var item in lootList)
+
+            var wishlistManager = GameUtils.GetPlayerProfile()?.WishlistManager;
+            if (!ReferenceEquals(_wishlistManager, wishlistManager))
             {
-                if (item is not LootItem loot) continue;
+                UnsubscribeFromWishlist();
                 
-                if (GameUtils.GetWishListItems().Contains(new MongoID(loot.TemplateId)))
+                _wishlistManager = wishlistManager;
+                if (_wishlistManager != null)
                 {
-                    TryAddMarker(loot);
+                    _wishlistManager.OnAddInWishlist += OnWishlistChanged;
+                    _wishlistManager.OnRemoveFromWishlist += OnWishlistChanged;
                 }
             }
+
+            if (!_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot += OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot += OnDestroyLoot;
+                _lootEventsSubscribed = true;
+            }
+
+            RefreshMarkers();
         }
 
         public void OnHideInRaid(MapView map)
         {
-            // Do nothing
         }
 
         public void OnRaidEnd(MapView map)
         {
+            UnsubscribeFromWishlist();
+            if (_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
+                _lootEventsSubscribed = false;
+            }
             TryRemoveMarkers();
+            
+            ClearContainerMarkers();
+            foreach (var owner in _containerOwners)
+            {
+                owner.AddItemEvent -= OnContainerItemAdded;
+                owner.RemoveItemEvent -= OnContainerItemRemoved;
+            }
+            _containerOwners.Clear();
         }
 
         public void OnMapChanged(MapView map, MapDef mapDef)
@@ -53,6 +86,9 @@ namespace DynamicMaps.DynamicMarkers
                 TryRemoveMarker(item);
                 TryAddMarker(item);
             }
+            
+            ClearContainerMarkers();
+            RefreshContainerMarkers();
         }
 
         public void OnDisable(MapView map)
@@ -62,13 +98,195 @@ namespace DynamicMaps.DynamicMarkers
 
         public void RefreshMarkers()
         {
-            if (!GameUtils.IsInRaid()) return;
+            if (!GameUtils.IsInRaid() || _lastMapView == null) 
+                return;
+
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld == null) 
+                return;
+
+            var wishListItems = new HashSet<MongoID>(GameUtils.GetWishListItems());
+            var availableLoot = gameWorld.LootList.OfType<LootItem>().ToHashSet();
 
             foreach (var item in _lootMarkers.Keys.ToList())
             {
-                TryRemoveMarker(item);
+                if (!availableLoot.Contains(item) || !wishListItems.Contains(new MongoID(item.TemplateId)))
+                {
+                    TryRemoveMarker(item);
+                }
+            }
+
+            foreach (var item in availableLoot)
+            {
+                if (item != null && wishListItems.Contains(new MongoID(item.TemplateId)))
+                {
+                    TryAddMarker(item);
+                }
+            }
+
+            RefreshContainerMarkers(gameWorld, wishListItems);
+        }
+
+        private void RefreshContainerMarkers()
+        {
+            if (!GameUtils.IsInRaid() || _lastMapView == null)
+                return;
+
+            var gameWorld = Singleton<GameWorld>.Instance;
+            if (gameWorld == null)
+                return;
+
+            RefreshContainerMarkers(gameWorld, new HashSet<MongoID>(GameUtils.GetWishListItems()));
+        }
+
+        private void RefreshContainerMarkers(GameWorld gameWorld, HashSet<MongoID> wishListItems)
+        {
+            var availableOwners = new Dictionary<ItemController, Transform>();
+            if (Settings.ShowWishListItemsInContainers.Value)
+            {
+                foreach (var loot in gameWorld.LootList)
+                {
+                    ItemController owner = null;
+                    Transform transform = null;
+                    if (loot is LootableContainer container)
+                    {
+                        owner = container.ItemOwner;
+                        transform = container.TrackableTransform;
+                    }
+                    else if (loot is LootItem lootItem)
+                    {
+                        owner = lootItem.ItemOwner;
+                        transform = lootItem.TrackableTransform;
+                    }
+
+                    if (owner?.RootItem != null && transform != null)
+                    {
+                        availableOwners[owner] = transform;
+                    }
+                }
+            }
+
+            foreach (var owner in _containerOwners.ToList())
+            {
+                if (availableOwners.ContainsKey(owner))
+                    continue;
+
+                owner.AddItemEvent -= OnContainerItemAdded;
+                owner.RemoveItemEvent -= OnContainerItemRemoved;
+                _containerOwners.Remove(owner);
+            }
+
+            foreach (var pair in availableOwners)
+            {
+                if (_containerOwners.Contains(pair.Key))
+                    continue;
+
+                pair.Key.AddItemEvent += OnContainerItemAdded;
+                pair.Key.RemoveItemEvent += OnContainerItemRemoved;
+                _containerOwners.Add(pair.Key);
+            }
+
+            var matchingItems = new Dictionary<Item, (ItemController Owner, Transform Transform)>();
+            foreach (var pair in availableOwners)
+            {
+                foreach (var item in pair.Key.RootItem.GetAllItems())
+                {
+                    if (item != pair.Key.RootItem && wishListItems.Contains(new MongoID(item.TemplateId)))
+                    {
+                        matchingItems[item] = (pair.Key, pair.Value);
+                    }
+                }
+            }
+
+            foreach (var pair in _containerMarkers.ToList())
+            {
+                if (!matchingItems.TryGetValue(pair.Key, out var match) || !ReferenceEquals(pair.Value.Owner, match.Owner))
+                {
+                    pair.Value.Marker.ContainingMapView.RemoveMapMarker(pair.Value.Marker);
+                    _containerMarkers.Remove(pair.Key);
+                }
+                else
+                {
+                    pair.Value.Marker.Color = Settings.ContainerLootItemColor.Value;
+                }
+            }
+
+            foreach (var pair in matchingItems)
+            {
+                if (_containerMarkers.ContainsKey(pair.Key))
+                    continue;
+
+                var marker = CreateMarker(pair.Key, pair.Value.Transform, Settings.ContainerLootItemColor.Value);
+                if (marker != null)
+                {
+                    _containerMarkers[pair.Key] = (pair.Value.Owner, marker);
+                }
+            }
+        }
+
+        private void OnContainerItemAdded(AddItemEventArgs args)
+        {
+            if (args.Status == CommandStatus.Succeed)
+                RefreshContainerMarkers();
+        }
+
+        private void OnContainerItemRemoved(RemoveItemEventArgs args)
+        {
+            if (args.Status == CommandStatus.Succeed)
+                RefreshContainerMarkers();
+        }
+
+        private void ClearContainerMarkers()
+        {
+            foreach (var pair in _containerMarkers.Values)
+            {
+                pair.Marker.ContainingMapView.RemoveMapMarker(pair.Marker);
+            }
+            _containerMarkers.Clear();
+        }
+
+        private void OnWishlistChanged(MongoID itemId, EWishlistGroup group)
+        {
+            RefreshMarkers();
+        }
+
+        private void OnRegisterLoot(LootItem item)
+        {
+            if (_lastMapView == null || item?.Item == null || _wishlistManager == null)
+                return;
+
+            if (_wishlistManager.GetWishlist().ContainsKey(new MongoID(item.TemplateId)))
+            {
                 TryAddMarker(item);
             }
+            if (Settings.ShowWishListItemsInContainers.Value)
+                RefreshContainerMarkers();
+        }
+
+        private void OnDestroyLoot(LootItem item)
+        {
+            TryRemoveMarker(item);
+            if (item?.ItemOwner != null && _containerOwners.Remove(item.ItemOwner))
+            {
+                item.ItemOwner.AddItemEvent -= OnContainerItemAdded;
+                item.ItemOwner.RemoveItemEvent -= OnContainerItemRemoved;
+                foreach (var pair in _containerMarkers.Where(pair => ReferenceEquals(pair.Value.Owner, item.ItemOwner)).ToList())
+                {
+                    pair.Value.Marker.ContainingMapView.RemoveMapMarker(pair.Value.Marker);
+                    _containerMarkers.Remove(pair.Key);
+                }
+            }
+        }
+
+        private void UnsubscribeFromWishlist()
+        {
+            if (_wishlistManager == null) 
+                return;
+
+            _wishlistManager.OnAddInWishlist -= OnWishlistChanged;
+            _wishlistManager.OnRemoveFromWishlist -= OnWishlistChanged;
+            
+            _wishlistManager = null;
         }
         
         private void TryAddMarker(LootItem item)
@@ -76,28 +294,40 @@ namespace DynamicMaps.DynamicMarkers
             if (item == null || item.Item == null)
                 return;
             
-            if (_lootMarkers.ContainsKey(item)) return;
-            if (Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()) return;
-            
-            var staticIcons = EFTHardSettings.Instance.StaticIcons;
-            var itemType = ItemViewFactory.GetItemType(item.Item.GetType());
-            var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
-
-            var transform = item.transform;
-            if (transform == null)
+            if (_lootMarkers.ContainsKey(item)) 
                 return;
             
-            var markerDef = new MapMarkerDef
+            var transform = item.TrackableTransform;
+            var marker = CreateMarker(item.Item, transform, Settings.LootItemColor.Value);
+            if (marker != null)
             {
-                Category = "Loot",
-                Color = Settings.LootItemColor.Value,
-                Sprite = itemSprite,
-                Position = MathUtils.ConvertToMapPosition(transform),
-                Text = item.Item.TemplateId.LocalizedName()
-            };
+                _lootMarkers[item] = marker;
+            }
+        }
+
+        private MapMarker CreateMarker(Item item, Transform transform, Color color)
+        {
+            if (item == null || transform == null || Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel())
+                return null;
+
+            var staticIcons = EFTHardSettings.Instance.StaticIcons;
+            var itemType = ItemViewFactory.GetItemType(item.GetType());
             
-            var marker = _lastMapView.AddMapMarker(markerDef);
-            _lootMarkers[item] = marker;
+            var itemSprite = staticIcons.ItemTypeSprites.GetValueOrDefault(itemType);
+            
+            if (itemSprite == null && _wishlistManager.GetWishlist().TryGetValue(item.TemplateId, out var group))
+                itemSprite = staticIcons.WishlistSprites.GetValueOrDefault(group);
+
+            if (itemSprite == null)
+                itemSprite = staticIcons.WishlistSprites.GetValueOrDefault(EWishlistGroup.Other);
+
+            if (itemSprite == null)
+                itemSprite = staticIcons.BarterSign;
+
+            if (itemSprite == null)
+                return null;
+
+            return _lastMapView.AddTransformMarker(transform, item.TemplateId.LocalizedName(), "Loot", color, itemSprite);
         }
 
         private void TryRemoveMarkers()

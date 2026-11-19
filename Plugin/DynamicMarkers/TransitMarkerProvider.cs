@@ -15,7 +15,7 @@ public class TransitMarkerProvider : IDynamicMarkerProvider
     private const string TransitCategory = "Transit";
     private const string TransitImagePath = "Markers/transit.png";
 
-    private Dictionary<TransitPoint, MapMarker> _transitMarkers = [];
+    private readonly Dictionary<TransitPoint, MapMarker> _transitMarkers = [];
     
     public void OnShowInRaid(MapView map)
     {
@@ -82,7 +82,7 @@ public class TransitMarkerProvider : IDynamicMarkerProvider
         {
             Category = TransitCategory,
             ImagePath = TransitImagePath,
-            Text = point.parameters.description.BSGLocalized(),
+            Text = point.parameters.description.BsgLocalized(),
             Position = MathUtils.ConvertToMapPosition(point.transform),
             Color = Settings.TransPointColor.Value
         };

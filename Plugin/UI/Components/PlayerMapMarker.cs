@@ -6,12 +6,12 @@ namespace DynamicMaps.UI.Components
 {
     public class PlayerMapMarker : MapMarker
     {
-        private static float _maxCallbackTime = 0.5f;  // how often to call callback in seconds
-        private static Vector2 _pivot = new Vector2(0.5f, 0.5f);
+        private static readonly float MaxCallbackTime = 0.5f;  // how often to call callback in seconds
+        private static readonly Vector2 Pivot = new Vector2(0.5f, 0.5f);
 
-        public IPlayer Player { get; private set; }
+        private IPlayer Player { get; set; }
 
-        private float _callbackTime = _maxCallbackTime;  // make sure to start with a callback
+        private float _callbackTime = MaxCallbackTime;  // make sure to start with a callback
 
         public static PlayerMapMarker Create(IPlayer player, GameObject parent, string imagePath, Color color, string category,
                                              Vector2 size, float degreesRotation, float scale)
@@ -19,7 +19,7 @@ namespace DynamicMaps.UI.Components
             var name = $"{player.Profile.GetCorrectedNickname()}";
             var marker = Create<PlayerMapMarker>(parent, name, category, imagePath, color,
                                                  MathUtils.ConvertToMapPosition(player.Position),
-                                                 size, _pivot, degreesRotation, scale);
+                                                 size, Pivot, degreesRotation, scale);
             marker.IsDynamic = true;
             marker.Player = player;
 
@@ -48,7 +48,7 @@ namespace DynamicMaps.UI.Components
 
             // throttle callback, since that leads to a layer search which might be expensive
             _callbackTime += Time.deltaTime;
-            var callback = _callbackTime >= _maxCallbackTime;
+            var callback = _callbackTime >= MaxCallbackTime;
             if (callback)
             {
                 _callbackTime = 0f;

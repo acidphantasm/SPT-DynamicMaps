@@ -2,5 +2,6 @@
     "AllowShowFriendlyPlayerMarkersInRaid": true,
     "AllowShowEnemyPlayerMarkersInRaid": true,
     "AllowShowBossMarkersInRaid": true,
-    "AllowShowScavMarkersInRaid": true
+    "AllowShowScavMarkersInRaid": true,
+    "AllowShowNonVanillaBotMarkersInRaid": true
 }

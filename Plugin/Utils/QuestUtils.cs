@@ -33,27 +33,27 @@ namespace DynamicMaps.Utils
         //
 
         // TODO: move to config
-        private const string _questCategory = "Quest";
-        private const string _questImagePath = "Markers/quest.png";
-        private static Vector2 _questPivot = new Vector2(0.5f, 0f);
-        private static Color _questColor = Color.green;
+        private const string QuestCategory = "Quest";
+        private const string QuestImagePath = "Markers/quest.png";
+        private static readonly Vector2 QuestPivot = new Vector2(0.5f, 0f);
+        private static readonly Color QuestColor = Color.green;
         //
 
-        public static List<TriggerWithId> TriggersWithIds;
-        public static List<LootItem> QuestItems;
+        private static List<TriggerWithId> _triggersWithIds;
+        private static List<LootItem> _questItems;
 
         internal static void TryCaptureQuestData()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
 
-            if (TriggersWithIds == null)
+            if (_triggersWithIds == null)
             {
-                TriggersWithIds = GameObject.FindObjectsOfType<TriggerWithId>().ToList();
+                _triggersWithIds = GameObject.FindObjectsOfType<TriggerWithId>().ToList();
             }
 
-            if (QuestItems == null)
+            if (_questItems == null)
             {
-                QuestItems = Traverse.Create(gameWorld)
+                _questItems = Traverse.Create(gameWorld)
                     .Field("LootItems")
                     .Field("_iteration")
                     .GetValue<List<LootItem>>()
@@ -63,24 +63,24 @@ namespace DynamicMaps.Utils
 
         internal static void DiscardQuestData()
         {
-            if (TriggersWithIds != null)
+            if (_triggersWithIds != null)
             {
-                TriggersWithIds.Clear();
-                TriggersWithIds = null;
+                _triggersWithIds.Clear();
+                _triggersWithIds = null;
             }
 
-            if (QuestItems != null)
+            if (_questItems != null)
             {
-                QuestItems.Clear();
-                QuestItems = null;
+                _questItems.Clear();
+                _questItems = null;
             }
         }
 
         internal static IEnumerable<MapMarkerDef> GetMarkerDefsForPlayer(Player player)
         {
-            if (TriggersWithIds == null || QuestItems == null)
+            if (_triggersWithIds == null || _questItems == null)
             {
-                Plugin.Log.LogWarning($"TriggersWithIds null: {TriggersWithIds == null} or QuestItems null: {QuestItems == null}");
+                Plugin.Log.LogWarning($"TriggersWithIds null: {_triggersWithIds == null} or QuestItems null: {_questItems == null}");
                 return null;
             }
 
@@ -95,15 +95,15 @@ namespace DynamicMaps.Utils
             return markers;
         }
 
-        internal static IEnumerable<MapMarkerDef> GetMarkerDefsForQuest(Player player, QuestDataClass quest)
+        private static IEnumerable<MapMarkerDef> GetMarkerDefsForQuest(Player player, QuestDataClass quest)
         {
             var markers = new List<MapMarkerDef>();
 
             var conditions = GetIncompleteQuestConditions(player, quest);
             foreach (var condition in conditions)
             {
-                var questName = quest.Template.NameLocaleKey.BSGLocalized();
-                var conditionDescription = condition.id.BSGLocalized();
+                var questName = quest.Template.NameLocaleKey.BsgLocalized();
+                var conditionDescription = condition.id.BsgLocalized();
 
                 var positions = GetPositionsForCondition(condition, questName, conditionDescription);
                 foreach (var position in positions)
@@ -203,10 +203,6 @@ namespace DynamicMaps.Utils
                     }
                     break;
                 }
-                default:
-                {
-                    break;
-                }
             }
         }
 
@@ -226,7 +222,7 @@ namespace DynamicMaps.Utils
         private static IEnumerable<Vector3> GetPositionsForZoneId(string zoneId, string questName,
                                                                   string conditionDescription)
         {
-            var zones = TriggersWithIds?.GetZoneTriggers(zoneId);
+            var zones = _triggersWithIds?.GetZoneTriggers(zoneId);
             foreach (var zone in zones)
             {
                 yield return MathUtils.ConvertToMapPosition(zone.transform.position);
@@ -238,7 +234,7 @@ namespace DynamicMaps.Utils
         {
             foreach (var questItemId in questItemIds)
             {
-                var questItems = QuestItems?.Where(i => i.TemplateId == questItemId);
+                var questItems = _questItems?.Where(i => i.TemplateId == questItemId);
                 foreach (var item in questItems)
                 {
                     yield return MathUtils.ConvertToMapPosition(item.transform.position);
@@ -258,7 +254,7 @@ namespace DynamicMaps.Utils
             // TODO: conditions is a GClass reference
             if (!quest.Template.Conditions.TryGetValue(EQuestStatus.AvailableForFinish, out var conditions) || conditions == null)
             {
-                Plugin.Log.LogError($"Quest {quest.Template.NameLocaleKey.BSGLocalized()} doesn't have conditions marked AvailableForFinish, skipping it");
+                Plugin.Log.LogError($"Quest {quest.Template.NameLocaleKey.BsgLocalized()} doesn't have conditions marked AvailableForFinish, skipping it");
                 yield break;
             }
 
@@ -266,7 +262,7 @@ namespace DynamicMaps.Utils
             {
                 if (condition == null)
                 {
-                    Plugin.Log.LogWarning($"Quest {quest.Template.NameLocaleKey.BSGLocalized()} has null condition, skipping it");
+                    Plugin.Log.LogWarning($"Quest {quest.Template.NameLocaleKey.BsgLocalized()} has null condition, skipping it");
                     continue;
                 }
 
@@ -358,11 +354,11 @@ namespace DynamicMaps.Utils
         {
             return new MapMarkerDef
             {
-                Category = _questCategory,
-                Color = _questColor,
-                ImagePath = _questImagePath,
+                Category = QuestCategory,
+                Color = QuestColor,
+                ImagePath = QuestImagePath,
                 Position = position,
-                Pivot = _questPivot,
+                Pivot = QuestPivot,
                 Text = questName
             };
         }

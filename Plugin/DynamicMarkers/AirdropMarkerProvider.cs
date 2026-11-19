@@ -13,13 +13,13 @@ namespace DynamicMaps.DynamicMarkers
     public class AirdropMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private Dictionary<AirdropSynchronizableObject, MapMarker> _airdropMarkers = [];
+        private readonly Dictionary<AirdropSynchronizableObject, MapMarker> _airdropMarkers = [];
 
         // TODO: move to config
-        private const string _airdropName = "Airdrop";
-        private const string _airdropCategory = "Airdrop";
-        private const string _airdropImagePath = "Markers/airdrop.png";
-        private static Vector2 _airdropPivot = new Vector2(0.5f, 0.25f);
+        private const string AirdropName = "Airdrop";
+        private const string AirdropCategory = "Airdrop";
+        private const string AirdropImagePath = "Markers/airdrop.png";
+        private static readonly Vector2 AirdropPivot = new Vector2(0.5f, 0.25f);
         //
 
         public void OnShowInRaid(MapView map)
@@ -44,6 +44,7 @@ namespace DynamicMaps.DynamicMarkers
 
         public void OnRaidEnd(MapView map)
         {
+            AirdropBoxOnBoxLandPatch.OnAirdropLanded -= TryAddMarker;
             TryRemoveMarkers();
         }
 
@@ -88,16 +89,17 @@ namespace DynamicMaps.DynamicMarkers
 
             var intelLevel = GameUtils.GetIntelLevel();
 
-            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) return;
+            if (Settings.ShowAirdropIntelLevel.Value > intelLevel) 
+                return;
             
             var markerDef = new MapMarkerDef
             {
-                Category = _airdropCategory,
+                Category = AirdropCategory,
                 Color = Settings.AirdropColor.Value,
-                ImagePath = _airdropImagePath,
+                ImagePath = AirdropImagePath,
                 Position = MathUtils.ConvertToMapPosition(airdrop.transform),
-                Pivot = _airdropPivot,
-                Text = _airdropName
+                Pivot = AirdropPivot,
+                Text = AirdropName
             };
 
             var marker = _lastMapView.AddMapMarker(markerDef);

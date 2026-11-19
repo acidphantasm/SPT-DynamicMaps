@@ -125,7 +125,7 @@ public class SecretMarkerProvider : IDynamicMarkerProvider
         {
             Category = SecretCategory,
             ImagePath = SecretImagePath,
-            Text = point.Settings.Name.BSGLocalized(),
+            Text = point.Settings.Name.BsgLocalized(),
             Position = MathUtils.ConvertToMapPosition(point.transform),
             Color = Settings.SecretPointColor.Value
         };

@@ -1,7 +1,10 @@
+using System;
+using System.IO;
 using DynamicMaps.Data;
 using DynamicMaps.Utils;
 using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DynamicMaps.UI.Components
 {
@@ -21,14 +24,20 @@ namespace DynamicMaps.UI.Components
 
     public class MapLayer : MonoBehaviour
     {
-        private static float _fadeMultiplierPerLayer = 0.5f;
-        private static float _defaultLevelFallbackAlpha = 0.1f;
+        private static readonly float FadeMultiplierPerLayer = 0.5f;
+        private static readonly float DefaultLevelFallbackAlpha = 0.1f;
 
         private string Name { get; set; }
-        private SVGImage Image { get; set; }
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
+        private MaskableGraphic Image { get; set; }
+        public RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
 
-        public int Level => _def.Level;
+        public int Level
+        {
+            get => _def.Level;
+        }
         public LayerStatus Status { get; private set; }
         public bool IsOnDefaultLevel { get; set; }
 
@@ -36,6 +45,12 @@ namespace DynamicMaps.UI.Components
 
         public static MapLayer Create(GameObject parent, string name, MapLayerDef def, float degreesRotation)
         {
+            var sprite = TextureUtils.GetOrLoadMapSprite(def);
+            if (sprite == null)
+            {
+                throw new InvalidDataException($"Unable to load map image: {def.ImagePath}");
+            }
+
             var go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer));
             go.layer = parent.layer;
             go.transform.SetParent(parent.transform);
@@ -60,13 +75,22 @@ namespace DynamicMaps.UI.Components
             layer._def = def;
 
             // load image
-            var svgSprite = SvgUtils.GetOrLoadCachedSprite(def);
-            if (svgSprite == null) return null;
-            
-            layer.Image = go.AddComponent<SVGImage>();
+            if (Path.GetExtension(def.ImagePath).Equals(".svg", StringComparison.OrdinalIgnoreCase))
+            {
+                var image = go.AddComponent<SVGImage>();
+                image.preserveAspect = false;
+                image.sprite = sprite;
+                layer.Image = image;
+            }
+            else
+            {
+                var image = go.AddComponent<Image>();
+                image.preserveAspect = false;
+                image.sprite = sprite;
+                layer.Image = image;
+            }
+
             layer.Image.raycastTarget = false;
-            layer.Image.preserveAspect = false;
-            layer.Image.sprite = svgSprite;
 
             return layer;
         }
@@ -119,7 +143,7 @@ namespace DynamicMaps.UI.Components
 
             var isActive = true;
             var levelDelta = newLevel - Level;
-            var c = Mathf.Clamp01(Mathf.Pow(_fadeMultiplierPerLayer, levelDelta));
+            var c = Mathf.Clamp01(Mathf.Pow(FadeMultiplierPerLayer, levelDelta));
             var a = 1f;
 
             if (Status == LayerStatus.Hidden)
@@ -128,7 +152,7 @@ namespace DynamicMaps.UI.Components
 
                 if (IsOnDefaultLevel)
                 {
-                    a = _defaultLevelFallbackAlpha;
+                    a = DefaultLevelFallbackAlpha;
                     isActive = true;
                 }
             }

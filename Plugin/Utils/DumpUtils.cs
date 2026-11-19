@@ -53,7 +53,7 @@ namespace DynamicMaps.Utils
                         Category = ExtractCategory,
                         ShowInRaid = false,
                         ImagePath = ExtractImagePath,
-                        Text = scavExfil.Settings.Name.BSGLocalized(),
+                        Text = scavExfil.Settings.Name.BsgLocalized(),
                         Position = MathUtils.ConvertToMapPosition(scavExfil.transform),
                         Color = ExtractScavColor
                     };
@@ -69,7 +69,7 @@ namespace DynamicMaps.Utils
                     Category = ExtractCategory,
                     ShowInRaid = false,
                     ImagePath = ExtractImagePath,
-                    Text = pmcExfil.Settings.Name.BSGLocalized(),
+                    Text = pmcExfil.Settings.Name.BsgLocalized(),
                     Position = MathUtils.ConvertToMapPosition(pmcExfil.transform),
                     Color = ExtractPmcColor
                 };
@@ -84,7 +84,7 @@ namespace DynamicMaps.Utils
                     Category = TransitCategory,
                     ShowInRaid = false,
                     ImagePath = TransitImagePath,
-                    Text = transit.parameters.description.BSGLocalized(),
+                    Text = transit.parameters.description.BsgLocalized(),
                     Position = MathUtils.ConvertToMapPosition(transit.transform),
                     Color = TransitColor
                 };
@@ -101,7 +101,7 @@ namespace DynamicMaps.Utils
                         Category = SecretCategory,
                         ShowInRaid = false,
                         ImagePath = SecretImagePath,
-                        Text = secret.Settings.Name.BSGLocalized(),
+                        Text = secret.Settings.Name.BsgLocalized(),
                         Position = MathUtils.ConvertToMapPosition(secret.transform),
                         Color = SecretColor
                     };

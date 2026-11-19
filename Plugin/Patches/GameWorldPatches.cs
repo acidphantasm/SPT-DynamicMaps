@@ -49,17 +49,24 @@ namespace DynamicMaps.Patches
         [PatchPrefix]
         public static void PatchPrefix()
         {
-            try
+            // This is dumb but I'm not sure a better way to ensure a single failed invoke doesn't cause the whole stack to fail
+            // not a lot of stack overflow questions on doing this.. boo
+            var handlers = OnRaidEnd?.GetInvocationList();
+            if (handlers != null)
             {
-                OnRaidEnd?.Invoke();
-                GameStartedPatch.HiddenStashes.Clear();
+                foreach (var handler in handlers)
+                {
+                    try
+                    {
+                        ((Action)handler)();
+                    }
+                    catch (Exception e)
+                    {
+                        Plugin.Log.LogError($"End of raid handler {handler.Method.DeclaringType?.FullName}.{handler.Method.Name} failed: {e}");
+                    }
+                }
             }
-            catch(Exception e)
-            {
-                Plugin.Log.LogError($"Caught error while doing end of raid calculations");
-                Plugin.Log.LogError($"{e.Message}");
-                Plugin.Log.LogError($"{e.StackTrace}");
-            }
+            GameStartedPatch.HiddenStashes.Clear();
         }
     }
 

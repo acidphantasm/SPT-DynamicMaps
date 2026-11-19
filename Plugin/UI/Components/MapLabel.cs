@@ -8,19 +8,19 @@ namespace DynamicMaps.UI.Components
 {
     public class MapLabel : MonoBehaviour, ILayerBound
     {
-        public string Text { get; protected set; }
+        private string Text { get; set; }
         public string Category { get; protected set; }
 
-        public TextMeshProUGUI Label { get; protected set; }
-        public RectTransform RectTransform => gameObject.transform as RectTransform;
+        private TextMeshProUGUI Label { get; set; }
+        public RectTransform RectTransform
+        {
+            get => gameObject.transform as RectTransform;
+        }
 
         private Vector3 _position;
         public Vector3 Position
         {
-            get
-            {
-                return _position;
-            }
+            get => _position;
 
             set
             {
@@ -51,7 +51,7 @@ namespace DynamicMaps.UI.Components
                 {LayerStatus.FullReveal, 1f},
             };
 
-        private bool _hasSetOutline = false;
+        private bool _hasSetOutline;
 
         public static MapLabel Create(GameObject parent, MapLabelDef def, float degreesRotation, float scale)
         {

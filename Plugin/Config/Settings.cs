@@ -48,6 +48,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowNonVanillaBotMarkersInRaid;
         public static ConfigEntry<bool> NonVanillaBotUseStar;
         public static ConfigEntry<bool> ShowLockedDoorStatus;
+        public static ConfigEntry<bool> EnableFleaMarketContextAction;
         public static ConfigEntry<bool> ShowQuestsInRaid;
         public static ConfigEntry<bool> ShowExtractsInRaid;
         public static ConfigEntry<bool> ShowExtractStatusInRaid;
@@ -377,6 +378,15 @@ namespace DynamicMaps.Config
                 true,
                 new ConfigDescription(
                     "If locked door markers should be updated with status based on key acquisition",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(EnableFleaMarketContextAction = config.Bind(
+                DynamicMarkerTitle,
+                "Right-Click Key Search On Flea Market",
+                true,
+                new ConfigDescription(
+                    "If right-clicking a locked door marker out of raid should offer to search its key on the flea market",
                     null,
                     new ConfigurationManagerAttributes())));
 

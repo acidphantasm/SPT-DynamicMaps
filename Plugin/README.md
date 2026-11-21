@@ -48,6 +48,7 @@ An SPT mod that adds a custom in-game map viewer in the place of the BSG map scr
   - Statically-loaded locked door with dynamic icon and color based on key status
     - Out-of-raid, green with key means player has it in inventory, yellow with key means key in stash, red with lock otherwise
     - In-raid, green with key means player has the key, red with lock means player doesn't have key
+    - Out-of-raid, right-click a locked door to search its key on the flea market (works even if the key can't be bought)
   - Static markers for switches and levers
 
 See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md) for known current issues and [`FEATURE_WISHLIST.md`](FEATURE_WISHLIST.md) for a list of things that I would like to work on in the future.
@@ -73,6 +74,7 @@ See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md) for known current issues and [`FEATURE_
 - **Show Scav Markers**: If enemy scav markers should be shown (generally for debug)
 - **Show Boss Markers**: If enemy boss markers should be shown
 - **Show Locked Door Status**: If locked door markers should be updated with status based on key acquisition
+- **Right-Click Key Search On Flea Market**: If right-clicking a locked door marker out of raid should offer to search its key on the flea market
 - **Show Quests In Raid**: If quests should be shown in raid
 - **Show Extracts In Raid**: If extracts should be shown in raid
 - **Show Extracts Status In Raid**: If extracts should be colored according to their status in raid
@@ -93,6 +95,20 @@ See [`KNOWN_ISSUES.md`](KNOWN_ISSUES.md) for known current issues and [`FEATURE_
 - **Centering On Player Zoom Level**: What zoom level should be used as while centering on the player (0 is fully zoomed out, and 1 is fully zoomed in)
 - **Peek at Map Shortcut**: The keyboard shortcut to peek at the map
 - **Hold for Peek**: If the shortcut should be held to keep it open. If disabled, button toggles
+
+## Marker Context Menu API
+
+Right-clicking a marker opens a context menu. Other mods can add entries to it by referencing `DynamicMaps.dll`:
+
+```csharp
+using DynamicMaps.API;
+
+MapMarkerContextMenu.RegisterAction(new MapMarkerContextAction(
+    "mymod.extract-info",
+    marker => $"Info about {marker.Text}",
+    marker => ShowExtractInfo(marker),
+    marker => marker.Category == "Extract"));
+```
 
 ## Installation
 

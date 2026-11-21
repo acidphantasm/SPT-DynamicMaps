@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace DynamicMaps.UI.Components
 {
-    public class MapMarker : MonoBehaviour, ILayerBound, IPointerEnterHandler, IPointerExitHandler
+    public class MapMarker : MonoBehaviour, ILayerBound, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerClickHandler
     {
         // TODO: this seems... not great?
         private static Dictionary<string, Dictionary<LayerStatus, float>> CategoryImageAlphaLayerStatus { get; }
@@ -82,7 +82,7 @@ namespace DynamicMaps.UI.Components
 
         public event Action<ILayerBound> OnPositionChanged;
 
-        private string Text { get; set; }
+        public string Text { get; private set; }
         public string Category { get; private set; }
         public MapView ContainingMapView { get; set; }
 
@@ -338,6 +338,21 @@ namespace DynamicMaps.UI.Components
         {
             _isInFullReveal = false;
             OnPositionChanged?.Invoke(this);
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            // needed so that this marker, and not a parent, receives the click
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button != PointerEventData.InputButton.Right)
+            {
+                return;
+            }
+
+            MarkerContextMenu.Open(this, eventData.position);
         }
 
         private void TrySetOutlineAndResize()

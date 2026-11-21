@@ -3,6 +3,7 @@ using BepInEx.Logging;
 using Comfort.Common;
 using DrakiaXYZ.VersionChecker;
 using DynamicMaps.Config;
+using DynamicMaps.ContextActions;
 using DynamicMaps.Patches;
 using DynamicMaps.UI;
 using DynamicMaps.Utils;
@@ -47,6 +48,8 @@ namespace DynamicMaps
             Settings.Init(Config);
             Config.SettingChanged += (x, y) => Map?.ReadConfig();
 
+            FleaMarketContextAction.Register();
+
             // Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
             
             Instance = this;
@@ -66,6 +69,7 @@ namespace DynamicMaps
             new PlayerInventoryThrowItemPatch().Enable();
             new ShowViewButtonPatch().Enable();
             new MenuLoadPatch().Enable();
+            new InventoryScreenShowPatch().Enable();
         }
 
         /// <summary>

@@ -88,6 +88,7 @@ namespace DynamicMaps.UI.Components
 
         private Image Image { get; set; }
         private TextMeshProUGUI Label { get; set; }
+
         private RectTransform RectTransform
         {
             get => gameObject.transform as RectTransform;
@@ -161,6 +162,12 @@ namespace DynamicMaps.UI.Components
         private float _initialRotation;
         private bool _hasSetOutline;
         private bool _isInFullReveal;
+
+        protected void SetGraphicVisibility(bool visible)
+        {
+            Image.enabled = visible;
+            Label.enabled = visible;
+        }
 
         public static MapMarker Create(GameObject parent, MapMarkerDef def, Vector2 size, float degreesRotation, float scale)
         {

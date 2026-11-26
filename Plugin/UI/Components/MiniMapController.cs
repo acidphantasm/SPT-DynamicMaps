@@ -1,5 +1,6 @@
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.ExternalModSupport;
 using DynamicMaps.Utils;
 using EFT;
 using UnityEngine;
@@ -11,10 +12,12 @@ namespace DynamicMaps.UI.Components
         private readonly MiniMapViewport _viewport = new();
         
         private float _requestedZoom;
+        
         private bool _zoomDirty = true;
         private bool _zoomInputActive;
+        
         private float _zoomSpeed;
-        private float _followTimer;
+        private float _levelTimer;
         
         internal MapViewportState State
         {
@@ -36,7 +39,7 @@ namespace DynamicMaps.UI.Components
         {
             _viewport.Invalidate(definition);
             _zoomDirty = true;
-            _followTimer = 0f;
+            _levelTimer = 0f;
             _zoomInputActive = false;
         }
 
@@ -44,7 +47,7 @@ namespace DynamicMaps.UI.Components
         {
             _viewport.Configure(definition, size, _zoomDirty ? _requestedZoom : _viewport.NormalizedZoom);
             _zoomDirty = false;
-            _followTimer = 0f;
+            _levelTimer = 0f;
         }
 
         internal void Close()
@@ -92,18 +95,19 @@ namespace DynamicMaps.UI.Components
                 _zoomInputActive = false;
             }
             
-            if (player == null)
+            if (!FreecamSupport.TryGetViewpoint(player, out var viewpoint))
             {
                 return;
             }
             
-            _followTimer -= deltaTime;
-            if (_followTimer <= 0f || zoomDirection != 0f)
+            var position = MathUtils.ConvertToMapPosition(viewpoint.Position);
+            _viewport.State.Center = position;
+
+            _levelTimer -= deltaTime;
+            if (_levelTimer <= 0f || zoomDirection != 0f)
             {
-                var position = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-                _viewport.State.Center = position;
-                _viewport.State.Level = view.GetLevelAtPosition(position, _viewport.State.Level);
-                _followTimer = 0.033f;
+                _viewport.State.Level = view.GetLevelAtPosition(MathUtils.ConvertToMapPosition(viewpoint.LayerPosition), _viewport.State.Level);
+                _levelTimer = 0.033f;
             }
         }
 

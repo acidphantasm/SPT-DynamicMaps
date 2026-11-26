@@ -1,6 +1,8 @@
 using BepInEx.Configuration;
+using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Utils;
+using EFT;
 using UnityEngine;
 
 namespace DynamicMaps.UI.Components
@@ -12,11 +14,14 @@ namespace DynamicMaps.UI.Components
         
         public KeyboardShortcut PeekShortcut { get; set; }
         public KeyboardShortcut HideMinimapShortcut { get; set; }
+        
         public bool HoldForPeek { get; set; }
+        
         private bool IsPeeking
         {
             get => MapScreen != null && MapScreen.DisplayMode == MapDisplayMode.Peek;
         }
+        
         public bool WasMiniMapActive { get; set; }
         private bool _isMiniMapHidden;
         internal bool ShouldShowMiniMap
@@ -27,7 +32,10 @@ namespace DynamicMaps.UI.Components
         internal static MapPeekComponent Create(GameObject parent)
         {
             var go = UIUtils.CreateUIGameObject(parent, "MapPeek");
-            go.GetRectTransform().sizeDelta = parent.GetRectTransform().sizeDelta;
+            var rectTransform = go.GetRectTransform();
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.sizeDelta = Vector2.zero;
             
             return go.AddComponent<MapPeekComponent>();
         }
@@ -41,6 +49,12 @@ namespace DynamicMaps.UI.Components
         {
             if (MapScreen == null || MapScreen.IsShowingMapScreen)
             {
+                return;
+            }
+
+            if (!GameUtils.HasActiveRaidDetails())
+            {
+                MapScreen.RequestMode(MapDisplayMode.Hidden, false);
                 return;
             }
             

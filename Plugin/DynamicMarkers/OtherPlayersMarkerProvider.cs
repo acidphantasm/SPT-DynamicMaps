@@ -182,7 +182,7 @@ namespace DynamicMaps.DynamicMarkers
             var alivePlayers = new HashSet<Player>(Singleton<GameWorld>.Instance.AllAlivePlayersList);
             foreach (var player in _playerMarkers.Keys.ToList())
             {
-                if (player.HasCorpse() || !alivePlayers.Contains(player))
+                if (player.IsYourPlayer || player.HasCorpse() || !alivePlayers.Contains(player))
                 {
                     TryRemoveMarker(player);
                 }
@@ -195,7 +195,11 @@ namespace DynamicMaps.DynamicMarkers
 
             foreach (var player in _playerMarkers.ToArray())
             {
-                if (player.Key.IsYourPlayer) continue;
+                if (player.Key.IsYourPlayer)
+                {
+                    TryRemoveMarker(player.Key);
+                    continue;
+                }
                 
                 TryRemoveMarker(player.Key);
                 TryAddMarker(player.Key);
@@ -205,7 +209,7 @@ namespace DynamicMaps.DynamicMarkers
         private void TryAddMarker(IPlayer iPlayer)
         {
             var player = iPlayer as Player;
-            if (player is null || player.IsHeadlessClient())
+            if (player is null || player.IsYourPlayer || player.IsHeadlessClient())
             {
                 return;
             }

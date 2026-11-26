@@ -6,6 +6,7 @@ using SPT.Reflection.Patching;
 using EFT;
 using EFT.Interactive;
 using EFT.InventoryLogic;
+using DynamicMaps.Utils;
 using HarmonyLib;
 
 namespace DynamicMaps.Patches
@@ -22,6 +23,9 @@ namespace DynamicMaps.Patches
         [PatchPostfix]
         public static void PatchPostfix(GameWorld __instance)
         {
+            GameUtils.SetRaidDetails();
+            Plugin.Instance?.TryAttachToRaidCanvas();
+            
             // Credit to RaiRai for finding the hidden stash names
             var caches = LocationScene.GetAllObjects<LootableContainer>()
                 .Where( x => 
@@ -67,6 +71,7 @@ namespace DynamicMaps.Patches
                 }
             }
             GameStartedPatch.HiddenStashes.Clear();
+            GameUtils.ClearRaidDetails();
         }
     }
 
@@ -93,7 +98,6 @@ namespace DynamicMaps.Patches
         protected override MethodBase GetTargetMethod()
         {
             return AccessTools.Method(typeof(LootItem), nameof(LootItem.Init));
-            //return typeof(GameWorld).GetMethod("RegisterLoot").MakeGenericMethod(typeof(LootItem));
         }
 
         [PatchPostfix]

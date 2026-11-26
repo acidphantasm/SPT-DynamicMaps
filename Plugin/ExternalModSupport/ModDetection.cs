@@ -8,6 +8,7 @@ namespace DynamicMaps.ExternalModSupport
         public static bool HeliCrashLoaded { get; private set; }
         public static bool FikaLoaded { get; private set; }
         public static bool FikaHeadlessLoaded { get; private set; }
+        public static bool FreecamLoaded { get; private set; }
 
         public static void CheckforMods()
         {
@@ -27,6 +28,11 @@ namespace DynamicMaps.ExternalModSupport
             if (Chainloader.PluginInfos.ContainsKey("com.fika.headless"))
             {
                 FikaHeadlessLoaded = true;
+            }
+
+            if (Chainloader.PluginInfos.ContainsKey("com.terkoiz.freecam"))
+            {
+                FreecamLoaded = true;
             }
             
             // Additional mod checks can be added here

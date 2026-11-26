@@ -14,6 +14,40 @@ namespace DynamicMaps.Utils
 {
     public static class GameUtils
     {
+        private static GameWorld _raidWorld;
+        private static string _raidLocation;
+        private static bool _mapAvailable;
+
+        public static void SetRaidDetails()
+        {
+            var world = Singleton<GameWorld>.Instance;
+            if (world == null || world.MainPlayer == null || world.MainPlayer is HideoutPlayer)
+            {
+                return;
+            }
+
+            _raidWorld = world;
+            _raidLocation = world.MainPlayer.Location;
+            _mapAvailable = HasMapInInventory(world.MainPlayer);
+        }
+
+        public static void ClearRaidDetails()
+        {
+            _raidWorld = null;
+            _raidLocation = null;
+            _mapAvailable = false;
+        }
+
+        private static bool HasRaidDetails(GameWorld world)
+        {
+            return world != null && world == _raidWorld;
+        }
+
+        public static bool HasActiveRaidDetails()
+        {
+            return HasRaidDetails(Singleton<GameWorld>.Instance);
+        }
+
         // reflection        
         private static readonly FieldInfo PlayerCorpseField = AccessTools.Field(typeof(Player), "Corpse");
         private static readonly FieldInfo PlayerLastAggressorField = AccessTools.Field(typeof(Player), "LastAggressor");
@@ -25,10 +59,12 @@ namespace DynamicMaps.Utils
                        properties.Any(p => p.Name == "Profile");
             });
         private static readonly PropertyInfo SessionProfileProperty = AccessTools.Property(ProfileInterface, "Profile");
+        
         private static IEftSession Session
         {
             get => ClientAppUtils.GetMainApp().GetClientBackEndSession();
         }
+        
         private static Profile PlayerProfile
         {
             get => SessionProfileProperty.GetValue(Session) as Profile;
@@ -82,16 +118,24 @@ namespace DynamicMaps.Utils
             var game = Singleton<AbstractGame>.Instance;
             var botGame = Singleton<IBotGame>.Instance;
 
-            return ((game != null) && game.InRaid)
-                || ((botGame != null) && botGame.Status != GameStatus.Stopped
+            return Singleton<GameWorld>.Instance != null && Singleton<GameWorld>.Instance == _raidWorld
+                || game != null && game.InRaid
+                || botGame != null && botGame.Status != GameStatus.Stopped
                                       && botGame.Status != GameStatus.Stopping
-                                      && botGame.Status != GameStatus.SoftStopping);
+                                      && botGame.Status != GameStatus.SoftStopping;
         }
 
         public static string GetCurrentMapInternalName()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
-            return gameWorld?.MainPlayer?.Location;
+            if (gameWorld?.MainPlayer != null)
+            {
+                _raidWorld = gameWorld;
+                _raidLocation = gameWorld.MainPlayer.Location;
+                return _raidLocation;
+            }
+
+            return HasRaidDetails(gameWorld) ? _raidLocation : null;
         }
         
         public static Player GetMainPlayer()
@@ -233,21 +277,35 @@ namespace DynamicMaps.Utils
             var player = GetMainPlayer();
             if (player == null)
             {
-                return false;
+                return HasRaidDetails(Singleton<GameWorld>.Instance) && _mapAvailable;
             }
             var currentLocation = player.Location;
 
             if (!MapLookUp.TryGetValue(currentLocation, out var id))
             {
+                _raidWorld = Singleton<GameWorld>.Instance;
+                _raidLocation = currentLocation;
+                _mapAvailable = true;
                 Plugin.Log.LogWarning($"Could not find map id for location {currentLocation} is this a new location?");
                 return true;
             }
                     
-            var isMapInInventory = player.Inventory.Equipment
-                .GetAllItems()
-                .Any(m => m.TemplateId == id);
+            var isMapInInventory = HasMapInInventory(player, id);
+            _raidWorld = Singleton<GameWorld>.Instance;
+            _raidLocation = currentLocation;
+            _mapAvailable = isMapInInventory;
             
             return isMapInInventory;
+        }
+
+        private static bool HasMapInInventory(Player player)
+        {
+            return !MapLookUp.TryGetValue(player.Location, out var id) || HasMapInInventory(player, id);
+        }
+
+        private static bool HasMapInInventory(Player player, string id)
+        {
+            return player.Inventory.Equipment.GetAllItems().Any(m => m.TemplateId == id);
         }
     }
 }

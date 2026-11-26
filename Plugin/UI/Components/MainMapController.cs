@@ -1,6 +1,7 @@
 using System.Linq;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.ExternalModSupport;
 using DynamicMaps.Utils;
 using EFT;
 using UnityEngine;
@@ -90,9 +91,9 @@ namespace DynamicMaps.UI.Components
             if (!(_retainPosition && _hasRetainedPosition))
             {
                 _viewport.State.Center = MathUtils.GetMidpoint(definition.Bounds.Min, definition.Bounds.Max);
-                if (_autoCenter && player != null)
+                if (_autoCenter && FreecamSupport.TryGetViewpoint(player, out var viewpoint))
                 {
-                    Center(player, false);
+                    Center(viewpoint.Position, false);
                 }
                 else if (!_autoCenter && !_resetZoom && !_retainPosition)
                 {
@@ -191,11 +192,11 @@ namespace DynamicMaps.UI.Components
                 _viewport.ChangeLevelBy(levelDelta);
             }
 
-            if (GameUtils.IsInRaid() && Settings.CenterOnPlayerHotkey.Value.BetterIsDown() && player != null)
+            if (GameUtils.IsInRaid() && Settings.CenterOnPlayerHotkey.Value.BetterIsDown() && FreecamSupport.TryGetViewpoint(player, out var centerViewpoint))
             {
-                Center(player, Settings.MapTransitionEnabled.Value);
+                Center(centerViewpoint.Position, Settings.MapTransitionEnabled.Value);
                 
-                _centerTo.Level = view.GetLevelAtPosition(MathUtils.ConvertToMapPosition(((IPlayer)player).Position), _centerTo.Level);
+                _centerTo.Level = view.GetLevelAtPosition(MathUtils.ConvertToMapPosition(centerViewpoint.LayerPosition), _centerTo.Level);
                 if (!_centering)
                 {
                     _viewport.State.Level = _centerTo.Level;
@@ -244,9 +245,10 @@ namespace DynamicMaps.UI.Components
                 _scrollTarget = 0f;
                 _centering = false;
                 var focus = _viewport.State.Center;
-                if (peek && player != null)
+                
+                if (peek && FreecamSupport.TryGetViewpoint(player, out var zoomViewpoint))
                 {
-                    focus = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+                    focus = MathUtils.ConvertToMapPosition(zoomViewpoint.Position);
                 }
                 else if (_zoomToMouse)
                 {
@@ -254,6 +256,7 @@ namespace DynamicMaps.UI.Components
                         view.RectTransform, Input.mousePosition, null, out var localPoint);
                     focus = localPoint;
                 }
+                
                 _viewport.ZoomAround(_viewport.State.Zoom * (1f + keyboardZoom * _zoomSpeed * deltaTime), focus);
                 _viewport.State.Center = _viewport.ClampCenter(_viewport.State.Center);
                 _zoomInputActive = true;
@@ -305,16 +308,15 @@ namespace DynamicMaps.UI.Components
 
         internal void SelectPlayerLevel(MapView view, Player player)
         {
-            if (_autoLevel && player != null)
+            if (_autoLevel && FreecamSupport.TryGetViewpoint(player, out var viewpoint))
             {
-                _viewport.State.Level = view.GetLevelAtPosition(
-                    MathUtils.ConvertToMapPosition(((IPlayer)player).Position), _viewport.State.Level);
+                _viewport.State.Level = view.GetLevelAtPosition(MathUtils.ConvertToMapPosition(viewpoint.LayerPosition), _viewport.State.Level);
             }
         }
 
         private void UpdatePlayerLevel(MapView view, Player player, float deltaTime)
         {
-            if (!_autoLevel || !GameUtils.IsInRaid() || player == null)
+            if (!_autoLevel || !GameUtils.IsInRaid())
             {
                 return;
             }
@@ -327,11 +329,11 @@ namespace DynamicMaps.UI.Components
             }
         }
 
-        private void Center(Player player, bool animate)
+        private void Center(Vector3 position, bool animate)
         {
             _centerFrom = _viewport.State;
             _centerTo = _viewport.State;
-            _centerTo.Center = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
+            _centerTo.Center = MathUtils.ConvertToMapPosition(position);
             
             if (_resetZoom)
             {

@@ -1,8 +1,8 @@
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.ExternalModSupport;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
-using UnityEngine;
 
 namespace DynamicMaps.DynamicMarkers
 {
@@ -48,7 +48,18 @@ namespace DynamicMaps.DynamicMarkers
             }
 
             var player = GameUtils.GetMainPlayer();
-            if (player is null || player.IsHeadlessClient())
+            
+            if (player == null || player.IsHeadlessClient())
+            {
+                return;
+            }
+            
+            if (player?.HealthController?.IsAlive != true && !FreecamSupport.TryGetCameraViewpoint(out _))
+            {
+                return;
+            }
+            
+            if (!FreecamSupport.TryGetViewpoint(player, out _))
             {
                 return;
             }
@@ -56,7 +67,7 @@ namespace DynamicMaps.DynamicMarkers
             var color = Settings.PlayerColor.Value;
             
             // try adding the marker
-            _playerMarker = map.AddPlayerMarker(player, PlayerCategory, color, PlayerImagePath);
+            _playerMarker = map.AddPlayerMarker(player, PlayerCategory, color, PlayerImagePath, true);
         }
 
         private void TryRemoveMarker()

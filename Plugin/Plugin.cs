@@ -16,12 +16,12 @@ using System.Reflection;
 
 namespace DynamicMaps
 {
-    // the version number here is generated on build and may have a warning if not yet built
     [BepInPlugin("com.mpstark.dynamicmaps", "DynamicMaps", BuildInfo.Version)]
     [BepInDependency("com.SPT.custom", "4.1.0")]
     [BepInDependency("com.SamSWAT.HeliCrash.ArysReloaded", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.fika.core", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.fika.headless", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.terkoiz.freecam", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInIncompatibility("com.blackhawk.dynamicmapsextended")]
     public class Plugin : BaseUnityPlugin
     {
@@ -46,12 +46,9 @@ namespace DynamicMaps
 
             Settings.Init(Config);
             Config.SettingChanged += (x, y) => Map?.ReadConfig();
-
-            // Logger.LogWarning("TEST BUILD OF DYNAMIC MAPS, NO SUPPORT OFFERED.");
             
             Instance = this;
 
-            // patches
             new BattleUIScreenShowPatch().Enable();
             new CommonUIAwakePatch().Enable();
             new MapScreenShowPatch().Enable();
@@ -68,41 +65,40 @@ namespace DynamicMaps
             new MenuLoadPatch().Enable();
         }
 
-        /// <summary>
-        /// Attach to the map screen
-        /// </summary>
         internal void TryAttachToMapScreen(MapScreen mapScreen)
         {
-            if (Map is not null) return;
+            if (Map != null) return;
             
             Log.LogInfo("Trying to attach to MapScreen");
 
-            // attach to common UI first to call awake and set things up, then attach to sleeping map screen
             Map = ModdedMapScreen.Create(Singleton<CommonUI>.Instance.gameObject);
             Map.transform.SetParent(mapScreen.transform);
         }
 
-        /// <summary>
-        /// Attach the peek component
-        /// </summary>
-        internal void TryAttachToBattleUIScreen(EftBattleUIScreen battleUI)
+        internal void TryAttachToRaidCanvas()
         {
-            if (Map is null || GameUtils.GetMainPlayer() is HideoutPlayer)
+            if (!GameUtils.HasActiveRaidDetails())
+            {
+                GameUtils.SetRaidDetails();
+            }
+            
+            if (Map == null || !GameUtils.HasActiveRaidDetails())
             {
                 return;
             }
             
-            Map.TryAddPeekComponent(battleUI);
+            Map.TryAddPeekComponent();
         }
 
-        // Check if the necessary type is available, and tell the user if they installed the mod wrong
         static Plugin()
         {
-            if (Type.GetType("Unity.VectorGraphics.SVGParser, Unity.VectorGraphics") == null)
+            if (Type.GetType("Unity.VectorGraphics.SVGParser, Unity.VectorGraphics") != null)
             {
-                MessageBoxHelper.Show("You have incorrectly installed Dynamic Maps.\nPlease reinstall correctly.\nQuitting.", "DynamicMaps Error", MessageBoxHelper.MessageBoxType.OK);
-                Process.GetCurrentProcess().Kill();
+                return;
             }
+            
+            MessageBoxHelper.Show("You have incorrectly installed Dynamic Maps.\nPlease reinstall correctly.\nQuitting.", "DynamicMaps Error", MessageBoxHelper.MessageBoxType.OK);
+            Process.GetCurrentProcess().Kill();
         }
     }
 }

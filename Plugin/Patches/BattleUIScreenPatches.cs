@@ -14,18 +14,17 @@ namespace DynamicMaps.Patches
         
         protected override MethodBase GetTargetMethod()
         {
-            return AccessTools.Method(typeof(EftBattleUIScreen),
-                                      nameof(EftBattleUIScreen.Show),
-                                      new Type[] { typeof(GamePlayerOwner) });
+            return AccessTools.Method(typeof(EftBattleUIScreen), nameof(EftBattleUIScreen.Show), new Type[] { typeof(GamePlayerOwner) });
         }
 
         [PatchPostfix]
-        public static void PatchPostfix(EftBattleUIScreen __instance)
+        public static void PatchPostfix()
         {
             IsAttached = GameUtils.ShouldShowMapInRaid();
-            if (!IsAttached) return;
+            if (!IsAttached) 
+                return;
             
-            Plugin.Instance.TryAttachToBattleUIScreen(__instance);
+            Plugin.Instance.TryAttachToRaidCanvas();
         }
     }
 }

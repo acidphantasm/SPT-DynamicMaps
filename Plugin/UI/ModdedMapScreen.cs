@@ -42,12 +42,15 @@ namespace DynamicMaps.UI
         
         private MapScrollRect _scrollRect;
         private Mask _scrollMask;
+        private Outline _miniMapOutline;
+        private RectTransform _miniMapOutlineRect;
         private MapView _mapView;
         private LevelSelectSlider _levelSelectSlider;
         private MapSelectDropdown _mapSelectDropdown;
         private CursorPositionText _cursorPositionText;
         private PlayerPositionText _playerPositionText;
         private MapPeekComponent _peekComponent;
+        private GameObject _raidCanvas;
         private RectTransform _mainParent;
         private MapDisplayMode _mode;
         
@@ -121,6 +124,19 @@ namespace DynamicMaps.UI
             var scrollMaskImage = scrollMaskGo.AddComponent<Image>();
             scrollMaskImage.color = new Color(0f, 0f, 0f, 0.5f);
             _scrollMask = scrollMaskGo.AddComponent<Mask>();
+            
+            // outline
+            var outlineGo = UIUtils.CreateUIGameObject(scrollRectGo, "MiniMapOutline");
+            outlineGo.transform.SetAsFirstSibling();
+            _miniMapOutlineRect = outlineGo.GetRectTransform();
+            var outlineImage = outlineGo.AddComponent<Image>();
+            outlineImage.color = Color.clear;
+            outlineImage.raycastTarget = false;
+            _miniMapOutline = outlineGo.AddComponent<Outline>();
+            _miniMapOutline.effectColor = Color.black;
+            _miniMapOutline.effectDistance = new Vector2(2f, -2f);
+            _miniMapOutline.useGraphicAlpha = false;
+            _miniMapOutline.enabled = false;
 
             // set up scroll rect
             _scrollRect = scrollRectGo.AddComponent<MapScrollRect>();
@@ -192,6 +208,11 @@ namespace DynamicMaps.UI
                 _scrollRect.OnDragCallback = null;
             }
             GameWorldOnDestroyPatch.OnRaidEnd -= OnRaidEnd;
+            
+            if (_raidCanvas != null)
+            {
+                Destroy(_raidCanvas);
+            }
         }
 
         private void Update()
@@ -371,7 +392,9 @@ namespace DynamicMaps.UI
                 RectTransform.anchorMin = new Vector2(0.5f, 0.5f);
                 RectTransform.anchorMax = RectTransform.anchorMin;
                 RectTransform.pivot = RectTransform.anchorMin;
-                RectTransform.sizeDelta = Singleton<CommonUI>.Instance.InventoryScreen.GetRectTransform().rect.size;
+                RectTransform.sizeDelta = mode == MapDisplayMode.Main
+                    ? Singleton<CommonUI>.Instance.InventoryScreen.GetRectTransform().rect.size
+                    : GetRaidCanvasSize();
                 RectTransform.anchoredPosition = Vector2.zero;
                 RectTransform.localScale = Vector3.one;
                 _scrollRect.GetRectTransform().anchorMin = Vector2.zero;
@@ -381,6 +404,7 @@ namespace DynamicMaps.UI
                 _scrollRect.StopMovement();
                 _scrollRect.enabled = false;
                 _mode = mode;
+                _miniMapOutline.enabled = mode == MapDisplayMode.Mini;
                 _isShown = true;
                 gameObject.SetActive(true);
                 PositionControls();
@@ -469,6 +493,7 @@ namespace DynamicMaps.UI
             
             _transitionProgress = 1f;
             _mode = MapDisplayMode.Hidden;
+            _miniMapOutline.enabled = false;
             _isShown = false;
             _scrollRect?.StopMovement();
             gameObject.SetActive(false);
@@ -522,6 +547,11 @@ namespace DynamicMaps.UI
                 mask.pivot = mask.anchorMin;
                 mask.sizeDelta = layout.Size;
                 mask.anchoredPosition = layout.Position;
+                _miniMapOutlineRect.anchorMin = mask.anchorMin;
+                _miniMapOutlineRect.anchorMax = mask.anchorMax;
+                _miniMapOutlineRect.pivot = mask.pivot;
+                _miniMapOutlineRect.sizeDelta = layout.Size;
+                _miniMapOutlineRect.anchoredPosition = layout.Position;
             }
             finally
             {
@@ -531,7 +561,9 @@ namespace DynamicMaps.UI
 
         private MapLayout GetLayout(MapDisplayMode mode)
         {
-            var size = Singleton<CommonUI>.Instance.InventoryScreen.GetRectTransform().rect.size;
+            var size = mode == MapDisplayMode.Main
+                ? Singleton<CommonUI>.Instance.InventoryScreen.GetRectTransform().rect.size
+                : GetRaidCanvasSize();
             if (mode == MapDisplayMode.Main)
             {
                 return new MapLayout
@@ -558,6 +590,12 @@ namespace DynamicMaps.UI
                 Position = (corner - new Vector2(0.5f, 0.5f)) * size + offset
                     + (new Vector2(0.5f, 0.5f) - corner) * miniSize
             };
+        }
+
+        private Vector2 GetRaidCanvasSize()
+        {
+            var scale = _raidCanvas != null ? _raidCanvas.GetComponent<Canvas>().scaleFactor : 1f;
+            return new Vector2(Screen.width, Screen.height) / Mathf.Max(scale, 0.0001f);
         }
 
         private void PositionControls()
@@ -630,6 +668,7 @@ namespace DynamicMaps.UI
 
         private void OnRaidEnd()
         {
+            FreecamSupport.Clear();
             HideDisplay();
             foreach (var provider in _dynamicMarkerProviders.Values)
             {
@@ -642,10 +681,11 @@ namespace DynamicMaps.UI
                     Plugin.Log.LogError($"Failed to clear raid markers: {e}");
                 }
             }
-            if (_peekComponent != null)
+            if (_raidCanvas != null)
             {
-                Destroy(_peekComponent.gameObject);
+                Destroy(_raidCanvas);
             }
+            _raidCanvas = null;
             _peekComponent = null;
             _mapView.UnloadMap();
             InvalidateControllers(null);
@@ -820,7 +860,7 @@ namespace DynamicMaps.UI
             }
         }
 
-        internal void TryAddPeekComponent(EftBattleUIScreen battleUI)
+        internal void TryAddPeekComponent()
         {
             if (_peekComponent != null)
             {
@@ -830,7 +870,28 @@ namespace DynamicMaps.UI
             {
                 _mainParent = ParentTransform;
             }
-            _peekComponent = MapPeekComponent.Create(battleUI.gameObject);
+            _raidCanvas = new GameObject("DynamicMapsRaidCanvas", typeof(RectTransform), typeof(Canvas));
+            _raidCanvas.transform.SetParent(Plugin.Instance.transform, false);
+            var canvas = _raidCanvas.GetComponent<Canvas>();
+            var sourceCanvas = Singleton<CommonUI>.Instance.EftBattleUIScreen?.GetComponentInParent<Canvas>()
+                ?? Singleton<CommonUI>.Instance.GetComponentInParent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            if (sourceCanvas != null)
+            {
+                canvas.sortingOrder = sourceCanvas.sortingOrder + 1;
+                canvas.scaleFactor = sourceCanvas.scaleFactor;
+                var sourceScaler = sourceCanvas.GetComponent<CanvasScaler>();
+                if (sourceScaler != null)
+                {
+                    var scaler = _raidCanvas.AddComponent<CanvasScaler>();
+                    scaler.uiScaleMode = sourceScaler.uiScaleMode;
+                    scaler.referenceResolution = sourceScaler.referenceResolution;
+                    scaler.screenMatchMode = sourceScaler.screenMatchMode;
+                    scaler.matchWidthOrHeight = sourceScaler.matchWidthOrHeight;
+                    scaler.referencePixelsPerUnit = sourceScaler.referencePixelsPerUnit;
+                }
+            }
+            _peekComponent = MapPeekComponent.Create(_raidCanvas);
             _peekComponent.MapScreen = this;
             ReadConfig();
         }

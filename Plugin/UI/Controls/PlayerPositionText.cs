@@ -1,5 +1,5 @@
+using DynamicMaps.ExternalModSupport;
 using DynamicMaps.Utils;
-using EFT;
 using UnityEngine;
 
 namespace DynamicMaps.UI.Controls
@@ -15,13 +15,13 @@ namespace DynamicMaps.UI.Controls
         private void Update()
         {
             var player = GameUtils.GetMainPlayer();
-            if (player == null)
+            if (!FreecamSupport.TryGetViewpoint(player, out var viewpoint))
             {
                 return;
             }
 
-            var mapPosition = MathUtils.ConvertToMapPosition(((IPlayer)player).Position);
-            Text.text = $"Player: {mapPosition.x:F} {mapPosition.y:F} {mapPosition.z:F}";
+            var mapPosition = MathUtils.ConvertToMapPosition(viewpoint.Position);
+            Text.text = $"{(player == null ? "Camera" : "Player")}: {mapPosition.x:F} {mapPosition.y:F} {mapPosition.z:F}";
         }
     }
 }

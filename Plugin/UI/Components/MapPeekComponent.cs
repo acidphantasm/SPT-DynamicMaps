@@ -3,6 +3,9 @@ using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Utils;
 using EFT;
+using EFT.InputSystem;
+using EFT.GlobalEvents;
+using EFT.UI;
 using UnityEngine;
 
 namespace DynamicMaps.UI.Components
@@ -14,6 +17,7 @@ namespace DynamicMaps.UI.Components
         
         public KeyboardShortcut PeekShortcut { get; set; }
         public KeyboardShortcut HideMinimapShortcut { get; set; }
+        public KeyboardShortcut PositionHotkey { get; set; }
         
         public bool HoldForPeek { get; set; }
         
@@ -24,6 +28,14 @@ namespace DynamicMaps.UI.Components
         
         public bool WasMiniMapActive { get; set; }
         private bool _isMiniMapHidden;
+        
+        private bool _editingPosition;
+        private bool _draggingPosition;
+        private bool _cursorWasVisible;
+        private Vector2 _dragOffset;
+        private InputTree _inputTree;
+        private MiniMapPositionInputNode _positionInputNode;
+        
         internal bool ShouldShowMiniMap
         {
             get => Settings.MiniMapEnabled.Value && !_isMiniMapHidden;
@@ -47,8 +59,22 @@ namespace DynamicMaps.UI.Components
 
         private void Update()
         {
+            var inventoryScreen = Singleton<CommonUI>.Instance.InventoryScreen;
+            var inventoryOpen = inventoryScreen != null && inventoryScreen.gameObject.activeInHierarchy;
+            
+            if (_editingPosition && (MapScreen == null || MapScreen.IsShowingMapScreen || inventoryOpen || !GameUtils.HasActiveRaidDetails() || !ShouldShowMiniMap))
+            {
+                CancelMiniMapPositionEdit();
+            }
+
             if (MapScreen == null || MapScreen.IsShowingMapScreen)
             {
+                return;
+            }
+
+            if (inventoryOpen)
+            {
+                MapScreen.RequestMode(MapDisplayMode.Hidden, false);
                 return;
             }
 
@@ -60,8 +86,72 @@ namespace DynamicMaps.UI.Components
             
             if (!MapScreen.EnsureInRaidMapAvailable() || !GameUtils.ShouldShowMapInRaid())
             {
+                CancelMiniMapPositionEdit();
                 WasMiniMapActive = false;
                 MapScreen.RequestMode(MapDisplayMode.Hidden, false);
+                return;
+            }
+            
+            if (PositionHotkey.BetterIsDown())
+            {
+                if (_editingPosition)
+                {
+                    MapScreen.SaveMiniMapPositionEdit();
+                    EndMiniMapPositionEdit();
+                }
+                else if (ShouldShowMiniMap && MapScreen.BeginMiniMapPositionEdit())
+                {
+                    _inputTree = FindInputTree();
+                    
+                    if (_inputTree == null)
+                    {
+                        Plugin.Log.LogWarning("Cannot edit mini-map position: EFT input tree is unavailable");
+                        MapScreen.CancelMiniMapPositionEdit();
+                        return;
+                    }
+
+                    if (_positionInputNode == null)
+                    {
+                        _positionInputNode = gameObject.AddComponent<MiniMapPositionInputNode>();
+                    }
+                    
+                    _inputTree.Add(_positionInputNode);
+                    UIEventSystem.Instance.SetTemporaryStatus(true);
+                    _cursorWasVisible = Cursor.visible;
+                    SetCursorVisible(true);
+                    _editingPosition = true;
+                }
+                
+                return;
+            }
+            
+            if (_editingPosition)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    MapScreen.SaveMiniMapPositionEdit();
+                    EndMiniMapPositionEdit();
+                    return;
+                }
+
+                if (RectTransformUtility.ScreenPointToLocalPointInRectangle(RectTransform, Input.mousePosition, null, out var point))
+                {
+                    if (Input.GetMouseButtonDown(0) && MapScreen.ContainsMiniMapPoint(point))
+                    {
+                        _draggingPosition = true;
+                        _dragOffset = MapScreen.MiniMapCenter - point;
+                    }
+                    
+                    if (_draggingPosition && Input.GetMouseButton(0))
+                    {
+                        MapScreen.SetMiniMapEditPosition(point + _dragOffset);
+                    }
+                }
+                
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _draggingPosition = false;
+                }
                 return;
             }
             if (HideMinimapShortcut.BetterIsDown())
@@ -95,6 +185,52 @@ namespace DynamicMaps.UI.Components
             {
                 MapScreen.RequestMode(ShouldShowMiniMap ? MapDisplayMode.Mini : MapDisplayMode.Hidden, true);
             }
+        }
+
+        internal void CancelMiniMapPositionEdit()
+        {
+            if (!_editingPosition)
+            {
+                return;
+            }
+
+            if (MapScreen != null)
+            {
+                MapScreen.CancelMiniMapPositionEdit();
+            }
+            
+            EndMiniMapPositionEdit();
+        }
+
+        private void EndMiniMapPositionEdit()
+        {
+            _editingPosition = false;
+            _draggingPosition = false;
+            
+            if (_inputTree != null && _positionInputNode != null)
+            {
+                _inputTree.Remove(_positionInputNode);
+            }
+            
+            _inputTree = null;
+            
+            UIEventSystem.Instance.SetTemporaryStatus(false);
+            SetCursorVisible(_cursorWasVisible);
+        }
+
+        private static void SetCursorVisible(bool visible)
+        {
+            GlobalEventsController.Instance.CreateCommonEvent<ToggleShowInGameCursorEvent>().Invoke(visible);
+        }
+
+        private static InputTree FindInputTree()
+        {
+            return GameObject.Find("___Input")?.GetComponent<InputTree>();
+        }
+
+        private void OnDestroy()
+        {
+            CancelMiniMapPositionEdit();
         }
 
         private void BeginPeek()

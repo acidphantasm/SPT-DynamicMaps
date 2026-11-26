@@ -5,5 +5,6 @@ public enum EMiniMapPosition
     TopRight,
     BottomRight,
     TopLeft,
-    BottomLeft
+    BottomLeft,
+    Custom
 }

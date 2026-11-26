@@ -104,6 +104,9 @@ namespace DynamicMaps.Config
         public static ConfigEntry<float> MiniMapSquareOutlineSize;
         public static ConfigEntry<float> MiniMapCircleOutlineSize;
         public static ConfigEntry<EMiniMapPosition> MiniMapPosition;
+        public static ConfigEntry<KeyboardShortcut> MiniMapPositionHotkey;
+        public static ConfigEntry<float> MiniMapCustomPositionX;
+        public static ConfigEntry<float> MiniMapCustomPositionY;
         public static ConfigEntry<float> MiniMapSizeX;
         public static ConfigEntry<float> MiniMapSizeY;
         public static ConfigEntry<float> MiniMapScreenOffsetX;
@@ -749,6 +752,33 @@ namespace DynamicMaps.Config
                 new ConfigDescription(
                     "What corner is the mini-map displayed in",
                     null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapPositionHotkey = config.Bind(
+                MiniMapTitle,
+                "Move mini-map hotkey",
+                new KeyboardShortcut(KeyCode.M, KeyCode.LeftControl, KeyCode.LeftShift),
+                new ConfigDescription(
+                    "Show the cursor to drag the mini-map, then press again to save its position",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapCustomPositionX = config.Bind(
+                MiniMapTitle,
+                "Custom mini-map position horizontal",
+                0.5f,
+                new ConfigDescription(
+                    "Horizontal center position from left (0) to right (1)",
+                    new AcceptableValueRange<float>(0f, 1f),
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapCustomPositionY = config.Bind(
+                MiniMapTitle,
+                "Custom mini-map position vertical",
+                0.5f,
+                new ConfigDescription(
+                    "Vertical center position from bottom (0) to top (1)",
+                    new AcceptableValueRange<float>(0f, 1f),
                     new ConfigurationManagerAttributes())));
             
             ConfigEntries.Add(MiniMapSizeX = config.Bind(

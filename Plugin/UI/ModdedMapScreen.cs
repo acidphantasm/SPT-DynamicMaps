@@ -69,6 +69,8 @@ namespace DynamicMaps.UI
         private MapViewportState _transitionFromState;
         private MapLayout _transitionFromLayout;
         private MapLayout _targetLayout;
+        private bool _editingMiniMapPosition;
+        private Vector2 _miniMapEditPosition;
         
         private RectTransform RectTransform
         {
@@ -582,6 +584,7 @@ namespace DynamicMaps.UI
             var size = mode == MapDisplayMode.Main
                 ? Singleton<CommonUI>.Instance.InventoryScreen.GetRectTransform().rect.size
                 : GetRaidCanvasSize();
+            
             if (mode == MapDisplayMode.Main)
             {
                 return new MapLayout
@@ -590,6 +593,7 @@ namespace DynamicMaps.UI
                     Position = GameUtils.IsInRaid() ? MaskPositionInRaid : MaskPositionOutOfRaid
                 };
             }
+            
             if (mode == MapDisplayMode.Peek)
             {
                 return new MapLayout
@@ -598,33 +602,132 @@ namespace DynamicMaps.UI
                     Position = Vector2.zero
                 };
             }
+            
             var miniSize = Settings.MiniMapShape.Value == EMiniMapShape.Circle
                 ? Vector2.one * Mathf.Min(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value)
                 : new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
+
+            if (_editingMiniMapPosition || Settings.MiniMapPosition.Value == EMiniMapPosition.Custom)
+            {
+                var position = _editingMiniMapPosition
+                    ? _miniMapEditPosition
+                    : new Vector2((Settings.MiniMapCustomPositionX.Value - 0.5f) * size.x,
+                        (Settings.MiniMapCustomPositionY.Value - 0.5f) * size.y);
+                
+                return new MapLayout
+                {
+                    Size = miniSize,
+                    Position = ClampMiniMapPosition(position, miniSize, size)
+                };
+            }
             
             var corner = ConvertEnumToScreenPos(Settings.MiniMapPosition.Value);
-            var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value)
-                * ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
+            var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value) * ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
+            
             return new MapLayout
             {
-                Size = miniSize,
-                Position = (corner - new Vector2(0.5f, 0.5f)) * size + offset
-                    + (new Vector2(0.5f, 0.5f) - corner) * miniSize
+                Size = miniSize, 
+                Position = (corner - new Vector2(0.5f, 0.5f)) * size + offset + (new Vector2(0.5f, 0.5f) - corner) * miniSize
             };
         }
 
         private Vector2 GetRaidCanvasSize()
         {
             var scale = _raidCanvas != null ? _raidCanvas.GetComponent<Canvas>().scaleFactor : 1f;
+            
             return new Vector2(Screen.width, Screen.height) / Mathf.Max(scale, 0.0001f);
+        }
+
+        private static Vector2 ClampMiniMapPosition(Vector2 position, Vector2 miniSize, Vector2 canvasSize)
+        {
+            var limit = Vector2.Max(Vector2.zero, (canvasSize - miniSize) * 0.5f);
+            
+            return new Vector2(Mathf.Clamp(position.x, -limit.x, limit.x), Mathf.Clamp(position.y, -limit.y, limit.y));
+        }
+
+        internal Vector2 MiniMapCenter
+        {
+            get => _targetLayout.Position;
+        }
+
+        internal bool BeginMiniMapPositionEdit()
+        {
+            if (_mode != MapDisplayMode.Mini || IsTransitioning)
+            {
+                return false;
+            }
+
+            _miniMapEditPosition = _targetLayout.Position;
+            _editingMiniMapPosition = true;
+            return true;
+        }
+
+        internal bool ContainsMiniMapPoint(Vector2 point)
+        {
+            var offset = point - _targetLayout.Position;
+            
+            if (Settings.MiniMapShape.Value == EMiniMapShape.Circle)
+            {
+                return offset.sqrMagnitude <= _targetLayout.Size.x * _targetLayout.Size.x * 0.25f;
+            }
+
+            return Mathf.Abs(offset.x) <= _targetLayout.Size.x * 0.5f && Mathf.Abs(offset.y) <= _targetLayout.Size.y * 0.5f;
+        }
+
+        internal void SetMiniMapEditPosition(Vector2 position)
+        {
+            if (!_editingMiniMapPosition)
+            {
+                return;
+            }
+
+            _miniMapEditPosition = ClampMiniMapPosition(position, _targetLayout.Size, GetRaidCanvasSize());
+            _targetLayout.Position = _miniMapEditPosition;
+            ApplyLayout(_targetLayout);
+        }
+
+        internal void SaveMiniMapPositionEdit()
+        {
+            if (!_editingMiniMapPosition)
+            {
+                return;
+            }
+
+            var size = GetRaidCanvasSize();
+            
+            Settings.MiniMapCustomPositionX.Value = Mathf.Clamp01(_miniMapEditPosition.x / size.x + 0.5f);
+            Settings.MiniMapCustomPositionY.Value = Mathf.Clamp01(_miniMapEditPosition.y / size.y + 0.5f);
+            Settings.MiniMapPosition.Value = EMiniMapPosition.Custom;
+            
+            _editingMiniMapPosition = false;
+            _targetLayout = GetLayout(MapDisplayMode.Mini);
+            
+            ApplyLayout(_targetLayout);
+        }
+
+        internal void CancelMiniMapPositionEdit()
+        {
+            if (!_editingMiniMapPosition)
+            {
+                return;
+            }
+
+            _editingMiniMapPosition = false;
+
+            if (_mode != MapDisplayMode.Mini)
+            {
+                return;
+            }
+            
+            _targetLayout = GetLayout(_mode);
+            ApplyLayout(_targetLayout);
         }
 
         private void ApplyMiniMapShape()
         {
             var circle = _mode == MapDisplayMode.Mini && Settings.MiniMapShape.Value == EMiniMapShape.Circle;
             _scrollMaskImage.Circle = circle;
-            _miniMapOutline.enabled = _mode == MapDisplayMode.Mini && !circle
-                && Settings.MiniMapSquareOutlineSize.Value > 0f;
+            _miniMapOutline.enabled = _mode == MapDisplayMode.Mini && !circle && Settings.MiniMapSquareOutlineSize.Value > 0f;
             _circleMapOutline.enabled = circle && Settings.MiniMapCircleOutlineSize.Value > 0f;
         }
 
@@ -698,8 +801,10 @@ namespace DynamicMaps.UI
 
         private void OnRaidEnd()
         {
+            _peekComponent?.CancelMiniMapPositionEdit();
             FreecamSupport.Clear();
             HideDisplay();
+            
             foreach (var provider in _dynamicMarkerProviders.Values)
             {
                 try
@@ -711,10 +816,12 @@ namespace DynamicMaps.UI
                     Plugin.Log.LogError($"Failed to clear raid markers: {e}");
                 }
             }
+            
             if (_raidCanvas != null)
             {
                 Destroy(_raidCanvas);
             }
+            
             _raidCanvas = null;
             _peekComponent = null;
             _mapView.UnloadMap();
@@ -787,7 +894,9 @@ namespace DynamicMaps.UI
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;
                 _peekComponent.HoldForPeek = Settings.HoldForPeek.Value;
                 _peekComponent.HideMinimapShortcut = Settings.MiniMapShowOrHide.Value;
+                _peekComponent.PositionHotkey = Settings.MiniMapPositionHotkey.Value;
             }
+            
             if (_isShown && !_changingMode)
             {
                 var layout = GetLayout(_mode);
@@ -878,6 +987,7 @@ namespace DynamicMaps.UI
                                  || Settings.ShowOtherCorpsesInRaid.Value;
 
             AddRemoveMarkerProvider<CorpseMarkerProvider>(needCorpseMarkers);
+            
             if (needCorpseMarkers)
             {
                 var provider = GetMarkerProvider<CorpseMarkerProvider>();
@@ -902,21 +1012,25 @@ namespace DynamicMaps.UI
             {
                 return;
             }
+            
             if (_mainParent == null)
             {
                 _mainParent = ParentTransform;
             }
+            
             _raidCanvas = new GameObject("DynamicMapsRaidCanvas", typeof(RectTransform), typeof(Canvas));
             _raidCanvas.transform.SetParent(Plugin.Instance.transform, false);
+            
             var canvas = _raidCanvas.GetComponent<Canvas>();
-            var sourceCanvas = Singleton<CommonUI>.Instance.EftBattleUIScreen?.GetComponentInParent<Canvas>()
-                ?? Singleton<CommonUI>.Instance.GetComponentInParent<Canvas>();
+            var sourceCanvas = Singleton<CommonUI>.Instance.EftBattleUIScreen?.GetComponentInParent<Canvas>() ?? Singleton<CommonUI>.Instance.GetComponentInParent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            
             if (sourceCanvas != null)
             {
                 canvas.sortingOrder = sourceCanvas.sortingOrder + 1;
                 canvas.scaleFactor = sourceCanvas.scaleFactor;
                 var sourceScaler = sourceCanvas.GetComponent<CanvasScaler>();
+                
                 if (sourceScaler != null)
                 {
                     var scaler = _raidCanvas.AddComponent<CanvasScaler>();
@@ -927,6 +1041,7 @@ namespace DynamicMaps.UI
                     scaler.referencePixelsPerUnit = sourceScaler.referencePixelsPerUnit;
                 }
             }
+            
             _peekComponent = MapPeekComponent.Create(_raidCanvas);
             _peekComponent.MapScreen = this;
             ReadConfig();
@@ -971,6 +1086,7 @@ namespace DynamicMaps.UI
             {
                 return;
             }
+            
             Plugin.Log.LogInfo($"MapScreen: Loading map {mapDef.DisplayName}");
             try
             {
@@ -997,9 +1113,11 @@ namespace DynamicMaps.UI
                 InvalidateControllers(null);
                 return;
             }
+            
             InvalidateControllers(mapDef);
             _mapChanged = true;
             _mapSelectDropdown.OnLoadMap(mapDef);
+            
             foreach (var provider in _dynamicMarkerProviders.Values)
             {
                 try
@@ -1011,6 +1129,7 @@ namespace DynamicMaps.UI
                     Plugin.Log.LogError($"Failed to change map markers: {e}");
                 }
             }
+            
             if (_isShown && !_changingMode)
             {
                 RequestMode(_mode, false, true);
@@ -1019,8 +1138,7 @@ namespace DynamicMaps.UI
 
         private void PrecacheMapLayerImages()
         {
-            Singleton<CommonUI>.Instance.StartCoroutine(
-                PrecacheCoroutine(_mapSelectDropdown.GetMapDefs()));
+            Singleton<CommonUI>.Instance.StartCoroutine(PrecacheCoroutine(_mapSelectDropdown.GetMapDefs()));
         }
 
         private static IEnumerator PrecacheCoroutine(IEnumerable<MapDef> mapDefs)

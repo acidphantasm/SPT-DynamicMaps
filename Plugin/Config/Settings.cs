@@ -757,9 +757,9 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(MiniMapPositionHotkey = config.Bind(
                 MiniMapTitle,
                 "Move mini-map hotkey",
-                new KeyboardShortcut(KeyCode.M, KeyCode.LeftControl, KeyCode.LeftShift),
+                new KeyboardShortcut(KeyCode.Z, KeyCode.LeftControl, KeyCode.LeftShift),
                 new ConfigDescription(
-                    "Show the cursor to drag the mini-map, then press again to save its position",
+                    "Show the cursor to drag the mini-map, then press again to save its position. Movement input is disabled while editing position.",
                     null,
                     new ConfigurationManagerAttributes())));
 
@@ -802,7 +802,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(MiniMapScreenOffsetX = config.Bind(
                 MiniMapTitle,
                 "Mini-map offset horizontal",
-                5.0f,
+                10.0f,
                 new ConfigDescription(
                     "Horizontal Offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
                     new AcceptableValueRange<float>(-Screen.width / 4f, Screen.width),
@@ -811,7 +811,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(MiniMapScreenOffsetY = config.Bind(
                 MiniMapTitle,
                 "Mini-map offset vertical",
-                5.0f,
+                10.0f,
                 new ConfigDescription(
                     "Vertical offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
                     new AcceptableValueRange<float>(-Screen.height / 4f, Screen.height),

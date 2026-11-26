@@ -13,21 +13,21 @@ namespace DynamicMaps.ExternalModSupport.SamSWATHeliCrash
     public class HeliCrashMarkerProvider : IDynamicMarkerProvider
     {
         private MapView _lastMapView;
-        private List<MapMarker> _HeliCrashMarkers = new List<MapMarker>();
+        private readonly List<MapMarker> _heliCrashMarkers = [];
 
         // TODO: move to config
-        private const string _markerName = "Crashed Helicopter";
-        private const string _markerCategory = "Airdrop";
-        private const string _markerImagePath = "Markers/helicopter.png";
-        private static Vector2 _markerPivot = new Vector2(0.5f, 0.25f);
-        private static Color _markerColor = Color.Lerp(Color.red, Color.white, 0.333f);
+        private const string MarkerName = "Crashed Helicopter";
+        private const string MarkerCategory = "Airdrop";
+        private const string MarkerImagePath = "Markers/helicopter.png";
+        private static readonly Vector2 MarkerPivot = new Vector2(0.5f, 0.25f);
+        private static readonly Color MarkerColor = Color.Lerp(Color.red, Color.white, 0.333f);
         //
 
         public void OnShowInRaid(MapView map)
         {
             _lastMapView = map;
             // There should be only 1 crashed Heli on the Map. Therefore stop refreshing and adding markers when 1 is allready on the map
-            if (_HeliCrashMarkers.Count > 0)
+            if (_heliCrashMarkers.Count > 0)
             {
                 return;
             }
@@ -58,8 +58,8 @@ namespace DynamicMaps.ExternalModSupport.SamSWATHeliCrash
         private void TryAddMarker()
         {
             var gameWorld = Singleton<GameWorld>.Instance;
-            var HeliCrashWorldItem = gameWorld.FindItemWithWorldData("6223349b3136504a544d1608");
-            var (itemData, WorldData) = HeliCrashWorldItem.Value;
+            var heliCrashWorldItem = gameWorld.FindItemWithWorldData("6223349b3136504a544d1608");
+            var (itemData, worldData) = heliCrashWorldItem.Value;
 
             if (itemData == null){
                 return;
@@ -67,27 +67,27 @@ namespace DynamicMaps.ExternalModSupport.SamSWATHeliCrash
 
             var markerDef = new MapMarkerDef
             {
-                Category = _markerCategory,
-                Color = _markerColor,
-                ImagePath = _markerImagePath,
-                Position = MathUtils.ConvertToMapPosition(WorldData.Transform),
-                Pivot = _markerPivot,
-                Text = _markerName
+                Category = MarkerCategory,
+                Color = MarkerColor,
+                ImagePath = MarkerImagePath,
+                Position = MathUtils.ConvertToMapPosition(worldData.Transform),
+                Pivot = MarkerPivot,
+                Text = MarkerName
             };
 
             var marker = _lastMapView.AddMapMarker(markerDef);
-            _HeliCrashMarkers.Add(marker);
+            _heliCrashMarkers.Add(marker);
         }
 
         private void TryRemoveMarker()
         {
-            if (_HeliCrashMarkers.Count == 0)
+            if (_heliCrashMarkers.Count == 0)
             {
                 return;
             }
 
-            _HeliCrashMarkers[0].ContainingMapView.RemoveMapMarker(_HeliCrashMarkers[0]);
-            _HeliCrashMarkers.Remove(_HeliCrashMarkers[0]);
+            _heliCrashMarkers[0].ContainingMapView.RemoveMapMarker(_heliCrashMarkers[0]);
+            _heliCrashMarkers.Remove(_heliCrashMarkers[0]);
         }
 
         public void OnShowOutOfRaid(MapView map)

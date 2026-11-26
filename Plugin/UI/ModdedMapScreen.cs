@@ -42,8 +42,11 @@ namespace DynamicMaps.UI
         
         private MapScrollRect _scrollRect;
         private Mask _scrollMask;
+        private CircleMaskImage _scrollMaskImage;
         private Outline _miniMapOutline;
+        private CircleMapOutline _circleMapOutline;
         private RectTransform _miniMapOutlineRect;
+        private RectTransform _circleMapOutlineRect;
         private MapView _mapView;
         private LevelSelectSlider _levelSelectSlider;
         private MapSelectDropdown _mapSelectDropdown;
@@ -121,8 +124,8 @@ namespace DynamicMaps.UI
             _mapView = MapView.Create(scrollMaskGo, "MapView");
 
             // set up mask; size will be set later in Raid/NoRaid
-            var scrollMaskImage = scrollMaskGo.AddComponent<Image>();
-            scrollMaskImage.color = new Color(0f, 0f, 0f, 0.5f);
+            _scrollMaskImage = scrollMaskGo.AddComponent<CircleMaskImage>();
+            _scrollMaskImage.color = new Color(0f, 0f, 0f, 0.5f);
             _scrollMask = scrollMaskGo.AddComponent<Mask>();
             
             // outline
@@ -134,9 +137,16 @@ namespace DynamicMaps.UI
             outlineImage.raycastTarget = false;
             _miniMapOutline = outlineGo.AddComponent<Outline>();
             _miniMapOutline.effectColor = Color.black;
-            _miniMapOutline.effectDistance = new Vector2(2f, -2f);
             _miniMapOutline.useGraphicAlpha = false;
             _miniMapOutline.enabled = false;
+            
+            var circleOutlineGo = UIUtils.CreateUIGameObject(scrollRectGo, "CircleOutline");
+            circleOutlineGo.transform.SetAsLastSibling();
+            _circleMapOutlineRect = circleOutlineGo.GetRectTransform();
+            _circleMapOutline = circleOutlineGo.AddComponent<CircleMapOutline>();
+            _circleMapOutline.color = Color.black;
+            _circleMapOutline.raycastTarget = false;
+            _circleMapOutline.enabled = false;
 
             // set up scroll rect
             _scrollRect = scrollRectGo.AddComponent<MapScrollRect>();
@@ -404,7 +414,9 @@ namespace DynamicMaps.UI
                 _scrollRect.StopMovement();
                 _scrollRect.enabled = false;
                 _mode = mode;
-                _miniMapOutline.enabled = mode == MapDisplayMode.Mini;
+                
+                ApplyMiniMapShape();
+                
                 _isShown = true;
                 gameObject.SetActive(true);
                 PositionControls();
@@ -494,6 +506,7 @@ namespace DynamicMaps.UI
             _transitionProgress = 1f;
             _mode = MapDisplayMode.Hidden;
             _miniMapOutline.enabled = false;
+            _circleMapOutline.enabled = false;
             _isShown = false;
             _scrollRect?.StopMovement();
             gameObject.SetActive(false);
@@ -552,6 +565,11 @@ namespace DynamicMaps.UI
                 _miniMapOutlineRect.pivot = mask.pivot;
                 _miniMapOutlineRect.sizeDelta = layout.Size;
                 _miniMapOutlineRect.anchoredPosition = layout.Position;
+                _circleMapOutlineRect.anchorMin = mask.anchorMin;
+                _circleMapOutlineRect.anchorMax = mask.anchorMax;
+                _circleMapOutlineRect.pivot = mask.pivot;
+                _circleMapOutlineRect.sizeDelta = layout.Size;
+                _circleMapOutlineRect.anchoredPosition = layout.Position;
             }
             finally
             {
@@ -580,7 +598,10 @@ namespace DynamicMaps.UI
                     Position = Vector2.zero
                 };
             }
-            var miniSize = new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
+            var miniSize = Settings.MiniMapShape.Value == EMiniMapShape.Circle
+                ? Vector2.one * Mathf.Min(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value)
+                : new Vector2(Settings.MiniMapSizeX.Value, Settings.MiniMapSizeY.Value);
+            
             var corner = ConvertEnumToScreenPos(Settings.MiniMapPosition.Value);
             var offset = new Vector2(Settings.MiniMapScreenOffsetX.Value, Settings.MiniMapScreenOffsetY.Value)
                 * ConvertEnumToScenePivot(Settings.MiniMapPosition.Value);
@@ -596,6 +617,15 @@ namespace DynamicMaps.UI
         {
             var scale = _raidCanvas != null ? _raidCanvas.GetComponent<Canvas>().scaleFactor : 1f;
             return new Vector2(Screen.width, Screen.height) / Mathf.Max(scale, 0.0001f);
+        }
+
+        private void ApplyMiniMapShape()
+        {
+            var circle = _mode == MapDisplayMode.Mini && Settings.MiniMapShape.Value == EMiniMapShape.Circle;
+            _scrollMaskImage.Circle = circle;
+            _miniMapOutline.enabled = _mode == MapDisplayMode.Mini && !circle
+                && Settings.MiniMapSquareOutlineSize.Value > 0f;
+            _circleMapOutline.enabled = circle && Settings.MiniMapCircleOutlineSize.Value > 0f;
         }
 
         private void PositionControls()
@@ -746,6 +776,12 @@ namespace DynamicMaps.UI
             _mainController.ReadConfig();
             _miniController.ReadConfig();
             _transitionAnimations = Settings.MapTransitionEnabled.Value;
+            
+            var squareOutlineSize = Settings.MiniMapSquareOutlineSize.Value;
+            _miniMapOutline.effectDistance = new Vector2(squareOutlineSize, -squareOutlineSize);
+            _circleMapOutline.Thickness = Settings.MiniMapCircleOutlineSize.Value;
+            ApplyMiniMapShape();
+            
             if (_peekComponent != null)
             {
                 _peekComponent.PeekShortcut = Settings.PeekShortcut.Value;
@@ -765,7 +801,7 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<QuestMarkerProvider>(Settings.ShowQuestsInRaid.Value);
             AddRemoveMarkerProvider<LockedDoorMarkerMutator>(Settings.ShowLockedDoorStatus.Value);
             AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
-            AddRemoveMarkerProvider<BtrMarkerProvider>(Settings.ShowBTRInRaid.Value);
+            AddRemoveMarkerProvider<BtrMarkerProvider>(Settings.ShowBtrInRaid.Value);
             AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
             AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
             AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
@@ -1019,4 +1055,5 @@ namespace DynamicMaps.UI
         }
 
     }
+
 }

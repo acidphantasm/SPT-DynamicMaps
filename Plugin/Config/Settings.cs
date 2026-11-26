@@ -56,7 +56,7 @@ namespace DynamicMaps.Config
         public static ConfigEntry<bool> ShowDroppedBackpackInRaid;
         public static ConfigEntry<bool> ShowWishListItemsInRaid;
         public static ConfigEntry<bool> ShowWishListItemsInContainers;
-        public static ConfigEntry<bool> ShowBTRInRaid;
+        public static ConfigEntry<bool> ShowBtrInRaid;
         public static ConfigEntry<bool> ShowAirdropsInRaid;
         public static ConfigEntry<bool> ShowHiddenStashesInRaid;
         public static ConfigEntry<bool> ShowFriendlyCorpsesInRaid;
@@ -100,6 +100,9 @@ namespace DynamicMaps.Config
 
         private const string MiniMapTitle = "5. Mini-map";
         public static ConfigEntry<bool> MiniMapEnabled;
+        public static ConfigEntry<EMiniMapShape> MiniMapShape;
+        public static ConfigEntry<float> MiniMapSquareOutlineSize;
+        public static ConfigEntry<float> MiniMapCircleOutlineSize;
         public static ConfigEntry<EMiniMapPosition> MiniMapPosition;
         public static ConfigEntry<float> MiniMapSizeX;
         public static ConfigEntry<float> MiniMapSizeY;
@@ -452,7 +455,7 @@ namespace DynamicMaps.Config
                     null,
                     new ConfigurationManagerAttributes())));
 
-            ConfigEntries.Add(ShowBTRInRaid = config.Bind(
+            ConfigEntries.Add(ShowBtrInRaid = config.Bind(
                 DynamicMarkerTitle,
                 "Show BTR In Raid",
                 true,
@@ -711,6 +714,33 @@ namespace DynamicMaps.Config
                     "Enable the mini-map",
                     null,
                     new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapShape = config.Bind(
+                MiniMapTitle,
+                "Mini-map shape",
+                EMiniMapShape.Square,
+                new ConfigDescription(
+                    "Shape of the mini-map",
+                    null,
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapSquareOutlineSize = config.Bind(
+                MiniMapTitle,
+                "Square outline size",
+                2f,
+                new ConfigDescription(
+                    "Width of the square mini-map outline",
+                    new AcceptableValueRange<float>(0f, 10f),
+                    new ConfigurationManagerAttributes())));
+
+            ConfigEntries.Add(MiniMapCircleOutlineSize = config.Bind(
+                MiniMapTitle,
+                "Circle outline size",
+                3f,
+                new ConfigDescription(
+                    "Width of the circle mini-map outline",
+                    new AcceptableValueRange<float>(0f, 10f),
+                    new ConfigurationManagerAttributes())));
             
             ConfigEntries.Add(MiniMapPosition = config.Bind(
                 MiniMapTitle,
@@ -742,7 +772,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(MiniMapScreenOffsetX = config.Bind(
                 MiniMapTitle,
                 "Mini-map offset horizontal",
-                0.0f,
+                5.0f,
                 new ConfigDescription(
                     "Horizontal Offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
                     new AcceptableValueRange<float>(-Screen.width / 4f, Screen.width),
@@ -751,7 +781,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(MiniMapScreenOffsetY = config.Bind(
                 MiniMapTitle,
                 "Mini-map offset vertical",
-                0.0f,
+                5.0f,
                 new ConfigDescription(
                     "Vertical offset from the edge (These values update according to screen resolution, REQUIRES RESTART IF YOU CHANGED YOUR RESOLUTION)",
                     new AcceptableValueRange<float>(-Screen.height / 4f, Screen.height),

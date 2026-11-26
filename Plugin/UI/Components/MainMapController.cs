@@ -18,6 +18,7 @@ namespace DynamicMaps.UI.Components
         private bool _zoomToMouse;
         
         private bool _hasRetainedPosition;
+        private float _levelTimer;
         
         private bool _zoomDirty = true;
         private bool _zoomInputActive;
@@ -64,6 +65,7 @@ namespace DynamicMaps.UI.Components
         {
             _viewport.Invalidate(definition);
             _hasRetainedPosition = false;
+            _levelTimer = 0f;
             _centering = false;
             _scrollTarget = 0f;
             _zoomInputActive = false;
@@ -76,6 +78,8 @@ namespace DynamicMaps.UI.Components
             _zoomDirty = !inRaid;
             _scrollTarget = 0f;
             _centering = false;
+            _levelTimer = 0f;
+            
             if (!inRaid)
             {
                 _viewport.State.Center = MathUtils.GetMidpoint(definition.Bounds.Min, definition.Bounds.Max);
@@ -159,6 +163,7 @@ namespace DynamicMaps.UI.Components
             
             if (!allowInput)
             {
+                UpdatePlayerLevel(view, player, deltaTime);
                 return;
             }
 
@@ -295,14 +300,30 @@ namespace DynamicMaps.UI.Components
                 CommitZoom();
                 _zoomInputActive = false;
             }
+            UpdatePlayerLevel(view, player, deltaTime);
         }
 
         internal void SelectPlayerLevel(MapView view, Player player)
         {
-            if (_autoLevel && player != null && !(_retainPosition && _hasRetainedPosition))
+            if (_autoLevel && player != null)
             {
                 _viewport.State.Level = view.GetLevelAtPosition(
                     MathUtils.ConvertToMapPosition(((IPlayer)player).Position), _viewport.State.Level);
+            }
+        }
+
+        private void UpdatePlayerLevel(MapView view, Player player, float deltaTime)
+        {
+            if (!_autoLevel || !GameUtils.IsInRaid() || player == null)
+            {
+                return;
+            }
+
+            _levelTimer -= deltaTime;
+            if (_levelTimer <= 0f)
+            {
+                SelectPlayerLevel(view, player);
+                _levelTimer = 0.033f;
             }
         }
 

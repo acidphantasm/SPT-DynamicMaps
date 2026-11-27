@@ -6,6 +6,9 @@ namespace DynamicMaps.Utils
     {
         public override ETranslateResult TranslateCommand(ECommand command)
         {
+            if (command == ECommand.ToggleAlternativeShooting || command == ECommand.EndAlternativeShooting)
+                return ETranslateResult.Ignore;
+
             return GetDefaultBlockResult(command);
         }
 

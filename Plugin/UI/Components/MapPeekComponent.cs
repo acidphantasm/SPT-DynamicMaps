@@ -2,9 +2,10 @@ using BepInEx.Configuration;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Utils;
-using EFT;
 using EFT.InputSystem;
 using EFT.GlobalEvents;
+using EFT.Settings;
+using EFT.Settings.Control;
 using EFT.UI;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ namespace DynamicMaps.UI.Components
         private Vector2 _dragOffset;
         private InputTree _inputTree;
         private MiniMapPositionInputNode _positionInputNode;
+        private KeyGroup _aimBinding;
         
         internal bool ShouldShowMiniMap
         {
@@ -96,8 +98,7 @@ namespace DynamicMaps.UI.Components
             {
                 if (_editingPosition)
                 {
-                    MapScreen.SaveMiniMapPositionEdit();
-                    EndMiniMapPositionEdit();
+                    SaveMiniMapPositionEdit();
                 }
                 else if (ShouldShowMiniMap && MapScreen.BeginMiniMapPositionEdit())
                 {
@@ -119,6 +120,7 @@ namespace DynamicMaps.UI.Components
                     UIEventSystem.Instance.SetTemporaryStatus(true);
                     _cursorWasVisible = Cursor.visible;
                     SetCursorVisible(true);
+                    _aimBinding = ControlSettingsGroup.GetKeyGroup(Singleton<SettingsManager>.Instance.Control.Settings.UserKeyBindings.Value, EGameKey.Aim);
                     _editingPosition = true;
                 }
                 
@@ -127,10 +129,9 @@ namespace DynamicMaps.UI.Components
             
             if (_editingPosition)
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) || IsAimPressed())
                 {
-                    MapScreen.SaveMiniMapPositionEdit();
-                    EndMiniMapPositionEdit();
+                    SaveMiniMapPositionEdit();
                     return;
                 }
 
@@ -202,6 +203,38 @@ namespace DynamicMaps.UI.Components
             EndMiniMapPositionEdit();
         }
 
+        private void SaveMiniMapPositionEdit()
+        {
+            MapScreen.SaveMiniMapPositionEdit();
+            EndMiniMapPositionEdit();
+        }
+
+        private bool IsAimPressed()
+        {
+            if (_aimBinding?.variants == null)
+                return false;
+
+            foreach (var source in _aimBinding.variants)
+            {
+                if (source?.keyCode == null || source.keyCode.Count == 0)
+                    continue;
+
+                var allHeld = true;
+                var pressed = false;
+                
+                foreach (var key in source.keyCode)
+                {
+                    allHeld &= Input.GetKey(key);
+                    pressed |= Input.GetKeyDown(key);
+                }
+                
+                if (allHeld && pressed)
+                    return true;
+            }
+
+            return false;
+        }
+
         private void EndMiniMapPositionEdit()
         {
             _editingPosition = false;
@@ -213,6 +246,7 @@ namespace DynamicMaps.UI.Components
             }
             
             _inputTree = null;
+            _aimBinding = null;
             
             UIEventSystem.Instance.SetTemporaryStatus(false);
             SetCursorVisible(_cursorWasVisible);

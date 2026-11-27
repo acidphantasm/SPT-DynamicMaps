@@ -159,7 +159,24 @@ namespace DynamicMaps.DynamicMarkers
             
             if (sprite != null)
             {
-                _markers[item] = _map.AddTransformMarker(item.TrackableTransform, item.Item.TemplateId.LocalizedName(), "Loot", Settings.LootItemColor.Value, sprite);
+                var map = _map;
+                var marker = map.AddTransformMarker(item.TrackableTransform, item.Item.TemplateId.LocalizedName(), "Loot", Settings.LootItemColor.Value, sprite);
+                
+                marker.Settle(item.RigidBody, settled =>
+                {
+                    if (!_markers.TryGetValue(item, out var current) || current != settled)
+                        return;
+
+                    _markers[item] = map.ReplaceWithStaticMarker(settled, new MapMarkerDef
+                    {
+                        Text = item.Item.TemplateId.LocalizedName(),
+                        Category = "Loot",
+                        Color = Settings.LootItemColor.Value,
+                        Sprite = sprite
+                    });
+                });
+                
+                _markers[item] = marker;
             }
         }
 

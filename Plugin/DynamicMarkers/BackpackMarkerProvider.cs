@@ -162,6 +162,20 @@ namespace DynamicMaps.DynamicMarkers
             var marker = map.AddTransformMarker(lootItem.TrackableTransform, lootItem.Item.ShortName.BsgLocalized(),
                                                 BackpackCategory, color, BackpackImagePath, BackpackSize);
 
+            marker.Settle(lootItem.RigidBody, settled =>
+            {
+                if (!_backpackMarkers.TryGetValue(itemNetId, out var current) || current != settled)
+                    return;
+
+                _backpackMarkers[itemNetId] = map.ReplaceWithStaticMarker(settled, new MapMarkerDef
+                {
+                    Text = lootItem.Item.ShortName.BsgLocalized(),
+                    Category = BackpackCategory,
+                    Color = Settings.BackpackColor.Value,
+                    ImagePath = BackpackImagePath
+                });
+            });
+
             _backpackMarkers[itemNetId] = marker;
         }
 

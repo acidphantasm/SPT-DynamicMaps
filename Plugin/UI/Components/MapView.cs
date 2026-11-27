@@ -84,6 +84,17 @@ namespace DynamicMaps.UI.Components
             return marker;
         }
 
+        public MapMarker ReplaceWithStaticMarker(TransformMapMarker moving, MapMarkerDef markerDef)
+        {
+            markerDef.Position = moving.Position;
+            
+            var marker = MapMarker.Create(MapMarkerContainer, markerDef, moving.Size, -CoordinateRotation, 1f/_zoomCurrent);
+            AddMapMarker(marker);
+            RemoveMapMarker(moving);
+            
+            return marker;
+        }
+
         public TransformMapMarker AddTransformMarker(Transform followingTransform, string markerName, string category, Color color,
                                                      string imagePath, Vector2 size, Sprite sprite = null)
         {

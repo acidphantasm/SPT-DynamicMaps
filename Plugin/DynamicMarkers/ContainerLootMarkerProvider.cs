@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Comfort.Common;
 using DynamicMaps.Config;
 using DynamicMaps.Data;
+using DynamicMaps.Patches;
 using DynamicMaps.UI.Components;
 using DynamicMaps.Utils;
 using EFT;
@@ -23,12 +24,15 @@ namespace DynamicMaps.DynamicMarkers
             internal ItemController Owner;
             internal Transform Transform;
             internal MapMarker Marker;
+            internal LootItem DroppedItem;
+            internal bool Settled;
             internal readonly Dictionary<string, string> Items = [];
         }
 
         private MapView _map;
         private WishlistManager _wishlistManager;
         private readonly Dictionary<string, ContainerState> _containers = [];
+        private bool _lootEventsSubscribed;
 
         public void OnShowInRaid(MapView map)
         {
@@ -45,6 +49,14 @@ namespace DynamicMaps.DynamicMarkers
                     manager.OnRemoveFromWishlist += OnWishlistChanged;
                 }
             }
+
+            if (!_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot += OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot += OnDestroyLoot;
+                PlayerInventoryThrowItemPatch.OnThrowItem += OnThrowItem;
+                _lootEventsSubscribed = true;
+            }
             
             RefreshMarkers();
         }
@@ -57,6 +69,13 @@ namespace DynamicMaps.DynamicMarkers
         public void OnRaidEnd(MapView map)
         {
             UnsubscribeFromWishlist();
+            if (_lootEventsSubscribed)
+            {
+                LootItemInitPatch.OnRegisterLoot -= OnRegisterLoot;
+                GameWorldDestroyLootPatch.OnDestroyLoot -= OnDestroyLoot;
+                PlayerInventoryThrowItemPatch.OnThrowItem -= OnThrowItem;
+                _lootEventsSubscribed = false;
+            }
             
             foreach (var state in _containers.Values)
             {
@@ -99,19 +118,30 @@ namespace DynamicMaps.DynamicMarkers
             
             foreach (var loot in world.LootList)
             {
-                if (loot is not LootableContainer container || container.ItemOwner?.RootItem == null
-                    || container.TrackableTransform == null)
+                ItemController owner;
+                Transform transform;
+                LootItem droppedItem = null;
+                
+                if (loot is LootableContainer container)
+                {
+                    owner = container.ItemOwner;
+                    transform = container.TrackableTransform;
+                }
+                else if (loot is LootItem item && IsDroppedContainer(item))
+                {
+                    owner = item.ItemOwner;
+                    transform = item.TrackableTransform;
+                    droppedItem = item;
+                }
+                else
                     continue;
 
-                var owner = container.ItemOwner;
+                if (owner?.RootItem == null || transform == null)
+                    continue;
+
                 available.Add(owner.ID);
-                if (!_containers.TryGetValue(owner.ID, out var state))
-                {
-                    state = new ContainerState { Owner = owner, Transform = container.TrackableTransform };
-                    _containers.Add(owner.ID, state);
-                    owner.AddItemEvent += OnItemAdded;
-                    owner.RemoveItemEvent += OnItemRemoved;
-                }
+                
+                var state = TrackContainer(owner, transform, droppedItem);
                 Recount(state);
             }
 
@@ -119,11 +149,77 @@ namespace DynamicMaps.DynamicMarkers
             {
                 if (available.Contains(id))
                     continue;
+                
                 var state = _containers[id];
+                
                 state.Owner.AddItemEvent -= OnItemAdded;
                 state.Owner.RemoveItemEvent -= OnItemRemoved;
+                
                 RemoveMarker(state);
+                
                 _containers.Remove(id);
+            }
+        }
+
+        private static bool IsDroppedContainer(LootItem item)
+        {
+            return item.Item is Backpack or Vest or MobContainer;
+        }
+
+        private ContainerState TrackContainer(ItemController owner, Transform transform, LootItem droppedItem)
+        {
+            if (_containers.TryGetValue(owner.ID, out var state))
+                return state;
+
+            state = new ContainerState
+            {
+                Owner = owner,
+                Transform = transform,
+                DroppedItem = droppedItem,
+                Settled = droppedItem == null
+            };
+            
+            _containers.Add(owner.ID, state);
+            
+            owner.AddItemEvent += OnItemAdded;
+            owner.RemoveItemEvent += OnItemRemoved;
+            
+            return state;
+        }
+
+        private void OnRegisterLoot(LootItem item)
+        {
+            if (_map == null || _wishlistManager == null || item?.ItemOwner?.RootItem == null || item.TrackableTransform == null || !IsDroppedContainer(item))
+                return;
+
+            Recount(TrackContainer(item.ItemOwner, item.TrackableTransform, item));
+        }
+
+        private void OnDestroyLoot(LootItem item)
+        {
+            if (item?.ItemOwner == null || !_containers.TryGetValue(item.ItemOwner.ID, out var state)
+                || state.DroppedItem != item)
+                return;
+
+            state.Owner.AddItemEvent -= OnItemAdded;
+            state.Owner.RemoveItemEvent -= OnItemRemoved;
+            
+            RemoveMarker(state);
+            _containers.Remove(item.ItemOwner.ID);
+        }
+
+        private void OnThrowItem(int itemNetId, Item item)
+        {
+            if (item is not Backpack)
+                return;
+
+            foreach (var state in _containers.Values)
+            {
+                if (state.DroppedItem != null && state.DroppedItem.GetNetId() == itemNetId)
+                {
+                    UpdateMarker(state);
+                    return;
+                }
             }
         }
 
@@ -142,9 +238,10 @@ namespace DynamicMaps.DynamicMarkers
             
             foreach (var item in state.Owner.RootItem.GetAllItems())
             {
-                if (!ReferenceEquals(item, state.Owner.RootItem)
-                    && wishlist.ContainsKey(new MongoID(item.TemplateId)))
+                if (!ReferenceEquals(item, state.Owner.RootItem) && wishlist.ContainsKey(new MongoID(item.TemplateId)))
+                {
                     state.Items[item.Id] = item.TemplateId;
+                }
             }
             
             UpdateMarker(state);
@@ -183,7 +280,10 @@ namespace DynamicMaps.DynamicMarkers
 
         private void UpdateMarker(ContainerState state)
         {
-            if (state.Items.Count == 0 || Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel())
+            if (state.Items.Count == 0 || Settings.ShowWishListItemsIntelLevel.Value > GameUtils.GetIntelLevel()
+                || state.DroppedItem?.Item is Backpack && Settings.ShowDroppedBackpackInRaid.Value
+                && PlayerInventoryThrowItemPatch.ThrownItems.TryGetValue(state.DroppedItem.GetNetId(), out var thrownItem)
+                && thrownItem.Id == state.DroppedItem.Item.Id)
             {
                 RemoveMarker(state);
                 return;
@@ -195,8 +295,39 @@ namespace DynamicMaps.DynamicMarkers
                 return;
             }
 
-            state.Marker = _map.AddTransformMarker(state.Transform, "Wishlisted items", "Loot",
-                Settings.ContainerLootItemColor.Value, MarkerPath, MarkerSize);
+            var droppedItem = state.DroppedItem;
+            if (state.Settled || droppedItem == null)
+            {
+                state.Marker = _map.AddMapMarker(new MapMarkerDef
+                {
+                    Text = "Wishlisted items",
+                    Category = "Loot",
+                    Color = Settings.ContainerLootItemColor.Value,
+                    ImagePath = MarkerPath,
+                    Position = MathUtils.ConvertToMapPosition(state.Transform)
+                });
+                return;
+            }
+
+            var map = _map;
+            var marker = map.AddTransformMarker(state.Transform, "Wishlisted items", "Loot", Settings.ContainerLootItemColor.Value, MarkerPath, MarkerSize);
+            
+            marker.Settle(droppedItem.RigidBody, settled =>
+            {
+                if (state.Marker != settled)
+                    return;
+
+                state.Settled = true;
+                state.Marker = map.ReplaceWithStaticMarker(settled, new MapMarkerDef
+                {
+                    Text = "Wishlisted items",
+                    Category = "Loot",
+                    Color = Settings.ContainerLootItemColor.Value,
+                    ImagePath = MarkerPath
+                });
+            });
+            
+            state.Marker = marker;
         }
 
         private static void RemoveMarker(ContainerState state)

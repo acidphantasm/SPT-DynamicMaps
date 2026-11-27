@@ -912,7 +912,8 @@ namespace DynamicMaps.UI
             AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
             AddRemoveMarkerProvider<BtrMarkerProvider>(Settings.ShowBtrInRaid.Value);
             AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
-            AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
+            AddRemoveMarkerProvider<LooseLootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
+            AddRemoveMarkerProvider<ContainerLootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value && Settings.ShowWishListItemsInContainers.Value);
             AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
             AddRemoveMarkerProvider<TransitMarkerProvider>(Settings.ShowTransitPointsInRaid.Value);
             AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
@@ -925,8 +926,11 @@ namespace DynamicMaps.UI
 
             if (Settings.ShowWishListItemsInRaid.Value)
             {
-                GetMarkerProvider<LootMarkerProvider>()
-                    .RefreshMarkers();
+                GetMarkerProvider<LooseLootMarkerProvider>().RefreshMarkers();
+                if (Settings.ShowWishListItemsInContainers.Value)
+                {
+                    GetMarkerProvider<ContainerLootMarkerProvider>().RefreshMarkers();
+                }
             }
 
             if (Settings.ShowHiddenStashesInRaid.Value)

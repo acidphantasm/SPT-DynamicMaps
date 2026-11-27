@@ -452,7 +452,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(ShowWishListItemsInContainers = config.Bind(
                 DynamicMarkerTitle,
                 "Show wish listed items in containers In Raid",
-                false,
+                true,
                 new ConfigDescription(
                     "Shows wish listed items inside containers without searching them",
                     null,
@@ -943,7 +943,7 @@ namespace DynamicMaps.Config
             ConfigEntries.Add(ContainerLootItemColor = config.Bind(
                 MarkerColors,
                 "Wishlisted container loot marker color",
-                new Color(0.77f, 0.81f, 0.7f),
+                new Color(0.98f, 0.81f, 0.007f),
                 new ConfigDescription(
                     "Color of wish listed item markers inside world containers",
                     null,

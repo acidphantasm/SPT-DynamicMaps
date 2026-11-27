@@ -337,11 +337,23 @@ namespace DynamicMaps.UI.Components
 
         private MapLayer FindMatchingLayerByCoordinate(Vector3 coordinate)
         {
-            // if multiple matching, use the one with the lowest bound volume
-            // this might be expensive to compute with lots of layers and bounds
-            return _layers.Where(l => l.IsCoordinateInLayer(coordinate))
-                          .OrderBy(l => l.GetMatchingBoundVolume(coordinate))
-                          .FirstOrDefault();
+            MapLayer bestLayer = null;
+            var smallestVolume = float.MaxValue;
+
+            foreach (var layer in _layers)
+            {
+                if (!layer.IsCoordinateInLayer(coordinate))
+                    continue;
+
+                var volume = layer.GetMatchingBoundVolume(coordinate);
+                if (volume < smallestVolume)
+                {
+                    smallestVolume = volume;
+                    bestLayer = layer;
+                }
+            }
+
+            return bestLayer;
         }
 
         private void UpdateLayerBound(ILayerBound bound)

@@ -38,7 +38,7 @@ namespace DynamicMaps.UI.Components
         {
             var go = UIUtils.CreateUIGameObject(parent, name);
             go.AddComponent<Canvas>();
-            go.AddComponent<GraphicRaycaster>();
+            go.AddComponent<GraphicRaycaster>().enabled = false;
 
             var view = go.AddComponent<MapView>();
             return view;

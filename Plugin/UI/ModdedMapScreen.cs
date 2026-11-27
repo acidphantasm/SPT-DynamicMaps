@@ -416,6 +416,7 @@ namespace DynamicMaps.UI
                 _scrollRect.StopMovement();
                 _scrollRect.enabled = false;
                 _mode = mode;
+                _mapView.GetComponent<GraphicRaycaster>().enabled = mode == MapDisplayMode.Main;
                 
                 ApplyMiniMapShape();
                 
@@ -507,6 +508,7 @@ namespace DynamicMaps.UI
             
             _transitionProgress = 1f;
             _mode = MapDisplayMode.Hidden;
+            _mapView.GetComponent<GraphicRaycaster>().enabled = false;
             _miniMapOutline.enabled = false;
             _circleMapOutline.enabled = false;
             _isShown = false;
